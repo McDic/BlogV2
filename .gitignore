@@ -1,0 +1,6 @@
+# ENV
+.direnv/
+.envrc
+
+# IDE
+.vscode/
