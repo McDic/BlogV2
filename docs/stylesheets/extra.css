@@ -9,3 +9,8 @@
     right: 0;
     height: auto;
 }
+
+.md-main {
+    display: block;
+    margin-bottom: 120px;
+}
