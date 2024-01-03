@@ -32,7 +32,7 @@ Sparse Table은 Range Query를 답변할 수 있게 해주는 자료구조입니
 
 Sparse Table의 특징은, 임의의 시작점과 임의의 2의 거듭제곱 길이의 구간에 대한 operation의 결과물을 모조리 저장하는 것입니다. 다음 그림은 길이가 8인 배열을 가지고 Sparse Table을 만드는 예시입니다.
 
-![structure](/assets/alds/sparse_table/sparse_table_layers.png){align=center}
+![structure](/assets/posts/alds/sparse_table/sparse_table_layers.png){align=center}
 
 - Layer $0$은 원래 배열과 동일한 구조를 이룹니다.
 - Layer $n$ ($n > 0$)은 Layer $n-1$보다 길이가 2배인 임의의 구간을 모아놓은 것입니다.
