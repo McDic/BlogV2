@@ -6,6 +6,7 @@ theme:
   features:
     - search.suggest
     - search.highlight
+    - navigation.footer
 
 plugins:
   - tags
@@ -58,3 +59,12 @@ extra_javascript:
   - javascripts/mathjax.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/McDic
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/mcdic/
+
+copyright: All blog articles here are owned by Minsung Kim, licensed by CC BY-NC 4.0 DEED.
