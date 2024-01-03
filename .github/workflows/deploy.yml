@@ -40,4 +40,4 @@ jobs:
         if: ${{ success() }}
         run: |
           git add CNAME
-          git commit "Added CNAME manually"
+          git commit -m "Added CNAME manually"
