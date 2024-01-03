@@ -1,7 +1,7 @@
 ---
 date: 2021-12-07
 categories:
-  - PRP
+  - Probability and Random Process
 tags:
   - math
   - probability
