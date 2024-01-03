@@ -11,11 +11,11 @@ theme:
     - navigation.footer
   custom_dir: overrides
 
-nav:
-  - Blog:
-    - index.md
-  - Legend:
-    - posts/tho/tho1.md
+# nav:
+#   - Blog:
+#     - index.md
+#   - Legend:
+#     - posts/tho/tho1.md
 
 plugins:
   - tags
