@@ -30,3 +30,14 @@ jobs:
             mkdocs-material-
       - name: Deploy Blog
         run: mkdocs gh-deploy -v -r origin -b deploy -s --force --no-history
+      - uses: actions/checkout@v4
+        name: Checkout to deploy branch
+        with:
+          ref: deploy
+      - name: Add CNAME manually
+        run: if [ ! -f CNAME ]; then echo "blog.mcdic.net" >> CNAME; fi
+      - name: Commit if CNAME is added
+        if: ${{ success() }}
+        run: |
+          git add CNAME
+          git commit "Added CNAME manually"
