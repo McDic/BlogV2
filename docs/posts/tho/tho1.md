@@ -10,7 +10,7 @@ title: THO 1. My Codeforces Problemsetting Experiences
 slug: tho-1
 ---
 
-# My Codeforces Problemsetting Experiences
+# THO 1. My Codeforces Problemsetting Experiences
 
 요즘 글 쓰는 빈도가 좀 늘었는데, okky가 SI 프리랜서 위주로 돌아가는 커뮤니티다보니 제 글에 관심 가져주는 사람이 별로 없을 거라고 생각했는데, 생각보다 관심이 있어서 용기? 비스무리한 감정을 얻고 몇몇 글을 더 써보고자 합니다. 이번 글은 Codeforces라는 프로그래밍 대회 플랫폼에서 대회 출제를 몇 번 해본 경험을 소개하고자 합니다.
 
