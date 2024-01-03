@@ -1,3 +1,4 @@
 mkdocs
-mkdocs-simple-blog
+mkdocs-material
+mkdocs-rss-plugin
 pre-commit
