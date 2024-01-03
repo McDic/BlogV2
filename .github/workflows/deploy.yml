@@ -41,3 +41,4 @@ jobs:
         run: |
           git add CNAME
           git commit -m "Added CNAME manually"
+          git push
