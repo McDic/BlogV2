@@ -10,6 +10,27 @@ theme:
     - search.highlight
     - navigation.footer
   custom_dir: overrides
+  palette:
+    - media: "(prefers-color-scheme)"
+      primary: green
+      accent: light green
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+    - scheme: default
+      media: "(prefers-color-scheme: light)"
+      primary: green
+      accent: light green
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+    - scheme: slate
+      media: "(prefers-color-scheme: dark)"
+      primary: green
+      accent: light green
+      toggle:
+        icon: material/weather-night
+        name: Switch to automatic mode
 
 # nav:
 #   - Blog:
@@ -76,6 +97,9 @@ extra_css:
   - stylesheets/extra.css
 
 extra:
+  analytics:
+    provider: google
+    property: G-LNQJ79T5LM
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/McDic
