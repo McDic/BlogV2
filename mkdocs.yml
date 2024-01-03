@@ -2,6 +2,7 @@ site_name: McDic's Blog
 site_url: "https://blog.mcdic.net"
 
 theme:
+  logo: assets/images/favicon.ico
   favicon: assets/images/favicon.ico
   name: material
   features:
@@ -10,15 +11,24 @@ theme:
     - navigation.footer
   custom_dir: overrides
 
+nav:
+  - Blog:
+    - index.md
+  - Legend:
+    - posts/tho/tho1.md
+
 plugins:
   - tags
   - blog:
       blog_dir: .
       blog_toc: true
   - rss:
-      match_path: blog/posts/.* 
+      match_path: posts/.*
       date_from_meta:
         as_creation: date
+      categories:
+        - categories
+        - tags
   - search
 
 # https://squidfunk.github.io/mkdocs-material/reference/admonitions/
