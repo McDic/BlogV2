@@ -1,0 +1,25 @@
+name: Linting with pre-commit
+
+on:
+  push:
+    branches:
+      - "**"
+      - "!deploy"
+    tags-ignore:
+      - "**"
+  pull_request:
+    branches:
+      - "**"
+      - "!deploy"
+
+jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Execute pre-commit
+        uses: pre-commit/action@v2.0.3
