@@ -17,7 +17,7 @@ slug: prp-3
 
 # Chapter 3. Continuous Random Variables
 
-**Expectation in Continuous R.V.**: *$E(g(X)) = \lim_{\|x_{i+1} - x_i\| \rightarrow 0} \sum_{i} g(x_i) P(x_i < X \le x_{i+1}) = \int g(x) P(X=x) dx$*
+**Expectation in Continuous R.V.**: *$E(g(X)) = \lim_{|x_{i+1} - x_i| \rightarrow 0} \sum_{i} g(x_i) P(x_i < X \le x_{i+1}) = \int g(x) P(X=x) dx$*
 
 Princeton 교재에서는 Expectation을 히스토그램의 가로 크기가 0을 향해 가는 걸로 설명하네요.
 
@@ -94,17 +94,17 @@ E(X+Y) &= \int (x+y) f(x, y) dx dy \\
 \end{aligned}
 $$
 
-**Conditional Distribution for Continuous R.V.**: *$f_{X \| Y}(x \| y) = \frac{f_{X,Y}(x, y)}{f_Y(y)}$.*
+**Conditional Distribution for Continuous R.V.**: *$f_{X | Y}(x | y) = \frac{f_{X,Y}(x, y)}{f_Y(y)}$.*
 
-**Conditional Expectation for Continuous r.V.**: *$E(g(X) \| Y=y) = \int g(x) f_{X \| Y}(x \| y) dx$, where $f(x \| y)$ is conditional density.*
+**Conditional Expectation for Continuous r.V.**: *$E(g(X) | Y=y) = \int g(x) f_{X | Y}(x | y) dx$, where $f(x | y)$ is conditional density.*
 
-**Marginal Expectation**: *$E(g(X)) = \int E(g(X) \| Y=y) f_Y(y) dy$.*
+**Marginal Expectation**: *$E(g(X)) = \int E(g(X) | Y=y) f_Y(y) dy$.*
 
 다음은 예제입니다.
 
 - *어떤 가게가 있습니다. 이 가게는 시간당 $\lambda$명의 손님이 이용합니다. 당신은 이 가게에 첫 번째 손님이 도착하는 시간($=x$)을 확인한 후, 이 가게를 시간당 $\frac{1}{x}$번 방문하기로 합니다. 당신이 이 가게를 처음 방문하기까지 걸리는 시간의 Expectation은 얼마일까요?*
 
-Chapter 2에서도 간단하게 설명드렸지만, 단위 시간당 $\lambda$번 발생하는 이벤트의 첫 발생 시간은 *Exponential Distribution*을 따릅니다. 또한, 당신이 이 가게를 처음 방문하는 시간의 random variable을 $Y$라고 하면, $Y \| X=x$ 또한 *Exponential Distribution*을 따릅니다!
+Chapter 2에서도 간단하게 설명드렸지만, 단위 시간당 $\lambda$번 발생하는 이벤트의 첫 발생 시간은 *Exponential Distribution*을 따릅니다. 또한, 당신이 이 가게를 처음 방문하는 시간의 random variable을 $Y$라고 하면, $Y | X=x$ 또한 *Exponential Distribution*을 따릅니다!
 
 $$
 \begin{aligned}
@@ -132,7 +132,7 @@ $$
 
 - *3명이서 게임을 진행합니다. 1번째 사람이 random number $X \sim Expon(\lambda)$를 만들고, 2번째 사람이 $Y \sim Expon(x)$를 만듭니다. 3번째 사람은 $y$가 주어졌을 때 $x$를 추측해내야 합니다. 어떤 값이 합리적일까요?*
 
-먼저 $f_X(x) = \lambda e^{-\lambda x}, f_{Y\|X}(y\|x) = x e^{-xy}$ 입니다. 따라서
+먼저 $f_X(x) = \lambda e^{-\lambda x}, f_{Y|X}(y|x) = x e^{-xy}$ 입니다. 따라서
 
 $$f_{X,Y}(x, y) = f_{Y|X}(y|x) f_X(x) = \lambda x e^{-x(\lambda + y)}$$
 
@@ -148,9 +148,9 @@ $$
 f_{X|Y}(x|y) = \frac{f_{X,Y}(x, y)}{f_Y(y)} = (\lambda + y)^2 x e^{-x(\lambda + y)}
 $$
 
-그런데, $f_{X\|Y}(x\|y)$는 $Gamma(2, \lambda + y)$의 PDF와 동일합니다. 따라서 $E(X\|Y=y) = \frac{2}{\lambda + y}$ 입니다! (직접 적분 $\int_{0}^{\infty} (\lambda + y)^2 x^2 e^{-x(\lambda + y)} dx$을 [wolfram alpha](https://www.wolframalpha.com/input/?i=integrate+%28a%2By%29%5E2+x%5E2+e%5E%28-x%28a%2By%29%29+dx+from+0+to+inf)를 통해서 해본 결과, 답이 같았습니다.)
+그런데, $f_{X|Y}(x|y)$는 $Gamma(2, \lambda + y)$의 PDF와 동일합니다. 따라서 $E(X|Y=y) = \frac{2}{\lambda + y}$ 입니다! (직접 적분 $\int_{0}^{\infty} (\lambda + y)^2 x^2 e^{-x(\lambda + y)} dx$을 [wolfram alpha](https://www.wolframalpha.com/input/?i=integrate+%28a%2By%29%5E2+x%5E2+e%5E%28-x%28a%2By%29%29+dx+from+0+to+inf)를 통해서 해본 결과, 답이 같았습니다.)
 
-**Independence in Continuous R.V.**: Random variables $X, Y$ are independent if $f_{X\|Y}(x\|y) = f_X(x)$.
+**Independence in Continuous R.V.**: Random variables $X, Y$ are independent if $f_{X|Y}(x|y) = f_X(x)$.
 
 이걸 또 다르게 해석하면, discrete random variables와 마찬가지로 $f_{X,Y}(x, y) = f_X(x) f_Y(y)$ 가 나옵니다.
 

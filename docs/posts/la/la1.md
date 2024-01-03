@@ -94,7 +94,7 @@ Subspace의 예시를 들자면..
     2. 차수가 $n$ 이하인 다항식에 임의의 상수를 곱해도 여전히 차수가 $n$ 이하입니다.
     3. Zero Polynomial의 차수는 -1이므로, $0 \in P_n(F)$ 입니다.
 
-- $C(R)$을 $R \rightarrow R$인 모든 continuous function들의 집합이라고 하면, $C(R)은$ Subspace입니다.
+- $C(R)$을 $R \rightarrow R$인 모든 continuous function들의 집합이라고 하면, $C(R)$은 Subspace입니다.
 
     1. $\forall_{f, g \in C(R)} (f+g)$ 는 정의역과 치역이 실수인 연속함수입니다. (두 연속함수의 합은 연속함수)
     2. $\forall_{f \in C(R), k \in R} (kf)$ 는 정의역과 치역이 실수인 연속함수입니다. $(kf)(x) = k f(x) = f(x) g(x)$ where $g(x) = k$로 생각할 수 있기 때문입니다.
@@ -136,7 +136,7 @@ $n \times n$ 크기의 모든 Symmetric Matrix들의 집합(이하 $W$)은 $M_{n
 
 **Trace**: Trace of $n \times n$ sized matrix $M$ is $tr(M) = \sum_{i=1}^{n} M_{i,i}$, which is sum of all diagonal entries.
 
-- $\\{ A \| A \in M_{n \times n}(R), tr(A) = 0 \\}$ 도 Subspace입니다. $tr(A) + tr(B) = tr(A+B)$이고, $k \cdot tr(A) = tr(k \cdot A)$이기 때문입니다.
+- $\{ A | A \in M_{n \times n}(R), tr(A) = 0 \}$ 도 Subspace입니다. $tr(A) + tr(B) = tr(A+B)$이고, $k \cdot tr(A) = tr(k \cdot A)$이기 때문입니다.
 
 ---
 
@@ -148,7 +148,7 @@ Linear Combination의 예시로는..
 
 **Span**: Span of $S$ ($\emptyset \ne S \in W$) is the set consisting of all linear combinations of the vectors in $S$.
 
-편의상, $span(\emptyset) = \\{ 0 \\}$ 입니다. 이제 Span의 예를 들자면..
+편의상, $span(\emptyset) = \{ 0 \}$ 입니다. 이제 Span의 예를 들자면..
 
 - $R^3$ 공간에서 $(1, 0, 0)$ (x축 방향 unit vector)과 $(0, 1, 0)$ (y축 방향 unit vector)의 span은 xy평면입니다.
 
@@ -175,7 +175,7 @@ Linear Combination의 예시로는..
 
 예시를 들면..
 
-- $S = \\{(1, 3, -4, 2), (2, 2, -4, 0), (1, -3, 2, -4), (-1, 0, 1, 0)\\} \subset R^4$은 linearly dependent합니다. ($4a_1 - 3a_2 + 2a_3 = (0, 0, 0, 0)$)
+- $S = \{(1, 3, -4, 2), (2, 2, -4, 0), (1, -3, 2, -4), (-1, 0, 1, 0)\} \subset R^4$은 linearly dependent합니다. ($4a_1 - 3a_2 + 2a_3 = (0, 0, 0, 0)$)
 
 **Linearly Independent**: If subset $S$ of vector space $V$ is not linearly dependent, then it's linearly independent.
 
@@ -190,9 +190,9 @@ Linear Combination의 예시로는..
 
 - *Corollary*: If $S_2$ is linearly independent, then $S_1$ is linearly independent. 증명은 Theorem 1.6 명제의 대우로 가능합니다.
 
-**Theorem 1.7**: Let $S$ be linearly independent subset of vector space $V$, and $v \in V, v \not \in S$. Then $S \cup \\{ v \\}$ is linearly dependent iff $v \in span(S)$.
+**Theorem 1.7**: Let $S$ be linearly independent subset of vector space $V$, and $v \in V, v \not \in S$. Then $S \cup \{ v \}$ is linearly dependent iff $v \in span(S)$.
 
-- 정방향 명제 증명: $S \cup \\{v\\}$가 linearly dependent하다면, $a v + \sum_{i=1}^{n} a_i v_i = 0$ 인 경우가 존재. 근데 $a = 0$이면 좌변이 0이 될 수 없으므로 $a \ne 0$ 이어야 합니다. 양변을 $-a$로 나누고 $v$를 우변으로 이항하면 $v = \sum_{i=1}^{n} \frac{a_i}{-a} v_i$ 가 되고, 따라서 $v \in span(S)$ 입니다.
+- 정방향 명제 증명: $S \cup \{v\}$가 linearly dependent하다면, $a v + \sum_{i=1}^{n} a_i v_i = 0$ 인 경우가 존재. 근데 $a = 0$이면 좌변이 0이 될 수 없으므로 $a \ne 0$ 이어야 합니다. 양변을 $-a$로 나누고 $v$를 우변으로 이항하면 $v = \sum_{i=1}^{n} \frac{a_i}{-a} v_i$ 가 되고, 따라서 $v \in span(S)$ 입니다.
 - 역방향 명제 증명: $v \in span(S)$라면, $v = \sum_{i=1}^{n} a_i v_i$ ($a_i \ne 0$)인 coefficient set이 존재합니다. 따라서, $\sum_{i=1}^{n} a_i v_i + (-1) v = 0$인 nontrivial representation이 존재하게 되고, $S$는 linearly dependent하게 됩니다.
 
 ---
@@ -201,15 +201,15 @@ Linear Combination의 예시로는..
 
 Basis의 예를 들면..
 
-- $span(\emptyset) = \\{0\\}$ 이고 $\emptyset$은 linearly independent하므로, $\emptyset$은 zero vector의 basis입니다.
+- $span(\emptyset) = \{0\}$ 이고 $\emptyset$은 linearly independent하므로, $\emptyset$은 zero vector의 basis입니다.
 - $e_i = (a_1, a_2, \ldots, a_n)$ where 
 
     $$a_j = \begin{cases} 1, & i=j \\ 0, & i \ne j \end{cases}$$
 
-    일때 $\\{ e_1, e_2, \ldots, e_n \\}$은 $F^n$의 basis입니다. 더불어서 이를 $F^n$의 standard basis라고 합니다.
-- $\\{ x^0, x^1, \ldots, x^n \\}$은 $P_n(F)$의 standard basis입니다. $n = \infty$ 일 수도 있습니다. (이 경우 해당 집합은 $P(F)$의 basis가 됩니다.) 일부 Vector Space의 경우 infinite한 basis를 가지는 경우도 있습니다.
+    일때 $\{ e_1, e_2, \ldots, e_n \}$은 $F^n$의 basis입니다. 더불어서 이를 $F^n$의 standard basis라고 합니다.
+- $\{ x^0, x^1, \ldots, x^n \}$은 $P_n(F)$의 standard basis입니다. $n = \infty$ 일 수도 있습니다. (이 경우 해당 집합은 $P(F)$의 basis가 됩니다.) 일부 Vector Space의 경우 infinite한 basis를 가지는 경우도 있습니다.
 
-**Theorem 1.8**: Let $V$ be vector space and $v_i \in V (i = 1, 2, \ldots, n)$ be unique vectors. $\beta = \\{v_1, v_2, \ldots, v_n\\}$ is a basis for $V$ iff $\forall_{v \in V} v = \sum_{i=1}^{n} a_i v_i$ is uniquely expressed. (There is only one $a_i$ solution.)
+**Theorem 1.8**: Let $V$ be vector space and $v_i \in V (i = 1, 2, \ldots, n)$ be unique vectors. $\beta = \{v_1, v_2, \ldots, v_n\}$ is a basis for $V$ iff $\forall_{v \in V} v = \sum_{i=1}^{n} a_i v_i$ is uniquely expressed. (There is only one $a_i$ solution.)
 
 - 정방향 명제 증명: $v = \sum_{i=1}^{n} a_i v_i = \sum_{i=1}^{n} b_i v_i$ 라고 표현하면, $\sum_{i=1}^{n} (a_i - b_i) v_i = 0$ 입니다. 그리고 $\beta$가 linearly independent하므로(다른 말로 하면 $\beta$에서 만들 수 있는 linear combination으로 zero vector를 만드는 방법은 오직 모든 coefficient를 0으로 만드는 것이므로), $a_i = b_i$입니다. 따라서 솔루션은 하나 뿐입니다.
 - 역방향 명제 증명: 대우를 증명해보겠습니다. $\beta$가 basis가 아니라면, $\sum_{i=1}^{n} a_i v_i$가 unique하게 express되지 않는다는 것을 보이겠습니다.
@@ -225,7 +225,7 @@ Basis의 예를 들면..
 
 증명은 $S$로부터 원소를 계속 뽑아나가는(단, 뽑힌 원소의 집합이 linearly independent가 되도록) 방식으로 증명을 하네요.. 생략하겠습니다.
 
-**Replacement Theorem(1.10)**: Let $V$ be vector space which is generated by set $G$ where $\|G\| = n$ and let $L$ be linearly independent subset of $V$ where $\|L\| = m$. Then $m \le n$ and $H$ exists where $H \subset G, \|H\| = n-m$, and $L \cup H$ generates $V$.
+**Replacement Theorem(1.10)**: Let $V$ be vector space which is generated by set $G$ where $|G| = n$ and let $L$ be linearly independent subset of $V$ where $|L| = m$. Then $m \le n$ and $H$ exists where $H \subset G, |H| = n-m$, and $L \cup H$ generates $V$.
 
 느낌은 이렇게 보시면 될 것 같습니다. $V$의 linearly independent한 subset은 $V$를 만드는 데 드는 최소 차원 이하의 개수의 원소를 보유하고 있고, $G$의 어떤(임의는 아니고) $m$개 원소를 $L$로 교체시켜서 여전히 $V$를 generate할 수 있다는 느낌으로 보시면 될 것 같습니다.
 
@@ -235,7 +235,7 @@ Basis의 예를 들면..
 
 - *Corollary*: Let vector space $V$ having a finite basis. Then all bases for $V$ are finite and every basis for $V$ contains the same number of vectors.
 
-    - 증명: 어떤 두 basis $\beta$, $\gamma$가 모두 $V$를 generate하고, $\beta$는 finite하다고 가정해봅시다. 그러면 $\gamma$는 $V$의 independent subset이고, *Replacement Theorem*에 의해서 $\| \gamma \| \le \| \beta \|$ 이고, $\gamma$는 finite set이 됩니다. 또 Replacement Theorem을 역으로 $\gamma$에 적용해서 $\| \beta \| \le \| \gamma \|$가 되고, 이는 $\| \beta \| = \| \gamma \|$를 imply합니다.
+    - 증명: 어떤 두 basis $\beta$, $\gamma$가 모두 $V$를 generate하고, $\beta$는 finite하다고 가정해봅시다. 그러면 $\gamma$는 $V$의 independent subset이고, *Replacement Theorem*에 의해서 $| \gamma | \le | \beta |$ 이고, $\gamma$는 finite set이 됩니다. 또 Replacement Theorem을 역으로 $\gamma$에 적용해서 $| \beta | \le | \gamma |$가 되고, 이는 $| \beta | = | \gamma |$를 imply합니다.
 
 **Finite Dimensional**: Vector space is finite-dimensional if it has a basis which has finite number of vectors.
 
@@ -245,7 +245,7 @@ Basis의 예를 들면..
 
 Dimension의 예를 들면..
 
-- $\dim(\\{0\\}) = 0$
+- $\dim(\{0\}) = 0$
 - $\dim(F^n) = n$
 - $\dim(M_{m \times n}) = mn$
 - $\dim(P_n(F)) = n+1$
@@ -261,9 +261,9 @@ Dimension의 예를 들면..
 
     증명:
 
-    1. Theorem 1.9에 의해, 임의의 finite generating set $A$는 어떤 basis를 부분집합으로 갖고 있습니다. 그런데 $V$의 basis는 원소의 개수가 $n$이므로, $\|A\| \ge n$ 입니다. 마찬가지로, $\|A\| = n$ 이라면, $A$는 basis입니다.
+    1. Theorem 1.9에 의해, 임의의 finite generating set $A$는 어떤 basis를 부분집합으로 갖고 있습니다. 그런데 $V$의 basis는 원소의 개수가 $n$이므로, $|A| \ge n$ 입니다. 마찬가지로, $|A| = n$ 이라면, $A$는 basis입니다.
     2. $A$가 linearly independent한 $V$의 subset이고, $\beta$가 $V$의 basis라고 합시다. Replacement Theorem에 의해 $\emptyset \subset \beta$, $A \cup \emptyset = A$이 $V$를 generate합니다. 따라서 $A$는 basis입니다.
-    3. 이것 또한 Replacement Theorem으로 증명할 수 있습니다. $B \subset \beta$ ($\|B\| = n - \|A\|$)인 $B$를 뽑아서 $A \cup B$가 $V$를 generate하게 만들 수 있습니다. 이때, $A \cup B$는 $A$로부터 extend할 수 있는 $V$의 basis가 됩니다.
+    3. 이것 또한 Replacement Theorem으로 증명할 수 있습니다. $B \subset \beta$ ($|B| = n - |A|$)인 $B$를 뽑아서 $A \cup B$가 $V$를 generate하게 만들 수 있습니다. 이때, $A \cup B$는 $A$로부터 extend할 수 있는 $V$의 basis가 됩니다.
 
 책 50쪽에서는 Linearly Independent Sets, Bases, Generating Sets의 관계를 설명합니다. *Bases는 Linearly Independent Sets와 Generating Sets의 교집합입니다.*
 
@@ -281,11 +281,11 @@ Dimension의 예를 들면..
 1. 각 Lagrange Polynomial의 차수는 $n$입니다. ($i \ne k$인 term이 모두 곱해졌기 때문)
 2. $f_i(c_j) = int(i==j)$ 입니다.
 
-특히 2번에 의해, $\beta = \\{f_0, f_1, \ldots, f_n\\}$는 linearly independent합니다. 증명은 다음과 같습니다.
+특히 2번에 의해, $\beta = \{f_0, f_1, \ldots, f_n\}$는 linearly independent합니다. 증명은 다음과 같습니다.
 
 - 특정 scalar $a_0, a_1, \ldots, a_n$에 대해 $\sum_{i=0}^{n} a_i f_i = 0$ 이라 해봅시다. ($0$는 zero function) 그러면 임의의 $j$에 대해 $\sum_{i=0}^{n} a_i f_i(c_j) = 0$ 입니다. (zero function이기 때문에 어떤 값을 polynomial의 미지수에 대입하더라도 $0$이 나와야 합니다.) 근데 $f_i(c_j) = int(i==j)$ 이므로, $\sum_{i=0}^{n} a_i f_i(c_j) = a_j = 0$ 이 됩니다. $a_0 = a_1 = \cdots = a_n = 0$ 이므로, $\beta$는 linearly independent 합니다.
 
-여기서 $\dim(P_n(F)) = n+1 = \|\beta\|$ 이므로, $\beta$는 $P_n(F)$의 basis입니다. 이 말인 즉슨, $P_n(F)$에 속하는 임의의 polynomial은 Lagrange Polynomials의 linear combination이라는 뜻입니다. 이 representation(임의의 polynomial을 Lagrange Polynomial의 linear combination으로 나타내는 것)을 **Lagrange Interpolation Formula**라고 합니다!
+여기서 $\dim(P_n(F)) = n+1 = |\beta|$ 이므로, $\beta$는 $P_n(F)$의 basis입니다. 이 말인 즉슨, $P_n(F)$에 속하는 임의의 polynomial은 Lagrange Polynomials의 linear combination이라는 뜻입니다. 이 representation(임의의 polynomial을 Lagrange Polynomial의 linear combination으로 나타내는 것)을 **Lagrange Interpolation Formula**라고 합니다!
 
 ---
 

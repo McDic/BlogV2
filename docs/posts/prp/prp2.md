@@ -17,7 +17,7 @@ slug: prp-2
 
 # Chapter 2. Bernoulli Processes
 
-**Bernoulli Variable**: *A random variable $X: \Omega \rightarrow \\{ 0, 1\\}$*.
+**Bernoulli Variable**: *A random variable $X: \Omega \rightarrow \{ 0, 1\}$*.
 
 **Bernoulli Process**: *Sequence $X_1, X_2, \ldots$ of independent Bernoulli variables with $P(X_i = 1) = p$.*
 
@@ -96,9 +96,9 @@ $$E(X) = \sum_{n=1}^{\infty} np(1-p)^{n-1} = p \frac{d}{dq} \sum_{n=1}^{\infty} 
 - 한글로 요약하면, 독립시행 횟수가 늘어날수록 어떤 Event $A$가 일어나는 통계적 확률이 수학적 확률에 수렴한다는 것입니다.
 - 좀 더 [formal](https://en.wikipedia.org/wiki/Law_of_large_numbers)하게 살펴보면, *LLN*에는 *Weak law*와 *Strong law*가 있습니다.
   - *Let $\overline{X}_{n} = \frac{1}{n} \sum_{i=1}^{n} X_i$ where $X_i$ are independent and identically distributed random variables.*
-  - **Weak Law**: $\forall_{\epsilon > 0} \lim_{n \rightarrow \infty} P(\|\overline{X}_{n} - E(X)\| < \epsilon) = 1$
+  - **Weak Law**: $\forall_{\epsilon > 0} \lim_{n \rightarrow \infty} P(|\overline{X}_{n} - E(X)| < \epsilon) = 1$
   - **Strong Law**: $P(\lim_{n \rightarrow \infty} \overline{X}_{n} = E(X)) = 1$
-  - Strong Law가 Weak Law보다 훨씬 증명하기 어렵다네요. Strong Law와 Weak Law의 차이는, Weak Law는 $\|\overline{X}_{n} - E(X)\| > \epsilon$이 무수히 많이 일어날 가능성이 있는데, Strong Law에서는 이걸 원천적으로 차단한다고 합니다.
+  - Strong Law가 Weak Law보다 훨씬 증명하기 어렵다네요. Strong Law와 Weak Law의 차이는, Weak Law는 $|\overline{X}_{n} - E(X)| > \epsilon$이 무수히 많이 일어날 가능성이 있는데, Strong Law에서는 이걸 원천적으로 차단한다고 합니다.
   - $Var(X)$가 finite하다고 가정한 상황에서는 *Chebyshev's Inequality*를 이용해서 [weak law를 비교적 쉽게 증명](https://en.wikipedia.org/wiki/Law_of_large_numbers#Proof_using_Chebyshev's_inequality_assuming_finite_variance)할 수 있습니다!
 
 **Variance**: *$Var(X) = E((X - E(X))^2)$.*

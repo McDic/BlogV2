@@ -21,15 +21,15 @@ slug: prp-1
 
 **Sample space**($\Omega$): *Set of all possible outcomes of a random experiment.* 예를 들면, 다음과 같습니다.
 
-- 주사위 2개를 굴리는 모든 경우: $\Omega = \\{ (i, j) \| 1 \le i, j \le 6 \text{ , } i \in \mathbb{N} \text{ , } j \in \mathbb{N} \\}$, $( \| \Omega \| = 36)$
+- 주사위 2개를 굴리는 모든 경우: $\Omega = \{ (i, j) | 1 \le i, j \le 6 \text{ , } i \in \mathbb{N} \text{ , } j \in \mathbb{N} \}$, $( | \Omega | = 36)$
 - 버스를 기다리는 경우(즉시 도착부터 무기한 연기까지): $\Omega = [0, +\infty)$
-- 꿀벌이 5초 동안 입체적으로 날아다니는 모든 경로: $\Omega = \\{ \text{all continuous paths } w: [0, 5] \rightarrow \mathbb{R}^3 \\}$
+- 꿀벌이 5초 동안 입체적으로 날아다니는 모든 경로: $\Omega = \{ \text{all continuous paths } w: [0, 5] \rightarrow \mathbb{R}^3 \}$
 
 **Event**($A$, $B$, etc): *Subset of sample space $\Omega$*. 위 Sample space와 연계되는 예를 들면, 다음과 같습니다.
 
-- 주사위 2개를 던졌는데 그 두 수의 합이 $x$인 경우: $A = \\{ (i, j) \| 1 \le i, j \le 6 \text{ , } i \in \mathbb{N} \text{ , } j \in \mathbb{N} \text{ , } i + j = x \\}$
+- 주사위 2개를 던졌는데 그 두 수의 합이 $x$인 경우: $A = \{ (i, j) | 1 \le i, j \le 6 \text{ , } i \in \mathbb{N} \text{ , } j \in \mathbb{N} \text{ , } i + j = x \}$
 - 기다리는 버스가 1시간 안에 올 경우: $A = [0, 1]$
-- 꿀벌이 첫 1초 동안 집($=House$) 안에서만 돌아다니는 모든 경로: $A = \\{ \text{all continuous paths } w: [0, 5] \rightarrow \mathbb{R}^3 \text{ , } w(t) \in House \text{ for } t \in [0, 1] \\}$
+- 꿀벌이 첫 1초 동안 집($=House$) 안에서만 돌아다니는 모든 경로: $A = \{ \text{all continuous paths } w: [0, 5] \rightarrow \mathbb{R}^3 \text{ , } w(t) \in House \text{ for } t \in [0, 1] \}$
 
 Sample space와 Event는 집합이므로, 임의의 집합 연산($A \cap B, A \cup B, A^C$)이 가능합니다.
 
@@ -43,18 +43,18 @@ Sample space와 Event는 집합이므로, 임의의 집합 연산($A \cap B, A \
 
 - $P(\Omega) = P(A \cup A^C) = P(A) + P(A^C) = 1$
 - $A \in B \implies P(B) = P(A \cup (B-A)) = P(A) + P(B-A) \geq P(A)$
-- $P(A) = \sum_{w \in A} P( \\{ w \\} )$ (단, $A$가 discrete할 때만 성립)
+- $P(A) = \sum_{w \in A} P( \{ w \} )$ (단, $A$가 discrete할 때만 성립)
 
 등등이 있습니다.
 
-**Conditional Probability**: $P(A\|B) = \frac{P(A \cap B)}{P(B)}$ ($P(B) > 0$)
+**Conditional Probability**: $P(A|B) = \frac{P(A \cap B)}{P(B)}$ ($P(B) > 0$)
 
-$P(A\|B)$는 $B$가 일어났다고 가정했을 때, $A$가 일어날 확률입니다. 한글로 직역해서 조건부 확률입니다. 이것도 정의로부터 증명 가능한 것들을 들자면..
+$P(A|B)$는 $B$가 일어났다고 가정했을 때, $A$가 일어날 확률입니다. 한글로 직역해서 조건부 확률입니다. 이것도 정의로부터 증명 가능한 것들을 들자면..
 
-- $P(A \cap B) = P(A \| B) P(B) = P(B \| A) P(A)$
-- $P(A \| A) = 1$
-- $P(A \cap B) \le P(B) \implies 0 \le P(A \| B) \le 1$
-- $A \cap B = \emptyset \implies P(A \cup B \| C) = P(A \| C) + P(B \| C)$
+- $P(A \cap B) = P(A | B) P(B) = P(B | A) P(A)$
+- $P(A | A) = 1$
+- $P(A \cap B) \le P(B) \implies 0 \le P(A | B) \le 1$
+- $A \cap B = \emptyset \implies P(A \cup B | C) = P(A | C) + P(B | C)$
 
 **Bayes Formula**: 목표 이벤트와 전제의 위치를 바꿔주는 신묘한 공식입니다.
 
@@ -81,9 +81,9 @@ $$
 
 Princeton 교재에서는, 인간의 직감 상으로 봤을 때는 positive가 나오면 매우 높은 확률로 환자일 것 같지만, 실제로 그럴 확률은 낮다는 점을 지적하고 있습니다. 확률적인 사고를 기르는 것이 이런 함정에 빠지지 않도록 하는 데 큰 도움을 줄 것이라 생각이 되네요.
 
-**Independent Events**: *$A$ and $B$ are independent if $P(A \| B) = P(A)$.*
+**Independent Events**: *$A$ and $B$ are independent if $P(A | B) = P(A)$.*
 
-- $P(A \| B) = \frac{P(A \cap B)}{P(B)} = P(A) \iff P(A \cap B) = P(A) P(B)$
+- $P(A | B) = \frac{P(A \cap B)}{P(B)} = P(A) \iff P(A \cap B) = P(A) P(B)$
 - $A, B$가 독립이면 $A, B^C$도 독립입니다. 역도 성립합니다.
 - 독립을 $n$개 항으로 일반화하면, *$A_1, A_2, \ldots, A_n$ are independent if $P(\bigcap_i A_i) = \prod_i P(A_i)$.*
 
@@ -94,7 +94,7 @@ Princeton 교재에서는, 인간의 직감 상으로 봤을 때는 positive가 
 Random variables의 예를 들면 다음과 같은 것들이 있습니다.
 
 - 동전을 3번 던져서 나온 head의 개수. $X(HHH) = 3$, $X(HHT) = X(HTH) = X(THH) = 2$, $X(HTT) = X(THT) = X(TTH) = 1$, $X(TTT) = 0$.
-- head가 나올 때까지 동전을 계속해서 던진 횟수. $X: \Omega \rightarrow \mathbb{N} \cup \\{ +\infty \\}$
+- head가 나올 때까지 동전을 계속해서 던진 횟수. $X: \Omega \rightarrow \mathbb{N} \cup \{ +\infty \}$
 - $[0, 1]$에서 random하게 뽑은 실수. $X: \Omega \rightarrow [0, 1]$
 
 Random variables는 크게 *discrete*, *continuous* 2가지로 나눌 수 있는데요. 어떤 Random variable의 치역이 *finite*하거나 *countable*하면 *discrete*하고, 그렇지 않으면 *continuous*합니다.
@@ -130,7 +130,7 @@ $$
 
 - $\sum_{x \in D} P(X=x, Y=y) = P(Y=y)$ 입니다. (Probability의 3번째 특성을 참조해주세요.)
 
-**Independent Random Variables**: *$X: \Omega \rightarrow D_X, Y: \Omega \rightarrow D_Y, X \bot Y \text{ if } \forall_{x \in D, y \in D'} P(X=x \| Y=y) = P(X=x)$.*
+**Independent Random Variables**: *$X: \Omega \rightarrow D_X, Y: \Omega \rightarrow D_Y, X \bot Y \text{ if } \forall_{x \in D, y \in D'} P(X=x | Y=y) = P(X=x)$.*
 
 추가적으로, 두 random variable에게서 나올 수 있는 가능한 모든 event의 쌍의 두 event가 서로 *independent*하면 두 random variable을 *independent*하다고 표현합니다.
 
@@ -139,7 +139,7 @@ X \bot Y \iff \forall_{x \in D, y \in D'} P(X=x, Y=y) = P(X=x) P(Y=y)
 \implies \forall_{x \in D, y \in D'} E(f(X) g(Y)) = E(f(X)) E(g(Y))
 $$
 
-**Conditional Expectation**: *$E(f(X) \| Y=y) = \sum_{x \in D} f(x) P(X=x \| Y=y)$.*
+**Conditional Expectation**: *$E(f(X) | Y=y) = \sum_{x \in D} f(x) P(X=x | Y=y)$.*
 
 Linearity of Expectation과 거의 동일한 테크닉으로, *Linearity of Conditional Expectation*을 증명할 수 있습니다.
 
@@ -174,7 +174,7 @@ $$
 
 $X_i$가 서로 independent한지 여부를 알지 않고도 문제를 풀 수 있음에 주목해주시기 바랍니다.
 
-**Conditional Distribution**: *$X: \Omega \rightarrow D, Y: \Omega \rightarrow D'$. Collection $P(X=i \| Y=j)_{i \in D, j \in D'}$ is conditional distribution.*
+**Conditional Distribution**: *$X: \Omega \rightarrow D, Y: \Omega \rightarrow D'$. Collection $P(X=i | Y=j)_{i \in D, j \in D'}$ is conditional distribution.*
 
 $$
 \begin{cases}
