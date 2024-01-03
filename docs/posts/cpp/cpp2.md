@@ -280,7 +280,7 @@ C++에서 `class`와 `struct` 사이의 유일한 차이는 바로 default acces
 
     class L2: public L1 {
         void f() {
-            L1 *ptr; 
+            L1 *ptr;
             // ptr->x; // Compile Error!
             this->x;
         }
@@ -403,7 +403,7 @@ private:
     void f();
 
     int main() {
-        
+
         void g();
 
         class LocalClass {

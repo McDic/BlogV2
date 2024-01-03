@@ -35,13 +35,13 @@ Princeton 교재에서는 *Bernoulli Process*를 independent trials, 즉 독립�
 *Variance*를 유도하는 과정은 조금 복잡한데, 다음과 같습니다.
 
 $$
-\begin{aligned} 
-Var(S_n) &= E(S_n^2) - E(S_n)^2 \\ 
-&= \sum_{i=1}^{n} x^2 \binom{n}{x} p^{x} (1-p)^{n-x} - n^2 p^2 \\ 
-&= \sum_{i=1}^{n} nx \binom{n-1}{x-1} p^{x} (1-p)^{n-x} - n^2 p^2 \\ 
-&= \sum_{i=0}^{n-1} n (x+1) \binom{n-1}{x} p^{x+1} (1-p)^{n-x-1} - n^2 p^2 \\ 
-&= np \biggl( \sum_{x=0}^{n-1} x \binom{n-1}{x} p^x (1-p)^{n-x-1} + \sum_{x=0}^{n-1} \binom{n-1}{x} p^x (1-p)^{n-x-1} \biggr) - n^2 p^2 \\ 
-&= np (E(S_{n-1}) + 1) - n^2 p^2 \\ &= np ((n-1)p + 1) - n^2 p^2 = np(1-p) 
+\begin{aligned}
+Var(S_n) &= E(S_n^2) - E(S_n)^2 \\
+&= \sum_{i=1}^{n} x^2 \binom{n}{x} p^{x} (1-p)^{n-x} - n^2 p^2 \\
+&= \sum_{i=1}^{n} nx \binom{n-1}{x-1} p^{x} (1-p)^{n-x} - n^2 p^2 \\
+&= \sum_{i=0}^{n-1} n (x+1) \binom{n-1}{x} p^{x+1} (1-p)^{n-x-1} - n^2 p^2 \\
+&= np \biggl( \sum_{x=0}^{n-1} x \binom{n-1}{x} p^x (1-p)^{n-x-1} + \sum_{x=0}^{n-1} \binom{n-1}{x} p^x (1-p)^{n-x-1} \biggr) - n^2 p^2 \\
+&= np (E(S_{n-1}) + 1) - n^2 p^2 \\ &= np ((n-1)p + 1) - n^2 p^2 = np(1-p)
 \end{aligned}
 $$
 
@@ -83,7 +83,7 @@ E(X) &= \sum_{j=0}^{\infty} (1-p)^j = \frac{1}{p}
 \end{aligned}
 $$
 
-Princeton 교재에서는 calculus trick을 쓰네요. 
+Princeton 교재에서는 calculus trick을 쓰네요.
 
 $$E(X) = \sum_{n=1}^{\infty} np(1-p)^{n-1} = p \frac{d}{dq} \sum_{n=1}^{\infty} q^n = p \frac{d}{dq} \frac{q}{1-q} = \frac{p}{(1-q)^2} = \frac{1}{p}$$
 

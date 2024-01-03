@@ -61,11 +61,11 @@ class SparseTable{
 
     // Constructor
     public: SparseTable(const std::vector<lld> &base){
-        n = (int)base.size(); 
+        n = (int)base.size();
         int log = 0;
         while((1<<log) < (int)base.size()) log++;
         log++;
-        
+
         // Feature initialization
         feature_min.clear(); feature_min.resize(log, std::vector<lld>(n, inf));
         feature_min[0] = base;
@@ -90,7 +90,7 @@ class SparseTable{
     public: std::pair<lld, lld> query(int left, int right){
         if(left >= right) return {inf, -inf};
         int log = 0;
-        while((1 << log) < right - left) log++; 
+        while((1 << log) < right - left) log++;
         if(log) log--;
         lld min = std::min(feature_min[log][left], feature_min[log][right - (1<<log)]);
         lld max = std::max(feature_max[log][left], feature_max[log][right - (1<<log)]);

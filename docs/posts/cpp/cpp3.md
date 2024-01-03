@@ -255,7 +255,7 @@ int main(void) {
 
 ### Partial Ordering
 
-> 주의: 아직 해당 사항이 function specialization에 대해 작동하는 건지, function overloading에 대해 작동하는 건지, 아니면 둘 다인지 아직 이해를 못했습니다. 
+> 주의: 아직 해당 사항이 function specialization에 대해 작동하는 건지, function overloading에 대해 작동하는 건지, 아니면 둘 다인지 아직 이해를 못했습니다.
 > 문서에는 specialization쪽에 대해서 써져 있어서 specialization에 대해 작동한다고 되어 있는 것 같긴 한데, 그럼 둘이 exclusive mutual한 개념이 아닌 건가? 라는 생각도 들고.. 아무튼 좀 더 정리되면 정확하게 정리해보겠습니다.
 
 C++에서 여러 function template specialization에 대해서 어떤 함수를 사용할지 선택하는 과정을 [Partial Ordering](https://learn.microsoft.com/en-us/cpp/cpp/partial-ordering-of-function-templates-cpp?view=msvc-170)이라고 합니다.
@@ -392,9 +392,9 @@ public:
 };
 
 int main(void) {
-    std::cout << A(3).get() << '\n' 
+    std::cout << A(3).get() << '\n'
               << A(1.23).get() << '\n'
-              << A("bbb").get() << '\n' 
+              << A("bbb").get() << '\n'
               << A<int>::Local<double>::convert(1.2) << '\n';
 }
 ```
@@ -487,15 +487,15 @@ explicit Employee(const char*, int) -> Employee<std::string, double>;
 template <class T> Employee(T&) -> Employee<T, double>;
 
 int main(void) {
-    
+
     // <std::string, double> instead of <const char*, int>
-    auto e1 = Employee("McDic", 1234); 
+    auto e1 = Employee("McDic", 1234);
     // Employee e1b = {"McDic", 1234}; // Compile Error! (explicit)
 
     // <T, double> where T = const char[6]
     auto e2 = Employee("McDic");
     Employee e2b = "McDic"; // OK, non-explicit
-    
+
     char name = 'M';
     auto e3 = Employee(name);
     // auto e4 = Employee('M'); // Compile Error! (Can't deduce T2)
@@ -641,7 +641,7 @@ template <class T1> struct A<T1, T1*, 3> {
 int main(void) {
     std::cout << A<int, double, 7>::get() << '\n';
     std::cout << A<int, int*, 7>::get() << '\n';
-    std::cout << A<int, int*, 3>::get() << '\n'; 
+    std::cout << A<int, int*, 3>::get() << '\n';
 }
 ```
 
@@ -699,12 +699,12 @@ constexpr int f() { return T::unknown_static_member; }
 
 template<bool B, typename T>
 void g(decltype(B ? f<T>() : 0)) {}
- 
+
 template<bool B, typename T>
 void h(decltype(int{B ? f<T>() : 0})) {}
- 
+
 int main(void) {
-    g<true, int>(0); 
+    g<true, int>(0);
     // h<true, int>(0); // Compile Error, f<int> is needed
 }
 ```
