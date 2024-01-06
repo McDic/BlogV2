@@ -32,7 +32,7 @@ slug: tho-2
 
 ---
 
-## Profitable Games vs "Ideal" Games
+## Profitable games vs "Ideal" games
 
 많은 게이머들이 리니지식 혹은 모바일 가챠 게임에 대해 비판합니다. 돈이나 쓸어 담아간다고요. 진짜로 감동적인 스토리를 주고 다양한 경험을 체험할 수 있도록 하는 것이 진정한 게임이자, 모든 개발사들이 향해야 할 방향이라고 말하죠.
 
@@ -46,7 +46,7 @@ slug: tho-2
 
 ---
 
-## Difficulty of Living as Game Dev
+## Difficulty of living as game dev
 
 그래서, 어떻게든 게임 개발을 시작했습니다. 근데 사람이 게임 개발을 통한 재미 뿐만이 아니라, 먹고 싶은 음식도 좀 자유롭게 먹고, 여행 가고 싶은 곳도 자유롭게 다니고 싶은 게 사람 심리잖아요? 근데 게임 개발을 하면 정말 그걸 자유롭게 할 수 있을까요?
 
