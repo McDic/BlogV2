@@ -14,3 +14,7 @@
     display: block;
     margin-bottom: 120px;
 }
+
+.md-source__repository .md-source__facts {
+    display: none;
+}
