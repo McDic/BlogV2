@@ -45,6 +45,14 @@ Following list contains some notable Minecraft maps created by me.
 
 ---
 
+## Poker
+
+I got ITM on following poker tournaments.
+
+- [APL 2023 October Seoul, Main Event: 252nd Place (16 tickets)](https://www.acepokerleague.com/post/2-main-event-result)
+
+---
+
 ## Social Links
 
 Note that all social links are also available on the footer.
