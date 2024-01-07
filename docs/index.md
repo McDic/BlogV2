@@ -1,5 +1,8 @@
 # Main Page
 
-안녕하세요. CS, 수학, 그리고 개인적인 생각과 경험에 대해 다루는 블로그입니다.
+Welcome to my blog.
+
+This blog covers computer science, math, and personal opinions based on personal experiences.
+Please note that most articles here are written in Korean.
 
 **Every article in this blog is licensed by [CC BY-NC 4.0 DEED](https://creativecommons.org/licenses/by-nc/4.0/deed.en).**

@@ -39,11 +39,16 @@ theme:
         icon: material/weather-night
         name: Switch to automatic mode
 
-# nav:
-#   - Blog:
-#     - index.md
-#   - Legend:
-#     - posts/tho/tho1.md
+nav:
+  - Blog: index.md
+  - About: about.md
+  - Problemsetting:
+    - Codeforces: https://codeforces.com/contests/writer/McDic
+    - BOJ: https://www.acmicpc.net/problemset?sort=no_asc&author=spongbob9876&author_type=1
+    - Codechef: https://www.codechef.com/users/mcdic
+  - Minecraft Maps:
+    - The Rotator: https://www.planetminecraft.com/project/19-snapshot-the-rotator/
+    - Highliner: https://www.planetminecraft.com/project/1102-highliner/
 
 plugins:
   - tags
@@ -94,6 +99,9 @@ markdown_extensions:
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
+      options:
+        custom_icons:
+          - overrides/.icons
 
 extra_javascript:
   - javascripts/mathjax.js
@@ -112,5 +120,7 @@ extra:
       link: https://github.com/McDic
     - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/in/mcdic/
+    - icon: custom/codeforces
+      link: https://codeforces.com/profile/McDic
 
 copyright: All blog articles here are owned by Minsung Kim, licensed by CC BY-NC 4.0 DEED.
