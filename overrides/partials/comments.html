@@ -1,7 +1,9 @@
-<script src="https://utteranc.es/client.js"
-    repo="McDic/BlogV2"
-    issue-term="title"
-    theme="github-light"
-    crossorigin="anonymous"
-    async>
-</script>
+{% if not (page.meta.no_comments) %}
+    <script src="https://utteranc.es/client.js"
+        repo="McDic/BlogV2"
+        issue-term="title"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+    </script>
+{% endif %}

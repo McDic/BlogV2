@@ -1,3 +1,7 @@
+---
+no_comments: true
+---
+
 # About
 
 Hello, I am Minsung Kim, an owner of this blog.
@@ -60,11 +64,3 @@ Note that all social links are also available on the footer.
 - [Github](https://github.com/McDic)
 - [LinkedIn](https://www.linkedin.com/in/mcdic/) (I do not open this for anonymous users for several reasons)
 - [Codeforces](https://codeforces.com/profile/McDic)
-
----
-
-## Ask Me Anything
-
-Use below comment section powered by [utteranc.es](https://utteranc.es) to ask me anything in either Korean or English.
-You will need a Github account to do this. (*Sorry for not providing an anonymous method.*)
-Some unappropriate questions may be deleted for my mental health.
