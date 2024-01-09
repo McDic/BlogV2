@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: ./.github/workflows/setup.yml
+      - uses: ./.github/workflows/setup
       - name: Update views data
         run: python fetch_views.py -o docs/assets/views.json
         env:
