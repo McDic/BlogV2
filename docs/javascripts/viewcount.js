@@ -18,7 +18,7 @@ async function loadCurrentPageView() {
     const metadata_views = document.getElementById("post-metadata-views");
     if(!metadata_views) return;
     const inner_metadata_views = metadata_views.getElementsByClassName("md-ellipsis")[0];
-    const views = await loadViewCache(window.location.pathname);
+    const views = await loadViewCache(document.title);
     if(views !== 0 && !views) {
         metadata_views.style.display = "none";
     }

@@ -49,11 +49,12 @@ def fetch_data(
 ) -> dict[str, PathData]:
     """
     Fetch some data from GA4.
+    See: https://ga-dev-tools.google/ga4/query-explorer/
     """
     response: data_v1beta.RunReportRequest = client.run_report(
         {
             "property": f"properties/{property_id or os.environ['GC_PROPERTY_ID']}",
-            "dimensions": [{"name": "pagePath"}],
+            "dimensions": [{"name": "pageTitle"}],
             "metrics": [{"name": "screenPageViews"}, {"name": "totalUsers"}],
             "date_ranges": [{"start_date": "2019-01-01", "end_date": "today"}],
         }
