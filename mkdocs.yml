@@ -9,7 +9,7 @@ remote_branch: deploy
 strict: true
 
 theme:
-  logo: assets/images/favicon.ico
+  logo: assets/images/mcdic.jpg
   favicon: assets/images/favicon.ico
   name: material
   features:
@@ -56,6 +56,11 @@ plugins:
   - blog:
       blog_dir: .
       blog_toc: true
+      post_excerpt: required
+      post_url_format: "{slug}"
+      archive_date_format: yyyy.MM
+      archive_url_date_format: yyyy/MM
+      categories_name: Series
   - rss:
       match_path: posts/.*
       date_from_meta:
@@ -103,9 +108,12 @@ markdown_extensions:
       options:
         custom_icons:
           - overrides/.icons
+  - toc:
+      permalink: true
 
 extra_javascript:
   - javascripts/mathjax.js
+  - javascripts/viewcount.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
@@ -123,5 +131,7 @@ extra:
       link: https://www.linkedin.com/in/mcdic/
     - icon: custom/codeforces
       link: https://codeforces.com/profile/McDic
+    - icon: fontawesome/brands/discord
+      link: https://discordapp.com/users/mcdic
 
 copyright: All blog articles here are owned by Minsung Kim, licensed by CC BY-NC 4.0 DEED.

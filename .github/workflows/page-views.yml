@@ -1,0 +1,37 @@
+name: Update page views
+
+on:
+  schedule:
+    - cron: '7/10 * * * *'
+  
+jobs:
+  update-views:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure Git Credentials
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+          cache-dependency-path: "requirements*.txt"
+      - run: pip install -r requirements.txt
+      - name: Update views data
+        run: python fetch_views.py -o docs/assets/views.json
+        env:
+          GC_CLIENT_EMAIL: ${{ secrets.GC_CLIENT_EMAIL }}
+          GC_CLIENT_ID: ${{ secrets.GC_CLIENT_ID }}
+          GC_CLIENT_X509_CERT_URL: ${{ secrets.GC_CLIENT_X509_CERT_URL }}
+          GC_PRIVATE_KEY: ${{ secrets.GC_PRIVATE_KEY }}
+          GC_PRIVATE_KEY_ID: ${{ secrets.GC_PRIVATE_KEY_ID }}
+          GC_PROJECT_ID: ${{ secrets.GC_PROJECT_ID }}
+          GC_PROPERTY_ID: ${{ secrets.GC_PROPERTY_ID }}
+      - name: Commit and push
+        run: |
+          git add docs/assets/views.json
+          git commit -m "Updated views data via cronjob"
+          git push

@@ -30,15 +30,22 @@ jobs:
             mkdocs-material-
       - name: Deploy Blog
         run: mkdocs gh-deploy -v -r origin -b deploy -s --force --no-history
+
+  post-processing:
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
       - uses: actions/checkout@v4
         name: Checkout to deploy branch
         with:
           ref: deploy
       - name: Add CNAME manually
-        run: if [ ! -f CNAME ]; then echo "blog.mcdic.net" >> CNAME; fi
-      - name: Commit if CNAME is added
-        if: ${{ success() }}
         run: |
-          git add CNAME
-          git commit -m "Added CNAME manually"
+          if [ ! -f CNAME ];
+            then echo "blog.mcdic.net" >> CNAME
+            git add CNAME
+          fi
+      - name: Commit and push
+        run: |
+          git commit -m "Post-processed a build via Github Action"
           git push

@@ -1,3 +1,5 @@
+google-analytics-data
+google-api-python-client
 mkdocs
 mkdocs-material
 mkdocs-rss-plugin
