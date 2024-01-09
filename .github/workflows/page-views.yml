@@ -35,7 +35,7 @@ jobs:
       - name: Commit and push
         run: |
           if [[ `git status --porcelain` ]]; then
-            git commit -m "Post-processed a build via Github Action"
+            git commit -m "Updated page views via Github Action"
             git push
           fi
 
