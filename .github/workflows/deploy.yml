@@ -4,23 +4,14 @@ on:
   push:
     branch:
       - master
+  workflow_call:
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Configure Git Credentials
-        run: |
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-          cache: "pip"
-          cache-dependency-path: "requirements*.txt"
-      - run: pip install -r requirements.txt
+      - uses: ./.github/workflows/setup.yml
       - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV
       - uses: actions/cache@v3
         with:
@@ -35,14 +26,11 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build]
     steps:
+      - uses: ./.github/workflows/setup.yml
       - uses: actions/checkout@v4
         name: Checkout to deploy branch
         with:
           ref: deploy
-      - name: Configure Git Credentials
-        run: |
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
       - name: Add CNAME manually
         run: |
           if [ ! -f CNAME ];
