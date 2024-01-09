@@ -16,6 +16,7 @@ jobs:
   pre-commit:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - uses: ./.github/workflows/setup.yml
       - name: Execute pre-commit
         uses: pre-commit/action@v2.0.3
