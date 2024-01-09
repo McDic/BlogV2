@@ -69,3 +69,4 @@ Note that all social links are also available on the footer.
 - [Github](https://github.com/McDic)
 - [LinkedIn](https://www.linkedin.com/in/mcdic/) (I do not open this for anonymous users for several reasons)
 - [Codeforces](https://codeforces.com/profile/McDic)
+- [Discord](https://discordapp.com/users/McDic)
