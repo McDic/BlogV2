@@ -38,6 +38,5 @@ jobs:
           git push
 
   redeploy:
-    runs-on: ubuntu-latest
     needs: [update-views]
     uses: ./.github/workflows/deploy.yml
