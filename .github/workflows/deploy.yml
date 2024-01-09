@@ -53,5 +53,7 @@ jobs:
           fi
       - name: Commit and push
         run: |
-          git commit -m "Post-processed a build via Github Action"
-          git push
+          if [[ `git status --porcelain` ]]; then
+            git commit -m "Post-processed a build via Github Action"
+            git push
+          fi

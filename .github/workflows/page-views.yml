@@ -31,11 +31,13 @@ jobs:
           GC_PRIVATE_KEY_ID: ${{ secrets.GC_PRIVATE_KEY_ID }}
           GC_PROJECT_ID: ${{ secrets.GC_PROJECT_ID }}
           GC_PROPERTY_ID: ${{ secrets.GC_PROPERTY_ID }}
+      - run: git add docs/assets/views.json
       - name: Commit and push
         run: |
-          git add docs/assets/views.json
-          git commit -m "Updated views data via cronjob"
-          git push
+          if [[ `git status --porcelain` ]]; then
+            git commit -m "Post-processed a build via Github Action"
+            git push
+          fi
 
   redeploy:
     needs: [update-views]
