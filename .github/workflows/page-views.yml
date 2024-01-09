@@ -3,7 +3,7 @@ name: Update page views
 on:
   schedule:
     - cron: '7/10 * * * *'
-  
+
 jobs:
   update-views:
     runs-on: ubuntu-latest

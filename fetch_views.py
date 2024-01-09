@@ -19,7 +19,7 @@ class PathData(TypedDict):
 
 def get_client(
     project_id: str | None = None,
-    private_key_id: str | None = None, 
+    private_key_id: str | None = None,
     private_key: str | None = None,
     client_email: str | None = None,
     client_id: str | None = None,
