@@ -8,6 +8,8 @@ on:
 jobs:
   update-views:
     runs-on: ubuntu-latest
+    outputs:
+      need_deploy: ${{ steps.final.outputs.need_deploy }}
     steps:
       - uses: actions/checkout@v4
       - name: Configure Git Credentials
@@ -22,7 +24,7 @@ jobs:
           cache-dependency-path: "requirements*.txt"
       - run: pip install -r requirements.txt
       - name: Update views data
-        run: python fetch_views.py -o docs/assets/views.json
+        run: python additional_scripts/fetch_views.py -o docs/assets/views.json
         env:
           GC_CLIENT_EMAIL: ${{ secrets.GC_CLIENT_EMAIL }}
           GC_CLIENT_ID: ${{ secrets.GC_CLIENT_ID }}
@@ -33,12 +35,18 @@ jobs:
           GC_PROPERTY_ID: ${{ secrets.GC_PROPERTY_ID }}
       - run: git add docs/assets/views.json
       - name: Commit and push
+        id: final
         run: |
           if [[ `git status --porcelain` ]]; then
             git commit -m "Updated page views via Github Action"
             git push
+            echo "need_deploy=true" >> "$GITHUB_OUTPUT"
+            sleep 5s
+          else
+            echo "need_deploy=false" >> "$GITHUB_OUTPUT"
           fi
 
   redeploy:
     needs: [update-views]
+    if: ${{ needs.update-views.outputs.need_deploy }} == 'true'
     uses: ./.github/workflows/deploy.yml

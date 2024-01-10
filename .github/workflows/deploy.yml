@@ -4,6 +4,14 @@ on:
   push:
     branch:
       - master
+    paths-ignore:
+      - .github/**
+      - .gitignore
+      - .pre-commit-config.yaml
+      - LICENSE
+      - additional_scripts/**
+      - README.md
+      - requirements.txt
   workflow_call:
   workflow_dispatch:
 
