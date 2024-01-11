@@ -40,10 +40,14 @@ theme:
         name: Switch to automatic mode
 
 nav:
-  - Blog: index.md
-  - About: about.md
-  - AMA: ama.md
-  - Blog Architecture: architecture.md
+  - Blog:
+    - index.md
+    - About: about.md
+    - Architecture: architecture.md
+    - AMA: ama.md
+    - RSS:
+      - Created: /feed_rss_created.xml
+      - Updated: /feed_rss_updated.xml
   - Problemsetting:
     - Codeforces: https://codeforces.com/contests/writer/McDic
     - BOJ: https://www.acmicpc.net/problemset?sort=no_asc&author=spongbob9876&author_type=1
