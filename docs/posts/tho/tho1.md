@@ -12,6 +12,8 @@ slug: tho-1
 
 # THO 1. My Codeforces Problemsetting Experiences
 
+*This article is migrated from which I wrote on [OKKY](https://okky.kr).*
+
 안녕하세요. 이 시리즈에서는 저의 생각과 관련된 글을 적어보고자 합니다.
 이번 글은 Codeforces라는 프로그래밍 대회 플랫폼에서 대회 출제를 몇 번 해본 경험을 소개하고자 합니다.
 

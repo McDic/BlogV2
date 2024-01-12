@@ -11,6 +11,8 @@ slug: tho-2
 
 # THO 2. About Game Development
 
+*This article is migrated from which I wrote on [OKKY](https://okky.kr).*
+
 저는 어떤 컨텐츠를 만드는 것을 좋아하는 사람입니다. 사람들이 제가 만든 시스템 안에서 어떤 문제를 해결해나가는 과정을 지켜보는 것은 정말 재밌습니다. 그래서 마인크래프트 안에서 미니게임을 만드는 일을 많이 해왔습니다. 제가 만든 마인크래프트 맵들 중 하나인 "Highliner"는 모장의 렐름 공식 미니게임에 등록되기도 했었습니다.
 
 ![img1](/assets/posts/tho/gamedev/gamedev_highliner_realms.png)

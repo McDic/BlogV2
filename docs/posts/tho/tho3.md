@@ -12,6 +12,8 @@ slug: tho-3
 
 # THO 3. Relationship between Algorithm and Dev Career
 
+*This article is migrated from which I wrote on [OKKY](https://okky.kr).*
+
 안녕하세요. 이번에 쓸 글의 주제는, "알고리즘과 취업의 상관관계" 입니다.
 
 <!-- more -->
