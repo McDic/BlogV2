@@ -125,7 +125,7 @@ s += "abcd"
 
 ---
 
-## We shouldn't blindly corerelate career length and salary
+## We shouldn't blindly correlate career length and salary
 
 처음 연봉이 크게 올랐을 때도 돈 벌기 쉽다고 생각했지만 저는 해당 연봉을 입사할 때부터 제안받은 지원자의 존재를 알게 되면서,
 그리고 주변 고연봉 개발자들을 실제로 만나서 진로 이야기를 하면서 팀장님으로부터 지속적으로 주입받은 연봉 가스라이팅에서 벗어나기 시작했습니다.
