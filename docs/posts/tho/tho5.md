@@ -5,7 +5,7 @@ categories:
 tags:
   - algorithm
   - data-structures
-  - computer-science
+  - career
 title: THO 5. About Coding Assessment Problems
 slug: tho-5
 ---

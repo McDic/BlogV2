@@ -4,6 +4,7 @@ categories:
   - Thoughts
 tags:
   - economics
+  - career
 title: THO 4. 20 Years of Time Attack
 slug: tho-4
 ---

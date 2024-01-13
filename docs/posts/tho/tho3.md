@@ -5,7 +5,7 @@ categories:
 tags:
   - algorithm
   - data-structures
-  - computer-science
+  - career
 title: THO 3. Relationship between Algorithm and Dev Career
 slug: tho-3
 ---
