@@ -4,3 +4,4 @@ mkdocs
 mkdocs-material
 mkdocs-rss-plugin
 pre-commit
+-e ./custom_plugin

@@ -1,6 +1,8 @@
+/*
 .md-footer__inner:not([hidden]) {
     display: none
 }
+*/
 
 .md-footer {
     position: fixed;
@@ -12,7 +14,7 @@
 
 .md-main {
     display: block;
-    margin-bottom: 120px;
+    margin-bottom: 300px;
 }
 
 .md-source__repository .md-source__facts {

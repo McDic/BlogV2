@@ -7,3 +7,8 @@
 
 # Generated files
 site/
+custom_plugin/*.egg-info/
+
+# Cache
+.mypy_cache/
+**/__pycache__/
