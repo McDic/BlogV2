@@ -32,11 +32,11 @@ theme:
         name: Switch to light mode
 
 nav:
+  - About: about.md
+  - AMA: ama.md
   - Blog:
     - index.md
-    - About: about.md
     - Architecture: architecture.md
-    - AMA: ama.md
     - RSS:
       - Created: /feed_rss_created.xml
       - Updated: /feed_rss_updated.xml
