@@ -28,7 +28,6 @@
 }
 
 .md-typeset hr.md-mcdic__excerpt_divider {
-    border-bottom: .05rem solid var(--md-typeset-a-color);
     margin: 0;
     margin-top: calc(2.5rem - 1px);
     margin-bottom: 0.5rem;
@@ -36,4 +35,8 @@
 
 .md-sidebar--secondary .md-nav__item .md-nav__link--active {
     color: var(--md-default-fg-color--light);
+}
+
+img.md-404--not-found {
+    margin-bottom: 40px;
 }
