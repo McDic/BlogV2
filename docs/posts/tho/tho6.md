@@ -114,6 +114,7 @@ slug: tho-6
 병역의무는 당신이 [굉장한 금수저](https://n.news.naver.com/mnews/article/088/0000651288?sid=102) 혹은 여성으로 태어나지 않은 이상, 무조건 해결해야 하는 문제입니다.
 대한민국의 인구는 점점 줄어들고 있고, 국방력을 유지하기 위해서 징병 비율은 높아지고 있습니다.
 관련한 대표적인 현상으로, [신체검사 기준](https://www.law.go.kr/LSW//lsBylInfoPLinkR.do?lsiSeq=234461&lsNm=%EB%B3%91%EC%97%AD%ED%8C%90%EC%A0%95+%EC%8B%A0%EC%B2%B4%EA%B2%80%EC%82%AC+%EB%93%B1+%EA%B2%80%EC%82%AC%EA%B7%9C%EC%B9%99&bylNo=0003&bylBrNo=00&bylCls=BE&bylEfYd=20210729&bylEfYdYn=Y)은 해가 지나갈수록 더욱 강화되고 있습니다.
+산업기능요원, 전문연구요원, 예술체육요원의 TO는 시간이 지날수록 줄어들고 있습니다.
 최근 뉴스에서는 [4급도 현역으로 보낼 가능성이 있다](https://www.youtube.com/watch?v=oUZFKtcvvWM)는 소식도 들리고 있습니다.
 
 하지만 징병률을 거의 100%로 끌어올려도 인구 수 감소로 인한 국방력을 유지하기는 어려울 것이기 때문에, 그리고 표심 및 사회적인 문제로 여성 징병이 일어날 가능성은 많이 낮다고 보기 때문에,
@@ -143,8 +144,10 @@ slug: tho-6
 
 만약 본인의 경력을 살리면서 군 복무를 수행하고자 한다면, 다음과 같은 선택지를 고려해볼 수 있습니다.
 
-- 육군에서는 [SW개발병](https://www.mma.go.kr/contents.do?mc=mma0001989), [기술행정병](https://www.mma.go.kr/contents.do?mc=mma0000386), [카투사](https://www.mma.go.kr/contents.do?mc=mma0000525) 제도를 운영하고 있습니다.
-- 특성화고 같은 직업계열 고등학교를 졸업했거나, 4급 현역이거나 혹은 대학원을 진학했다면 관련 자격증을 취득 후 [산업기능요원 또는 전문연구요원](https://www.mma.go.kr/contents.do?mc=mma0000760)을 고려해볼 수 있습니다.
+- 육군에서는 [SW개발병](https://www.mma.go.kr/contents.do?mc=mma0001989), [정보보호병](https://www.mma.go.kr/contents.do?mc=mma0000516), [기술행정병](https://www.mma.go.kr/contents.do?mc=mma0000386), [카투사](https://www.mma.go.kr/contents.do?mc=mma0000525) 등 전문특기병 제도를 운영하고 있습니다.
+  모집 분야가 정말 다양하니 참고 부탁드립니다.
+- 공군 또한 IT개발관리병 등의 [전문특기병](https://www.mma.go.kr/contents.do?mc=mma0000432) 제도를 운영하고 있습니다.
+- 특성화고 같은 직업계열 고등학교를 졸업했거나, 4급이거나, 혹은 대학원을 진학했다면 관련 자격증을 취득 후 [산업기능요원 또는 전문연구요원](https://www.mma.go.kr/contents.do?mc=mma0000760)을 고려해볼 수 있습니다.
 - 의사, 한의사 자격이 있다면 [공중보건의사 또는 병역판정검사전담의사](https://www.mma.go.kr/contents.do?mc=mma0000779)를 고려해볼 수 있습니다.
 - 변호사 자격이 있다면 [공익법무관](https://www.mma.go.kr/contents.do?mc=mma0000780)을 고려해볼 수 있습니다.
 - 예술 전공자라면 [이런 대회들](https://www.mma.go.kr/contents.do?mc=mma0000759)에 수상하여 예술체육요원이 되는 것을 고려해볼 수 있습니다.
