@@ -14,3 +14,7 @@
 .md-source__repository .md-source__facts {
     display: none;
 }
+
+.md-sidebar__scrollwrap {
+    overflow-y: hidden;
+}
