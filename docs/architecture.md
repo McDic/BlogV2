@@ -65,4 +65,16 @@ So I failed to make my billing completely zero, but I think this is still feasib
 
 ---
 
+## Custom MKDocs Plugin
+
+I made [my own custom mkdocs plugin](https://github.com/McDic/BlogV2/tree/master/custom_plugin) to customize following behaviors.
+
+- Categories
+    - `Prev` and `Next` buttons will lead to prev/next articles in same category
+    - Forcing zero or one category for every page
+
+I plan to add more stuffs whenever I need.
+
+---
+
 If there is anything you wonder, please ask in comments.
