@@ -4,8 +4,8 @@ import os
 from pathlib import Path
 from typing import TypedDict
 
-from google.oauth2 import service_account
 from google.analytics import data_v1beta
+from google.oauth2 import service_account
 
 
 class PathData(TypedDict):

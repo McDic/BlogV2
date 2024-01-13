@@ -1,12 +1,10 @@
 from mkdocs.config.defaults import MkDocsConfig
 from mkdocs.exceptions import PluginError
-from mkdocs.plugins import BasePlugin, event_priority
+from mkdocs.plugins import BasePlugin, event_priority, get_plugin_logger
 from mkdocs.structure.files import Files
 from mkdocs.structure.pages import Page
-from mkdocs.plugins import get_plugin_logger
 
 from .constants import MY_EVENT_PRIORITY
-
 
 logger = get_plugin_logger("mcdic")
 
@@ -14,7 +12,7 @@ logger = get_plugin_logger("mcdic")
 class McDicBlogPlugin(BasePlugin):
     """
     A plugin solely developed for [McDic's Blog](https://blog.mcdic.net).
-    See [mkdocs dev guide - plugins/events](https://www.mkdocs.org/dev-guide/plugins/#events).
+    See [plugins/events](https://www.mkdocs.org/dev-guide/plugins/#events).
     """
 
     config_scheme = ()
