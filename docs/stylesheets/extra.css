@@ -19,9 +19,12 @@
     overflow-y: hidden;
 }
 
-
 .md-post--excerpt {
     margin-bottom: 0;
+}
+
+.md-post__action a {
+    font-weight: bolder;
 }
 
 .md-typeset hr.md-mcdic__excerpt_divider {
