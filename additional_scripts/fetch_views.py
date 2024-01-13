@@ -36,9 +36,11 @@ def get_client(
             "auth_uri": "https://accounts.google.com/o/oauth2/auth",
             "token_uri": "https://oauth2.googleapis.com/token",
             "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-            "client_x509_cert_url": client_x509_cert_url or os.environ["GC_CLIENT_X509_CERT_URL"],
+            "client_x509_cert_url": client_x509_cert_url
+            or os.environ["GC_CLIENT_X509_CERT_URL"],
             "universe_domain": "googleapis.com",
-        }, scopes=["https://www.googleapis.com/auth/analytics.readonly"],
+        },
+        scopes=["https://www.googleapis.com/auth/analytics.readonly"],
     )
     return data_v1beta.BetaAnalyticsDataClient(credentials=credentials)
 
@@ -86,12 +88,15 @@ if __name__ == "__main__":
     parser.add_argument("--credential", "-c", type=Path, default=None)
     namespace = parser.parse_args()
 
-    client = get_client() if namespace.credential is None else \
-        data_v1beta.BetaAnalyticsDataClient(
+    client = (
+        get_client()
+        if namespace.credential is None
+        else data_v1beta.BetaAnalyticsDataClient(
             credentials=service_account.Credentials.from_service_account_file(
                 namespace.credential
             )
         )
+    )
     result = fetch_data(client)
     with open(namespace.json_file, "w") as file:
         json.dump(result, file)
