@@ -1,5 +1,5 @@
 ---
-date: 2024-01-13
+date: 2024-01-14
 categories:
   - Thoughts
 tags:
@@ -24,16 +24,18 @@ slug: tho-6
 
 저는 이제 막 성인이 되거나, 혹은 그 직전 단계에 있는 친구들에게 다음과 같은 말을 자주 합니다.
 
-> *"군대는 슬기롭게 해결하거나, 아니면 빠르게 해결해야 합니다."*
+!!! quote
 
-!!! danger "Disclaimer"
+    *"군대는 슬기롭게 해결하거나, 아니면 빠르게 해결해야 합니다."*
 
-    **병역의무를 기피하라는 것이 아닙니다.**
+    !!! danger "Disclaimer"
 
-    본인의 진로나 자기계발 시간을 살리면서 군 복무를 할 수 있는 방법을 찾거나, 아니면 입대를 빠르게 해야 한다는 것입니다.
-    대표적인 예시로 [육군 SW개발병](https://www.mma.go.kr/contents.do?mc=mma0001989)이 있습니다.
+        **병역의무를 기피하라는 것이 아닙니다.**
 
-    저 또한 성실하게 병역의무를 완료하였으며, 다른 사람들에게 병역의무를 성실하게 완료할 것을 권고하고 있습니다.
+        본인의 진로나 자기계발 시간을 살리면서 군 복무를 할 수 있는 방법을 찾거나, 아니면 입대를 빠르게 해야 한다는 것입니다.
+        대표적인 예시로 [육군 SW개발병](https://www.mma.go.kr/contents.do?mc=mma0001989)이 있습니다.
+
+        저 또한 성실하게 병역의무를 완료하였으며, 다른 사람들에게 병역의무를 성실하게 완료할 것을 권고하고 있습니다.
 
 왜냐하면 미필인 상태로 시간을 너무 오래 끌면 불이익을 너무나 많이 받기 때문입니다.
 제 친구 중 1명은 육군 간 다른 친구를 열받게 만드려고 이런 소리를 하더군요.
@@ -86,7 +88,7 @@ slug: tho-6
 
 ---
 
-## You are at least a year delayed against foreign applicants
+## You are at least a year behind female and foreign applicants
 
 제가 최근 해외기업에 취업하고자 시도하면서 이력서를 작성했는데,
 대학을 4년보다 오래 다닌 것이 마음에 걸려 주변 해외에서 근무중인 친구들 몇 명에게 컨설팅을 받아보니,
@@ -105,7 +107,7 @@ slug: tho-6
 
 ## Even domestic companies are going to drop advantages
 
-한국수력원자력은 [2021년 승진심사에서 군 복무기간을 반영하지 않기로](https://www.kukinews.com/newsView/kuk202104150271) 했습니다.
+한국수력원자력은 2021년 [승진심사에서 군 복무기간을 반영하지 않기로](https://www.kukinews.com/newsView/kuk202104150271) 했습니다.
 기획재정부는 [공공기관에게 직원 승진 심사에 군 경력을 반영하지 않도록 권고](https://biz.sbs.co.kr/amp/article/20000001696)했습니다.
 한국전력 또한 [2023년부터 군 경력을 승진심사에 반영하지 않습니다](https://www.ytn.co.kr/_ln/0115_202212022217005328).
 
@@ -129,11 +131,11 @@ slug: tho-6
 ## Nobody is going to respect you
 
 병역의무를 빠르게 완료해야 하는 또 다른 이유는,
-대한민국에서는 군 복무자에 대한 인식 및 처우가 매우 좋지 않습니다.
+대한민국에서는 군 복무자에 대한 인식 및 처우가 매우 좋지 않기 때문입니다.
 
 ![img1](https://i.namu.wiki/i/0zITnJA2J2b3-6GImY3ml-T9MAv5uwINUu84LFItS4_1Db0G_M3Fzhv44kj0u8l7nrFak7c0bi2ZXvc1LgyMJz28QtZmb-DgtNzDxMfUIucOgS0DrL41IkOMVn00jYJtaXD2Q22SsOnjW50PEdioLQ.webp)
 
-!!! references
+!!! caption
 
     *경인지방병무청 공식 유투브 계정이 직접 작성하고 영상 덧글란에 고정한 덧글입니다.*
 
@@ -164,6 +166,7 @@ slug: tho-6
 
 만약 군 복무를 빠르게 해결하고자 한다면, 육군으로 빠르게 입대하시는 것을 추천합니다.
 육군과 해병은 복무기간이 18개월으로 병역의무를 해결하는 모든 방법들 중에서 가장 빠릅니다.
+자세한 복무기간은 [병무청 홈페이지 병역이행안내](https://www.mma.go.kr/contents.do?mc=usr0000041)를 참고해주세요.
 
 ---
 
