@@ -31,6 +31,6 @@ async function loadView(elementID, path, fallbackText) {
     }
     else {
         metadata_views.style.display = "inherit";
-        inner_metadata_views.textContent = formatKMGT(views, 2) + " users visited";
+        inner_metadata_views.textContent = formatKMGT(views, 2) + " unique users visited";
     }
 }
