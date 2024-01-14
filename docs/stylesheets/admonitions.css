@@ -5,18 +5,20 @@
     --md-admonition-icon--caption: url("/assets/icons/svgrepo/picture.svg");
 }
 
-@keyframes fading {
+@keyframes heartbeating {
     0%, 100% {
         opacity: 100%;
+        transform: scale(100%) rotate3d(0, 0, 0);
     }
     50% {
         opacity: 25%;
+        transform: scale(75%) rotate3d(0, 1, 0, 180deg);
     }
 }
 
 .md-typeset .admonition-title::before,
 .md-typeset summary::before {
-    animation: fading 2000ms infinite;
+    animation: heartbeating 2000ms infinite;
 }
 
 .md-typeset .admonition.disclaimer,
@@ -32,7 +34,7 @@
     background-color: rgb(224, 27, 27);
     -webkit-mask-image: var(--md-admonition-icon--disclaimer);
             mask-image: var(--md-admonition-icon--disclaimer);
-    animation: fading 750ms infinite;
+    animation: heartbeating 750ms infinite;
 }
 
 .md-typeset .admonition.references,
