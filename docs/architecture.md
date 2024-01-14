@@ -29,7 +29,9 @@ Most of theme in this blog is provided by those frameworks.
 I customized several stuffs that `mkdocs-material` is not currently providing,
 but I think that's a relatively smaller work compared to this whole infrastructure.
 
-If `mkdocs-material` becomes inactive, I may migrate this blog to another framework at that time.
+!!! info
+
+    If `mkdocs-material` becomes inactive, I may migrate this blog to another framework at that time.
 
 ---
 
