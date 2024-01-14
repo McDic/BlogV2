@@ -65,6 +65,8 @@ However, I customized some following stuffs, thanks for [CSS animations](https:/
 
 !!! caption
 
+!!! copyright
+
 ---
 
 ## Resources
