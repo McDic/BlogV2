@@ -3,22 +3,62 @@
     --md-admonition-icon--references: url("/assets/icons/svgrepo/references.svg");
     --md-admonition-icon--migrated: url("/assets/icons/svgrepo/migration.svg");
     --md-admonition-icon--caption: url("/assets/icons/svgrepo/picture.svg");
+    --md-admonition-animation-heartbeat-x: 0;
+    --md-admonition-animation-heartbeat-y: 0;
+    --md-admonition-animation-heartbeat-z: 1;
 }
 
 @keyframes heartbeating {
-    0%, 100% {
+    0% {
         opacity: 100%;
-        transform: scale(100%) rotate3d(0, 0, 0);
+        transform: scale(100%) rotate3d(
+            var(--md-admonition-animation-heartbeat-x),
+            var(--md-admonition-animation-heartbeat-y),
+            var(--md-admonition-animation-heartbeat-z),
+            0deg
+        );
+    }
+    25% {
+        opacity: 25%;
+        transform: scale(75%) rotate3d(
+            var(--md-admonition-animation-heartbeat-x),
+            var(--md-admonition-animation-heartbeat-y),
+            var(--md-admonition-animation-heartbeat-z),
+            90deg
+        );
     }
     50% {
+        opacity: 100%;
+        transform: scale(100%) rotate3d(
+            var(--md-admonition-animation-heartbeat-x),
+            var(--md-admonition-animation-heartbeat-y),
+            var(--md-admonition-animation-heartbeat-z),
+            180deg
+        );
+    }
+    75% {
         opacity: 25%;
-        transform: scale(75%) rotate3d(0, 1, 0, 180deg);
+        transform: scale(75%) rotate3d(
+            var(--md-admonition-animation-heartbeat-x),
+            var(--md-admonition-animation-heartbeat-y),
+            var(--md-admonition-animation-heartbeat-z),
+            270deg
+        );
+    }
+    100% {
+        opacity: 100%;
+        transform: scale(100%) rotate3d(
+            var(--md-admonition-animation-heartbeat-x),
+            var(--md-admonition-animation-heartbeat-y),
+            var(--md-admonition-animation-heartbeat-z),
+            360deg
+        );
     }
 }
 
 .md-typeset .admonition-title::before,
 .md-typeset summary::before {
-    animation: heartbeating 2000ms infinite;
+    animation: heartbeating 4000ms infinite;
 }
 
 .md-typeset .admonition.disclaimer,
@@ -34,7 +74,7 @@
     background-color: rgb(224, 27, 27);
     -webkit-mask-image: var(--md-admonition-icon--disclaimer);
             mask-image: var(--md-admonition-icon--disclaimer);
-    animation: heartbeating 750ms infinite;
+    animation: heartbeating 1500ms infinite;
 }
 
 .md-typeset .admonition.references,
