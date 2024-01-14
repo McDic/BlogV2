@@ -10,7 +10,7 @@ title: PRP 2. Bernoulli Processes
 slug: prp-2
 ---
 
-!!! info "Migrated article"
+!!! migrated
 
     *This article is migrated from which I wrote on my old blog.*
 

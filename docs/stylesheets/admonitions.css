@@ -1,0 +1,78 @@
+:root {
+    --md-admonition-icon--disclaimer: url("/assets/icons/svgrepo/disclaimer.svg");
+    --md-admonition-icon--references: url("/assets/icons/svgrepo/references.svg");
+    --md-admonition-icon--migrated: url("/assets/icons/svgrepo/migration.svg");
+    --md-admonition-icon--caption: url("/assets/icons/svgrepo/picture.svg");
+}
+
+@keyframes fading {
+    0%, 100% {
+        opacity: 100%;
+    }
+    50% {
+        opacity: 25%;
+    }
+}
+
+.md-typeset .admonition.disclaimer,
+.md-typeset details.disclaimer {
+    border-color: rgb(224, 27, 27);
+}
+.md-typeset .disclaimer > .admonition-title,
+.md-typeset .disclaimer > summary {
+    background-color: rgba(224, 27, 27, 0.1);
+}
+.md-typeset .disclaimer > .admonition-title::before,
+.md-typeset .disclaimer > summary::before {
+    background-color: rgb(224, 27, 27);
+    -webkit-mask-image: var(--md-admonition-icon--disclaimer);
+            mask-image: var(--md-admonition-icon--disclaimer);
+    animation: fading 1000ms infinite;
+}
+
+.md-typeset .admonition.references,
+.md-typeset details.references {
+    border-color: rgb(37, 37, 37);
+}
+.md-typeset .references > .admonition-title,
+.md-typeset .references > summary {
+    background-color: rgba(37, 37, 37, 0.1);
+}
+.md-typeset .references > .admonition-title::before,
+.md-typeset .references > summary::before {
+    -webkit-mask-image: var(--md-admonition-icon--references);
+            mask-image: var(--md-admonition-icon--references);
+    animation: fading 2000ms infinite;
+}
+
+.md-typeset .admonition.migrated,
+.md-typeset details.migrated {
+    border-color: rgb(107, 200, 236);
+}
+.md-typeset .migrated > .admonition-title,
+.md-typeset .migrated > summary {
+    background-color: rgba(107, 200, 236, 0.1);
+}
+.md-typeset .migrated > .admonition-title::before,
+.md-typeset .migrated > summary::before {
+    background-color: rgb(107, 200, 236);
+    -webkit-mask-image: var(--md-admonition-icon--migrated);
+            mask-image: var(--md-admonition-icon--migrated);
+    animation: fading 2000ms infinite;
+}
+
+.md-typeset .admonition.caption,
+.md-typeset details.caption {
+    border-color: rgb(220, 228, 116);
+}
+.md-typeset .caption > .admonition-title,
+.md-typeset .caption > summary {
+    background-color: rgba(220, 228, 116, 0.1);
+}
+.md-typeset .caption > .admonition-title::before,
+.md-typeset .caption > summary::before {
+    background-color: rgb(220, 228, 116);
+    -webkit-mask-image: var(--md-admonition-icon--caption);
+            mask-image: var(--md-admonition-icon--caption);
+    animation: fading 2000ms infinite;
+}

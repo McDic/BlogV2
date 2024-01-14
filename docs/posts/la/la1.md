@@ -9,7 +9,7 @@ title: LA 1. Vector Spaces
 slug: la-1
 ---
 
-!!! info "Migrated article"
+!!! migrated
 
     *This article is migrated from which I wrote on my old blog.*
 

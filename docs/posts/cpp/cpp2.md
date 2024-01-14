@@ -10,7 +10,7 @@ title: CPP 2. Access Specifiers and Friend
 slug: cpp-2
 ---
 
-!!! info "Migrated article"
+!!! migrated
 
     *This article is migrated from which I wrote on my old blog.*
 

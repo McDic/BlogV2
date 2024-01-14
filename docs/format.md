@@ -12,7 +12,7 @@ This article explains the format of articles in this website.
     Some blog posts here are migrated from other web sources written by me,
     and some of them may not strictly respect the following format.
 
-!!! info "Subject to be changed"
+!!! warning "Subject to be changed"
 
     This is my own blog, and some stuffs may be changed without notice.
 
@@ -42,7 +42,7 @@ Every blog post will provide following metadata;
   This is different from total views.
   Because I am not using realtime data, this metadata is invisible on post page if the data is not available from GA4 yet.
 
-!!! warning "Disclaimer"
+!!! disclaimer
 
     The "number of active users" statistics is analyzed anonymously and
     I do not provide any personalized information(who visited here, etc) on this blog,
@@ -53,9 +53,23 @@ Every blog post will provide following metadata;
 ## Admonitions
 
 I use [built-in admonitions](https://squidfunk.github.io/mkdocs-material/reference/admonitions/?h=admon#supported-types) featured by `mkdocs-material`.
+For typical admonitions, I use `note`, `info`, and `quote` types in most cases
+and occasionally use `warning` and `danger` types.
+However, I customized some following stuffs, thanks for [CSS animations](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animations/Using_CSS_animations).
 
-Most of admonitions would be either `note`, `info`, or `quote` type.
-However, I occasionally use `warning` or `danger` type when I write something serious, a disclaimer for an example.
+!!! disclaimer
+
+!!! migrated
+
+!!! references
+
+!!! caption
+
+---
+
+## Resources
+
+Almost all custom icons here are provided by [SVG Repo](https://www.svgrepo.com/).
 
 ---
 

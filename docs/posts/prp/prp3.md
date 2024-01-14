@@ -10,7 +10,7 @@ title: PRP 3. Continuous Random Variables
 slug: prp-3
 ---
 
-!!! info "Migrated article"
+!!! migrated
 
     *This article is migrated from which I wrote on my old blog.*
 

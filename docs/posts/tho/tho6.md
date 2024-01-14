@@ -38,7 +38,10 @@ slug: tho-6
 왜냐하면 미필인 상태로 시간을 너무 오래 끌면 불이익을 너무나 많이 받기 때문입니다.
 제 친구 중 1명은 육군 간 다른 친구를 열받게 만드려고 이런 소리를 하더군요.
 
-> *"너가 군대 간 1년 6개월 동안 다른 애들은 교환학생 갔다오고 연애하고 공부하고 취업도 일찍 한다니까?"* (익명의 친구가 한 말)
+!!! quote
+
+    *"너가 군대 간 1년 6개월 동안 다른 애들은 교환학생 갔다오고 연애하고 공부하고 취업도 일찍 한다니까?"*
+    (익명의 친구가 한 말)
 
 ---
 
@@ -75,7 +78,9 @@ slug: tho-6
 | 일병 | 680,000 | 6개월 | 4,080,000
 | 이병 | 600,000 | 2개월 | 1,200,000
 
-> *출처: [e-나라지표 계급별 봉사봉급 추이](https://www.index.go.kr/unity/potal/main/EachDtlPageDetail.do?idx_cd=1700)*
+!!! references
+
+    *출처: [e-나라지표 계급별 봉사봉급 추이](https://www.index.go.kr/unity/potal/main/EachDtlPageDetail.do?idx_cd=1700)*
 
 이외에도 각종 부조리를 당하는 불합리한 위치에 놓인다던가 여러 문제점들이 있을 것입니다.
 
@@ -128,7 +133,9 @@ slug: tho-6
 
 ![img1](https://i.namu.wiki/i/0zITnJA2J2b3-6GImY3ml-T9MAv5uwINUu84LFItS4_1Db0G_M3Fzhv44kj0u8l7nrFak7c0bi2ZXvc1LgyMJz28QtZmb-DgtNzDxMfUIucOgS0DrL41IkOMVn00jYJtaXD2Q22SsOnjW50PEdioLQ.webp)
 
-> *경인지방병무청 공식 유투브 계정의 덧글입니다.*
+!!! references
+
+    *경인지방병무청 공식 유투브 계정이 직접 작성하고 영상 덧글란에 고정한 덧글입니다.*
 
 당신이 군 복무를 하는 것에 대해 누구도 감사해하지 않으며,
 당신이 입는 모든 신체적, 정신적 피해는 누구도 보상을 원하지 않고,

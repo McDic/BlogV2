@@ -10,7 +10,7 @@ title: CPP 1. Type of Expressions and References
 slug: cpp-1
 ---
 
-!!! info "Migrated article"
+!!! migrated
 
     *This article is migrated from which I wrote on my old blog.*
 

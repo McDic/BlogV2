@@ -10,7 +10,7 @@ title: PRP 1. Basic Principles of Probability
 slug: prp-1
 ---
 
-!!! info "Migrated article"
+!!! migrated
 
     *This article is migrated from which I wrote on my old blog.*
 

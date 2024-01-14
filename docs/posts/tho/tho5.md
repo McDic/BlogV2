@@ -12,13 +12,13 @@ slug: tho-5
 
 # THO 5. About Coding Assessment Problems
 
-!!! info "Migrated article"
+!!! migrated
 
     *This article is migrated from which I wrote on [OKKY](https://okky.kr).*
 
 안녕하세요. 알려드릴 수 없는 어떤 회사에서 코딩테스트 문제를 직업으로써 만들어본 경험을 한번 풀어보고 싶어서 글을 쓰게 되었습니다.
 
-!!! warning "Disclaimer"
+!!! disclaimer
 
     저는 해당 회사를 퇴사한 지 한참 지났고, 내부의 상황이 지금과는 다를 것이기 때문에 문제가 되지 않는 선에서 제가 여러 가지를 익명으로 풀어보고자 합니다.
     경우에 따라 조금 불쾌하다고 느껴지는 표현이 있을 수도 있는데, 비하의 의도는 전혀 없습니다.

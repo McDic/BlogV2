@@ -10,7 +10,7 @@ title: ALDS 1. Sparse Table
 slug: alds-1
 ---
 
-!!! info "Migrated article"
+!!! migrated
 
     *This article is migrated from which I wrote on my old blog.*
 

@@ -10,7 +10,7 @@ title: CPP 3. Templates
 slug: cpp-3
 ---
 
-!!! info "Migrated article"
+!!! migrated
 
     *This article is migrated from which I wrote on my old blog.*
 

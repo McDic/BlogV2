@@ -10,7 +10,7 @@ title: PY 1. Type Hints
 slug: py-1
 ---
 
-!!! info "Migrated article"
+!!! migrated
 
     *This article is migrated from which I wrote on my old blog.*
 
