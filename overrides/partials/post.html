@@ -42,6 +42,11 @@
               {% endif %}
             </li>
           {% endif %}
+          <li class="md-meta__item" id="post-metadata-views-{{ post.title }}">
+            <script type="text/javascript">
+              loadView("post-metadata-views-{{ post.title }}", "{{ post.title }} - McDic's Blog", "User statistics not available");
+            </script>
+          </li>
         </ul>
         {% if post.config.draft %}
           <span class="md-draft">

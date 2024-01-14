@@ -14,16 +14,23 @@ function formatKMGT(n,d){
     return Math.round(n*d/p(10,x))/d+" KMGTPE"[x/3];
 };
 
-async function loadCurrentPageView() {
-    const metadata_views = document.getElementById("post-metadata-views");
+async function loadView(elementID, path, fallbackText) {
+    console.log(`Called loadView("${elementID}", "${path}")`);
+    const metadata_views = document.getElementById(elementID);
     if(!metadata_views) return;
-    const inner_metadata_views = metadata_views.getElementsByClassName("md-ellipsis")[0];
-    const views = await loadViewCache(document.title);
+    const inner_metadata_views = metadata_views.getElementsByClassName("md-ellipsis")[0] || metadata_views;
+    const views = await loadViewCache(path || document.title);
     if(views !== 0 && !views) {
-        metadata_views.style.display = "none";
+        if(!fallbackText) {
+            metadata_views.style.display = "none";
+        }
+        else {
+            metadata_views.style.display = "inherit";
+            inner_metadata_views.textContent = fallbackText;
+        }
     }
     else {
         metadata_views.style.display = "inherit";
-        inner_metadata_views.textContent = formatKMGT(views, 2) + " users viewed";
+        inner_metadata_views.textContent = formatKMGT(views, 2) + " users visited";
     }
 }

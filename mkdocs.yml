@@ -32,11 +32,10 @@ theme:
         name: Switch to light mode
 
 nav:
-  - About: about.md
-  - AMA: ama.md
   - Blog:
     - index.md
     - Architecture: architecture.md
+    - Post Format: format.md
     - RSS:
       - Created: /feed_rss_created.xml
       - Updated: /feed_rss_updated.xml
@@ -47,6 +46,8 @@ nav:
   - Minecraft Maps:
     - The Rotator: https://www.planetminecraft.com/project/19-snapshot-the-rotator/
     - Highliner: https://www.planetminecraft.com/project/1102-highliner/
+  - About: about.md
+  - AMA: ama.md
 
 plugins:
   - tags
