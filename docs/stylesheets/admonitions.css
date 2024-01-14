@@ -14,6 +14,11 @@
     }
 }
 
+.md-typeset .admonition-title::before,
+.md-typeset summary::before {
+    animation: fading 2000ms infinite;
+}
+
 .md-typeset .admonition.disclaimer,
 .md-typeset details.disclaimer {
     border-color: rgb(224, 27, 27);
@@ -27,7 +32,7 @@
     background-color: rgb(224, 27, 27);
     -webkit-mask-image: var(--md-admonition-icon--disclaimer);
             mask-image: var(--md-admonition-icon--disclaimer);
-    animation: fading 1000ms infinite;
+    animation: fading 750ms infinite;
 }
 
 .md-typeset .admonition.references,
@@ -42,7 +47,6 @@
 .md-typeset .references > summary::before {
     -webkit-mask-image: var(--md-admonition-icon--references);
             mask-image: var(--md-admonition-icon--references);
-    animation: fading 2000ms infinite;
 }
 
 .md-typeset .admonition.migrated,
@@ -58,7 +62,6 @@
     background-color: rgb(107, 200, 236);
     -webkit-mask-image: var(--md-admonition-icon--migrated);
             mask-image: var(--md-admonition-icon--migrated);
-    animation: fading 2000ms infinite;
 }
 
 .md-typeset .admonition.caption,
@@ -74,5 +77,4 @@
     background-color: rgb(220, 228, 116);
     -webkit-mask-image: var(--md-admonition-icon--caption);
             mask-image: var(--md-admonition-icon--caption);
-    animation: fading 2000ms infinite;
 }
