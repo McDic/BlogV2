@@ -10,6 +10,10 @@ title: PRP 1. Basic Principles of Probability
 slug: prp-1
 ---
 
+!!! info "Migrated article"
+
+    *This article is migrated from which I wrote on my old blog.*
+
 안녕하세요.
 이번 시리즈에서는 대학교 컴공에서 주로 가르치는 Probability and Random Process(이하 **PRP**)를 다루고자 합니다.
 교재는 Princeton 대학교의 **[ORF309](https://web.math.princeton.edu/~rvan/ORF309.pdf)**를 참고했습니다.

@@ -9,6 +9,10 @@ title: LA 1. Vector Spaces
 slug: la-1
 ---
 
+!!! info "Migrated article"
+
+    *This article is migrated from which I wrote on my old blog.*
+
 안녕하세요. 반년만의 포스팅이네요.. 제가 1~2달 전쯤부터 온라인으로 수학 스터디를 시작했는데, 스스로 정리를 해가면서 진행해야 할 것 같아서.. 포스팅을 시작하게 되었습니다. 이번 시리즈에서는 Linear Algebra(이하 **LA**)를 다루고자 합니다. 교재는 Stephen H. Friedberg 외 2명이 작성한 [Linear Algebra 5th Edition](https://www.amazon.com/Linear-Algebra-5th-Stephen-Friedberg/dp/0134860241)을 참고했습니다.
 
 <!-- more -->

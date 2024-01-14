@@ -10,6 +10,10 @@ title: PRP 3. Continuous Random Variables
 slug: prp-3
 ---
 
+!!! info "Migrated article"
+
+    *This article is migrated from which I wrote on my old blog.*
+
 안녕하세요. 이 시리즈의 지난 article에서 *Bernoulli Processes*에 대해 다뤄봤는데요. 이번에는 *Chapter 3. Continuous Random Variables*에 대해 다뤄보겠습니다. 이번 Chapter의 목표는 Chapter 1에서 배웠던 basic principle들을 Continuous Random Variable로 확장하는 것입니다.
 
 <!-- more -->

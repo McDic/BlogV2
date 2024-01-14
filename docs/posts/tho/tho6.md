@@ -13,9 +13,8 @@ slug: tho-6
 제 주변의 한국 남성들은 저를 포함한 거의 대부분이 군대 문제를 해결했습니다.
 제가 군대를 아직 다녀오지 않은 사람들하고 대화할 때 자주 하는 말들을, 문제가 되지 않는 선에서 적당히 필터링하여 이 글에도 쓰고자 합니다.
 
-!!! info "Parody"
-    글의 제목은 [What Every Programmer Should Know About Memory](https://people.freebsd.org/~lstewart/articles/cpumemory.pdf)의 패러디입니다.
-    정작 이 글은 별로 많은 정보를 담고 있지는 않네요..
+글의 제목은 [What Every Programmer Should Know About Memory](https://people.freebsd.org/~lstewart/articles/cpumemory.pdf)의 패러디입니다.
+정작 이 글은 별로 많은 정보를 담고 있지는 않네요..
 
 <!-- more -->
 

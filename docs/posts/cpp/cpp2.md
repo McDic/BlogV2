@@ -10,6 +10,10 @@ title: CPP 2. Access Specifiers and Friend
 slug: cpp-2
 ---
 
+!!! info "Migrated article"
+
+    *This article is migrated from which I wrote on my old blog.*
+
 안녕하세요. C++ 시리즈의 2번째 게시글입니다! 이번에는 컴파일러가 클래스의 멤버에 대한 접근 권한을 다루는 키워드들, **access specifiers**와 **friend**에 관하여 다루어보고자 합니다.
 
 <!-- more -->

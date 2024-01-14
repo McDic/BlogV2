@@ -10,6 +10,10 @@ title: PY 1. Type Hints
 slug: py-1
 ---
 
+!!! info "Migrated article"
+
+    *This article is migrated from which I wrote on my old blog.*
+
 안녕하세요. 이번 시리즈에서는 파이썬에 관한 이것저것을 다루고자 합니다. 아주 기초적인 내용은 제외하고, 난이도 등등에 상관없이 다루고 싶은 주제들부터 다루고자 합니다! 이번 포스팅에서는 Python의 유용한 기능 중 하나인 type hint에 관하여 소개하고자 합니다. PEP 484의 내용을 주로 커버하는 포스팅이라고 생각하셔도 됩니다.
 
 버젼은 3.10을 메인으로 하고 있는데.. 부분적으로 outdated된 내용이 있을 수 있습니다. 또한 Python의 typing 모듈이 커버하고 있는 범위가 매우 넓기 때문에, 저는 이 포스팅에서 가능하면 자잘한 것들(Abstract base class 목록이라던가.. 등등)에 대해서는 커버하지 않고자 합니다. 굵직한 것들 위주로 해보려고 담아봤는데도 내용이 상당히 길어졌네요..

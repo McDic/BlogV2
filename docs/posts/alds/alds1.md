@@ -10,6 +10,10 @@ title: ALDS 1. Sparse Table
 slug: alds-1
 ---
 
+!!! info "Migrated article"
+
+    *This article is migrated from which I wrote on my old blog.*
+
 안녕하세요.
 이번 시리즈에서는 유용한 알고리즘과 자료구조를 몇 가지 다루어보고자 합니다.
 이 시리즈의 첫 번째 타겟으로는 Sparse Table을 다뤄보겠습니다.
