@@ -46,6 +46,11 @@ jobs:
     needs: [build]
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: master
+      - run: CNAME_CONTENT=$(cat CNAME)
+        name: Get CNAME from master branch
+      - uses: actions/checkout@v4
         name: Checkout to deploy branch
         with:
           ref: deploy
@@ -55,8 +60,8 @@ jobs:
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
       - name: Add CNAME manually
         run: |
-          if [ ! -f CNAME ];
-            then echo "blog.mcdic.net" >> CNAME
+          if [ ! -f CNAME ]; then
+            echo "$CNAME_CONTENT" > CNAME
             git add CNAME
           fi
       - name: Commit and push
