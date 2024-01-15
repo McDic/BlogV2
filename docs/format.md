@@ -7,12 +7,12 @@ slug: format
 
 This article explains the format of articles in this website.
 
-!!! info "Notice on migrated posts"
+!!! migrated "Notice on migrated posts"
 
     Some blog posts here are migrated from other web sources written by me,
     and some of them may not strictly respect the following format.
 
-!!! warning "Subject to be changed"
+!!! warning
 
     This is my own blog, and some stuffs may be changed without notice.
 
