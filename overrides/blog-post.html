@@ -126,17 +126,20 @@
                       </li>
                     {% endif %}
 
-                    <!-- Post View -->
+                    <!-- THIS SECTION IS MODIFIED BY MCDIC -->
                     <li class="md-nav__item" id="post-metadata-views">
                       <div class="md-nav__link">
                         {% include ".icons/material/eye-plus.svg" %}
                         <span class="md-ellipsis">
-                          <script type="text/javascript">
-                            loadView("post-metadata-views");
-                          </script>
+                          {% if page.meta.views != none %}
+                            {{ page.meta.views.total_users }} unique users visited
+                          {% else %}
+                            User statistics not available
+                          {% endif %}
                         </span>
                       </div>
                     </li>
+
                   </ul>
                 </nav>
               </li>

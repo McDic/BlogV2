@@ -24,7 +24,7 @@ jobs:
           cache-dependency-path: "requirements*.txt"
       - run: pip install -r requirements.txt
       - name: Update views data
-        run: python additional_scripts/fetch_views.py -o docs/assets/views.json
+        run: python additional_scripts/fetch_views.py -o custom_data/views.json
         env:
           GC_CLIENT_EMAIL: ${{ secrets.GC_CLIENT_EMAIL }}
           GC_CLIENT_ID: ${{ secrets.GC_CLIENT_ID }}
@@ -33,7 +33,7 @@ jobs:
           GC_PRIVATE_KEY_ID: ${{ secrets.GC_PRIVATE_KEY_ID }}
           GC_PROJECT_ID: ${{ secrets.GC_PROJECT_ID }}
           GC_PROPERTY_ID: ${{ secrets.GC_PROPERTY_ID }}
-      - run: git add docs/assets/views.json
+      - run: git add custom_data/views.json
       - name: Commit and push
         id: final
         run: |

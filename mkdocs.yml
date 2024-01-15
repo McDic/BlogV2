@@ -67,7 +67,9 @@ plugins:
         - categories
         - tags
   - search
-  - mcdic
+  - mcdic:
+      enabled: True
+      post_views: custom_data/views.json
 
 # https://squidfunk.github.io/mkdocs-material/reference/admonitions/
 # Intentionally added features:
@@ -112,7 +114,6 @@ markdown_extensions:
 
 extra_javascript:
   - javascripts/mathjax.js
-  - javascripts/viewcount.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 

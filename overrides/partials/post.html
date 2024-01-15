@@ -42,11 +42,16 @@
               {% endif %}
             </li>
           {% endif %}
+
+          <!-- THIS SECTION IS MODIFIED BY MCDIC -->
           <li class="md-meta__item" id="post-metadata-views-{{ post.title }}">
-            <script type="text/javascript">
-              loadView("post-metadata-views-{{ post.title }}", "{{ post.title }} - McDic's Blog", "User statistics not available");
-            </script>
+            {% if post.meta.views != none %}
+              {{ post.meta.views.total_users }} unique users visited
+            {% else %}
+              User statistics not available
+            {% endif %}
           </li>
+
         </ul>
         {% if post.config.draft %}
           <span class="md-draft">
