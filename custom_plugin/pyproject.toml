@@ -26,7 +26,7 @@ dynamic = ["dependencies", "version"]
 "mcdic" = "mkdocs_material_mcdic:McDicBlogPlugin"
 
 [tool.setuptools.dynamic]
-version = {attr = "mkdocs_material_mcdic.VERSION"}
+version = {attr = "mkdocs_material_mcdic.constants.VERSION"}
 dependencies = {file = ["requirements-plugin.txt"]}
 
 [tool.mypy]

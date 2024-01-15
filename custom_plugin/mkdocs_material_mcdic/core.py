@@ -1,7 +1,5 @@
 import json
 import typing
-from pathlib import Path
-from typing import Literal
 
 from mkdocs.config import config_options as ConfigOptions
 from mkdocs.config.base import Config, ConfigErrors, ConfigWarnings
