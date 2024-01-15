@@ -48,7 +48,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: master
-      - run: CNAME_CONTENT=$(cat CNAME)
+      - run: echo "CNAME_CONTENT=$(cat CNAME)" >> "$GITHUB_ENV"
         name: Get CNAME from master branch
       - uses: actions/checkout@v4
         name: Checkout to deploy branch
