@@ -2,6 +2,11 @@
 
 This article introduces how my blog works.
 
+!!! warning
+
+    This blog is being maintained by me alone,
+    and everything is subject to change without any explicit notice.
+
 ---
 
 ## The Goal
@@ -61,7 +66,7 @@ There are several alternatives like [Giscus](https://github.com/giscus/giscus) s
 Since my blog is a set of static web pages, it was a bit tricky to add views.
 I use [Google Analytics](https://analytics.google.com/) to get views, unique users and more of my blog.
 So I decided to run [cronjob via Github Actions](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule) to periodically [fetch GA4 data with Python](https://github.com/googleapis/google-cloud-python/tree/main/packages/google-analytics-data),
-then [customized the blog post HTML section](https://squidfunk.github.io/mkdocs-material/customization/#extending-the-theme).
+then [customized the blog post HTML section](https://squidfunk.github.io/mkdocs-material/customization/#extending-the-theme) and [my own plugin](#custom-mkdocs-plugin).
 
 So I failed to make my billing completely zero, but I think this is still feasible, considering I am providing unique user views on my blog posts.
 
@@ -72,8 +77,10 @@ So I failed to make my billing completely zero, but I think this is still feasib
 I made [my own custom mkdocs plugin](https://github.com/McDic/BlogV2/tree/master/custom_plugin) to customize following behaviors.
 
 - Categories
-    - `Prev` and `Next` buttons will lead to prev/next articles in same category
-    - Forcing zero or one category for every page
+    - `Prev` and `Next` buttons will lead to prev/next articles in same category.
+    - Forcing zero or one category for every page.
+- Post views
+    - Calculate the metadata from custom data folder and embedded in page HTML. (Previously I used Javascript async fetch, but I got rid of it.)
 
 I plan to add more stuffs whenever I need.
 
