@@ -209,7 +209,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
             page.previous_page = None
             page.next_page = None
 
-        logger.info(
+        logger.debug(
             'Page title = "%s", meta = %s, prev = %s, next = %s',
             page.title,
             page.meta,
