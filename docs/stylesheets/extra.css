@@ -44,3 +44,9 @@ img.md-404--not-found {
 article.md-post--excerpt li.md-meta__item {
     line-height: 150%;
 }
+
+.md-content--post img {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}

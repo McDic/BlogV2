@@ -75,6 +75,7 @@ plugins:
       enable_creation_date: true
       type: iso_datetime
       timezone: Asia/Seoul
+  - glightbox
 
 # https://squidfunk.github.io/mkdocs-material/reference/admonitions/
 # Intentionally added features:
