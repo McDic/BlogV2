@@ -9,7 +9,7 @@ from mkdocs.plugins import BasePlugin, event_priority, get_plugin_logger
 from mkdocs.structure.files import File, Files
 from mkdocs.structure.pages import Page
 
-from .constants import MY_EVENT_PRIORITY
+from .constants import EARLY_EVENT_PRIORITY, LATE_EVENT_PRIORITY
 
 logger = get_plugin_logger("mcdic")
 
@@ -38,8 +38,8 @@ McDicBlogMethod = typing.Callable[P, Ret | None]
 
 
 def skip_if_disabled(
-    method: McDicBlogMethod[typing.Concatenate["McDicBlogPlugin", P], Ret]
-) -> McDicBlogMethod[typing.Concatenate["McDicBlogPlugin", P], Ret]:
+    method: McDicBlogMethod[typing.Concatenate["McDicBlogPlugin", P], Ret | None]
+) -> McDicBlogMethod[typing.Concatenate["McDicBlogPlugin", P], Ret | None]:
     """
     Make method be skipped if plugin is disabled.
     """
@@ -50,17 +50,6 @@ def skip_if_disabled(
         return method(self, *args, **kwargs) if self.config.enabled else None
 
     return new_method
-
-
-def aggregate_views(obj0: ViewDataValue, *objs: ViewDataValue) -> ViewDataValue:
-    """
-    Aggregate view statistics.
-    """
-    result = obj0.copy()
-    for obj in objs:
-        for key in obj:
-            result[key] = max(result[key], obj[key])  # type: ignore[literal-required]
-    return result
 
 
 class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
@@ -76,6 +65,17 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         self._views: dict[str, ViewDataValue] = {}
         self._series: dict[str, list[Page]] = {}
         self._loaded_series: bool = False
+
+    @staticmethod
+    def aggregate_views(obj0: ViewDataValue, *objs: ViewDataValue) -> ViewDataValue:
+        """
+        Aggregate view statistics.
+        """
+        result = obj0.copy()
+        for obj in objs:
+            for key in obj:
+                result[key] = max(result[key], obj[key])  # type: ignore[literal-required] # noqa: E501
+        return result
 
     @staticmethod
     def get_category(file_or_page: File | Page) -> str | None:
@@ -138,7 +138,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
     ) -> tuple[ConfigErrors, ConfigWarnings]:
         return super().load_config(options, config_file_path)
 
-    @event_priority(MY_EVENT_PRIORITY)
+    @event_priority(EARLY_EVENT_PRIORITY)
     @skip_if_disabled
     def on_config(self, config: MkDocsConfig) -> MkDocsConfig | None:
         """
@@ -164,7 +164,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
             else:
                 replaced_title = title.replace(self.TITLE_SUFFIX, "")
                 if replaced_title in self._views:
-                    self._views[replaced_title] = aggregate_views(
+                    self._views[replaced_title] = self.aggregate_views(
                         self._views[replaced_title], views
                     )
                 else:
@@ -172,7 +172,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
 
         return config
 
-    @event_priority(MY_EVENT_PRIORITY)
+    @event_priority(LATE_EVENT_PRIORITY)
     @skip_if_disabled
     def on_page_markdown(
         self, markdown: str, *, page: Page, config: MkDocsConfig, files: Files
@@ -181,11 +181,10 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         Since this is the earliest possible moment where metadata is available,
         I directly modify the metadata here.
         """
-
         page.meta["views"] = self._views.get(page.title, None)
         return markdown
 
-    @event_priority(MY_EVENT_PRIORITY)
+    @event_priority(LATE_EVENT_PRIORITY)
     @skip_if_disabled
     def on_page_content(
         self, html: str, *, page: Page, config: MkDocsConfig, files: Files
