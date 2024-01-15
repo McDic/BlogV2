@@ -2,7 +2,7 @@ import json
 import typing
 
 from mkdocs.config import config_options as ConfigOptions
-from mkdocs.config.base import Config, ConfigErrors, ConfigWarnings
+from mkdocs.config.base import Config
 from mkdocs.config.defaults import MkDocsConfig
 from mkdocs.exceptions import PluginError
 from mkdocs.plugins import BasePlugin, event_priority, get_plugin_logger
@@ -133,11 +133,6 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         """
         return int(title.split(".")[0].split(" ")[-1])
 
-    def load_config(
-        self, options: dict[str, typing.Any], config_file_path: str | None = None
-    ) -> tuple[ConfigErrors, ConfigWarnings]:
-        return super().load_config(options, config_file_path)
-
     @event_priority(EARLY_EVENT_PRIORITY)
     @skip_if_disabled
     def on_config(self, config: MkDocsConfig) -> MkDocsConfig | None:
@@ -170,9 +165,9 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
                 else:
                     self._views[replaced_title] = views
 
-        return config
+        return None
 
-    @event_priority(LATE_EVENT_PRIORITY)
+    @event_priority(EARLY_EVENT_PRIORITY)
     @skip_if_disabled
     def on_page_markdown(
         self, markdown: str, *, page: Page, config: MkDocsConfig, files: Files
@@ -182,7 +177,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         I directly modify the metadata here.
         """
         page.meta["views"] = self._views.get(page.title, None)
-        return markdown
+        return None
 
     @event_priority(LATE_EVENT_PRIORITY)
     @skip_if_disabled
@@ -215,4 +210,4 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
             page.previous_page.title if page.previous_page else None,
             page.next_page.title if page.next_page else None,
         )
-        return html
+        return None
