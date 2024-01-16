@@ -25,7 +25,7 @@
             var(--md-admonition-animation-heartbeat-x),
             var(--md-admonition-animation-heartbeat-y),
             var(--md-admonition-animation-heartbeat-z),
-            90deg
+            45deg
         );
     }
     50% {
@@ -34,7 +34,7 @@
             var(--md-admonition-animation-heartbeat-x),
             var(--md-admonition-animation-heartbeat-y),
             var(--md-admonition-animation-heartbeat-z),
-            180deg
+            0deg
         );
     }
     75% {
@@ -43,7 +43,7 @@
             var(--md-admonition-animation-heartbeat-x),
             var(--md-admonition-animation-heartbeat-y),
             var(--md-admonition-animation-heartbeat-z),
-            270deg
+            -45deg
         );
     }
     100% {
@@ -52,7 +52,7 @@
             var(--md-admonition-animation-heartbeat-x),
             var(--md-admonition-animation-heartbeat-y),
             var(--md-admonition-animation-heartbeat-z),
-            360deg
+            0deg
         );
     }
 }
