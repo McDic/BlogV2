@@ -146,7 +146,7 @@ slug: tho-6
 
 ---
 
-## Feasible wise solutions
+## Feasible solutions
 
 만약 본인의 경력을 살리면서 군 복무를 수행하고자 한다면, 다음과 같은 선택지를 고려해볼 수 있습니다.
 
@@ -157,10 +157,6 @@ slug: tho-6
 - 의사, 한의사 자격이 있다면 [공중보건의사 또는 병역판정검사전담의사](https://www.mma.go.kr/contents.do?mc=mma0000779)를 고려해볼 수 있습니다.
 - 변호사 자격이 있다면 [공익법무관](https://www.mma.go.kr/contents.do?mc=mma0000780)을 고려해볼 수 있습니다.
 - 예술 전공자라면 [이런 대회들](https://www.mma.go.kr/contents.do?mc=mma0000759)에 수상하여 예술체육요원이 되는 것을 고려해볼 수 있습니다.
-
----
-
-## Feasible fast solution
 
 만약 군 복무를 빠르게 해결하고자 한다면, 육군으로 빠르게 입대하시는 것을 추천합니다.
 육군과 해병은 복무기간이 18개월으로 병역의무를 해결하는 모든 방법들 중에서 가장 빠릅니다.
