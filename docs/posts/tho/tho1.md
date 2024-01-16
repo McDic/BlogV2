@@ -10,8 +10,6 @@ title: THO 1. My Codeforces Problemsetting Experiences
 slug: tho-1
 ---
 
-# THO 1. My Codeforces Problemsetting Experiences
-
 !!! migrated
 
     *This article is migrated from which I wrote on [OKKY](https://okky.kr).*

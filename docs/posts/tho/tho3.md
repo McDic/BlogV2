@@ -10,8 +10,6 @@ title: THO 3. Relationship between Algorithm and Dev Career
 slug: tho-3
 ---
 
-# THO 3. Relationship between Algorithm and Dev Career
-
 !!! migrated
 
     *This article is migrated from which I wrote on [OKKY](https://okky.kr).*

@@ -8,8 +8,6 @@ title: THO 6. What Every Korean Should Know About Military
 slug: tho-6
 ---
 
-# THO 6. What Every Korean Should Know About Military
-
 제 주변의 한국 남성들은 저를 포함한 거의 대부분이 군대 문제를 해결했습니다.
 제가 군대를 아직 다녀오지 않은 사람들하고 대화할 때 자주 하는 말들을, 문제가 되지 않는 선에서 적당히 필터링하여 이 글에도 쓰고자 합니다.
 

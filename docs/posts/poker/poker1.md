@@ -9,8 +9,6 @@ title: POKER 1. Heads-Up Flop Probabilities
 slug: poker-1
 ---
 
-# POKER 1. Heads-Up Flop Probabilities
-
 !!! migrated
 
     *This article is migrated from which I wrote on my [PokerGosu](https://www.pokergosu.com).*

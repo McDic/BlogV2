@@ -10,8 +10,6 @@ title: THO 5. About Coding Assessment Problems
 slug: tho-5
 ---
 
-# THO 5. About Coding Assessment Problems
-
 !!! migrated
 
     *This article is migrated from which I wrote on [OKKY](https://okky.kr).*

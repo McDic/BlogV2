@@ -10,8 +10,6 @@ title: THO 2. About Game Development
 slug: tho-2
 ---
 
-# THO 2. About Game Development
-
 !!! migrated
 
     *This article is migrated from which I wrote on [OKKY](https://okky.kr).*

@@ -9,8 +9,6 @@ title: THO 4. 20 Years of Time Attack
 slug: tho-4
 ---
 
-# THO 4. 20 Years of Time Attack
-
 연말 송년회 기념으로 친한 친구들과 제 자취방에서 고기파티를 했습니다.
 그때 대화주제 중에 나온 게 몇 가지 있었는데, 관련해서 쓸 거리가 몇 가지 생각나서 글을 써보고자 합니다.
 
