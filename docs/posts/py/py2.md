@@ -21,7 +21,7 @@ slug: py-2
 
 ## Linting
 
-### [Mypy](https://mypy.readthedocs.io/en/stable/)
+### [mypy](https://mypy.readthedocs.io/en/stable/)
 
 Python Foundation에서 공식적으로 관리되고 있는 Python static typing 툴입니다.
 
@@ -33,7 +33,7 @@ python -m mypy --ignore-missing-imports YOUR_CODE.py
 저는 static typing을 해주는 것이 복잡한 구조의 소프트웨어에게 많은 이득을 가져다준다고 생각하기 때문에,
 [Python이 dynamic lang 언어를 지향함에도 불구하고](https://peps.python.org/pep-0484/#non-goals), 가능한 static typing을 적극적으로 활용하려고 노력하는 편입니다.
 
-`Mypy`의 alternative으로는 Microsoft에서 개발중인 [PyRight](https://github.com/microsoft/pyright)이 있습니다.
+`mypy`의 alternative으로는 Microsoft에서 개발중인 [pyright](https://github.com/microsoft/pyright)이 있습니다.
 
 ### [flake8](https://flake8.pycqa.org/en/latest/)
 
@@ -73,6 +73,8 @@ pip install black
 python -m black --line-length=88 YOUR_CODE.py
 ```
 
+`black` 또한 [VSCode](https://marketplace.visualstudio.com/items?itemName=ms-python.black-formatter) 플러그인이 있습니다.
+
 ### [isort](https://pycqa.github.io/isort/)
 
 같은 그룹 내 import들을 alphabetical order로 정리하고 싶을 때 유용한 라이브러리입니다.
@@ -81,6 +83,8 @@ python -m black --line-length=88 YOUR_CODE.py
 pip install isort
 python -m isort --profile=black YOUR_CODE.py
 ```
+
+`isort`도 [VSCode](https://marketplace.visualstudio.com/items?itemName=ms-python.isort) 플러그인이 있습니다.
 
 ---
 
