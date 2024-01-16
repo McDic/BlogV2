@@ -16,6 +16,7 @@ theme:
     - search.suggest
     - search.highlight
     - navigation.footer
+    - content.code.copy
   custom_dir: overrides
   palette:
     - scheme: default
