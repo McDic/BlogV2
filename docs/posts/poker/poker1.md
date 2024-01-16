@@ -4,7 +4,7 @@ categories:
   - Poker
 tags:
   - poker
-  - economics
+  - probability
 title: POKER 1. Heads-Up Flop Probabilities
 slug: poker-1
 ---
