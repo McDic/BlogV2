@@ -107,7 +107,7 @@ slug: poker-1
 ## Trips vs Over pair with flush draw = 7 : 1 or 11 : 1
 
 ![img](/assets/posts/poker/flop_prob/triples_vs_overpair.png){width=50%}
-![img](/assets/posts/poker/flop_prob/triples_vs_overpair_no_flush.png){width=50%}
+![img](/assets/posts/poker/flop_prob/triples_vs_overpair_noflush.png){width=50%}
 
 !!! caption
 
