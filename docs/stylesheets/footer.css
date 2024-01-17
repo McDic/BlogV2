@@ -11,4 +11,8 @@
         display: block;
         margin-bottom: 300px;
     }
+
+    .md-footer .md-copyright {
+        font-weight: bolder;
+    }
 }
