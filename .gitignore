@@ -7,8 +7,8 @@
 
 # Generated files
 site/
-custom_plugin/*.egg-info/
-custom_plugin/dist/
+custom_plugin*/*.egg-info/
+custom_plugin*/dist/
 
 # Cache
 .mypy_cache/

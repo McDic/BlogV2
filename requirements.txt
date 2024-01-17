@@ -6,4 +6,4 @@ mkdocs-rss-plugin
 mkdocs-git-revision-date-localized-plugin
 mkdocs-glightbox
 pre-commit
--e ./custom_plugin
+-e ./custom_plugin_blog
