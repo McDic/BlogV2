@@ -127,6 +127,8 @@ extra_javascript:
 extra_css:
   - stylesheets/admonitions.css
   - stylesheets/extra.css
+  - stylesheets/footer.css
+  - stylesheets/excerpt.css
 
 extra:
   analytics:

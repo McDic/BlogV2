@@ -1,50 +1,9 @@
-@media (min-height: 800px) {
-    .md-footer {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: auto;
-    }
-}
-
-.md-main {
-    display: block;
-    margin-bottom: 300px;
-}
-
 .md-source__repository .md-source__facts {
     display: none;
 }
 
-.md-sidebar__scrollwrap {
-    overflow-y: hidden;
-}
-
-.md-post--excerpt {
-    margin-bottom: 0;
-}
-
-.md-post__action a {
-    font-weight: bolder;
-}
-
-.md-typeset hr.md-mcdic__excerpt_divider {
-    margin: 0;
-    margin-top: calc(2.5rem - 1px);
-    margin-bottom: 0.5rem;
-}
-
-.md-sidebar--secondary .md-nav__item .md-nav__link--active {
-    color: var(--md-default-fg-color--light);
-}
-
 img.md-404--not-found {
     margin-bottom: 40px;
-}
-
-article.md-post--excerpt li.md-meta__item {
-    line-height: 150%;
 }
 
 .md-content--post img {

@@ -1,0 +1,14 @@
+@media (min-height: 800px) {
+    .md-footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: auto;
+    }
+
+    .md-main {
+        display: block;
+        margin-bottom: 300px;
+    }
+}
