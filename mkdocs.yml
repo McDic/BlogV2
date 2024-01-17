@@ -129,6 +129,7 @@ extra_css:
   - stylesheets/extra.css
   - stylesheets/footer.css
   - stylesheets/excerpt.css
+  - stylesheets/sidebar.css
 
 extra:
   analytics:
