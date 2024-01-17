@@ -1,3 +1,7 @@
+:root {
+    --mcdic-calculated-footer-height: 158.938px;
+}
+
 @media (min-height: 800px) {
     .md-footer {
         position: fixed;
@@ -9,10 +13,10 @@
 
     .md-main {
         display: block;
-        margin-bottom: 300px;
+        margin-bottom: var(--mcdic-calculated-footer-height);
     }
+}
 
-    .md-footer .md-copyright {
-        font-weight: bolder;
-    }
+.md-footer .md-copyright {
+    font-weight: bolder;
 }
