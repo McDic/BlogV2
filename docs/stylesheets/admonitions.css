@@ -4,6 +4,7 @@
     --md-admonition-icon--migrated: url("/assets/icons/svgrepo/migration.svg");
     --md-admonition-icon--caption: url("/assets/icons/svgrepo/picture.svg");
     --md-admonition-icon--copyright: url("/assets/icons/svgrepo/copyright_simpler.svg");
+    --md-admonition-icon--formula: url("/assets/icons/svgrepo/formula.svg");
     --md-admonition-animation-heartbeat-x: 0;
     --md-admonition-animation-heartbeat-y: 0;
     --md-admonition-animation-heartbeat-z: 1;
@@ -136,4 +137,19 @@
     background-color: rgb(221, 59, 194);
     -webkit-mask-image: var(--md-admonition-icon--copyright);
             mask-image: var(--md-admonition-icon--copyright);
+}
+
+.md-typeset .admonition.formula,
+.md-typeset details.formula {
+    border-color: rgb(114, 35, 240);
+}
+.md-typeset .formula > .admonition-title,
+.md-typeset .formula > summary {
+    background-color: rgba(114, 35, 240, 0.1);
+}
+.md-typeset .formula > .admonition-title::before,
+.md-typeset .formula > summary::before {
+    background-color: rgb(114, 35, 240);
+    -webkit-mask-image: var(--md-admonition-icon--formula);
+            mask-image: var(--md-admonition-icon--formula);
 }
