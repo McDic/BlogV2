@@ -61,6 +61,7 @@ plugins:
       archive_url_date_format: yyyy/MM
       categories_name: Series
   - rss:
+      enabled: true
       match_path: posts/.*
       date_from_meta:
         as_creation: date
@@ -136,6 +137,7 @@ extra_css:
   - stylesheets/footer.css
   - stylesheets/excerpt.css
   - stylesheets/sidebar.css
+  - stylesheets/404.css
 
 extra:
   analytics:
