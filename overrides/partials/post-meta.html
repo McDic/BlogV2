@@ -1,0 +1,38 @@
+<!-- Added by McDic for metadata -->
+<article class="md-post md-post__excerpt md-mcdic--meta">
+    <header class="md-post__header">
+        <div class="md-post__meta md-meta">
+            <ul class="md-meta__list">
+                {% if page.meta.date %}
+                    <li class="md-meta__item">
+                        {% include ".icons/material/calendar.svg" %}
+                        <div class="text">
+                            Created at {{ page.meta.date.created }}
+                        </div>
+                    </li>
+                    <li class="md-meta__item">
+                        {% include ".icons/material/calendar.svg" %}
+                        <div class="text">
+                            Updated at {{ page.meta.date.updated }}
+                        </div>
+                    </li>
+                {% endif %}
+                {% if page.meta.views.total_users %}
+                    <li class="md-meta__item">
+                        {% include ".icons/material/eye-plus.svg" %}
+                        <div class="text">
+                            {{ page.meta.views.total_users }} unique users visited
+                        </div>
+                    </li>
+                {% else %}
+                    <li class="md-meta__item">
+                        {% include ".icons/material/eye-remove.svg" %}
+                        <div class="text">
+                            User statistics not available
+                        </div>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </header>
+</article>

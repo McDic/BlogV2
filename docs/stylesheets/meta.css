@@ -1,10 +1,7 @@
 .md-mcdic--meta ul.md-meta__list {
     margin-left: 0;
     margin-bottom: 0;
-}
-
-.md-mcdic--meta hr.md-meta__suffix {
-    margin-top: 0;
+    margin-top: 0.3rem;
 }
 
 .md-mcdic--meta .md-meta li.md-meta__item {
@@ -28,4 +25,5 @@
     margin-left: 0.5rem;
     margin-right: 0.2rem;
     padding-top: 0.2rem;
+    content: "";
 }
