@@ -1,5 +1,7 @@
 import json
+import shutil
 import typing
+from pathlib import Path
 
 from mkdocs.config import config_options as ConfigOptions
 from mkdocs.config.base import Config
@@ -9,27 +11,13 @@ from mkdocs.plugins import BasePlugin, event_priority, get_plugin_logger
 from mkdocs.structure.files import File, Files
 from mkdocs.structure.pages import Page
 
+from .config import McDicBlogPluginConfig
 from .constants import EARLY_EVENT_PRIORITY, LATE_EVENT_PRIORITY
+from .ga4 import ViewDataValue
+from .ga4 import fetch_data as fetch_ga4_views_data
+from .ga4 import get_client as get_ga4_client
 
 logger = get_plugin_logger("mcdic")
-
-
-class ViewDataValue(typing.TypedDict):
-    """
-    Represents view data value.
-    """
-
-    views: int
-    total_users: int
-
-
-class McDicBlogPluginConfig(Config):
-    """
-    Config class for McDic's Blog plugin.
-    """
-
-    enabled = ConfigOptions.Type(bool, default=True)
-    post_views = ConfigOptions.Optional(ConfigOptions.File(exists=True))
 
 
 P = typing.ParamSpec("P")
@@ -63,6 +51,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
     def __init__(self) -> None:
         super().__init__()
         self._views: dict[str, ViewDataValue] = {}
+        self._force_update_views: bool = False
         self._series: dict[str, list[Page]] = {}
         self._loaded_series: bool = False
 
@@ -135,14 +124,44 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
 
     @event_priority(EARLY_EVENT_PRIORITY)
     @skip_if_disabled
+    def on_startup(
+        self,
+        *,
+        command: typing.Literal["build", "gh-deploy", "serve"],
+        dirty: bool,
+    ) -> None:
+        """
+        Make this update views on `gh-deploy`.
+        """
+        if command == "gh-deploy":
+            self._force_update_views = True
+
+    @event_priority(EARLY_EVENT_PRIORITY)
+    @skip_if_disabled
     def on_config(self, config: MkDocsConfig) -> MkDocsConfig | None:
         """
         Load McDic Blog configs.
         """
 
+        # =====================================================================
+        # Post Views
+
         if self.config.post_views:
-            with open(self.config.post_views) as post_views_file:
+            self._force_update_views = (
+                self._force_update_views or self.config.post_views.forced_update
+            )
+
+        if (
+            self.config.post_views
+            and self.config.post_views.local_path
+            and not self._force_update_views
+        ):
+            with open(self.config.post_views.local_path) as post_views_file:
                 self._views = json.load(post_views_file)
+        elif self._force_update_views:
+            logger.info("Views data is forcibly updating..")
+            client = get_ga4_client()
+            self._views = fetch_ga4_views_data(client)
 
         for title, views in list(self._views.items()):
             if not isinstance(views, dict) or set(views.keys()) != {
@@ -165,6 +184,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
                 else:
                     self._views[replaced_title] = views
 
+        # =====================================================================
         return None
 
     @event_priority(EARLY_EVENT_PRIORITY)
@@ -211,3 +231,14 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
             page.next_page.title if page.next_page else None,
         )
         return None
+
+    @event_priority(LATE_EVENT_PRIORITY)
+    def on_post_build(self, *, config: MkDocsConfig) -> None:
+        """
+        Copy `LICENSE` and `CNAME` files.
+        """
+        src_dir = Path(config.docs_dir)
+        site_dir = Path(config.site_dir)
+        logger.info("Copying LICENSE and CNAME files..")
+        shutil.copyfile(src_dir.parent / "LICENSE", site_dir / "LICENSE")
+        shutil.copyfile(src_dir.parent / "CNAME", site_dir / "CNAME")

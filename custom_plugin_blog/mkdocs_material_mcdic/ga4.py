@@ -8,7 +8,7 @@ from google.analytics import data_v1beta
 from google.oauth2 import service_account
 
 
-class PathData(TypedDict):
+class ViewDataValue(TypedDict):
     """
     Misc data of path, measured by GA4.
     """
@@ -48,7 +48,7 @@ def get_client(
 def fetch_data(
     client: data_v1beta.BetaAnalyticsDataClient,
     property_id: str = "",
-) -> dict[str, PathData]:
+) -> dict[str, ViewDataValue]:
     """
     Fetch some data from GA4.
     See: https://ga-dev-tools.google/ga4/query-explorer/
@@ -62,14 +62,14 @@ def fetch_data(
         }
     )
     metrics = [header.name for header in response.metric_headers]
-    result: dict[str, PathData] = {}
+    result: dict[str, ViewDataValue] = {}
     for row in response.rows:
         if len(row.dimension_values) != 1:
             raise ValueError(
                 f"Received non-single dimensioned row: {row.dimension_values}"
             )
         path = row.dimension_values[0].value
-        dummy: PathData = {"views": 0, "total_users": 0}
+        dummy: ViewDataValue = {"views": 0, "total_users": 0}
         for metric, metric_value in zip(metrics, row.metric_values):
             match metric:
                 case "screenPageViews":

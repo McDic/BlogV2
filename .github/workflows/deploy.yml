@@ -14,6 +14,8 @@ on:
       - requirements.txt
   workflow_call:
   workflow_dispatch:
+  schedule:
+    - cron: '27 * * * *'
 
 jobs:
   build:
@@ -40,33 +42,11 @@ jobs:
             mkdocs-material-
       - name: Deploy Blog
         run: mkdocs gh-deploy -v -r origin -b deploy -s --force --no-history
-
-  post-processing:
-    runs-on: ubuntu-latest
-    needs: [build]
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: master
-      - run: echo "CNAME_CONTENT=$(cat CNAME)" >> "$GITHUB_ENV"
-        name: Get CNAME from master branch
-      - uses: actions/checkout@v4
-        name: Checkout to deploy branch
-        with:
-          ref: deploy
-      - name: Configure Git Credentials
-        run: |
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-      - name: Add CNAME manually
-        run: |
-          if [ ! -f CNAME ]; then
-            echo "$CNAME_CONTENT" > CNAME
-            git add CNAME
-          fi
-      - name: Commit and push
-        run: |
-          if [[ `git status --porcelain` ]]; then
-            git commit -m "Post-processed a build via Github Action"
-            git push
-          fi
+        env:
+          GC_CLIENT_EMAIL: ${{ secrets.GC_CLIENT_EMAIL }}
+          GC_CLIENT_ID: ${{ secrets.GC_CLIENT_ID }}
+          GC_CLIENT_X509_CERT_URL: ${{ secrets.GC_CLIENT_X509_CERT_URL }}
+          GC_PRIVATE_KEY: ${{ secrets.GC_PRIVATE_KEY }}
+          GC_PRIVATE_KEY_ID: ${{ secrets.GC_PRIVATE_KEY_ID }}
+          GC_PROJECT_ID: ${{ secrets.GC_PROJECT_ID }}
+          GC_PROPERTY_ID: ${{ secrets.GC_PROPERTY_ID }}

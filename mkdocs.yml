@@ -70,7 +70,8 @@ plugins:
   - search
   - mcdic:
       enabled: True
-      post_views: custom_data/views.json
+      post_views:
+        local_path: custom_data/views.json
   - git-revision-date-localized:
       enabled: false
       enable_creation_date: true
