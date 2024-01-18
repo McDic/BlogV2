@@ -1,5 +1,4 @@
 ---
-date: 2023-02-06
 categories:
   - C++
 tags:

@@ -1,5 +1,4 @@
 ---
-date: 2021-12-14
 categories:
   - Probability and Random Process
 tags:

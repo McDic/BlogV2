@@ -21,5 +21,5 @@ def get_date_from_git(
     if date_type == "updated":
         args.append("--reverse")
     args.append(path)
-    gitlog = subprocess.run(args)
-    return datetime.fromisoformat(gitlog.stdout.decode())
+    gitlog = subprocess.run(args, stdout=subprocess.PIPE)
+    return datetime.fromisoformat(gitlog.stdout.decode().strip())

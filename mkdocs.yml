@@ -53,6 +53,7 @@ nav:
 plugins:
   - tags
   - blog:
+      enabled: false
       blog_dir: .
       blog_toc: true
       post_excerpt: required
@@ -73,6 +74,8 @@ plugins:
       enabled: True
       post_views:
         local_path: custom_data/views.json
+        forced_update: false
+      date_format: "%Y/%b/%d"
   - git-revision-date-localized:
       enabled: false
       enable_creation_date: true
@@ -138,6 +141,7 @@ extra_css:
   - stylesheets/excerpt.css
   - stylesheets/sidebar.css
   - stylesheets/404.css
+  - stylesheets/meta.css
 
 extra:
   analytics:

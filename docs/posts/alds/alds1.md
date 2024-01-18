@@ -1,5 +1,4 @@
 ---
-date: 2021-12-12
 categories:
   - Algorithm and Data Structures
 tags:

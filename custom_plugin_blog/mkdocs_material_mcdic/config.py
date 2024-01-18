@@ -19,3 +19,4 @@ class McDicBlogPluginConfig(Config):
 
     enabled = ConfigOptions.Type(bool, default=True)
     post_views = ConfigOptions.SubConfig(McDicBlogPluginPostViewsConfig)
+    date_format = ConfigOptions.Type(str, default="%Y/%b/%d %H:%M:%S %Z")

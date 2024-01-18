@@ -80,7 +80,8 @@ I made [my own custom mkdocs plugin](https://github.com/McDic/BlogV2/tree/master
     - `Prev` and `Next` buttons will lead to prev/next articles in same category.
     - Forcing zero or one category for every page.
 - Post views
-    - Calculate the metadata from custom data folder and embedded in page HTML. (Previously I used Javascript async fetch, but I got rid of it.)
+    - Calculate the metadata from either custom data folder or GA4 API and embedded in page HTML.
+    (Previously I used Javascript async fetch, but I got rid of it.)
 
 I plan to add more stuffs whenever I need.
 

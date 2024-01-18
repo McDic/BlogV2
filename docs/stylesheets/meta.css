@@ -1,0 +1,31 @@
+.md-mcdic--meta ul.md-meta__list {
+    margin-left: 0;
+    margin-bottom: 0;
+}
+
+.md-mcdic--meta hr.md-meta__suffix {
+    margin-top: 0;
+}
+
+.md-mcdic--meta .md-meta li.md-meta__item {
+    list-style: none;
+    display: inline-flex;
+    margin: 0;
+
+    svg {
+        fill: currentColor;
+        height: 1.2rem;
+        width: 1.2rem;
+        margin-right: 0.4rem;
+    }
+    .text {
+        white-space: nowrap;
+        padding-top: 0.2rem;
+    }
+}
+
+.md-mcdic--meta li.md-meta__item:after {
+    margin-left: 0.5rem;
+    margin-right: 0.2rem;
+    padding-top: 0.2rem;
+}

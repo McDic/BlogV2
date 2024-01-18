@@ -1,0 +1,69 @@
+<!-- https://github.com/squidfunk/mkdocs-material/blob/7624e7874447a01c78522189af42c2481a8eaa47/src/templates/partials/content.html -->
+
+<!-- Tags -->
+{% if "material/tags" in config.plugins and tags %}
+  {% include "partials/tags.html" %}
+{% endif %}
+
+<!-- (ADDED BY MCDIC) Metadata -->
+<article class="md-post md-post__excerpt md-mcdic--meta">
+    <header class="md-post__header">
+        <div class="md-post__meta md-meta">
+            <ul class="md-meta__list">
+                {% if page.meta.date %}
+                    <li class="md-meta__item md-meta__item">
+                        {% include ".icons/material/calendar.svg" %}
+                        <div class="text">
+                            Created at {{ page.meta.date.created }}
+                        </div>
+                    </li>
+                    <li class="md-meta__item md-meta__item">
+                        {% include ".icons/material/calendar.svg" %}
+                        <div class="text">
+                            Updated at {{ page.meta.date.updated }}
+                        </div>
+                    </li>
+                {% endif %}
+                {% if page.meta.views.total_users %}
+                    <li class="md-meta__item md-meta__item">
+                        {% include ".icons/material/eye-plus.svg" %}
+                        <div class="text">
+                            {{ page.meta.views.total_users }} unique users visited
+                        </div>
+                    </li>
+                {% else %}
+                    <li class="md-meta__item md-meta__item">
+                        {% include ".icons/material/eye-remove.svg" %}
+                        <div class="text">
+                            User statistics not available
+                        </div>
+                    </li>
+                {% endif %}
+            </ul>
+            <hr class="md-meta__suffix">
+        </div>
+    </header>
+</article>
+
+<!-- Actions -->
+{% include "partials/actions.html" %}
+
+<!--
+  Hack: check whether the content contains a h1 headline. If it doesn't, the
+  page title (or respectively site name) is used as the main headline.
+-->
+{% if "\x3ch1" not in page.content %}
+  <h1>{{ page.title | d(config.site_name, true)}}</h1>
+{% endif %}
+
+<!-- Page content -->
+{{ page.content }}
+
+<!-- Source file information -->
+{% include "partials/source-file.html" %}
+
+<!-- Was this page helpful? -->
+{% include "partials/feedback.html" %}
+
+<!-- Comment system -->
+{% include "partials/comments.html" %}

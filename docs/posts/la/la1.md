@@ -1,5 +1,4 @@
 ---
-date: 2022-06-03
 categories:
   - Linear Algebra
 tags:
