@@ -1,10 +1,6 @@
 import json
-import shutil
 import typing
-from pathlib import Path
 
-from mkdocs.config import config_options as ConfigOptions
-from mkdocs.config.base import Config
 from mkdocs.config.defaults import MkDocsConfig
 from mkdocs.exceptions import PluginError
 from mkdocs.plugins import BasePlugin, event_priority, get_plugin_logger
