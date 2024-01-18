@@ -231,14 +231,3 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
             page.next_page.title if page.next_page else None,
         )
         return None
-
-    @event_priority(LATE_EVENT_PRIORITY)
-    def on_post_build(self, *, config: MkDocsConfig) -> None:
-        """
-        Copy `LICENSE` and `CNAME` files.
-        """
-        src_dir = Path(config.docs_dir)
-        site_dir = Path(config.site_dir)
-        logger.info("Copying LICENSE and CNAME files..")
-        shutil.copyfile(src_dir.parent / "LICENSE", site_dir / "LICENSE")
-        shutil.copyfile(src_dir.parent / "CNAME", site_dir / "CNAME")
