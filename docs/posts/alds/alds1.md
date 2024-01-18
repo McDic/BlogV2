@@ -27,10 +27,14 @@ slug: alds-1
 
 Sparse Table은 Range Query를 답변할 수 있게 해주는 자료구조입니다. (하지만 Segment Tree와는 구조가 좀 다른데, 뒷 문단에서 설명드리겠습니다.)
 
+---
+
 ## Pre-condition
 
 - Sparse Table에서 다루는 연산은 결합 법칙을 만족해야 합니다.
 - Sparse Table에서 $O(1)$ 수준의 쿼리를 위해서는 "겹쳐짐 허용(?)"을 만족해야 합니다.
+
+---
 
 ## Structure
 
@@ -41,9 +45,13 @@ Sparse Table의 특징은, 임의의 시작점과 임의의 2의 거듭제곱 �
 - Layer $0$은 원래 배열과 동일한 구조를 이룹니다.
 - Layer $n$ ($n > 0$)은 Layer $n-1$보다 길이가 2배인 임의의 구간을 모아놓은 것입니다.
 
+---
+
 ## Pre-calculation
 
 총 구간의 개수는 $O \Bigl((n - 1 + 1) + (n - 2 + 1) + (n - 4 + 1) + \cdots + (n - \log{n} + 1) \Bigr) \sim O(n \log n)$ 개이고, Layer 0을 제외한 임의의 Layer는 하위 Layer의 2개의 구간의 정보를 이용하여 $O(1)$에 연산을 구할 수 있으므로(ex: $\min(a[0, 1], a[2, 3]) = a[0, 3]$), 모든 Layer의 모든 구간의 값을 구하는 데(전처리) 총 $O(n \log{n})$의 시간이 소모됩니다.
+
+---
 
 ## Querying
 
@@ -52,6 +60,8 @@ Sparse Table이 진가를 발휘하는 부분이 바로 이 부분입니다. Min
 어떤 연산 $\oplus$에 대해, 해당 연산이 결합 법칙을 만족하고, $(\bigoplus_{i=l_1}^{l_2} a[i]) \oplus (\bigoplus_{i=l_3}^{l_4} a[i]) = \bigoplus_{i=l_1}^{l_4} a[i]$ ($l_1 \le l_3 \le l_2 \le l_4$)를 만족한다고 합시다.
 
 그렇다면, $\bigoplus_{i=l}^{r} a[i] = (\bigoplus_{i=l}^{l+2^k-1} a[i]) \oplus (\bigoplus_{i=r-2^k+1}^{r} a[i])$인 $k$가 무조건 존재합니다! 따라서, 해당 $k$를 찾기만 한다면 Querying을 $O(1)$에 할 수 있습니다. 일반적으로 $k$는 커봐야 몇십 정도의 작은 정수이고, 대부분의 경우 그런 $k$를 찾을 수 있는 매우 빠른 함수([`__builtin_clz`](https://gcc.gnu.org/onlinedocs/gcc/Other-Builtins.html), [`bit_width`](https://en.cppreference.com/w/cpp/numeric/bit_width) 등)를 활용할 수 있으므로, 쿼리 속도가 매우 빠릅니다!
+
+---
 
 ## Code
 
