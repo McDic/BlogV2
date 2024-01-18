@@ -148,7 +148,7 @@ graph LR
 
 ---
 
-## Domestic cultural refuse
+## Domestic cultural rejection
 
 국내 사회통념상 도박을 싫어하는 사람들이 굉장히 많습니다.
 투자도 옛날엔 비슷한 맥락에서 싫어하는 사람들이 많았는데, 판데믹으로 돈을 많이 버는 사람들이 많이 생기면서 이 부분에 대한 인식은 좀 나아진 것 같습니다.
