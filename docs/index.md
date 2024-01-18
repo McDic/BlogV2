@@ -1,3 +1,7 @@
+---
+no_comments: true
+---
+
 # Main Page
 
 Welcome to my blog.
