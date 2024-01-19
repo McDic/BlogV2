@@ -27,4 +27,6 @@ def get_date_from_git(
     gitlog = subprocess.Popen(args, stdout=headtail.stdin)
     gitlog.communicate()
     out, err = headtail.communicate()
+    if not out:
+        raise FileNotFoundError("No git history found")
     return datetime.fromisoformat(out.decode().strip())

@@ -1,8 +1,10 @@
 import json
 import os
 import re
+import tempfile
 import typing
 from datetime import datetime, timedelta
+from pathlib import Path
 
 import pytz
 from jinja2 import Environment
@@ -50,8 +52,11 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
     """
 
     TITLE_SUFFIX: typing.Final[str] = " - McDic's Blog"
-    RE_POSTFINDER: typing.Final[re.Pattern] = re.compile(
+    RE_POST_FINDER: typing.Final[re.Pattern] = re.compile(
         r"^posts\/[a-zA-Z\-]+\/[a-zA-Z\-]*[0-9]+\.md$"
+    )
+    RE_POSTINDEX_FINDER: typing.Final[re.Pattern] = re.compile(
+        r"^series\/[a-zA-Z\-]+\.md$"
     )
     META_KEY_ADDITIONAL_CONTENTS: typing.Final[str] = "additional_contents"
     EXCERPT_DIVIDER: typing.Final[str] = "<!-- more -->"
@@ -61,49 +66,59 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         super().__init__()
         self._views: dict[str, ViewDataValue] = {}
         self._is_gh_deploy: bool = False
-        self._series: dict[str, Section] = {}
         self._root_found_on_nav: bool = False
         self._series_section: Section = Section("Series", [])
         self._non_recent_posts_age: timedelta = timedelta(days=1)
+        self._temp_dir: tempfile.TemporaryDirectory
 
-    @classmethod
-    def set_page_additional_meta_contents(
-        cls,
-        page: Page,
-        *keys: str,
-        value: typing.Any,
-        override: bool = False,
-    ) -> None:
+    def _make_new_tempdir(self) -> None:
         """
-        Set additional meta contents for `{key: value}`.
-        The `override` option is very unsafe, usually discouraged to use.
+        Create new temporary directory.
         """
-        if not keys:
-            raise PluginError("keys is empty")
-        if cls.META_KEY_ADDITIONAL_CONTENTS not in page.meta:
-            page.meta[cls.META_KEY_ADDITIONAL_CONTENTS] = {}
+        try:
+            self._temp_dir.cleanup()
+        except Exception:
+            pass
+        self._temp_dir = tempfile.TemporaryDirectory()
 
-        current: typing.MutableMapping = page.meta[cls.META_KEY_ADDITIONAL_CONTENTS]
-        for i, key in enumerate(keys[:-1]):
-            if key not in current:
-                current[key] = {}
-            elif not isinstance(current[key], dict):
-                if not override:
-                    raise PluginError(
-                        "Found some preserved value %s on key=%s"
-                        % (current[key], ".".join(keys[: i + 1]))
-                    )
-                else:
-                    current[key] = {}
-            current = current[key]
+    def _create_tempfile(
+        self,
+        config: MkDocsConfig,
+        *src_paths: str,
+        content: str = "",
+    ) -> File:
+        """
+        Create temporary file and return it.
+        """
+        if not src_paths:
+            raise PluginError("Given paths is empty on `_create_tempfile`")
+        current_path = Path(self._temp_dir.name)
+        for path in src_paths[:-1]:
+            current_path = current_path / path
+            current_path.mkdir(exist_ok=True)
+        with open(current_path / src_paths[-1], "w") as raw_file:
+            raw_file.write(content)
 
-        if keys[-1] in current and not override:
-            raise PluginError(f"key={'.'.join(keys)} is already in page '{page.title}'")
-        current[keys[-1]] = value
-        logger.debug(
-            "Now page '%s' additional meta = %s",
-            page.title,
-            page.meta[cls.META_KEY_ADDITIONAL_CONTENTS],
+        return File(
+            os.path.join(*src_paths),
+            self._temp_dir.name,
+            config.site_dir,
+            use_directory_urls=True,
+        )
+
+    def _is_blog_post_page(self, page: Page) -> bool:
+        """
+        Return if given `page` is a blog post page.
+        """
+        return bool(self.RE_POST_FINDER.match(page.file.src_path))
+
+    def _is_series_index_page(self, page: Page) -> bool:
+        """
+        Return if given `page` is a series index page.
+        """
+        return bool(
+            self.RE_POSTINDEX_FINDER.match(page.file.src_path)
+            and Path(page.file.abs_src_path).is_relative_to(self._temp_dir.name)
         )
 
     @staticmethod
@@ -118,7 +133,9 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         return result
 
     @staticmethod
-    def get_category(file_or_page: File | Page) -> str | None:
+    def get_category(
+        file_or_page: File | Page, abbreviated: bool = False
+    ) -> str | None:
         """
         Get category of a file or page.
         If there are multiple categories, raise an error.
@@ -133,7 +150,12 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         categories: list[str] = page.meta.get("categories", [])
         if len(categories) > 1:
             raise PluginError(f"Multiple categories {categories} on page {page.title}")
-        return categories[0] if categories else None
+        if not categories:
+            return None
+        elif not abbreviated:
+            return categories[0]
+        else:
+            return page.title.split(".")[0].split(" ")[0]
 
     def _load_series_by_categories(self, files: Files):
         """
@@ -143,31 +165,41 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         """
 
         used_pages: dict[str, list[Page]] = {}
+        series_index_pages: list[tuple[str, Page]] = []
 
         for file in files.documentation_pages():
             if file.page is None:
                 logger.warning('File "%s" doesn\'t have a page yet' % (file,))
                 continue
 
+            category: str | None = None
+
             # Removing all prev/next pages is needed
             file.page.previous_page = None
             file.page.next_page = None
 
-            category = self.get_category(file)
+            if is_series_index_page := self._is_series_index_page(file.page):
+                category = file.name.upper()
+            else:
+                category = self.get_category(file, abbreviated=True)
+
             if category is None:
                 continue
-            elif category not in self._series:
-                self._series[category] = Section(category, [])
+            elif is_series_index_page:
+                series_index_pages.append((category, file.page))
+                continue
 
             if category not in used_pages:
                 used_pages[category] = []
             used_pages[category].append(file.page)
 
-            file.page.parent = self._series[category]
+        # Navigation
+        self._series_section.children = [page for _, page in sorted(series_index_pages)]
+        for child in self._series_section.children:
+            child.parent = self._series_section
 
-        for category, this_section in self._series.items():
-            pages: list[Page] = used_pages[category]  # type: ignore[assignment]
-            this_section.children = pages  # type: ignore[assignment]
+        # Blog posts
+        for category, pages in used_pages.items():
             pages.sort(
                 key=(
                     lambda page: (
@@ -180,13 +212,9 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
             for i, page in enumerate(pages):
                 page.previous_page = pages[i - 1] if i > 0 else None
                 page.next_page = pages[i + 1] if i + 1 < len(pages) else None
-                page.parent = this_section
-            if this_section.parent is None:
-                this_section.parent = self._series_section
-                self._series_section.children.append(this_section)
+
             logger.info("Loaded %s series", category)
 
-        self._series_section.children.sort(key=(lambda item: item.title or ""))
         logger.info("Loaded all series")
 
     @staticmethod
@@ -209,6 +237,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         """
         if command == "gh-deploy":
             self._is_gh_deploy = True
+        self._make_new_tempdir()
 
     def _get_views(self) -> None:
         """
@@ -288,14 +317,33 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         """
         logger.debug("site_dir = %s", config.site_dir)
 
+        # Delete tmp files first
+        for file in files:
+            if file.abs_src_path.startswith("/tmp/"):
+                files.remove(file)
+
+        # Manipulate individual series post
+        used_series: set[str] = set()
         for file in files.documentation_pages():
-            if self.RE_POSTFINDER.match(file.src_path):
+            if self.RE_POST_FINDER.match(file.src_path):
                 _, series, filename = file.src_path.split("/")
                 index: int = int(filename.replace(series, "").replace(".md", ""))
                 file.dest_uri = f"series/{series}/{index}/index.html"
                 file.abs_dest_path = os.path.join(config.site_dir, file.dest_path)
                 file.url = f"series/{series}/{index}"
+                used_series.add(series)
 
+        # Make new series index files
+        for series in used_series:
+            files.append(
+                self._create_tempfile(
+                    config,
+                    "series",
+                    f"{series}.md",
+                )
+            )
+
+        # Move root file to back
         root_file = files.get_file_from_path(self.INDEX_SRC_URI)
         if root_file is None:
             raise PluginError(
@@ -309,11 +357,68 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         files.append(root_file)
         return files
 
-    def _modify_markdown_on_root_page(
-        self, markdown: str, root_page: Page, files: Files
-    ) -> str:
+    def _get_page_excerpt(self, post: Page) -> list[str]:
         """
-        Modify markdown on root page.
+        Get page excerpt as separated lines.
+        """
+        user_statistics_available = (
+            isinstance(post.meta.get("views"), dict)
+            and "total_users" in post.meta["views"]
+        )
+        return [
+            f"### **[{post.title}](/{post.url})**",
+            """
+| :%s: Updated | :%s: Created | :%s: Unique Visited |
+| :---: | :---: | :---: |
+| %s | %s | %s |
+"""
+            % (
+                "material-calendar-edit",
+                "material-calendar-plus",
+                "material-eye-plus"
+                if user_statistics_available
+                else "material-eye-remove",
+                post.meta["date"]["updated"],
+                post.meta["date"]["created"],
+                post.meta["views"]["total_users"]
+                if user_statistics_available
+                else "Not available",
+            ),
+            (post.markdown or "")
+            .split(self.EXCERPT_DIVIDER)[0]
+            .replace(f"# {post.title}", ""),
+            f"*... [**Read more**](/{post.url})*",
+        ]
+
+    def _modify_markdown_on_series_index_page(
+        self, markdown: str, series: str, files: Files
+    ):
+        """
+        Return a modified markdown text of series index page.
+        """
+        posts: list[Page] = sorted(
+            (
+                file.page
+                for file in files.documentation_pages()
+                if file.page is not None
+                and self._is_blog_post_page(file.page)
+                and self.get_category(file, abbreviated=True) == series
+            ),
+            key=(lambda post: self.pop_category_id(post.title)),
+        )
+        joinlist = [
+            markdown,
+            "# Series: %s" % (series,),
+            "*Following is a list of all blog posts on category %s.*" % (series,),
+        ]
+        for post in posts:
+            joinlist.append("---")
+            joinlist.extend(self._get_page_excerpt(post))
+        return "\n\n".join(joinlist)
+
+    def _modify_markdown_on_root_page(self, markdown: str, files: Files) -> str:
+        """
+        Return a modified markdown text of root page.
         Initially I tried following;
 
         ```python
@@ -341,7 +446,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
             (
                 file.page
                 for file in files.documentation_pages()
-                if self.RE_POSTFINDER.match(file.src_path) and file.page is not None
+                if file.page is not None and self._is_blog_post_page(file.page)
             ),
             reverse=True,
             key=(
@@ -375,43 +480,14 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
             "*Following is a list of posts which are updated in recent %d days.*"
             % (self._non_recent_posts_age.days,)
         )
-        for i, post in enumerate(posts):
+        for post in posts:
             logger.debug(
                 "Embedding %s(date=%s) on index..",
                 post.title,
                 post.meta["date"]["updated_raw"],
             )
             joinlist.append("---")
-            joinlist.append(f"### **[{post.title}]({post.url})**")
-            user_statistics_available = (
-                isinstance(post.meta.get("views"), dict)
-                and "total_users" in post.meta["views"]
-            )
-            joinlist.append(
-                """
-| :%s: Updated | :%s: Created | :%s: Unique Visited |
-| :---: | :---: | :---: |
-| %s | %s | %s |
-"""
-                % (
-                    "material-calendar-edit",
-                    "material-calendar-plus",
-                    "material-eye-plus"
-                    if user_statistics_available
-                    else "material-eye-remove",
-                    post.meta["date"]["updated"],
-                    post.meta["date"]["created"],
-                    post.meta["views"]["total_users"]
-                    if user_statistics_available
-                    else "Not available",
-                )
-            )
-            joinlist.append(
-                (post.markdown or "")
-                .split(self.EXCERPT_DIVIDER)[0]
-                .replace(f"# {post.title}", "")
-            )
-            joinlist.append(f"*... [**Read more**]({post.url})*")
+            joinlist.extend(self._get_page_excerpt(post))
 
         logger.debug("Created joinlist for index page")
         return "\n\n".join(joinlist)
@@ -425,29 +501,45 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         Since this is the earliest possible moment where metadata is available,
         I directly modify the metadata here.
         """
+        # View metadata
         page.meta["views"] = self._views.get(page.title, None)
-        logger.debug(
-            "Getting git date of page %s.. (%s)", page.title, page.file.abs_src_path
-        )
-        created_date = get_date_from_git(page.file.abs_src_path, "created")
-        updated_date = get_date_from_git(page.file.abs_src_path, "updated")
-        page.meta["date"] = {
-            "created_raw": created_date,
-            "updated_raw": updated_date,
-            "created": created_date.strftime(self.config.git_dates.format),
-            "updated": updated_date.strftime(self.config.git_dates.format),
-        }
 
-        if (
-            self.RE_POSTFINDER.match(page.file.src_path)
-            and self.EXCERPT_DIVIDER not in markdown
-        ):
+        # Get git date metadata
+        try:
+            logger.debug(
+                "Getting git date of page %s.. (%s)",
+                page.title,
+                page.file.abs_src_path,
+            )
+            created_date = get_date_from_git(page.file.abs_src_path, "created")
+            updated_date = get_date_from_git(page.file.abs_src_path, "updated")
+        except FileNotFoundError:
+            pass
+        else:
+            page.meta["date"] = {
+                "created_raw": created_date,
+                "updated_raw": updated_date,
+                "created": created_date.strftime(self.config.git_dates.format),
+                "updated": updated_date.strftime(self.config.git_dates.format),
+            }
+
+        # Raise error on no excerpt
+        if self._is_blog_post_page(page) and self.EXCERPT_DIVIDER not in markdown:
             raise PluginError(
                 "Page '%s' does not have EXCERPT DIVIDER '%s'"
                 % (page.title, self.EXCERPT_DIVIDER)
             )
+
+        # If post index?
+        elif self._is_series_index_page(page):
+            series: str = page.file.src_uri.split("/")[-1].replace(".md", "").upper()
+            return self._modify_markdown_on_series_index_page(markdown, series, files)
+
+        # If root index page?
         elif page.is_index:
-            return self._modify_markdown_on_root_page(markdown, page, files)
+            return self._modify_markdown_on_root_page(markdown, files)
+
+        # Default case
         else:
             return None
 
@@ -497,3 +589,10 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         """
         self._load_series_by_categories(files)
         return None
+
+    @event_priority(LATE_EVENT_PRIORITY)
+    def on_shutdown(self) -> None:
+        try:
+            self._temp_dir.cleanup()
+        except Exception:
+            pass
