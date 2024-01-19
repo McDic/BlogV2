@@ -12,7 +12,7 @@ slug: poker-2
     *This article is migrated from which I wrote on [PokerGosu](https://www.pokergosu.com) with some modifications.*
 
 안녕하세요. 이번 글에서는 국내에서 포커가 어떤 식으로 돌아가는지 서술해보고자 합니다.
-원래 모든 생각은 다 [Thoughts](/category/thoughts) 시리즈에 넣으려고 했다가, 그냥 특정 주제에 관련된 생각은 다른 시리즈에다가 포함시키기로 결정했고, 이 글은 [Poker](/category/poker) 시리즈의 2번째 글이 되었습니다.
+원래 모든 생각은 다 [Thoughts](/series/tho) 시리즈에 넣으려고 했다가, 그냥 특정 주제에 관련된 생각은 다른 시리즈에다가 포함시키기로 결정했고, 이 글은 [Poker](/series/poker) 시리즈의 2번째 글이 되었습니다.
 
 !!! disclaimer
 
@@ -27,7 +27,7 @@ slug: poker-2
 
 [대한민국 형법 제246조](https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%ED%98%95%EB%B2%95/%EC%A0%9C246%EC%A1%B0)는 다음과 같습니다.
 
-!!! info "Criminal law #246 in Korea"
+!!! info "Criminal Act #246 in Republic of Korea"
 
     제246조(도박, 상습도박)
 

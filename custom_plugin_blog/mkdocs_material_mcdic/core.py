@@ -165,7 +165,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         """
 
         used_pages: dict[str, list[Page]] = {}
-        series_index_pages: list[tuple[str, Page]] = []
+        series_index_pages: dict[str, Page] = {}
 
         for file in files.documentation_pages():
             if file.page is None:
@@ -186,7 +186,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
             if category is None:
                 continue
             elif is_series_index_page:
-                series_index_pages.append((category, file.page))
+                series_index_pages[category] = file.page
                 continue
 
             if category not in used_pages:
@@ -194,7 +194,9 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
             used_pages[category].append(file.page)
 
         # Navigation
-        self._series_section.children = [page for _, page in sorted(series_index_pages)]
+        self._series_section.children = [
+            page for _, page in sorted(series_index_pages.items())
+        ]
         for child in self._series_section.children:
             child.parent = self._series_section
 
@@ -209,9 +211,14 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
                     )
                 )
             )
+            series_index_pages[category].next_page = pages[0]
             for i, page in enumerate(pages):
-                page.previous_page = pages[i - 1] if i > 0 else None
-                page.next_page = pages[i + 1] if i + 1 < len(pages) else None
+                page.previous_page = (
+                    pages[i - 1] if i > 0 else series_index_pages[category]
+                )
+                page.next_page = (
+                    pages[i + 1] if i + 1 < len(pages) else series_index_pages[category]
+                )
 
             logger.info("Loaded %s series", category)
 
