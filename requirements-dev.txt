@@ -4,3 +4,4 @@ flake8
 isort
 mypy
 types-PyYAML
+types-pytz

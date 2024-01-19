@@ -20,3 +20,5 @@ class McDicBlogPluginConfig(Config):
     enabled = ConfigOptions.Type(bool, default=True)
     post_views = ConfigOptions.SubConfig(McDicBlogPluginPostViewsConfig)
     date_format = ConfigOptions.Type(str, default="%Y/%b/%d %H:%M:%S %Z")
+    minimum_display_recent_posts = ConfigOptions.Type(int, default=10)
+    non_recent_posts_age = ConfigOptions.Type(int, default=7)

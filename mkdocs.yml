@@ -52,15 +52,6 @@ nav:
 
 plugins:
   - tags
-  - blog:
-      enabled: false
-      blog_dir: .
-      blog_toc: true
-      post_excerpt: required
-      post_url_format: "{slug}"
-      archive_date_format: yyyy.MM
-      archive_url_date_format: yyyy/MM
-      categories_name: Series
   - rss:
       enabled: true
       match_path: posts/.*
@@ -71,7 +62,7 @@ plugins:
         - tags
   - search
   - mcdic:
-      enabled: True
+      enabled: true
       post_views:
         local_path: custom_data/views.json
         forced_update: false
@@ -138,8 +129,6 @@ extra_css:
   - stylesheets/admonitions.css
   - stylesheets/extra.css
   - stylesheets/footer.css
-  - stylesheets/excerpt.css
-  - stylesheets/sidebar.css
   - stylesheets/404.css
   - stylesheets/meta.css
 

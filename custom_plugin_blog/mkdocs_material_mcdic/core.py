@@ -2,9 +2,9 @@ import json
 import os
 import re
 import typing
-from datetime import datetime
-from pathlib import Path
+from datetime import datetime, timedelta
 
+import pytz
 from jinja2 import Environment
 from mkdocs.config.defaults import MkDocsConfig
 from mkdocs.exceptions import PluginError
@@ -53,14 +53,58 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
     RE_POSTFINDER: typing.Final[re.Pattern] = re.compile(
         r"^posts\/[a-zA-Z\-]+\/[a-zA-Z\-]*[0-9]+\.md$"
     )
+    META_KEY_ADDITIONAL_CONTENTS: typing.Final[str] = "additional_contents"
+    EXCERPT_DIVIDER: typing.Final[str] = "<!-- more -->"
+    INDEX_SRC_URI: typing.Final[str] = "index.md"
 
     def __init__(self) -> None:
         super().__init__()
         self._views: dict[str, ViewDataValue] = {}
-        self._force_update_views: bool = False
+        self._is_gh_deploy: bool = False
         self._series: dict[str, Section] = {}
         self._root_found_on_nav: bool = False
         self._series_section: Section = Section("Series", [])
+        self._non_recent_posts_age: timedelta = timedelta(days=1)
+
+    @classmethod
+    def set_page_additional_meta_contents(
+        cls,
+        page: Page,
+        *keys: str,
+        value: typing.Any,
+        override: bool = False,
+    ) -> None:
+        """
+        Set additional meta contents for `{key: value}`.
+        The `override` option is very unsafe, usually discouraged to use.
+        """
+        if not keys:
+            raise PluginError("keys is empty")
+        if cls.META_KEY_ADDITIONAL_CONTENTS not in page.meta:
+            page.meta[cls.META_KEY_ADDITIONAL_CONTENTS] = {}
+
+        current: typing.MutableMapping = page.meta[cls.META_KEY_ADDITIONAL_CONTENTS]
+        for i, key in enumerate(keys[:-1]):
+            if key not in current:
+                current[key] = {}
+            elif not isinstance(current[key], dict):
+                if not override:
+                    raise PluginError(
+                        "Found some preserved value %s on key=%s"
+                        % (current[key], ".".join(keys[: i + 1]))
+                    )
+                else:
+                    current[key] = {}
+            current = current[key]
+
+        if keys[-1] in current and not override:
+            raise PluginError(f"key={'.'.join(keys)} is already in page '{page.title}'")
+        current[keys[-1]] = value
+        logger.debug(
+            "Now page '%s' additional meta = %s",
+            page.title,
+            page.meta[cls.META_KEY_ADDITIONAL_CONTENTS],
+        )
 
     @staticmethod
     def aggregate_views(obj0: ViewDataValue, *objs: ViewDataValue) -> ViewDataValue:
@@ -162,26 +206,26 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         Make this update views on `gh-deploy`.
         """
         if command == "gh-deploy":
-            self._force_update_views = True
+            self._is_gh_deploy = True
 
     def _get_views(self) -> None:
         """
         Get views data.
         """
-
+        force_update_views: bool = self._is_gh_deploy
         if self.config.post_views:
-            self._force_update_views = (
-                self._force_update_views or self.config.post_views.forced_update
+            force_update_views = (
+                force_update_views or self.config.post_views.forced_update
             )
 
         if (
             self.config.post_views
             and self.config.post_views.local_path
-            and not self._force_update_views
+            and not force_update_views
         ):
             with open(self.config.post_views.local_path) as post_views_file:
                 self._views = json.load(post_views_file)
-        elif self._force_update_views:
+        elif force_update_views:
             logger.info("Views data is forcibly updating..")
             client = get_ga4_client()
             self._views = fetch_ga4_views_data(client)
@@ -209,19 +253,36 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
 
     @event_priority(EARLY_EVENT_PRIORITY)
     @skip_if_disabled
-    def on_config(self, config: MkDocsConfig) -> MkDocsConfig | None:
+    def on_pre_build(self, config: MkDocsConfig) -> None:
         """
-        Load McDic Blog configs.
+        Get views in this step.
         """
         self._get_views()
+
+    @event_priority(EARLY_EVENT_PRIORITY)
+    @skip_if_disabled
+    def on_config(self, config: MkDocsConfig) -> MkDocsConfig | None:
+        """
+        Validate configs in this step.
+        """
+        if self.config.minimum_display_recent_posts < 0:
+            raise PluginError(
+                "Config's minimum_display_recent_posts should be non-negative"
+            )
+        elif self.config.non_recent_posts_age < 1:
+            raise PluginError("Config's non_recent_posts_age should be positive")
+        self._non_recent_posts_age = timedelta(self.config.non_recent_posts_age)
         return None
 
     @event_priority(EARLY_EVENT_PRIORITY)
     @skip_if_disabled
     def on_files(self, files: Files, *, config: MkDocsConfig) -> Files | None:
         """
-        Editing file destination wouldn't work properly after this event,
-        therefore I edit some files here.
+        Editing file destination wouldn't work properly
+        after this event, therefore I edit some files here.
+        Also, I manipulate the file orders to make
+        root page being rendered at the last, advised from
+        https://github.com/mkdocs/mkdocs/discussions/3553#discussioncomment-8171415.
         """
         logger.debug("site_dir = %s", config.site_dir)
 
@@ -242,15 +303,117 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
                 file.abs_dest_path = os.path.join(config.site_dir, file.dest_path)
                 file.url = f"series/{series}/{index}"
 
+        root_file = files.get_file_from_path(self.INDEX_SRC_URI)
+        if root_file is None:
+            raise PluginError(
+                "There is no root page (%s/%s)"
+                % (
+                    config.docs_dir,
+                    self.INDEX_SRC_URI,
+                )
+            )
+        files.remove(root_file)
+        files.append(root_file)
         return files
 
-    @staticmethod
-    def _get_git_date(file: File) -> tuple[datetime, datetime]:
+    def _modify_markdown_on_root_page(
+        self, markdown: str, root_page: Page, files: Files
+    ) -> str:
         """
-        Get created date and the last updated date of a file from git system.
+        Modify markdown on root page.
+        Initially I tried following;
+
+        ```python
+        self.set_page_additional_meta_contents(
+            root_page, "root_page_only", "recent_posts", value=posts
+        )
+        ```
+
+        ```jinja
+        {% if page.is_index %}
+        <h2> Recently Updated Posts </h2>
+        {% for post in page.meta.additional_contents.root_page_only.recent_posts %}
+            <hr>
+            <h3> {{ post.title }} </h3>
+            {{ post.content }}
+        {% endfor %}
+        {% endif %}
+        ```
+
+        and then I noticed this way is not compatible
+        with side navigation at all.
         """
-        path: Path = Path(file.abs_src_path)
-        return get_date_from_git(path, "created"), get_date_from_git(path, "updated")
+        now = datetime.now(tz=pytz.UTC)
+        posts: list[Page] = sorted(
+            (
+                file.page
+                for file in files.documentation_pages()
+                if self.RE_POSTFINDER.match(file.src_path) and file.page is not None
+            ),
+            reverse=True,
+            key=(lambda post: (post.meta["date"]["updated_raw"], post.title)),
+        )
+        joinlist: list[str] = [markdown]
+        for i, post in enumerate(posts):
+            if post.markdown is None:
+                raise PluginError(
+                    (
+                        'Post "%s" doesn\'t have any markdown yet, '
+                        "when the root page is expected to be "
+                        "processed at last"
+                    )
+                    % (post.title,)
+                )
+            elif (
+                i > self.config.minimum_display_recent_posts
+                and post.meta["date"]["updated_raw"] + self._non_recent_posts_age > now
+            ):
+                break
+        posts = posts[: i + 1]
+
+        joinlist.append("## Recently updated posts")
+        for i, post in enumerate(posts):
+            logger.debug(
+                "Embedding %s(date=%s) on index..",
+                post.title,
+                post.meta["date"]["updated_raw"],
+            )
+            joinlist.append("---")
+            joinlist.append(f"### **[{post.title}]({post.url})**")
+            user_statistics_available = (
+                isinstance(post.meta.get("views"), dict)
+                and "total_users" in post.meta["views"]
+            )
+            joinlist.append(
+                """
+| :%s: Updated | :%s: Created | :%s: Unique Users Visited |
+| :---: | :---: | :---: |
+| %s | %s | %s |
+"""
+                % (
+                    "material-calendar",
+                    "material-calendar",
+                    "material-eye-plus"
+                    if user_statistics_available
+                    else "material-eye-remove",
+                    post.meta["date"]["updated"],
+                    post.meta["date"]["created"],
+                    post.meta["views"]["total_users"]
+                    if user_statistics_available
+                    else "Not available",
+                )
+            )
+            joinlist.append(
+                (post.markdown or "")
+                .split(self.EXCERPT_DIVIDER)[0]
+                .replace(f"# {post.title}", "")
+            )
+            joinlist.append(f"*... [**Read more**]({post.url})*")
+
+        logger.debug("Created joinlist for index page:")
+        for i, element in enumerate(joinlist):
+            logger.debug("joinlist[%d]: %s..", i, element.split("\n")[0])
+        return "\n\n".join(joinlist)
 
     @event_priority(LATE_EVENT_PRIORITY)
     @skip_if_disabled
@@ -265,12 +428,27 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         logger.debug(
             "Getting git date of page %s.. (%s)", page.title, page.file.abs_src_path
         )
-        created_date, updated_date = self._get_git_date(page.file)
+        created_date = get_date_from_git(page.file.abs_src_path, "created")
+        updated_date = get_date_from_git(page.file.abs_src_path, "updated")
         page.meta["date"] = {
+            "created_raw": created_date,
+            "updated_raw": updated_date,
             "created": created_date.strftime(self.config.date_format),
             "updated": updated_date.strftime(self.config.date_format),
         }
-        return None
+
+        if (
+            self.RE_POSTFINDER.match(page.file.src_path)
+            and self.EXCERPT_DIVIDER not in markdown
+        ):
+            raise PluginError(
+                "Page '%s' does not have EXCERPT DIVIDER '%s'"
+                % (page.title, self.EXCERPT_DIVIDER)
+            )
+        elif page.is_index:
+            return self._modify_markdown_on_root_page(markdown, page, files)
+        else:
+            return None
 
     def _modify_nav_on_root_page(self, section: Navigation | Section):
         """
@@ -313,7 +491,8 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         self, env: Environment, *, config: MkDocsConfig, files: Files
     ) -> Environment | None:
         """
-        After all pages are populated, I change prev/next page buttons here.
+        After all pages are populated, I do followings;
+        - Alter global navigation and prev/next page buttons of each page.
         """
         self._load_series_by_categories(files)
         return None
