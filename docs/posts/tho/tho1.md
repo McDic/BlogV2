@@ -6,7 +6,6 @@ tags:
   - data-structures
   - computer-science
 title: THO 1. My Codeforces Problemsetting Experiences
-slug: tho-1
 ---
 
 !!! migrated

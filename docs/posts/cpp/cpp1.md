@@ -6,7 +6,6 @@ tags:
   - programming
   - computer-science
 title: CPP 1. Type of Expressions and References
-slug: cpp-1
 ---
 
 !!! migrated

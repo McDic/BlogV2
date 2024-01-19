@@ -6,7 +6,6 @@ tags:
   - data-structures
   - career
 title: THO 5. About Coding Assessment Problems
-slug: tho-5
 ---
 
 !!! migrated

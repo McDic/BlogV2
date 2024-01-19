@@ -5,7 +5,6 @@ tags:
   - poker
   - probability
 title: POKER 1. Heads-Up Flop Probabilities
-slug: poker-1
 ---
 
 !!! migrated

@@ -6,7 +6,6 @@ tags:
   - probability
   - statistics
 title: PRP 3. Continuous Random Variables
-slug: prp-3
 ---
 
 !!! migrated

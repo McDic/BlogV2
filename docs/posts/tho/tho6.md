@@ -4,7 +4,6 @@ categories:
 tags:
   - career
 title: THO 6. What Every Korean Should Know About Military
-slug: tho-6
 ---
 
 제 주변의 한국 남성들은 저를 포함한 거의 대부분이 군대 문제를 해결했습니다.

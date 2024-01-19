@@ -6,7 +6,6 @@ tags:
   - data-structures
   - computer-science
 title: ALDS 1. Sparse Table
-slug: alds-1
 ---
 
 !!! migrated

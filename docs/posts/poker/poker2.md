@@ -4,7 +4,6 @@ categories:
 tags:
   - poker
 title: POKER 2. How Poker Works in Korea
-slug: poker-2
 ---
 
 !!! migrated

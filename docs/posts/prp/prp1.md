@@ -6,7 +6,6 @@ tags:
   - probability
   - statistics
 title: PRP 1. Basic Principles of Probability
-slug: prp-1
 ---
 
 !!! migrated

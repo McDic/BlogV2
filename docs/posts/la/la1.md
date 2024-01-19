@@ -5,7 +5,6 @@ tags:
   - math
   - linear-algebra
 title: LA 1. Vector Spaces
-slug: la-1
 ---
 
 !!! migrated

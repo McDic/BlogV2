@@ -6,7 +6,6 @@ tags:
   - programming
   - computer-science
 title: CPP 2. Access Specifiers and Friend
-slug: cpp-2
 ---
 
 !!! migrated

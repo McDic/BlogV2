@@ -6,7 +6,6 @@ tags:
   - probability
   - statistics
 title: PRP 2. Bernoulli Processes
-slug: prp-2
 ---
 
 !!! migrated

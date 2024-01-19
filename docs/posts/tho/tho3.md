@@ -6,7 +6,6 @@ tags:
   - data-structures
   - career
 title: THO 3. Relationship between Algorithm and Dev Career
-slug: tho-3
 ---
 
 !!! migrated

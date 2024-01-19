@@ -1,6 +1,5 @@
 ---
 no_comments: true
-slug: format
 ---
 
 # Post Format

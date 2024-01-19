@@ -61,6 +61,8 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
     META_KEY_ADDITIONAL_CONTENTS: typing.Final[str] = "additional_contents"
     EXCERPT_DIVIDER: typing.Final[str] = "<!-- more -->"
     INDEX_SRC_URI: typing.Final[str] = "index.md"
+    METADATA_NOT_AVAILABLE: typing.Final[str] = "Not available"
+    MIN_DATETIME: typing.Final[datetime] = datetime.min.replace(tzinfo=pytz.UTC)
 
     def __init__(self) -> None:
         super().__init__()
@@ -120,6 +122,19 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
             self.RE_POSTINDEX_FINDER.match(page.file.src_path)
             and Path(page.file.abs_src_path).is_relative_to(self._temp_dir.name)
         )
+
+    @staticmethod
+    def get_meta(page: Page, *paths: str, default: typing.Any = None) -> typing.Any:
+        """
+        Get meta from given `paths`. If there is none, return `default`.
+        """
+        current: typing.Any = page.meta
+        for path in paths:
+            if isinstance(current, typing.Mapping) and path in current:
+                current = current[path]
+            else:
+                return default
+        return current
 
     @staticmethod
     def aggregate_views(obj0: ViewDataValue, *objs: ViewDataValue) -> ViewDataValue:
@@ -369,8 +384,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         Get page excerpt as separated lines.
         """
         user_statistics_available = (
-            isinstance(post.meta.get("views"), dict)
-            and "total_users" in post.meta["views"]
+            self.get_meta(post, "views", "total_users", default=None) is not None
         )
         return [
             f"### **[{post.title}](/{post.url})**",
@@ -385,11 +399,15 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
                 "material-eye-plus"
                 if user_statistics_available
                 else "material-eye-remove",
-                post.meta["date"]["updated"],
-                post.meta["date"]["created"],
-                post.meta["views"]["total_users"]
-                if user_statistics_available
-                else "Not available",
+                self.get_meta(
+                    post, "date", "updated", default=self.METADATA_NOT_AVAILABLE
+                ),
+                self.get_meta(
+                    post, "date", "created", default=self.METADATA_NOT_AVAILABLE
+                ),
+                self.get_meta(
+                    post, "views", "total_users", default=self.METADATA_NOT_AVAILABLE
+                ),
             ),
             (post.markdown or "")
             .split(self.EXCERPT_DIVIDER)[0]
@@ -458,8 +476,12 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
             reverse=True,
             key=(
                 lambda post: (
-                    post.meta["date"]["updated_raw"],
-                    post.meta["date"]["created_raw"],
+                    self.get_meta(
+                        post, "date", "updated_raw", default=self.MIN_DATETIME
+                    ),
+                    self.get_meta(
+                        post, "date", "created_raw", default=self.MIN_DATETIME
+                    ),
                     post.title,
                 )
             ),
@@ -477,7 +499,11 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
                 )
             elif (
                 i > self.config.git_dates.minimum_display
-                and post.meta["date"]["updated_raw"] + self._non_recent_posts_age < now
+                and self.get_meta(
+                    post, "date", "updated_raw", default=self.MIN_DATETIME
+                )
+                + self._non_recent_posts_age
+                < now
             ):
                 posts = posts[:i]
                 break
@@ -491,7 +517,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
             logger.debug(
                 "Embedding %s(date=%s) on index..",
                 post.title,
-                post.meta["date"]["updated_raw"],
+                self.get_meta(post, "date", "updated_raw", default=None),
             )
             joinlist.append("---")
             joinlist.extend(self._get_page_excerpt(post))

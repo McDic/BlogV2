@@ -6,7 +6,6 @@ tags:
   - programming
   - computer-science
 title: PY 2. Some Frequently Used Python Tools by Me
-slug: py-2
 ---
 
 안녕하세요. 이번 글에서는 제가 Python 언어를 사용하는 개발 프로젝트를 만들 때 자주 사용하는 툴 및 라이브러리들을 소개합니다.

@@ -6,7 +6,6 @@ tags:
   - programming
   - computer-science
 title: PY 1. Type Hints
-slug: py-1
 ---
 
 !!! migrated

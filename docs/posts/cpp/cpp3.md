@@ -6,7 +6,6 @@ tags:
   - programming
   - computer-science
 title: CPP 3. Templates
-slug: cpp-3
 ---
 
 !!! migrated

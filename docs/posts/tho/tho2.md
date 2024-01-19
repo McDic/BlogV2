@@ -6,7 +6,6 @@ tags:
   - computer-science
   - career
 title: THO 2. About Game Development
-slug: tho-2
 ---
 
 !!! migrated
