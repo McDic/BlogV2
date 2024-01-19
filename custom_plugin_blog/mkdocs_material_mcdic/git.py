@@ -17,9 +17,14 @@ def get_date_from_git(
     path = Path(path)
     if not path.exists() or not path.is_file():
         raise FileNotFoundError(errno.ENOENT, os.strerror(errno.ENOENT), path)
-    args: list[str | Path] = ["git", "log", "-1", "--format=%ad", "--date=iso-strict"]
-    if date_type == "updated":
+    args: list[str | Path] = ["git", "log", "--format=%ad", "--date=iso-strict"]
+    if date_type == "created":
         args.append("--reverse")
     args.append(path)
-    gitlog = subprocess.run(args, stdout=subprocess.PIPE)
-    return datetime.fromisoformat(gitlog.stdout.decode().strip())
+    headtail = subprocess.Popen(
+        ["head", "-1"], stdin=subprocess.PIPE, stdout=subprocess.PIPE
+    )
+    gitlog = subprocess.Popen(args, stdout=headtail.stdin)
+    gitlog.communicate()
+    out, err = headtail.communicate()
+    return datetime.fromisoformat(out.decode().strip())

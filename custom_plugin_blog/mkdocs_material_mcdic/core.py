@@ -351,7 +351,13 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
                 if self.RE_POSTFINDER.match(file.src_path) and file.page is not None
             ),
             reverse=True,
-            key=(lambda post: (post.meta["date"]["updated_raw"], post.title)),
+            key=(
+                lambda post: (
+                    post.meta["date"]["updated_raw"],
+                    post.meta["date"]["created_raw"],
+                    post.title,
+                )
+            ),
         )
         joinlist: list[str] = [markdown]
         for i, post in enumerate(posts):
@@ -386,13 +392,13 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
             )
             joinlist.append(
                 """
-| :%s: Updated | :%s: Created | :%s: Unique Users Visited |
+| :%s: Updated | :%s: Created | :%s: Unique Visited |
 | :---: | :---: | :---: |
 | %s | %s | %s |
 """
                 % (
-                    "material-calendar",
-                    "material-calendar",
+                    "material-calendar-edit",
+                    "material-calendar-plus",
                     "material-eye-plus"
                     if user_statistics_available
                     else "material-eye-remove",
