@@ -3,7 +3,7 @@
         opacity: 100%;
     }
     50% {
-        opacity: 20%;
+        opacity: 30%;
     }
     100% {
         opacity: 100%;
@@ -11,7 +11,7 @@
 }
 
 .md-404--not-found svg {
-    animation: fading404 2000ms infinite;
+    animation: fading404 3000ms infinite;
     fill: var(--md-typeset-color);
 }
 
