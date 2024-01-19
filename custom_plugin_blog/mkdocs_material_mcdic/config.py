@@ -12,6 +12,17 @@ class McDicBlogPluginPostViewsConfig(Config):
     forced_update = ConfigOptions.Type(bool, default=False)
 
 
+class McDicBlogPluginGitDateConfig(Config):
+    """
+    Subconfig class for McDic's Blog plugin on git date metadata.
+    """
+
+    format = ConfigOptions.Type(str, default="%Y/%b/%d %H:%M:%S %Z")
+    # 5 posts are always displayed in index
+    minimum_display = ConfigOptions.Type(int, default=5)
+    old_criteria = ConfigOptions.Type(int, default=7)  # Default 1 week
+
+
 class McDicBlogPluginConfig(Config):
     """
     Config class for McDic's Blog plugin.
@@ -19,6 +30,4 @@ class McDicBlogPluginConfig(Config):
 
     enabled = ConfigOptions.Type(bool, default=True)
     post_views = ConfigOptions.SubConfig(McDicBlogPluginPostViewsConfig)
-    date_format = ConfigOptions.Type(str, default="%Y/%b/%d %H:%M:%S %Z")
-    minimum_display_recent_posts = ConfigOptions.Type(int, default=10)
-    non_recent_posts_age = ConfigOptions.Type(int, default=7)
+    git_dates = ConfigOptions.SubConfig(McDicBlogPluginGitDateConfig)

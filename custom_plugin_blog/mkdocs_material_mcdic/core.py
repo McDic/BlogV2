@@ -267,13 +267,13 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         """
         Validate configs in this step.
         """
-        if self.config.minimum_display_recent_posts < 0:
+        if self.config.git_dates.minimum_display < 0:
             raise PluginError(
                 "Config's minimum_display_recent_posts should be non-negative"
             )
-        elif self.config.non_recent_posts_age < 1:
+        elif self.config.git_dates.old_criteria < 1:
             raise PluginError("Config's non_recent_posts_age should be positive")
-        self._non_recent_posts_age = timedelta(self.config.non_recent_posts_age)
+        self._non_recent_posts_age = timedelta(self.config.git_dates.old_criteria)
         return None
 
     @event_priority(EARLY_EVENT_PRIORITY)
@@ -364,13 +364,17 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
                     % (post.title,)
                 )
             elif (
-                i > self.config.minimum_display_recent_posts
-                and post.meta["date"]["updated_raw"] + self._non_recent_posts_age > now
+                i > self.config.git_dates.minimum_display
+                and post.meta["date"]["updated_raw"] + self._non_recent_posts_age < now
             ):
+                posts = posts[:i]
                 break
-        posts = posts[: i + 1]
 
         joinlist.append("## Recently updated posts")
+        joinlist.append(
+            "*Following is a list of posts which are updated in recent %d days.*"
+            % (self._non_recent_posts_age.days,)
+        )
         for i, post in enumerate(posts):
             logger.debug(
                 "Embedding %s(date=%s) on index..",
@@ -430,8 +434,8 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         page.meta["date"] = {
             "created_raw": created_date,
             "updated_raw": updated_date,
-            "created": created_date.strftime(self.config.date_format),
-            "updated": updated_date.strftime(self.config.date_format),
+            "created": created_date.strftime(self.config.git_dates.format),
+            "updated": updated_date.strftime(self.config.git_dates.format),
         }
 
         if (
