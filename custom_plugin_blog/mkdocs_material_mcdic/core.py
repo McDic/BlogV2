@@ -288,15 +288,6 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
 
         for file in files.documentation_pages():
             if self.RE_POSTFINDER.match(file.src_path):
-                logger.debug(
-                    "Originally, src = %s, dest_path = %s, "
-                    "abs_dest_path = %s, dest_uri = %s, url = %s",
-                    file.src_path,
-                    file.dest_path,
-                    file.abs_dest_path,
-                    file.dest_uri,
-                    file.url,
-                )
                 _, series, filename = file.src_path.split("/")
                 index: int = int(filename.replace(series, "").replace(".md", ""))
                 file.dest_uri = f"series/{series}/{index}/index.html"
@@ -416,9 +407,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
             )
             joinlist.append(f"*... [**Read more**]({post.url})*")
 
-        logger.debug("Created joinlist for index page:")
-        for i, element in enumerate(joinlist):
-            logger.debug("joinlist[%d]: %s..", i, element.split("\n")[0])
+        logger.debug("Created joinlist for index page")
         return "\n\n".join(joinlist)
 
     @event_priority(LATE_EVENT_PRIORITY)
