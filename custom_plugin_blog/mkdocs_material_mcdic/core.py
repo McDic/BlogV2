@@ -144,9 +144,14 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
 
         used_pages: dict[str, list[Page]] = {}
 
-        for file in files:
+        for file in files.documentation_pages():
             if file.page is None:
+                logger.warning('File "%s" doesn\'t have a page yet' % (file,))
                 continue
+
+            # Removing all prev/next pages is needed
+            file.page.previous_page = None
+            file.page.next_page = None
 
             category = self.get_category(file)
             if category is None:
@@ -158,10 +163,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
                 used_pages[category] = []
             used_pages[category].append(file.page)
 
-            # Removing all prev/next pages is needed
             file.page.parent = self._series[category]
-            file.page.previous_page = None
-            file.page.next_page = None
 
         for category, this_section in self._series.items():
             pages: list[Page] = used_pages[category]  # type: ignore[assignment]

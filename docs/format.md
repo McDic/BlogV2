@@ -35,18 +35,10 @@ The navigation provided by `mkdocs-material` is available at the right side, if 
 
 Every blog post will provide following metadata;
 
-- A date when this blog post was created.
-
-    !!! info
-
-        I don't intend to provide accurate created and updated dates of posts
-        until [this issue](https://github.com/squidfunk/mkdocs-material/issues/6647#issuecomment-1892206257) is resolved.
-
-- A category of this blog post.
-- An [estimation of reading time](https://squidfunk.github.io/mkdocs-material/setup/setting-up-a-blog/?h=reading#setting-the-reading-time), automatically calculated by `mkdocs-materials`.
+- Last updated date and created date of an article.
 - A number of [active users](https://support.google.com/analytics/answer/12253918?hl=en#:~:text=is%20populated%20automatically.-,Active%20users,engagement_time_msec%20parameter%20from%20a%20website) visited this page since the beginning of the blog.
   This is different from total views.
-  Because I am not using realtime data, this metadata is invisible on post page if the data is not available from GA4 yet.
+  Since I am not using realtime data, this metadata is not available if the data is not available from GA4 yet.
 
 !!! disclaimer
 

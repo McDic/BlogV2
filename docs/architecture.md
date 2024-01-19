@@ -61,6 +61,23 @@ There are several alternatives like [Giscus](https://github.com/giscus/giscus) s
 
 ---
 
+## Custom MKDocs Plugin
+
+I made [my own custom mkdocs plugin](https://github.com/McDic/BlogV2/tree/master/custom_plugin_blog) to customize following behaviors.
+Note that I got rid of [built-in blog plugin](https://squidfunk.github.io/mkdocs-material/plugins/blog/) because there were several big issues on the whole structure, [refer here](https://github.com/squidfunk/mkdocs-material/issues/6647) if you are interested.
+
+- Categories
+    - `Prev` and `Next` buttons will lead to prev/next articles in same category.
+    - Forcing zero or one category for every page.
+- Metadata of blog posts
+    - Git dates
+        - Automatically [fetches from the git](https://stackoverflow.com/questions/11533199/how-to-find-the-commit-in-which-a-given-file-was-added) system.
+    - Post Views
+        - Calculate the metadata from either custom data folder or GA4 API and embedded it.
+        (Previously I used Javascript async fetch, but I got rid of it.)
+
+---
+
 ## Views on Posts
 
 Since my blog is a set of static web pages, it was a bit tricky to add views.
@@ -72,19 +89,5 @@ So I failed to make my billing completely zero, but I think this is still feasib
 
 ---
 
-## Custom MKDocs Plugin
-
-I made [my own custom mkdocs plugin](https://github.com/McDic/BlogV2/tree/master/custom_plugin) to customize following behaviors.
-
-- Categories
-    - `Prev` and `Next` buttons will lead to prev/next articles in same category.
-    - Forcing zero or one category for every page.
-- Post views
-    - Calculate the metadata from either custom data folder or GA4 API and embedded in page HTML.
-    (Previously I used Javascript async fetch, but I got rid of it.)
-
 I plan to add more stuffs whenever I need.
-
----
-
 If there is anything you wonder, please ask in comments.
