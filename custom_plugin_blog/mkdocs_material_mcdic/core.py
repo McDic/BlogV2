@@ -565,6 +565,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
 
         # If post index?
         elif self._is_series_index_page(page):
+            page.meta["no_comments"] = True
             series: str = page.file.src_uri.split("/")[-1].replace(".md", "").upper()
             return self._modify_markdown_on_series_index_page(markdown, series, files)
 
