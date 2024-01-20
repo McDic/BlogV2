@@ -510,8 +510,12 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
 
         joinlist.append("## Recently updated posts")
         joinlist.append(
-            "*Following is a list of posts which are updated in recent %d days.*"
-            % (self._non_recent_posts_age.days,)
+            "*Following is a list of posts where each post is either "
+            "one of %d recently updated posts or updated in recent %d days.*"
+            % (
+                self.config.git_dates.minimum_display,
+                self.config.git_dates.old_criteria,
+            )
         )
         for post in posts:
             logger.debug(
