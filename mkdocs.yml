@@ -125,6 +125,7 @@ extra_javascript:
   - javascripts/mathjax.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  - javascripts/autoscroll.js
 
 extra_css:
   - stylesheets/admonitions.css
@@ -132,6 +133,7 @@ extra_css:
   - stylesheets/footer.css
   - stylesheets/404.css
   - stylesheets/meta.css
+  - stylesheets/header.css
 
 extra:
   analytics:
