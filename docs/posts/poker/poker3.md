@@ -3,6 +3,8 @@ categories:
   - Poker
 tags:
   - poker
+date:
+  original: 2023-10-12
 title: POKER 3. Poker vs Investment
 ---
 
