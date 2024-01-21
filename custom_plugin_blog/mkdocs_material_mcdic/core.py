@@ -1,9 +1,8 @@
 import json
 import os
-import re
 import tempfile
 import typing
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 from pathlib import Path
 
 import pytz
@@ -15,24 +14,24 @@ from mkdocs.structure.files import File, Files
 from mkdocs.structure.nav import Navigation, Section, StructureItem
 from mkdocs.structure.pages import Page
 
+from . import constants
 from .config import McDicBlogPluginConfig
-from .constants import EARLY_EVENT_PRIORITY, LATE_EVENT_PRIORITY
 from .ga4 import ViewDataValue
 from .ga4 import fetch_data as fetch_ga4_views_data
 from .ga4 import get_client as get_ga4_client
 from .git import get_date_from_git
+from .utils import dict_get, dict_merge_inplace
 
 logger = get_plugin_logger("mcdic")
 
 
 P = typing.ParamSpec("P")
 Ret = typing.TypeVar("Ret")
-McDicBlogMethod = typing.Callable[P, Ret | None]
 
 
 def skip_if_disabled(
-    method: McDicBlogMethod[typing.Concatenate["McDicBlogPlugin", P], Ret | None]
-) -> McDicBlogMethod[typing.Concatenate["McDicBlogPlugin", P], Ret | None]:
+    method: typing.Callable[typing.Concatenate["McDicBlogPlugin", P], Ret | None]
+) -> typing.Callable[typing.Concatenate["McDicBlogPlugin", P], Ret | None]:
     """
     Make method be skipped if plugin is disabled.
     """
@@ -50,19 +49,6 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
     A plugin solely developed for [McDic's Blog](https://blog.mcdic.net).
     See [plugins/events](https://www.mkdocs.org/dev-guide/plugins/#events).
     """
-
-    TITLE_SUFFIX: typing.Final[str] = " - McDic's Blog"
-    RE_POST_FINDER: typing.Final[re.Pattern] = re.compile(
-        r"^posts\/[a-zA-Z\-]+\/[a-zA-Z\-]*[0-9]+\.md$"
-    )
-    RE_POSTINDEX_FINDER: typing.Final[re.Pattern] = re.compile(
-        r"^series\/[a-zA-Z\-]+\.md$"
-    )
-    META_KEY_ADDITIONAL_CONTENTS: typing.Final[str] = "additional_contents"
-    EXCERPT_DIVIDER: typing.Final[str] = "<!-- more -->"
-    INDEX_SRC_URI: typing.Final[str] = "index.md"
-    METADATA_NOT_AVAILABLE: typing.Final[str] = "Not available"
-    MIN_DATETIME: typing.Final[datetime] = datetime.min.replace(tzinfo=pytz.UTC)
 
     def __init__(self) -> None:
         super().__init__()
@@ -112,29 +98,16 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         """
         Return if given `page` is a blog post page.
         """
-        return bool(self.RE_POST_FINDER.match(page.file.src_path))
+        return bool(constants.RE_POST_FINDER.match(page.file.src_path))
 
     def _is_series_index_page(self, page: Page) -> bool:
         """
         Return if given `page` is a series index page.
         """
         return bool(
-            self.RE_POSTINDEX_FINDER.match(page.file.src_path)
+            constants.RE_POSTINDEX_FINDER.match(page.file.src_path)
             and Path(page.file.abs_src_path).is_relative_to(self._temp_dir.name)
         )
-
-    @staticmethod
-    def get_meta(page: Page, *paths: str, default: typing.Any = None) -> typing.Any:
-        """
-        Get meta from given `paths`. If there is none, return `default`.
-        """
-        current: typing.Any = page.meta
-        for path in paths:
-            if isinstance(current, typing.Mapping) and path in current:
-                current = current[path]
-            else:
-                return default
-        return current
 
     @staticmethod
     def aggregate_views(obj0: ViewDataValue, *objs: ViewDataValue) -> ViewDataValue:
@@ -246,7 +219,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         """
         return int(title.split(".")[0].split(" ")[-1])
 
-    @event_priority(EARLY_EVENT_PRIORITY)
+    @event_priority(constants.EARLY_EVENT_PRIORITY)
     @skip_if_disabled
     def on_startup(
         self,
@@ -296,7 +269,10 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
             if not title.endswith(" - McDic's Blog"):
                 logger.info(f'Invalid page title "{title}" is removed from views data')
             else:
-                replaced_title = title.replace(self.TITLE_SUFFIX, "")
+                replaced_title = (
+                    title.strip().replace(constants.TITLE_SUFFIX, "")
+                    or constants.INDEX_TITLE
+                )
                 if replaced_title in self._views:
                     self._views[replaced_title] = self.aggregate_views(
                         self._views[replaced_title], views
@@ -304,7 +280,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
                 else:
                     self._views[replaced_title] = views
 
-    @event_priority(EARLY_EVENT_PRIORITY)
+    @event_priority(constants.EARLY_EVENT_PRIORITY)
     @skip_if_disabled
     def on_pre_build(self, config: MkDocsConfig) -> None:
         """
@@ -312,7 +288,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         """
         self._get_views()
 
-    @event_priority(EARLY_EVENT_PRIORITY)
+    @event_priority(constants.EARLY_EVENT_PRIORITY)
     @skip_if_disabled
     def on_config(self, config: MkDocsConfig) -> MkDocsConfig | None:
         """
@@ -327,7 +303,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         self._non_recent_posts_age = timedelta(self.config.git_dates.old_criteria)
         return None
 
-    @event_priority(EARLY_EVENT_PRIORITY)
+    @event_priority(constants.EARLY_EVENT_PRIORITY)
     @skip_if_disabled
     def on_files(self, files: Files, *, config: MkDocsConfig) -> Files | None:
         """
@@ -347,7 +323,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         # Manipulate individual series post
         used_series: set[str] = set()
         for file in files.documentation_pages():
-            if self.RE_POST_FINDER.match(file.src_path):
+            if constants.RE_POST_FINDER.match(file.src_path):
                 _, series, filename = file.src_path.split("/")
                 index: int = int(filename.replace(series, "").replace(".md", ""))
                 file.dest_uri = f"series/{series}/{index}/index.html"
@@ -366,26 +342,52 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
             )
 
         # Move root file to back
-        root_file = files.get_file_from_path(self.INDEX_SRC_URI)
+        root_file = files.get_file_from_path(constants.INDEX_SRC_URI)
         if root_file is None:
             raise PluginError(
                 "There is no root page (%s/%s)"
-                % (
-                    config.docs_dir,
-                    self.INDEX_SRC_URI,
-                )
+                % (config.docs_dir, constants.INDEX_SRC_URI)
             )
         files.remove(root_file)
         files.append(root_file)
         return files
 
-    def _get_page_excerpt(self, post: Page) -> list[str]:
+    @staticmethod
+    def get_git_exclude_lines(file_or_page: File | Page) -> int:
+        """
+        Get the number of lines to exclude to search from the git system.
+        """
+        file: File = (
+            file_or_page if isinstance(file_or_page, File) else file_or_page.file
+        )
+        if not file.is_documentation_page():
+            raise PluginError(
+                f"Given file {file.abs_src_path} is not a documentation page"
+            )
+        with open(file.abs_src_path) as raw_file:
+            return raw_file.read().split(constants.EXCERPT_DIVIDER)[0].count("\n") + 1
+
+    def _get_page_excerpt(self, post: Page, config: MkDocsConfig) -> list[str]:
         """
         Get page excerpt as separated lines.
         """
-        user_statistics_available = (
-            self.get_meta(post, "views", "total_users", default=None) is not None
-        )
+
+        def datestr(d: str | None, commit: str | None) -> str:
+            """
+            Format given `d` into datestring.
+            """
+            if d is None:
+                return constants.METADATA_NOT_AVAILABLE
+            elif commit is None:
+                return d
+            else:
+                return "[%s](%s/commit/%s)" % (d, config.repo_url, commit)
+
+        updated_date = dict_get(post.meta, "date", "updated")
+        created_date = dict_get(post.meta, "date", "created")
+        original_date = dict_get(post.meta, "date", "original")
+        unique_users = dict_get(post.meta, "views", "total_users")
+
         return [
             f"### **[{post.title}](/{post.url})**",
             """
@@ -396,27 +398,26 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
             % (
                 "material-calendar-edit",
                 "material-calendar-plus",
-                "material-eye-plus"
-                if user_statistics_available
-                else "material-eye-remove",
-                self.get_meta(
-                    post, "date", "updated", default=self.METADATA_NOT_AVAILABLE
+                "material-eye-plus" if unique_users else "material-eye-remove",
+                datestr(updated_date, dict_get(post.meta, "commit", "updated")),
+                datestr(
+                    original_date or created_date,
+                    dict_get(post.meta, "commit", "created")
+                    if original_date is None
+                    else None,
                 ),
-                self.get_meta(
-                    post, "date", "created", default=self.METADATA_NOT_AVAILABLE
-                ),
-                self.get_meta(
-                    post, "views", "total_users", default=self.METADATA_NOT_AVAILABLE
-                ),
+                f"{unique_users} users"
+                if unique_users is not None
+                else constants.METADATA_NOT_AVAILABLE,
             ),
             (post.markdown or "")
-            .split(self.EXCERPT_DIVIDER)[0]
+            .split(constants.EXCERPT_DIVIDER)[0]
             .replace(f"# {post.title}", ""),
             f"*... [**Read more**](/{post.url})*",
         ]
 
     def _modify_markdown_on_series_index_page(
-        self, markdown: str, series: str, files: Files
+        self, markdown: str, series: str, files: Files, config: MkDocsConfig
     ):
         """
         Return a modified markdown text of series index page.
@@ -438,10 +439,12 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         ]
         for post in posts:
             joinlist.append("---")
-            joinlist.extend(self._get_page_excerpt(post))
+            joinlist.extend(self._get_page_excerpt(post, config))
         return "\n\n".join(joinlist)
 
-    def _modify_markdown_on_root_page(self, markdown: str, files: Files) -> str:
+    def _modify_markdown_on_root_page(
+        self, markdown: str, files: Files, config: MkDocsConfig
+    ) -> str:
         """
         Return a modified markdown text of root page.
         Initially I tried following;
@@ -476,11 +479,12 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
             reverse=True,
             key=(
                 lambda post: (
-                    self.get_meta(
-                        post, "date", "updated_raw", default=self.MIN_DATETIME
+                    dict_get(
+                        post.meta, "date", "updated_raw", default=constants.MIN_DATETIME
                     ),
-                    self.get_meta(
-                        post, "date", "created_raw", default=self.MIN_DATETIME
+                    dict_get(post.meta, "date", "original_raw")
+                    or dict_get(
+                        post.meta, "date", "created_raw", default=constants.MIN_DATETIME
                     ),
                     post.title,
                 )
@@ -499,8 +503,8 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
                 )
             elif (
                 i > self.config.git_dates.minimum_display
-                and self.get_meta(
-                    post, "date", "updated_raw", default=self.MIN_DATETIME
+                and dict_get(
+                    post.meta, "date", "updated_raw", default=constants.MIN_DATETIME
                 )
                 + self._non_recent_posts_age
                 < now
@@ -521,15 +525,15 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
             logger.debug(
                 "Embedding %s(date=%s) on index..",
                 post.title,
-                self.get_meta(post, "date", "updated_raw", default=None),
+                dict_get(post.meta, "date", "updated_raw", default=None),
             )
             joinlist.append("---")
-            joinlist.extend(self._get_page_excerpt(post))
+            joinlist.extend(self._get_page_excerpt(post, config))
 
         logger.debug("Created joinlist for index page")
         return "\n\n".join(joinlist)
 
-    @event_priority(LATE_EVENT_PRIORITY)
+    @event_priority(constants.LATE_EVENT_PRIORITY)
     @skip_if_disabled
     def on_page_markdown(
         self, markdown: str, *, page: Page, config: MkDocsConfig, files: Files
@@ -541,45 +545,87 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         # View metadata
         page.meta["views"] = self._views.get(page.title, None)
 
+        # Get meta lines
+        page.meta["meta_lines"] = self.get_git_exclude_lines(page)
+
         # Get git date metadata
         try:
-            logger.debug(
-                "Getting git date of page %s.. (%s)",
-                page.title,
+            meta_lines: int = dict_get(page.meta, "meta_lines")
+            logger.debug('Meta lines = %s on page "%s"', meta_lines, page.title)
+            created_hash, created_date = get_date_from_git(
                 page.file.abs_src_path,
+                "created",
+                line_start=meta_lines + 1,
             )
-            created_date = get_date_from_git(page.file.abs_src_path, "created")
-            updated_date = get_date_from_git(page.file.abs_src_path, "updated")
+            updated_hash, updated_date = get_date_from_git(
+                page.file.abs_src_path,
+                "updated",
+                line_start=meta_lines + 1,
+            )
         except FileNotFoundError:
             pass
         else:
-            page.meta["date"] = {
-                "created_raw": created_date,
-                "updated_raw": updated_date,
-                "created": created_date.strftime(self.config.git_dates.format),
-                "updated": updated_date.strftime(self.config.git_dates.format),
-            }
+            dict_merge_inplace(
+                page.meta,
+                {
+                    "date": {
+                        "created_raw": created_date,
+                        "updated_raw": updated_date,
+                        "created": created_date.strftime(self.config.git_dates.format),
+                        "updated": updated_date.strftime(self.config.git_dates.format),
+                    },
+                    "commit": {"created": created_hash, "updated": updated_hash},
+                },
+            )
+
+        # Modify original date if exists
+        original_date: date | None = dict_get(page.meta, "date", "original")
+        if original_date is not None:
+            original_datetime = datetime.combine(
+                original_date, constants.MIN_DATETIME.time(), pytz.UTC
+            )
+            dict_merge_inplace(
+                page.meta,
+                {
+                    "date": {
+                        "original_raw": original_datetime,
+                        "original": original_datetime.strftime(
+                            self.config.git_dates.format
+                        ),
+                    }
+                },
+                override=True,
+            )
 
         # Raise error on no excerpt
-        if self._is_blog_post_page(page) and self.EXCERPT_DIVIDER not in markdown:
+        if self._is_blog_post_page(page) and constants.EXCERPT_DIVIDER not in markdown:
             raise PluginError(
                 "Page '%s' does not have EXCERPT DIVIDER '%s'"
-                % (page.title, self.EXCERPT_DIVIDER)
+                % (page.title, constants.EXCERPT_DIVIDER)
             )
 
         # If post index?
         elif self._is_series_index_page(page):
             page.meta["no_comments"] = True
             series: str = page.file.src_uri.split("/")[-1].replace(".md", "").upper()
-            return self._modify_markdown_on_series_index_page(markdown, series, files)
+            return self._modify_markdown_on_series_index_page(
+                markdown, series, files, config
+            )
 
         # If root index page?
         elif page.is_index:
-            return self._modify_markdown_on_root_page(markdown, files)
+            return self._modify_markdown_on_root_page(markdown, files, config)
 
-        # Default case
+        # Default case; Series article
         else:
-            return None
+            return "\n\n".join(
+                [
+                    "!!! migrated",
+                    "    *This article is migrated from "
+                    "which I wrote on another website.*",
+                    markdown,
+                ]
+            )
 
     def _modify_nav_on_root_page(self, section: Navigation | Section):
         """
@@ -602,7 +648,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
             elif isinstance(item, Section):
                 self._modify_nav_on_root_page(item)
 
-    @event_priority(LATE_EVENT_PRIORITY)
+    @event_priority(constants.LATE_EVENT_PRIORITY)
     @skip_if_disabled
     def on_nav(
         self, nav: Navigation, *, config: MkDocsConfig, files: Files
@@ -616,7 +662,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
             logger.warning("Root page entry not found on navigation")
         return nav
 
-    @event_priority(LATE_EVENT_PRIORITY)
+    @event_priority(constants.LATE_EVENT_PRIORITY)
     @skip_if_disabled
     def on_env(
         self, env: Environment, *, config: MkDocsConfig, files: Files
@@ -628,7 +674,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         self._load_series_by_categories(files)
         return None
 
-    @event_priority(LATE_EVENT_PRIORITY)
+    @event_priority(constants.LATE_EVENT_PRIORITY)
     def on_shutdown(self) -> None:
         try:
             self._temp_dir.cleanup()

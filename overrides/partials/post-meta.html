@@ -8,12 +8,28 @@
                         {% include ".icons/material/calendar-edit.svg" %}
                         <div class="text">
                             Updated at {{ page.meta.date.updated }}
+                            {% if page.meta.commit.updated %}
+                            (
+                                <a href="{{ config.repo_url }}/commit/{{ page.meta.commit.updated }}">
+                                    {{ page.meta.commit.updated[:7] }}..
+                                </a>
+                            )
+                            {% endif %}
                         </div>
                     </li>
                     <li class="md-meta__item">
                         {% include ".icons/material/calendar-plus.svg" %}
                         <div class="text">
-                            Created at {{ page.meta.date.created }}
+                            Created at {{ page.meta.date.original or page.meta.date.created }}
+                            {% if page.meta.date.original %}
+                                (from somewhere else)
+                            {% elif page.meta.commit.created %}
+                                (
+                                    <a href="{{ config.repo_url }}/commit/{{ page.meta.commit.created }}">
+                                        {{ page.meta.commit.created[:7] }}..
+                                    </a>
+                                )
+                            {% endif %}
                         </div>
                     </li>
                 {% endif %}

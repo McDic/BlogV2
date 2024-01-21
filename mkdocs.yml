@@ -67,7 +67,7 @@ plugins:
         local_path: custom_data/views.json
         forced_update: false
       git_dates:
-        format: "%Y/%b/%d"
+        format: "%b %d, %Y"
   - git-revision-date-localized:
       enabled: false
       enable_creation_date: true
