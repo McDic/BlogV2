@@ -1,10 +1,11 @@
 function autoscrollGetY() {
     const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
     const scrollHeight = document.body.scrollHeight || document.documentElement.scrollHeight;
+    const screenHeight = window.screen.height;
     return {
         "top": scrollTop,
         "height": scrollHeight,
-        "needMoveDown": (scrollTop < 0.8 * scrollHeight)
+        "needMoveDown": (scrollTop < 0.8 * (scrollHeight - screenHeight))
     };
 }
 
