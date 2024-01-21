@@ -9,9 +9,8 @@ on:
       - .gitignore
       - .pre-commit-config.yaml
       - LICENSE
-      - additional_scripts/**
       - README.md
-      - requirements.txt
+      - requirements-dev.txt
   workflow_call:
   workflow_dispatch:
   schedule:

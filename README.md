@@ -6,7 +6,7 @@ This repository is used for [McDic's Blog](https://blog.mcdic.net).
 
 ```bash
 pip install -r requirements.txt
-mkdocs serve
+mkdocs -v serve
 ```
 
 * `mkdocs serve`: Start the live-reloading docs server.
