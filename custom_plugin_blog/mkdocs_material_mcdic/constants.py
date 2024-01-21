@@ -16,6 +16,14 @@ INDEX_RECENTLY_UPDATED_POSTS: typing.Final[
 *Following is a list of posts where each post is either
 one of %d recently updated posts or updated in recent %d days.*
 """.strip()
+POST_MIGRATION_NOTICE: typing.Final[
+    str
+] = """
+!!! migrated
+
+    *This article is migrated from which I wrote on another website.*
+""".strip()
+
 META_KEY_ADDITIONAL_CONTENTS: typing.Final[str] = "additional_contents"
 EXCERPT_DIVIDER: typing.Final[str] = "<!-- more -->"
 INDEX_SRC_URI: typing.Final[str] = "index.md"

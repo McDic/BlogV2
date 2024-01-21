@@ -616,16 +616,13 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         elif page.is_index:
             return self._modify_markdown_on_root_page(markdown, files, config)
 
-        # Default case; Series article
+        # If it is migrated?
+        elif dict_get(page.meta, "date", "original"):
+            return "\n\n".join([constants.POST_MIGRATION_NOTICE, markdown])
+
+        # Default case
         else:
-            return "\n\n".join(
-                [
-                    "!!! migrated",
-                    "    *This article is migrated from "
-                    "which I wrote on another website.*",
-                    markdown,
-                ]
-            )
+            return None
 
     def _modify_nav_on_root_page(self, section: Navigation | Section):
         """
