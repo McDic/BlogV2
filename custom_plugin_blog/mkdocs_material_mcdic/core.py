@@ -365,7 +365,11 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
                 f"Given file {file.abs_src_path} is not a documentation page"
             )
         with open(file.abs_src_path) as raw_file:
-            return raw_file.read().split(constants.EXCERPT_DIVIDER)[0].count("\n") + 1
+            content = raw_file.read().strip()
+        if constants.EXCERPT_DIVIDER in content:
+            return content.split(constants.EXCERPT_DIVIDER)[0].count("\n") + 1
+        else:
+            return 0
 
     def _get_page_excerpt(self, post: Page, config: MkDocsConfig) -> list[str]:
         """
