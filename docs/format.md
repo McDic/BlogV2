@@ -35,16 +35,17 @@ The navigation provided by `mkdocs-material` is available at the right side, if 
 Every blog post will provide following metadata;
 
 - Last updated date and created date of an article.
-  If commit hash is available, provide it with a link.
+    - If the original post date is explicitly specified, use that for created date instead.
+    - If a commit hash is available, provide it with a link.
 - A number of [active users](https://support.google.com/analytics/answer/12253918?hl=en#:~:text=is%20populated%20automatically.-,Active%20users,engagement_time_msec%20parameter%20from%20a%20website) visited this page since the beginning of the blog.
-  This is different from total views.
-  Since I am not using realtime data, this metadata is not available if the data is not available from GA4 yet.
+    - This is different from total views.
+    - Since I am not using realtime data, this metadata is not available if the data is not available from GA4 yet.
 
-!!! disclaimer
+    !!! disclaimer
 
-    The "number of active users" statistics is analyzed anonymously and
-    I do not provide any personalized information(who visited here, etc) on this blog,
-    since I do not intend to provide it and also I have no way to get it from GA4 API.
+        The "number of active users" statistics is analyzed anonymously and
+        I do not provide any personalized information(who visited here, etc) on this blog,
+        since I do not intend to provide it and also I have no way to get it from GA4 API.
 
 ---
 

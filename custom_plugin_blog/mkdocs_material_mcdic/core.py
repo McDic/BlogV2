@@ -393,13 +393,10 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         unique_users = dict_get(post.meta, "views", "total_users")
 
         return [
-            f"### **[{post.title}](/{post.url})**",
-            """
-| :%s: Updated | :%s: Created | :%s: Unique Visited |
-| :---: | :---: | :---: |
-| %s | %s | %s |
-"""
+            constants.METADATA_TABLE_MARKDOWN
             % (
+                post.title,
+                post.url,
                 "material-calendar-edit",
                 "material-calendar-plus",
                 "material-eye-plus" if unique_users else "material-eye-remove",
@@ -417,7 +414,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
             (post.markdown or "")
             .split(constants.EXCERPT_DIVIDER)[0]
             .replace(f"# {post.title}", ""),
-            f"*... [**Read more**](/{post.url})*",
+            constants.EXCERPT_READMORE % (post.url,),
         ]
 
     def _modify_markdown_on_series_index_page(
@@ -436,11 +433,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
             ),
             key=(lambda post: self.pop_category_id(post.title)),
         )
-        joinlist = [
-            markdown,
-            "# Series: %s" % (series,),
-            "*Following is a list of all blog posts on category %s.*" % (series,),
-        ]
+        joinlist = [markdown, constants.SERIES_INDEX_PREFIX % (series, series)]
         for post in posts:
             joinlist.append("---")
             joinlist.extend(self._get_page_excerpt(post, config))
@@ -516,10 +509,8 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
                 posts = posts[:i]
                 break
 
-        joinlist.append("## Recently updated posts")
         joinlist.append(
-            "*Following is a list of posts where each post is either "
-            "one of %d recently updated posts or updated in recent %d days.*"
+            constants.INDEX_RECENTLY_UPDATED_POSTS
             % (
                 self.config.git_dates.minimum_display,
                 self.config.git_dates.old_criteria,

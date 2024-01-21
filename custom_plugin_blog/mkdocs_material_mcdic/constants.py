@@ -13,9 +13,31 @@ TITLE_SUFFIX: typing.Final[str] = " - McDic's Blog"
 INDEX_RECENTLY_UPDATED_POSTS: typing.Final[
     str
 ] = """
+## Recently updated posts
+
 *Following is a list of posts where each post is either
-one of %d recently updated posts or updated in recent %d days.*
+one of %d recently updated posts or updated in recent %d days.
+Dates are provided from the git repository unless it is explicitly specified,
+and I exclude excerpt and metadata section for updates.*
 """.strip()
+SERIES_INDEX_PREFIX: typing.Final[
+    str
+] = """
+# Series: %s
+
+*Following is a list of all blog posts on category `%s`, sorted by numbering.*
+""".strip()
+METADATA_TABLE_MARKDOWN: typing.Final[
+    str
+] = """
+### **[%s](/%s)**
+
+| :%s: Updated | :%s: Created | :%s: Unique Visited |
+| :---: | :---: | :---: |
+| %s | %s | %s |
+""".strip()
+EXCERPT_READMORE: typing.Final[str] = "*... [**Read more**](/%s)*"
+
 POST_MIGRATION_NOTICE: typing.Final[
     str
 ] = """
