@@ -32,6 +32,7 @@ def get_date_from_git(
     gitlog.communicate()
 
     out, _err = headtail.communicate()
+    out = out.strip()
     if not out:
         raise FileNotFoundError("No git history found")
     result = out.decode().strip().split(" ")
