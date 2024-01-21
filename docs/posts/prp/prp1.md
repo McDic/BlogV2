@@ -5,12 +5,10 @@ tags:
   - math
   - probability
   - statistics
+date:
+  original: 2021-12-07
 title: PRP 1. Basic Principles of Probability
 ---
-
-!!! migrated
-
-    *This article is migrated from which I wrote on my old blog.*
 
 안녕하세요.
 이번 시리즈에서는 대학교 컴공에서 주로 가르치는 Probability and Random Process(이하 **PRP**)를 다루고자 합니다.

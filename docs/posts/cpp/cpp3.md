@@ -5,12 +5,10 @@ tags:
   - cpp
   - programming
   - computer-science
+date:
+  original: 2023-02-11
 title: CPP 3. Templates
 ---
-
-!!! migrated
-
-    *This article is migrated from which I wrote on my old blog.*
 
 안녕하세요. C++ 시리즈의 3번째 게시글입니다! 이번에는 Generic을 위한 개념인 `template`에 대해 알아보도록 하겠습니다.
 Template는 개념이 너무 방대하고, 서로가 상호참조하는 개념도 많아서, 순서대로 아래로 스크롤하면서 읽으시는 것보다는 필요한 개념을 트래킹해가면서 읽으시는 것을 추천합니다.

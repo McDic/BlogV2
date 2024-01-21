@@ -3,12 +3,10 @@ categories:
   - Poker
 tags:
   - poker
+date:
+  original: 2023-10-10
 title: POKER 2. How Poker Works in Korea
 ---
-
-!!! migrated
-
-    *This article is migrated from which I wrote on [PokerGosu](https://www.pokergosu.com) with some modifications.*
 
 안녕하세요. 이번 글에서는 국내에서 포커가 어떤 식으로 돌아가는지 서술해보고자 합니다.
 원래 모든 생각은 다 [Thoughts](/series/tho) 시리즈에 넣으려고 했다가, 그냥 특정 주제에 관련된 생각은 다른 시리즈에다가 포함시키기로 결정했고, 이 글은 [Poker](/series/poker) 시리즈의 2번째 글이 되었습니다.

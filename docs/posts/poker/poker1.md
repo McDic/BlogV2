@@ -4,12 +4,10 @@ categories:
 tags:
   - poker
   - probability
+date:
+  original: 2023-10-27
 title: POKER 1. Heads-Up Flop Probabilities
 ---
-
-!!! migrated
-
-    *This article is migrated from which I wrote on [PokerGosu](https://www.pokergosu.com).*
 
 안녕하세요. 이번 시리즈에서는 [포커](https://en.wikipedia.org/wiki/Poker)에 대해서 다뤄보고자 합니다.
 이 시리즈에서 다루는 포커는 [Texas Holdem](https://en.wikipedia.org/wiki/Texas_hold_%27em)이라는 가장 유명한 variant를 말합니다.

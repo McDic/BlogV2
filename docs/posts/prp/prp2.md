@@ -5,12 +5,10 @@ tags:
   - math
   - probability
   - statistics
+date:
+  original: 2021-12-12
 title: PRP 2. Bernoulli Processes
 ---
-
-!!! migrated
-
-    *This article is migrated from which I wrote on my old blog.*
 
 안녕하세요. 이 시리즈의 지난 article에서 *Basic Principles of Probability*에 대해 다뤄봤는데요. 이번에는 *Chapter 2. Bernoulli Processes*에 대해 다뤄보겠습니다.
 

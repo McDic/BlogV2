@@ -6,10 +6,6 @@ tags:
 title: POKER 3. Poker vs Investment
 ---
 
-!!! migrated
-
-    *This article is migrated from which I wrote on [PokerGosu](https://www.pokergosu.com) with some modifications.*
-
 안녕하세요. 이번 글에서는 포커와 투자를 비교해보고자 합니다.
 결론부터 미리 말씀드리면, 포커에 압도적인 재능이 있지 않은 이상 진지하게 큰 돈을 벌고 싶다면 포커 플레이어보다 투자자가 되는 것이 대부분의 경우에서 이득이라는 생각입니다.
 

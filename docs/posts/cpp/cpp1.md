@@ -5,12 +5,10 @@ tags:
   - cpp
   - programming
   - computer-science
+date:
+  original: 2023-01-30
 title: CPP 1. Type of Expressions and References
 ---
-
-!!! migrated
-
-    *This article is migrated from which I wrote on my old blog.*
 
 안녕하세요. 이번 시리즈에서는 C++에 관한 이것저것을 다루고자 합니다. 대부분의 경우 C++17 (gcc 기준)을 타겟팅하여 다룰 예정입니다. 거의 모든 시리즈가 1~2편밖에 안 나오는 것 같네요.. 사실 Linear Algebra 2편을 만들다가 회사에서의 일들, 이직 등 때문에 많은 플로우가 끊겼는데, 나머지 시리즈들도 시간이 남을 때 만들어보도록 하겠습니다.
 

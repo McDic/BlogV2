@@ -5,12 +5,10 @@ tags:
   - algorithm
   - data-structures
   - computer-science
+date:
+  original: 2021-12-12
 title: ALDS 1. Sparse Table
 ---
-
-!!! migrated
-
-    *This article is migrated from which I wrote on my old blog.*
 
 안녕하세요.
 이번 시리즈에서는 유용한 알고리즘과 자료구조를 몇 가지 다루어보고자 합니다.

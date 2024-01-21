@@ -5,12 +5,10 @@ tags:
   - algorithm
   - data-structures
   - career
+date:
+  original: 2023-09-20
 title: THO 5. About Coding Assessment Problems
 ---
-
-!!! migrated
-
-    *This article is migrated from which I wrote on [OKKY](https://okky.kr).*
 
 안녕하세요. 알려드릴 수 없는 어떤 회사에서 코딩테스트 문제를 직업으로써 만들어본 경험을 한번 풀어보고 싶어서 글을 쓰게 되었습니다.
 
