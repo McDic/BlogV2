@@ -270,7 +270,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
                 not title.endswith(constants.TITLE_SUFFIX)
                 and title != constants.TITLE_SUFFIX[3:]  # Index Page
             ):
-                logger.info(f'Invalid page title "{title}" is removed from views data')
+                logger.debug(f'Invalid page title "{title}" is removed from views data')
             else:
                 replaced_title = (
                     title.strip().replace(constants.TITLE_SUFFIX, "")
