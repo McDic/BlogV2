@@ -1,4 +1,5 @@
 ---
+title: Post Format
 no_comments: true
 ---
 

@@ -1,3 +1,9 @@
+---
+title: Blog Architecture
+alternative_titles:
+  - Architecture
+---
+
 # Blog Architecture
 
 This article introduces how my blog works.
@@ -86,6 +92,12 @@ So I decided to run [cronjob via Github Actions](https://docs.github.com/en/acti
 then [customized the blog post HTML section](https://squidfunk.github.io/mkdocs-material/customization/#extending-the-theme) and [my own plugin](#custom-mkdocs-plugin).
 
 So I failed to make my billing completely zero, but I think this is still feasible, considering I am providing unique user views on my blog posts.
+
+!!! warning "May not accurate"
+
+    I changed some posts paths and titles several times,
+    and I am aggregating them by summation,
+    which might be inaccurate in some cases.
 
 ---
 

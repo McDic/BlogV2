@@ -16,9 +16,9 @@ from mkdocs.structure.pages import Page
 
 from . import constants
 from .config import McDicBlogPluginConfig
-from .ga4 import ViewDataValue
-from .ga4 import fetch_data as fetch_ga4_views_data
+from .ga4 import ViewDataValue, fetch_ga4_data
 from .ga4 import get_client as get_ga4_client
+from .ga4 import parse_ga4_cache
 from .git import get_date_from_git
 from .utils import dict_get, dict_merge_inplace
 
@@ -117,7 +117,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         result = obj0.copy()
         for obj in objs:
             for key in obj:
-                result[key] = max(result[key], obj[key])  # type: ignore[literal-required] # noqa: E501
+                result[key] = sum(result[key], obj[key])  # type: ignore[literal-required] # noqa: E501
         return result
 
     @staticmethod
@@ -249,12 +249,12 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
             and self.config.post_views.local_path
             and not force_update_views
         ):
-            with open(self.config.post_views.local_path) as post_views_file:
-                self._views = json.load(post_views_file)
+            self._views = parse_ga4_cache(self.config.post_views.local_path)
+
         elif force_update_views:
             logger.info("Views data is forcibly updating..")
             client = get_ga4_client()
-            self._views = fetch_ga4_views_data(client)
+            self._views = fetch_ga4_data(client)
 
         for title, views in list(self._views.items()):
             if not isinstance(views, dict) or set(views.keys()) != {
@@ -266,7 +266,10 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
                 )
 
             del self._views[title]
-            if not title.endswith(" - McDic's Blog"):
+            if (
+                not title.endswith(constants.TITLE_SUFFIX)
+                and title != constants.TITLE_SUFFIX[3:]  # Index Page
+            ):
                 logger.info(f'Invalid page title "{title}" is removed from views data')
             else:
                 replaced_title = (
@@ -279,6 +282,20 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
                     )
                 else:
                     self._views[replaced_title] = views
+
+    def _get_views_by_titles(self, page: Page) -> int:
+        """
+        Get all views from given `page`.
+        """
+        result = dict_get(self._views, page.title, "total_users", default=0)
+        for alternative_title in dict_get(page.meta, "alternative_titles", default=[]):
+            result += dict_get(self._views, alternative_title, "total_users", default=0)
+            logger.debug(
+                "Result += %d from alternative title '%s'",
+                dict_get(self._views, alternative_title, "total_users", default=0),
+                alternative_title,
+            )
+        return result
 
     @event_priority(constants.EARLY_EVENT_PRIORITY)
     @skip_if_disabled
@@ -390,7 +407,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         updated_date = dict_get(post.meta, "date", "updated")
         created_date = dict_get(post.meta, "date", "created")
         original_date = dict_get(post.meta, "date", "original")
-        unique_users = dict_get(post.meta, "views", "total_users")
+        unique_users = dict_get(post.meta, "views")
 
         return [
             constants.METADATA_TABLE_MARKDOWN
@@ -408,7 +425,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
                     else None,
                 ),
                 f"{unique_users} users"
-                if unique_users is not None
+                if unique_users
                 else constants.METADATA_NOT_AVAILABLE,
             ),
             (post.markdown or "")
@@ -538,7 +555,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         I directly modify the metadata here.
         """
         # View metadata
-        page.meta["views"] = self._views.get(page.title, None)
+        page.meta["views"] = self._get_views_by_titles(page)
 
         # Get meta lines
         page.meta["meta_lines"] = self.get_git_exclude_lines(page)

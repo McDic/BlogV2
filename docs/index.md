@@ -1,5 +1,9 @@
 ---
+title: Main Page
 no_comments: true
+alternative_titles:
+    - ""
+    - McDic's Blog
 ---
 
 # Main Page

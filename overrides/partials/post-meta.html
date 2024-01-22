@@ -33,11 +33,11 @@
                         </div>
                     </li>
                 {% endif %}
-                {% if page.meta.views.total_users %}
+                {% if page.meta.views %}
                     <li class="md-meta__item">
                         {% include ".icons/material/eye-plus.svg" %}
                         <div class="text">
-                            {{ page.meta.views.total_users }} unique users visited
+                            {{ page.meta.views }} unique users visited
                         </div>
                     </li>
                 {% else %}

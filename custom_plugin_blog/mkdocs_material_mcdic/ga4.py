@@ -1,8 +1,7 @@
-import argparse
 import json
 import os
 from pathlib import Path
-from typing import TypedDict
+from typing import Generator, TypedDict
 
 from google.analytics import data_v1beta
 from google.oauth2 import service_account
@@ -45,7 +44,7 @@ def get_client(
     return data_v1beta.BetaAnalyticsDataClient(credentials=credentials)
 
 
-def fetch_data(
+def fetch_ga4_data(
     client: data_v1beta.BetaAnalyticsDataClient,
     property_id: str = "",
 ) -> dict[str, ViewDataValue]:
@@ -82,21 +81,32 @@ def fetch_data(
     return result
 
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--json-file", "-o", type=Path, required=True)
-    parser.add_argument("--credential", "-c", type=Path, default=None)
-    namespace = parser.parse_args()
+def parse_ga4_cache(report_path: Path | str) -> dict[str, ViewDataValue]:
+    """
+    Yield values from run report.
+    Used https://ga-dev-tools.google/ga4/query-explorer/.
+    """
+    with open(report_path) as raw_file:
+        obj = json.load(raw_file)
+    assert obj["dimensionHeaders"] == [{"name": "pageTitle"}]
+    metrics: list[str] = [header["name"] for header in obj["metricHeaders"]]
+    result: dict[str, ViewDataValue] = {}
 
-    client = (
-        get_client()
-        if namespace.credential is None
-        else data_v1beta.BetaAnalyticsDataClient(
-            credentials=service_account.Credentials.from_service_account_file(
-                namespace.credential
-            )
-        )
-    )
-    result = fetch_data(client)
-    with open(namespace.json_file, "w") as file:
-        json.dump(result, file)
+    for row in obj["rows"]:
+        dimension_values = row["dimensionValues"]
+        metric_values = row["metricValues"]
+        assert len(dimension_values) == 1
+        title = dimension_values[0]["value"]
+        dummy: ViewDataValue = {"total_users": 0, "views": 0}
+
+        for metric, metric_value in zip(metrics, metric_values, strict=True):
+            match metric:
+                case "screenPageViews":
+                    dummy["views"] = int(metric_value["value"])
+                case "totalUsers":
+                    dummy["total_users"] = int(metric_value["value"])
+                case e:
+                    raise ValueError(f"Invalid metric {e}")
+        result[title] = dummy
+
+    return result
