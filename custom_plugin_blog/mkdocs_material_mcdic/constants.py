@@ -18,7 +18,7 @@ INDEX_RECENTLY_UPDATED_POSTS: typing.Final[
 *Following is a list of posts where each post is either
 one of %d recently updated posts or updated in recent %d days.
 Dates are provided from the git repository unless it is explicitly specified,
-and I exclude excerpt and metadata section for updates.*
+and I don't count excerpt and metadata section as post updates.*
 """.strip()
 SERIES_INDEX_PREFIX: typing.Final[
     str
