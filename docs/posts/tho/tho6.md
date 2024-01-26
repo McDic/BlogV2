@@ -13,7 +13,6 @@ title: THO 6. What Every Korean Should Know About Military
 정작 이 글은 별로 많은 정보를 담고 있지는 않네요..
 
 <!-- more -->
-
 ---
 
 ## Be either wise or fast

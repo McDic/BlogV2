@@ -1,9 +1,15 @@
 {% extends "base.html" %}
 
 {% block site_meta %}
-
     {{ super() }}
     <meta name="naver-site-verification" content="350e113007a0eb7457df0e7257d064821aadb302" />
     <meta name="google-site-verification" content="a03bDk70M68JfTAtAahtI2Rgnez2v29KYXrRPM0X_to" />
+{% endblock %}
 
+{% block analytics %}
+    {% if page.meta.enable_analytics %}
+        {{ super() }}
+    {% else %}
+        <!-- ANALYTICS IS NOT LOADED. -->
+    {% endif %}
 {% endblock %}

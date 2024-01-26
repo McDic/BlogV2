@@ -53,7 +53,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
     def __init__(self) -> None:
         super().__init__()
         self._views: dict[str, ViewDataValue] = {}
-        self._is_gh_deploy: bool = False
+        self._build_mode: typing.Literal["gh-deploy", "serve", "build"]
         self._root_found_on_nav: bool = False
         self._series_section: Section = Section("Series", [])
         self._non_recent_posts_age: timedelta = timedelta(days=1)
@@ -230,15 +230,14 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         """
         Make this update views on `gh-deploy`.
         """
-        if command == "gh-deploy":
-            self._is_gh_deploy = True
+        self._build_mode = command
         self._make_new_tempdir()
 
     def _get_views(self) -> None:
         """
         Get views data.
         """
-        force_update_views: bool = self._is_gh_deploy
+        force_update_views: bool = self._build_mode == "gh-deploy"
         if self.config.post_views:
             force_update_views = (
                 force_update_views or self.config.post_views.forced_update
@@ -516,7 +515,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
                     % (post.title,)
                 )
             elif (
-                i > self.config.git_dates.minimum_display
+                i >= self.config.git_dates.minimum_display
                 and dict_get(
                     post.meta, "date", "updated_raw", default=constants.MIN_DATETIME
                 )
@@ -556,6 +555,10 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         """
         # View metadata
         page.meta["views"] = self._get_views_by_titles(page)
+
+        # Disable analytics if serving
+        if self._build_mode != "serve":
+            page.meta["enable_analytics"] = True
 
         # Get meta lines
         page.meta["meta_lines"] = self.get_git_exclude_lines(page)
