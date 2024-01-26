@@ -22,7 +22,7 @@
                         <div class="text">
                             Created at {{ page.meta.date.original or page.meta.date.created }}
                             {% if page.meta.date.original %}
-                                (from somewhere else)
+                                ( from outside )
                             {% elif page.meta.commit.created %}
                                 (
                                     <a href="{{ config.repo_url }}/commit/{{ page.meta.commit.created }}">
