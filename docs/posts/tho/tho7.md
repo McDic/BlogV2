@@ -4,7 +4,6 @@ categories:
 tags:
   - probability
 title: THO 7. Getting Used to Probabilistic Prediction
-draft: true
 ---
 
 세상에는 어떤 문제를 해결하기 위한 의사결정을 내리는 것이 어려운 경우가 많습니다.
