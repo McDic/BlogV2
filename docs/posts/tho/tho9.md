@@ -5,7 +5,7 @@ tags:
   - math
   - algorithm
   - career
-title: THO 9. Analyzing Ad-hoc Problems
+title: THO 9. About Ad-hoc Problems
 ---
 
 [애드혹 문제](https://usaco.guide/bronze/ad-hoc?lang=cpp)란, 일반적인 방법으로 잘 풀리지 않고 참신한 방식으로 접근해야 풀릴 수 있는 부류의 문제를 말합니다.
