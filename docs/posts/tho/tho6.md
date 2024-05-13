@@ -128,7 +128,7 @@ title: THO 6. What Every Korean Should Know About Military
 병역의무를 빠르게 완료해야 하는 또 다른 이유는,
 대한민국에서는 군 복무자에 대한 인식 및 처우가 매우 좋지 않기 때문입니다.
 
-![img1](https://i.namu.wiki/i/0zITnJA2J2b3-6GImY3ml-T9MAv5uwINUu84LFItS4_1Db0G_M3Fzhv44kj0u8l7nrFak7c0bi2ZXvc1LgyMJz28QtZmb-DgtNzDxMfUIucOgS0DrL41IkOMVn00jYJtaXD2Q22SsOnjW50PEdioLQ.webp)
+![img1](/assets/posts/tho/military/gzbm.png)
 
 !!! caption
 
