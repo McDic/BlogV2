@@ -57,3 +57,4 @@ RE_POST_FINDER: typing.Final[re.Pattern] = re.compile(
     r"^posts\/[a-zA-Z\-]+\/[a-zA-Z\-]*[0-9]+\.md$"
 )
 RE_POSTINDEX_FINDER: typing.Final[re.Pattern] = re.compile(r"^series\/[a-zA-Z\-]+\.md$")
+RE_RECENTPOSTS_FINDER: typing.Final[re.Pattern] = re.compile(r"^recent\/[0-9]+\.md$")

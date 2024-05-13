@@ -67,6 +67,7 @@ plugins:
         forced_update: false
       git_dates:
         format: "%b %d, %Y"
+      historical_batch: 10
   - git-revision-date-localized:
       enabled: false
       enable_creation_date: true

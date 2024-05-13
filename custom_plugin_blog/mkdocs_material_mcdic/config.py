@@ -18,9 +18,6 @@ class McDicBlogPluginGitDateConfig(Config):
     """
 
     format = ConfigOptions.Type(str, default="%Y/%b/%d %H:%M:%S %Z")
-    # 5 posts are always displayed in index
-    minimum_display = ConfigOptions.Type(int, default=5)
-    old_criteria = ConfigOptions.Type(int, default=7)  # Default 1 week
 
 
 class McDicBlogPluginConfig(Config):
@@ -31,3 +28,4 @@ class McDicBlogPluginConfig(Config):
     enabled = ConfigOptions.Type(bool, default=True)
     post_views = ConfigOptions.SubConfig(McDicBlogPluginPostViewsConfig)
     git_dates = ConfigOptions.SubConfig(McDicBlogPluginGitDateConfig)
+    historical_batch = ConfigOptions.Type(int, default=10)
