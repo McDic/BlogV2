@@ -63,7 +63,6 @@ plugins:
   - mcdic:
       enabled: true
       post_views:
-        local_path: custom_data/views.json
         forced_update: false
       git_dates:
         format: "%b %d, %Y"
