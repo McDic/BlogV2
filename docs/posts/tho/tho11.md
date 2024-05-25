@@ -68,7 +68,7 @@ title: THO 11. The World Administrator
 !!! caption
 
     [2019년 홍콩 시위](https://en.wikipedia.org/wiki/2019%E2%80%932020_Hong_Kong_protests)에서 공안이 최루탄을 발사하는 모습입니다.
-    이 날 72명의 시민이 부상을 입었습니다.
+    이 날 사진의 현장에서 72명의 시민이 부상을 입었습니다.
     시위대가 저지하고자 했던 홍콩 보안법은 결국 강행되었으며, 시위는 실패했습니다.
     (출처: [NBC News](https://www.nbcnews.com/news/world/least-72-injured-violent-hong-kong-protests-over-extradition-bill-n1016866))
 
