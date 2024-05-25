@@ -115,7 +115,7 @@ title: THO 11. The World Administrator
 
 !!! references
 
-    [Similarweb](https://www.similarweb.com/)과 [Semrush](https://www.semrush.com/) 등의 데이터를 정리한 [위키 문서](https://en.wikipedia.org/wiki/List_of_most-visited_websites)를 퍼온 것입니다.
+    전 세계 웹사이트 트래픽 순위로, [Similarweb](https://www.similarweb.com/)과 [Semrush](https://www.semrush.com/) 등의 데이터를 정리한 [위키 문서](https://en.wikipedia.org/wiki/List_of_most-visited_websites)를 퍼온 것입니다.
     보시다시피, 지구 상의 대부분의 웹 트래픽은 미국 회사로 흐르고 있습니다.
 
 | 순위 | 회사 | 시가총액 | 국가 |
@@ -137,7 +137,7 @@ title: THO 11. The World Administrator
 !!! references
 
     2024년 5월 26일 기준, 전 세계의 기술 회사들의 시가총액 순위를 나타낸 것입니다.
-    한국 GDP가 상위 5개의 회사들의 시가총액보다 낮다는 점에 주목해주시기 바랍니다.
+    대부분의 시가총액이 미국 회사에 쏠려있고, 특히 한국 GDP가 상위 5개의 회사들의 시가총액보다 낮다는 점에 주목해주시기 바랍니다.
     (출처: [Companies Market Cap](https://companiesmarketcap.com/tech/largest-tech-companies-by-market-cap/))
 
 이 테크 회사들이 전 세계에 미치는 영향력은 어마무시하며, 어지간한 작은 나라들보다 더 파급력이 큽니다.
