@@ -545,10 +545,10 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
             ),
             key=(lambda post: self.pop_category_id(post.title)),
         )
-        joinlist = [markdown, constants.SERIES_INDEX_PREFIX % (series, series)]
+        joinlist = [markdown, constants.SERIES_INDEX_PREFIX % (series, series), "---"]
         for post in posts:
-            joinlist.append("---")
             joinlist.extend(self._get_page_excerpt(post, config))
+            joinlist.append("---")
         return "\n\n".join(joinlist)
 
     def _get_sorted_pages_by_date(self, files: Files) -> list[Page]:
@@ -594,6 +594,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         ]
         for page in self._get_sorted_pages_by_date(files)[: self.config.sorted.recent]:
             joinlist.extend(self._get_page_excerpt(page, config))
+            joinlist.append("---")
         return "\n\n".join(joinlist)
 
     def _modify_markdown_on_most_viewed_posts_page(
@@ -613,6 +614,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
             reverse=True,
         )[: self.config.sorted.most_viewed]:
             joinlist.extend(self._get_page_excerpt(page, config))
+            joinlist.append("---")
         return "\n\n".join(joinlist)
 
     def _modify_markdown_on_archives_page(
@@ -643,6 +645,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
             ),
         ):
             joinlist.extend(self._get_page_excerpt(page, config))
+            joinlist.append("---")
         return "\n\n".join(joinlist)
 
     @event_priority(constants.LATE_EVENT_PRIORITY)
