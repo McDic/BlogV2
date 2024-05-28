@@ -1,7 +1,8 @@
 import json
 import os
+from datetime import date
 from pathlib import Path
-from typing import Generator, TypedDict
+from typing import TypedDict
 
 from google.analytics import data_v1beta
 from google.oauth2 import service_account
@@ -47,6 +48,7 @@ def get_client(
 def fetch_ga4_data(
     client: data_v1beta.BetaAnalyticsDataClient,
     property_id: str = "",
+    start_date: date = date(2019, 1, 1),
 ) -> dict[str, ViewDataValue]:
     """
     Fetch some data from GA4.
@@ -57,7 +59,9 @@ def fetch_ga4_data(
             "property": f"properties/{property_id or os.environ['GC_PROPERTY_ID']}",
             "dimensions": [{"name": "pageTitle"}],
             "metrics": [{"name": "screenPageViews"}, {"name": "totalUsers"}],
-            "date_ranges": [{"start_date": "2019-01-01", "end_date": "today"}],
+            "date_ranges": [
+                {"start_date": start_date.isoformat(), "end_date": "today"}
+            ],
         }
     )
     metrics = [header.name for header in response.metric_headers]
