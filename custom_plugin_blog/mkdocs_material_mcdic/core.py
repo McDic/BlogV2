@@ -1,5 +1,5 @@
-import json
 import os
+import re
 import tempfile
 import typing
 from datetime import date, datetime, timedelta
@@ -54,10 +54,12 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         super().__init__()
         self._views: dict[str, ViewDataValue] = {}
         self._build_mode: typing.Literal["gh-deploy", "serve", "build"]
+
         self._root_found_on_nav: bool = False
         self._series_section: Section = Section("Series", [])
-        self._recent_section: Section = Section("Recent Posts", [])
-        self._non_recent_posts_age: timedelta = timedelta(days=1)
+        self._archives_section: Section = Section("Archives", [])
+        self._sorted_section: Section = Section("Posts Sorted By", [])
+
         self._temp_dir: tempfile.TemporaryDirectory
         self._cached_sorted_pages_by_date: list[Page] = []
 
@@ -96,29 +98,49 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
             use_directory_urls=True,
         )
 
+    def _check_page_by(
+        self, page: Page, finder: re.Pattern, check_relative_path: bool
+    ) -> bool:
+        """
+        Common method to classify pages.
+        """
+        return bool(
+            finder.match(page.file.src_path)
+            and (
+                not check_relative_path
+                or Path(page.file.abs_src_path).is_relative_to(self._temp_dir.name)
+            )
+        )
+
     def _is_blog_post_page(self, page: Page) -> bool:
         """
         Return if given `page` is a blog post page.
         """
-        return bool(constants.RE_POST_FINDER.match(page.file.src_path))
+        return self._check_page_by(page, constants.RE_POST_FINDER, False)
 
     def _is_series_index_page(self, page: Page) -> bool:
         """
         Return if given `page` is a series index page.
         """
-        return bool(
-            constants.RE_POSTINDEX_FINDER.match(page.file.src_path)
-            and Path(page.file.abs_src_path).is_relative_to(self._temp_dir.name)
-        )
+        return self._check_page_by(page, constants.RE_POST_INDEX_FINDER, True)
 
     def _is_recent_posts_page(self, page: Page) -> bool:
         """
         Return if given `page` is a recent posts page.
         """
-        return bool(
-            constants.RE_RECENTPOSTS_FINDER.match(page.file.src_path)
-            and Path(page.file.abs_src_path).is_relative_to(self._temp_dir.name)
-        )
+        return self._check_page_by(page, constants.RE_RECENT_POSTS_FINDER, True)
+
+    def _is_most_viewed_posts_page(self, page: Page) -> bool:
+        """
+        Return if given `page` is most viewed posts page.
+        """
+        return self._check_page_by(page, constants.RE_MOST_VIEWED_FINDER, True)
+
+    def _is_archives_page(self, page: Page) -> bool:
+        """
+        Return if given `page` is archives page.
+        """
+        return self._check_page_by(page, constants.RE_ARCHIVES_FINDER, True)
 
     @staticmethod
     def aggregate_views(obj0: ViewDataValue, *objs: ViewDataValue) -> ViewDataValue:
@@ -156,36 +178,44 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         else:
             return page.title.split(".")[0].split(" ")[0]
 
-    def _link_recent_pages(self, files: Files):
+    def _link_archived_pages(self, files: Files):
         """
-        Link prev/next pages between recent pages.
+        Link prev/next pages between archive pages.
         """
 
         target_pages: list[tuple[int, Page]] = []
         for file in files.documentation_pages():
             page = file.page
-            if page is not None and self._is_recent_posts_page(page):
-                index = int(file.src_path.split("/")[-1].replace(".md", ""))
-                target_pages.append((index, page))
+            if page is not None and self._is_archives_page(page):
+                year = int(file.src_path.split("/")[-1].replace(".md", ""))
+                target_pages.append((year, page))
+        target_pages.sort()
 
-        target_pages_sorted: list[Page] = [page for _i, page in sorted(target_pages)]
-        for i, page in enumerate(target_pages_sorted):
+        self._archives_section.children = []
+        for i, (year, page) in enumerate(target_pages):
             if i > 0:
-                page.previous_page = target_pages_sorted[i - 1]
+                page.previous_page = target_pages[i - 1][1]
             if i + 1 < len(target_pages):
-                page.next_page = target_pages_sorted[i + 1]
+                page.next_page = target_pages[i + 1][1]
+            self._archives_section.children.append(page)
+            page.meta["title"] = str(year)
+            page.parent = self._archives_section
 
-        self._recent_section.children = []
-        for page in target_pages_sorted:
-            self._recent_section.children.append(page)
-            page.parent = self._recent_section
+    def _prepare_sorted_section(self, files: Files):
+        """
+        Prepare sorted section of nav.
+        """
 
+        self._sorted_section.children = []
         for file in files.documentation_pages():
             page = file.page
-            if page is not None and page.is_index:
-                target_pages_sorted[0].previous_page = page
-                page.next_page = target_pages_sorted[0]
-                break
+            if page is None:
+                continue
+            elif self._is_recent_posts_page(page) or self._is_most_viewed_posts_page(
+                page
+            ):
+                self._sorted_section.children.append(page)
+                page.parent = self._sorted_section
 
     def _load_series_by_categories(self, files: Files):
         """
@@ -217,6 +247,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
                 continue
             elif is_series_index_page:
                 series_index_pages[category] = file.page
+                file.page.meta["title"] = category
                 continue
 
             if category not in used_pages:
@@ -352,6 +383,14 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         """
         Validate configs in this step.
         """
+        if self.config.sorted.recent < 1:
+            raise PluginError(
+                "Number of recent posts to show should be positive integer"
+            )
+        if self.config.sorted.most_viewed < 1:
+            raise PluginError(
+                "Number of most viewed posts to show should be positive integer"
+            )
         return None
 
     @event_priority(constants.EARLY_EVENT_PRIORITY)
@@ -375,16 +414,20 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         used_series: set[str] = set()
         posts_num: int = 0
         for file in files.documentation_pages():
-            if constants.RE_POST_FINDER.match(file.src_path):
-                posts_num += 1
-                _, series, filename = file.src_path.split("/")
-                index: int = int(filename.replace(series, "").replace(".md", ""))
-                file.dest_uri = f"series/{series}/{index}/index.html"
-                file.abs_dest_path = os.path.join(config.site_dir, file.dest_path)
-                file.url = f"series/{series}/{index}"
-                used_series.add(series)
+            # Should not use self._yield_blog_posts(),
+            # because pages are not prepared yet
+            if not constants.RE_POST_FINDER.match(file.src_uri):
+                continue
+            posts_num += 1
+            _, series, filename = file.src_path.split("/")
+            index: int = int(filename.replace(series, "").replace(".md", ""))
+            file.dest_uri = f"series/{series}/{index}/index.html"
+            file.abs_dest_path = os.path.join(config.site_dir, file.dest_path)
+            file.url = f"series/{series}/{index}"
+            used_series.add(series)
 
         # Make new series index files
+        logger.info("Used series = %s", used_series)
         for series in used_series:
             files.append(
                 self._create_tempfile(
@@ -394,10 +437,13 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
                 )
             )
 
-        # Create recent posts page
-        assert posts_num > 0
-        for i in range((posts_num - 1) // self.config.historical_batch + 1):
-            files.append(self._create_tempfile(config, "recent", f"{i+1}.md"))
+        # Create sorted page
+        files.append(self._create_tempfile(config, "sorted", "recent.md"))
+        files.append(self._create_tempfile(config, "sorted", "most_viewed.md"))
+
+        # Create archives pages
+        for year in range(2021, date.today().year + 1):
+            files.append(self._create_tempfile(config, "archives", f"{year}.md"))
 
         # Move root file to back
         root_file = files.get_file_from_path(constants.INDEX_SRC_URI)
@@ -475,6 +521,16 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
             constants.EXCERPT_READMORE % (post.url,),
         ]
 
+    def _yield_blog_posts(self, files: Files) -> typing.Generator[Page, None, None]:
+        """
+        Yield all blog posts.
+        """
+        yield from (
+            file.page
+            for file in files.documentation_pages()
+            if file.page is not None and self._is_blog_post_page(file.page)
+        )
+
     def _modify_markdown_on_series_index_page(
         self, markdown: str, series: str, files: Files, config: MkDocsConfig
     ) -> str:
@@ -483,11 +539,9 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         """
         posts: list[Page] = sorted(
             (
-                file.page
-                for file in files.documentation_pages()
-                if file.page is not None
-                and self._is_blog_post_page(file.page)
-                and self.get_category(file, abbreviated=True) == series
+                page
+                for page in self._yield_blog_posts(files)
+                if self.get_category(page.file, abbreviated=True) == series
             ),
             key=(lambda post: self.pop_category_id(post.title)),
         )
@@ -499,16 +553,12 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
 
     def _get_sorted_pages_by_date(self, files: Files) -> list[Page]:
         """
-        Create a sorted pages by updated/created date, and cache/return it.
+        Create a sorted blog posts by updated/created date, and cache/return it.
         If this is already cached, return it without doing anything.
         """
         if not self._cached_sorted_pages_by_date:
             self._cached_sorted_pages_by_date = sorted(
-                (
-                    file.page
-                    for file in files.documentation_pages()
-                    if file.page is not None and self._is_blog_post_page(file.page)
-                ),
+                self._yield_blog_posts(files),
                 reverse=True,
                 key=(
                     lambda post: (
@@ -532,20 +582,67 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         return self._cached_sorted_pages_by_date
 
     def _modify_markdown_on_recent_posts_page(
-        self, index: int, markdown: str, files: Files, config: MkDocsConfig
+        self, markdown: str, files: Files, config: MkDocsConfig
     ) -> str:
         """
         Return a modified markdown text for recent posts page.
         """
-        sorted_pages = self._get_sorted_pages_by_date(files)
-        prev_index = (index - 1) * self.config.historical_batch
-        next_index = prev_index + self.config.historical_batch
-        if next_index > len(sorted_pages):
-            next_index = len(sorted_pages)
-        joinlist = ["# Recent Posts #%d..#%d" % (prev_index + 1, next_index)]
-        for page in sorted_pages[prev_index:next_index]:
+        joinlist: list[str] = [
+            markdown,
+            constants.RECENT_POSTS_PREFIX % (self.config.sorted.recent,),
+            "---",
+        ]
+        for page in self._get_sorted_pages_by_date(files)[: self.config.sorted.recent]:
             joinlist.extend(self._get_page_excerpt(page, config))
-            joinlist.append("---")
+        return "\n\n".join(joinlist)
+
+    def _modify_markdown_on_most_viewed_posts_page(
+        self, markdown: str, files: Files, config: MkDocsConfig
+    ) -> str:
+        """
+        Return a modified markdown text for most viewed posts page.
+        """
+        joinlist: list[str] = [
+            markdown,
+            constants.MOST_VIEWED_POSTS_PREFIX % (self.config.sorted.most_viewed,),
+            "---",
+        ]
+        for page in sorted(
+            self._yield_blog_posts(files),
+            key=(lambda page: page.meta.get("views", 0)),
+            reverse=True,
+        )[: self.config.sorted.most_viewed]:
+            joinlist.extend(self._get_page_excerpt(page, config))
+        return "\n\n".join(joinlist)
+
+    def _modify_markdown_on_archives_page(
+        self, year: int, markdown: str, files: Files, config: MkDocsConfig
+    ) -> str:
+        """
+        Return a modified markdown text for archives page.
+        """
+        joinlist: list[str] = [
+            markdown,
+            constants.ARCHIVES_PREFIX % (year, year),
+            "---",
+        ]
+        for page in sorted(
+            filter(
+                lambda page: (
+                    (
+                        page.meta.get("date", {}).get("original_raw", None)
+                        or page.meta.get("date", {}).get("created_raw", date.min)
+                    ).year
+                    == year
+                ),
+                self._get_sorted_pages_by_date(files),
+            ),
+            key=(
+                lambda page: page.meta["date"].get("original_raw")
+                or page.meta["date"]["created_raw"]
+            ),
+        ):
+            joinlist.extend(self._get_page_excerpt(page, config))
         return "\n\n".join(joinlist)
 
     @event_priority(constants.LATE_EVENT_PRIORITY)
@@ -623,6 +720,9 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
                 % (page.title, constants.EXCERPT_DIVIDER)
             )
 
+        # -------------------------------------------
+        # Below cases are for generated pages
+
         # If series index?
         elif self._is_series_index_page(page):
             page.meta["no_comments"] = True
@@ -631,12 +731,28 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
                 markdown, series, files, config
             )
 
+        # If recent posts?
         elif self._is_recent_posts_page(page):
-            index = int(page.file.src_uri.split("/")[-1].replace(".md", ""))
             page.meta["no_comments"] = True
-            return self._modify_markdown_on_recent_posts_page(
-                index, markdown, files, config
+            page.meta["title"] = "Recent"
+            return self._modify_markdown_on_recent_posts_page(markdown, files, config)
+
+        # If most viewed?
+        elif self._is_most_viewed_posts_page(page):
+            page.meta["no_comments"] = True
+            page.meta["title"] = "Most Viewed"
+            return self._modify_markdown_on_most_viewed_posts_page(
+                markdown, files, config
             )
+
+        # If archives?
+        elif self._is_archives_page(page):
+            page.meta["no_comments"] = True
+            year = int(page.file.src_uri.split("/")[-1].replace(".md", ""))
+            return self._modify_markdown_on_archives_page(year, markdown, files, config)
+
+        # -------------------------------------------
+        # Below cases are for normal documents
 
         # If it is migrated?
         elif dict_get(page.meta, "date", "original"):
@@ -660,14 +776,27 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
                     raise PluginError("Found duplicated root page entries")
                 logger.debug("Entry of root page found: %s", item)
                 self._root_found_on_nav = True
-                iterable.insert(i + 1, self._recent_section)
-                self._recent_section.parent = (
-                    section if isinstance(section, Section) else None
-                )
-                iterable.insert(i + 2, self._series_section)
+
+                target_index = i + 1
+
+                iterable.insert(target_index, self._series_section)
                 self._series_section.parent = (
                     section if isinstance(section, Section) else None
                 )
+                target_index += 1
+
+                iterable.insert(target_index, self._archives_section)
+                self._archives_section.parent = (
+                    section if isinstance(section, Section) else None
+                )
+                target_index += 1
+
+                iterable.insert(target_index, self._sorted_section)
+                self._sorted_section.parent = (
+                    section if isinstance(section, Section) else None
+                )
+                target_index += 1
+
             elif isinstance(item, Section):
                 self._modify_nav_on_root_page(item)
 
@@ -695,7 +824,8 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         - Alter global navigation and prev/next page buttons of each page.
         """
         self._load_series_by_categories(files)
-        self._link_recent_pages(files)
+        self._link_archived_pages(files)
+        self._prepare_sorted_section(files)
         return None
 
     @event_priority(constants.LATE_EVENT_PRIORITY)

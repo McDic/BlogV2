@@ -60,6 +60,9 @@ plugins:
       git_dates:
         format: "%b %d, %Y"
       historical_batch: 10
+      sorted:
+        recent: 20
+        most_viewed: 20
   - git-revision-date-localized:
       enabled: false
       enable_creation_date: true
