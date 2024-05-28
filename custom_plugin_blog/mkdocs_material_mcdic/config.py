@@ -20,6 +20,15 @@ class McDicBlogPluginGitDateConfig(Config):
     format = ConfigOptions.Type(str, default="%Y/%b/%d %H:%M:%S %Z")
 
 
+class McDicBlogPluginSortedConfig(Config):
+    """
+    Subconfig class for McDic's Blog plugin on sorted posts.
+    """
+
+    recent = ConfigOptions.Type(int)
+    most_viewed = ConfigOptions.Type(int)
+
+
 class McDicBlogPluginConfig(Config):
     """
     Config class for McDic's Blog plugin.
@@ -29,3 +38,4 @@ class McDicBlogPluginConfig(Config):
     post_views = ConfigOptions.SubConfig(McDicBlogPluginPostViewsConfig)
     git_dates = ConfigOptions.SubConfig(McDicBlogPluginGitDateConfig)
     historical_batch = ConfigOptions.Type(int, default=10)
+    sorted = ConfigOptions.SubConfig(McDicBlogPluginSortedConfig)
