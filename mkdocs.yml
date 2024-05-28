@@ -39,13 +39,6 @@ nav:
   - RSS:
     - Created: /feed_rss_created.xml
     - Updated: /feed_rss_updated.xml
-  - Problemsetting:
-    - Codeforces: https://codeforces.com/contests/writer/McDic
-    - BOJ: https://www.acmicpc.net/problemset?sort=no_asc&author=spongbob9876&author_type=1
-    - Codechef: https://www.codechef.com/users/mcdic
-  - Minecraft Maps:
-    - The Rotator: https://www.planetminecraft.com/project/19-snapshot-the-rotator/
-    - Highliner: https://www.planetminecraft.com/project/1102-highliner/
   - About: about.md
   - AMA: ama.md
 
