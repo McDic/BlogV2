@@ -81,7 +81,7 @@ int main(void)
 }
 ```
 
-### Overriding methods or properties
+### Macro-overriding methods or properties
 
 이런 걸 왜 하는지 모르겠습니다.
 VSCode, CLion 같은 현대 IDE에서는 이러한 변수, 타입, 매크로 등을 자동완성시켜주는 intellisense가 준비되어 있습니다.
@@ -157,12 +157,12 @@ int main() {
 
 ---
 
-## Not using aggregate initialization/constructors
+## Not using aggregate initialization/delegated constructors
 
-복잡한 구조체의 경우, [aggregated initialization](https://en.cppreference.com/w/cpp/language/aggregate_initialization)을 하지 않으면 가끔 특정 member를 초기화하는 것을 까먹을 때가 있습니다.
+복잡한 구조체의 경우, [aggregated initialization](https://en.cppreference.com/w/cpp/language/aggregate_initialization) 또는 [delegated constructor](https://learn.microsoft.com/en-us/cpp/cpp/delegating-constructors?view=msvc-170)을 사용하지 않으면 가끔 특정 member를 초기화하는 것을 까먹을 때가 있습니다.
 
 ```cpp
-// Used aggregate initialization
+// Using delegated constructor
 struct Wow1 {
     Wow1(int a, int b, int c, int d, int e, int f): a(a), b(b), c(c), d(d), e(e), f(f) {};
     int a, b, c, d, e, f;
