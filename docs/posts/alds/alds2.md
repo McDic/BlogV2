@@ -19,7 +19,7 @@ title: ALDS 2. Some Bad CP Code Practices
 1. 개발을 직업으로 하고 싶은 사람
 2. 알고리즘 문제풀이와 개발 사이에서 코드 스타일이나 컨벤션, 마인드셋 등을 크게 바꾸고 싶지 않은 사람
 
-당신이 알고리즘 문제를 푸는데 작성하는 코드가 더러워다고 상관없다고 생각하는 사람이라면, 저는 그 생각에 별로 관여하고 싶지 않으며 그 생각을 존중합니다.
+당신이 알고리즘 문제를 푸는데 작성하는 코드가 더러워진다고 상관없다고 생각하는 사람이라면, 저는 그 생각에 별로 관여하고 싶지 않으며 그 생각을 존중합니다.
 당신이 그런 코딩 스타일을 실제 현업에서 똑같이 해도 문제가 없다고 생각하지만 않는다면요.
 
 그럼 이제 본격적으로 알아봅시다.
@@ -159,10 +159,10 @@ int main() {
 
 ## Not using aggregate initialization/delegated constructors
 
-복잡한 구조체의 경우, [aggregated initialization](https://en.cppreference.com/w/cpp/language/aggregate_initialization) 또는 [delegated constructor](https://learn.microsoft.com/en-us/cpp/cpp/delegating-constructors?view=msvc-170)을 사용하지 않으면 가끔 특정 member를 초기화하는 것을 까먹을 때가 있습니다.
+복잡한 구조체의 경우, [aggregated initialization](https://en.cppreference.com/w/cpp/language/aggregate_initialization), [delegated constructor](https://learn.microsoft.com/en-us/cpp/cpp/delegating-constructors?view=msvc-170) 등을 사용하지 않으면 가끔 특정 member를 초기화하는 것을 까먹을 때가 있습니다.
 
 ```cpp
-// Using delegated constructor
+// Initializing each member individually, but better
 struct Wow1 {
     Wow1(int a, int b, int c, int d, int e, int f): a(a), b(b), c(c), d(d), e(e), f(f) {};
     int a, b, c, d, e, f;
@@ -180,6 +180,15 @@ struct Wow2 {
     }
     int a, b, c, d, e, f;
 };
+
+// Using designated initializers
+struct Wow3 {
+    int a, b, c, d, e, f;
+};
+
+Wow3 construct(int a, int b, int c, int d, int e, int f) {
+    return {.a = a, .b = b, .c = c, .d = d, .e = e, .f = f};
+}
 ```
 
 ---
