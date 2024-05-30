@@ -20,7 +20,7 @@ title: ALDS 2. Some Bad CP Code Practices
 2. 알고리즘 문제풀이와 개발 사이에서 코드 스타일이나 컨벤션, 마인드셋 등을 크게 바꾸고 싶지 않은 사람
 
 당신이 알고리즘 문제를 푸는데 작성하는 코드가 더러워다고 상관없다고 생각하는 사람이라면, 저는 그 생각에 별로 관여하고 싶지 않으며 그 생각을 존중합니다.
-당신이 그런 코딩 스타일을 실제 세계에서 똑같이 해도 문제가 없다고 생각하지만 않는다면요.
+당신이 그런 코딩 스타일을 실제 현업에서 똑같이 해도 문제가 없다고 생각하지만 않는다면요.
 
 그럼 이제 본격적으로 알아봅시다.
 
@@ -136,7 +136,7 @@ Dependency 관리가 너무 빡세기 때문입니다.
 ## Not using [`std::array`](https://en.cppreference.com/w/cpp/container/array), [`std::string`](https://en.cppreference.com/w/cpp/string/basic_string) instead of raw arrays
 
 그냥 배열은 단순한 copy가 불가능하고, 포인터와 관련해서 메모리 이슈도 있습니다.
-`std::array`, `std::string`은 그러한 쌩배열의 훌륭한 대체제입니다.
+`std::array`, `std::string`은 그러한 쌩배열의 훌륭한 대체재입니다.
 
 ---
 
