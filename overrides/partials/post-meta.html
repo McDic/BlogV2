@@ -3,7 +3,7 @@
     <header class="md-post__header">
         <div class="md-post__meta md-meta">
             <ul class="md-meta__list">
-                {% if page.meta.date %}
+                {% if page.meta.date and page.meta.date.updated %}
                     <li class="md-meta__item">
                         {% include ".icons/material/calendar-edit.svg" %}
                         <div class="text">
