@@ -45,4 +45,12 @@
             display: none;
         }
     }
+    @media not screen {
+        div.md-mcdic--metadata-table.horizontal {
+            display: block;
+        }
+        div.md-mcdic--metadata-table.vertical {
+            display: none;
+        }
+    }
 }
