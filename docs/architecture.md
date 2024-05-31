@@ -15,7 +15,7 @@ This article introduces how my blog works.
 
 ---
 
-## The Goal
+## The goal
 
 - I want my blogs looks clean and nice.
 - I don't want to operate a blog with my own server, nor spending too much money on using 3rd party services.
@@ -26,7 +26,7 @@ Therefore I migrated my [old blog](https://github.com/McDic/BlogV1) to the new o
 
 ---
 
-## Core Frameworks
+## Core frameworks
 
 [MkDocs](https://www.mkdocs.org/) is a core engine used to build this blog.
 [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) is an another layer built on top of MkDocs, which helps a lot on building static web page without too much effort.
@@ -53,11 +53,11 @@ I am already spending money monthly on AWS, Youtube Premium, Linkedin Premium, e
 I don't wanted to add more 30~40 USD/month eater for non-profit blog.
 
 I have my own domain(`mcdic.net` as you see) with [AWS Route 53](https://aws.amazon.com/route53).
-I have some number of subdomains under `mcdic.net` and this blog uses one of them.
+I have some number of subdomains under `mcdic.net` and this blog uses `blog.mcdic.net`.
 
 ---
 
-## Comment Section
+## Comment section
 
 I use [utteranc.es](https://utteranc.es) to build comment system with Github Issues.
 Since I use public Github repo to publish my blog,
@@ -67,24 +67,28 @@ There are several alternatives like [Giscus](https://github.com/giscus/giscus) s
 
 ---
 
-## Custom MKDocs Plugin
+## Custom MKDocs plugin
 
-I made [my own custom mkdocs plugin](https://github.com/McDic/BlogV2/tree/master/custom_plugin_blog) to customize following behaviors.
+I made [my own custom MKDocs plugin](https://github.com/McDic/BlogV2/tree/master/custom_plugin_blog) to customize following behaviors.
 Note that I got rid of [built-in blog plugin](https://squidfunk.github.io/mkdocs-material/plugins/blog/) because there were several big issues on the whole structure, [refer here](https://github.com/squidfunk/mkdocs-material/issues/6647) if you are interested.
 
-- Categories
-    - `Prev` and `Next` buttons will lead to prev/next articles in same category.
-    - Forcing zero or one category for every page.
+- Series
+    - `Prev` and `Next` buttons will lead to prev/next articles in same series.
 - Metadata of blog posts
     - Git dates
         - Automatically [fetches from the git](https://stackoverflow.com/questions/11533199/how-to-find-the-commit-in-which-a-given-file-was-added) system.
     - Post Views
         - Calculate the metadata from either custom data folder or GA4 API and embedded it.
         (Previously I used Javascript async fetch, but I got rid of it.)
+    - Edit history
+        - Provides Github commit URL of the post file.
+- Post sorting
+    - Sorts the blog posts by created date(Look `Archives` tab),
+    [recently updated date](../sorted/recent), and [views](../sorted/most_viewed).
 
 ---
 
-## Views on Posts
+## Views on posts
 
 Since my blog is a set of static web pages, it was a bit tricky to add views.
 I use [Google Analytics](https://analytics.google.com/) to get views, unique users and more of my blog.
@@ -93,7 +97,7 @@ then [customized the blog post HTML section](https://squidfunk.github.io/mkdocs-
 
 So I failed to make my billing completely zero, but I think this is still feasible, considering I am providing unique user views on my blog posts.
 
-!!! warning "May not accurate"
+!!! warning
 
     I changed some posts paths and titles several times,
     and I am aggregating them by summation,
