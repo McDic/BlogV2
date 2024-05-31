@@ -21,10 +21,10 @@ This article explains the format of articles in this website.
 ## Titles
 
 For every blog post, it should have exactly one category that is classified as part of series.
-The main title format of a blog post would be `{ABBREVIATED SERIES NAME} {NUMBERING}. {POST TITLE}`, and slug should be `{ABBREVIATED SERIES NAME}-{NUMBERING}`.
+The main title format of a blog post would be `{ABBREVIATED SERIES NAME} {NUMBERING}. {POST TITLE}`, and post URL should be `series/{ABBREVIATED SERIES NAME}/{NUMBERING}`.
 For every non blog post like this article, it should have no category at all. There is no strict title naming rule on non blog posts.
 
-I use `h1` as main title of a post.
+I use `h1` as main title of a post, and some posts does not have `h1` section in raw file.
 I use `h2` and `h3` as paragraph titles of a post.
 Every title provides a permalink for easier reference.
 The navigation provided by `mkdocs-material` is available at the right side, if your screen is large enough.
@@ -38,6 +38,7 @@ Every blog post will provide following metadata;
 - Last updated date and created date of an article.
     - If the original post date is explicitly specified, use that for created date instead.
     - If a commit hash is available, provide it with a link.
+
 - A number of [active users](https://support.google.com/analytics/answer/12253918?hl=en#:~:text=is%20populated%20automatically.-,Active%20users,engagement_time_msec%20parameter%20from%20a%20website) visited this page since the beginning of the blog.
     - This is different from total views.
     - Since I am not using realtime data, this metadata is not available if the data is not available from GA4 yet.
@@ -47,6 +48,8 @@ Every blog post will provide following metadata;
         The "number of active users" statistics is analyzed anonymously and
         I do not provide any personalized information(who visited here, etc) on this blog,
         since I do not intend to provide it and also I have no way to get it from GA4 API.
+
+- Git edit history URL via Github. (for blog posts)
 
 ---
 
