@@ -27,3 +27,22 @@
     padding-top: 0.2rem;
     content: "";
 }
+
+.md-content {
+    @media screen and (max-width: 540px) {
+        div.md-mcdic--metadata-table.horizontal {
+            display: none;
+        }
+        div.md-mcdic--metadata-table.vertical {
+            display: block;
+        }
+    }
+    @media screen and (min-width: 541px) {
+        div.md-mcdic--metadata-table.horizontal {
+            display: block;
+        }
+        div.md-mcdic--metadata-table.vertical {
+            display: none;
+        }
+    }
+}

@@ -48,6 +48,17 @@
                         </div>
                     </li>
                 {% endif %}
+                {% if page.meta.edit_history %}
+                    <li class="md-meta__item">
+                        {% include ".icons/material/history.svg" %}
+                        <div class="text">
+                            Edit history:
+                            <a href="{{ page.meta.edit_history }}">
+                                {{ "../" + page.meta.edit_history.split("/")[-1] }}
+                            </a>
+                        </div>
+                    </li>
+                {% endif %}
             </ul>
         </div>
     </header>

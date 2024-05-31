@@ -5,6 +5,8 @@ import typing
 from datetime import datetime
 from pathlib import Path
 
+from . import constants
+
 
 def get_date_from_git(
     path: str | Path,
@@ -37,3 +39,14 @@ def get_date_from_git(
         raise FileNotFoundError("No git history found")
     result = out.decode().strip().split(" ")
     return result[0], datetime.fromisoformat(result[1])
+
+
+def get_github_edit_history_url(path: Path | str | None) -> str:
+    """
+    Get URL to the github edit history of given file path.
+    If `path` is None, then return whole history of the master commit.
+    """
+    if not path:
+        return constants.GITHUB_REPO_URL
+    else:
+        return "%s/commits/master/docs/%s" % (constants.GITHUB_REPO_URL, path)

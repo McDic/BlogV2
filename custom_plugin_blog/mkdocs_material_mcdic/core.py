@@ -19,7 +19,7 @@ from .config import McDicBlogPluginConfig
 from .ga4 import ViewDataValue, fetch_ga4_data
 from .ga4 import get_client as get_ga4_client
 from .ga4 import parse_ga4_cache
-from .git import get_date_from_git
+from .git import get_date_from_git, get_github_edit_history_url
 from .utils import dict_get, dict_merge_inplace
 
 logger = get_plugin_logger("mcdic")
@@ -98,6 +98,12 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
             use_directory_urls=True,
         )
 
+    def _is_from_temp_dir(self, page: Page):
+        """
+        Check if this page is created on the temporary directory.
+        """
+        return Path(page.file.abs_src_path).is_relative_to(self._temp_dir.name)
+
     def _check_page_by(
         self, page: Page, finder: re.Pattern, check_relative_path: bool
     ) -> bool:
@@ -106,10 +112,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         """
         return bool(
             finder.match(page.file.src_path)
-            and (
-                not check_relative_path
-                or Path(page.file.abs_src_path).is_relative_to(self._temp_dir.name)
-            )
+            and (not check_relative_path or self._is_from_temp_dir(page))
         )
 
     def _is_blog_post_page(self, page: Page) -> bool:
@@ -495,6 +498,25 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         created_date = dict_get(post.meta, "date", "created")
         original_date = dict_get(post.meta, "date", "original")
         unique_users = dict_get(post.meta, "views")
+        edit_history_url = dict_get(post.meta, "edit_history")
+
+        metadata_updated_date = datestr(
+            updated_date, dict_get(post.meta, "commit", "updated")
+        )
+        metadata_created_date = datestr(
+            original_date or created_date,
+            dict_get(post.meta, "commit", "created") if original_date is None else None,
+        )
+        metadata_unique_users = (
+            f"{unique_users} users"
+            if unique_users
+            else constants.METADATA_NOT_AVAILABLE
+        )
+        metadata_history = (
+            "[../%s](%s)" % (edit_history_url.split("/")[-1], edit_history_url)
+            if edit_history_url
+            else constants.METADATA_NOT_AVAILABLE
+        )
 
         return [
             constants.METADATA_TABLE_MARKDOWN
@@ -504,16 +526,19 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
                 "material-calendar-edit",
                 "material-calendar-plus",
                 "material-eye-plus" if unique_users else "material-eye-remove",
-                datestr(updated_date, dict_get(post.meta, "commit", "updated")),
-                datestr(
-                    original_date or created_date,
-                    dict_get(post.meta, "commit", "created")
-                    if original_date is None
-                    else None,
-                ),
-                f"{unique_users} users"
-                if unique_users
-                else constants.METADATA_NOT_AVAILABLE,
+                "material-history",
+                metadata_updated_date,
+                metadata_created_date,
+                metadata_unique_users,
+                metadata_history,
+                "material-calendar-edit",
+                metadata_updated_date,
+                "material-calendar-plus",
+                metadata_created_date,
+                "material-eye-plus" if unique_users else "material-eye-remove",
+                metadata_unique_users,
+                "material-history",
+                metadata_history,
             ),
             (post.markdown or "")
             .split(constants.EXCERPT_DIVIDER)[0]
@@ -660,6 +685,11 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         # View metadata
         page.meta["views"] = self._get_views_by_titles(page)
 
+        # History metadata
+        if not self._is_from_temp_dir(page):
+            page.meta["edit_history"] = get_github_edit_history_url(page.file.src_uri)
+            logger.info("edit_history = %s", page.meta["edit_history"])
+
         # Disable analytics if serving
         if self._build_mode != "serve":
             page.meta["enable_analytics"] = True
@@ -757,13 +787,13 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         # -------------------------------------------
         # Below cases are for normal documents
 
-        # If it is migrated?
-        elif dict_get(page.meta, "date", "original"):
-            return "\n\n".join([constants.POST_MIGRATION_NOTICE, markdown])
+        joinlist: list[str] = [markdown]
 
-        # Default case
-        else:
-            return None
+        # If it is migrated?
+        if dict_get(page.meta, "date", "original"):
+            joinlist.insert(0, constants.POST_MIGRATION_NOTICE)
+
+        return "\n\n".join(joinlist)
 
     def _modify_nav_on_root_page(self, section: Navigation | Section):
         """

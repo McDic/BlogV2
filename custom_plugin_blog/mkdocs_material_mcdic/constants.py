@@ -24,9 +24,20 @@ METADATA_TABLE_MARKDOWN: typing.Final[
 ] = """
 ### **[%s](/%s)**
 
-| :%s: Updated | :%s: Created | :%s: Unique Visited |
-| :---: | :---: | :---: |
-| %s | %s | %s |
+<div class="md-mcdic--metadata-table horizontal" markdown="1">
+| :%s: Updated | :%s: Created | :%s: Unique Visited | :%s: Edit History |
+| :---: | :---: | :---: | :---: |
+| %s | %s | %s | %s |
+</div>
+
+<div class="md-mcdic--metadata-table vertical" markdown="1">
+| Metadata | Value |
+| :---: | :---: |
+| :%s: Updated | %s |
+| :%s: Created | %s |
+| :%s: Unique Visited | %s |
+| :%s: Edit History | %s |
+</div>
 """.strip()
 
 EXCERPT_READMORE: typing.Final[str] = "*[**(... Read more)**](/%s)*"
@@ -81,3 +92,5 @@ RE_MOST_VIEWED_FINDER: typing.Final[re.Pattern] = re.compile(
     r"^sorted\/most_viewed\.md$"
 )
 RE_ARCHIVES_FINDER: typing.Final[re.Pattern] = re.compile(r"^archives\/[0-9]+\.md$")
+
+GITHUB_REPO_URL: typing.Final[str] = "https://github.com/McDic/BlogV2"
