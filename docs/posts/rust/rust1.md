@@ -63,7 +63,7 @@ fn f<T, const S: usize>(value: T) -> [T; S] where T: !SomeTrait {
 }
 ```
 
-이와 관련해서 아직 unstable한 feature로 [negative impl](https://www.reddit.com/r/rust/comments/15wf3qv/why_doesnt_rust_have_negative_trait_bounds/)이 있지만, Stable Rust에는 아직 해당 기능을 사용할 수 없습니다.
+이와 관련해서 아직 unstable한 feature로 [negative impl](https://doc.rust-lang.org/beta/unstable-book/language-features/negative-impls.html)이 있지만, Stable Rust에는 아직 해당 기능을 사용할 수 없습니다.
 
 C++에서는 [`std::enable_if`](https://en.cppreference.com/w/cpp/types/enable_if) 또는 [`concept`](https://en.cppreference.com/w/cpp/language/constraints)이 있고, 임의의 boolean을 사용할 수 있기 때문에 이러한 negative trait bound 같은 semantic을 구현하는 것이 아주 자유롭습니다.
 
@@ -107,7 +107,7 @@ fn f<const N: usize>() -> [u8; N + 1] {
 
 ```rust
 // COMPILE ERROR
-// expected one of `,`, `.`, `>`, `?`, or an operator, found `)`
+// error: expected one of `,`, `.`, `>`, `?`, or an operator, found `{`
 fn f<const L: usize>() -> () where L < 100 {
     todo!()
 }
