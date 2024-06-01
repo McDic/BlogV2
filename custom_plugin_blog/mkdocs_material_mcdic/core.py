@@ -526,7 +526,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
                 "material-calendar-edit",
                 "material-calendar-plus",
                 "material-eye-plus" if unique_users else "material-eye-remove",
-                "material-history",
+                "octicons-git-commit-16",
                 metadata_updated_date,
                 metadata_created_date,
                 metadata_unique_users,
@@ -537,7 +537,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
                 metadata_created_date,
                 "material-eye-plus" if unique_users else "material-eye-remove",
                 metadata_unique_users,
-                "material-history",
+                "octicons-git-commit-16",
                 metadata_history,
             ),
             (post.markdown or "")
