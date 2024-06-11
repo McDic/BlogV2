@@ -149,7 +149,7 @@ fn wow(message: String) -> impl Fn(String) -> impl Future<Output = String> {
 
 관련 사항은 [rust-lang/rust#93582](https://github.com/rust-lang/rust/pull/93582)에서도 논의된 바 있습니다.
 현재 `impl trait in fn trait`은 `#![feature(impl_trait_in_fn_trait_return)]`를 활성화시킨 상태에서만 가능하며, Stable Rust에서는 지원되지 않습니다.
-따라서 async closure에 대한 type hint를 주기 위해서는 다음 코드와 같이 별도의 wrapper struct를 만들어야 하죠.
+따라서 async closure에 대한 type hint를 주기 위해서는 다음 코드와 같이 별도의 wrapper trait을 만들어야 하죠.
 
 ```rust
 use std::future::Future;
