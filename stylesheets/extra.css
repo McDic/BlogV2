@@ -1,0 +1,9 @@
+.md-source__repository .md-source__facts {
+    display: none;
+}
+
+.md-content__inner.md-typeset img {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
