@@ -21,7 +21,7 @@ I am not actively doing algorithmic problem-solving nor problem-setting anymore.
 
 ### Contests
 
-Followings are some achievements for some major contests.
+Followings are some my achievements from major contests.
 
 - KOI 2014 Final, Bronze Medal (High school division)
 - **[ICPC 2020 Seoul Regional, 14th Place](https://icpckorea.org/static/2020-%EC%88%98%EC%83%81%EC%9E%90-%EB%AA%85%EB%8B%A8-3.pdf)**
@@ -71,3 +71,8 @@ Note that all social links are also available on the footer.
 - [LinkedIn](https://www.linkedin.com/in/mcdic/) (I do not open this for anonymous users for several reasons)
 - [Codeforces](https://codeforces.com/profile/McDic)
 - [Discord](https://discordapp.com/users/McDic)
+
+---
+
+In this page, the comment section is disabled for several reasons.
+If you want to ask me something, either contact me via email/discord or go to the [AMA section](../ama).

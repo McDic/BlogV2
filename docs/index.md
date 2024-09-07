@@ -18,4 +18,5 @@ Please note that most articles here are written in Korean.
     **Every article in this blog is owned by Minsung Kim and**
     **licensed by [CC BY-NC 4.0 DEED](https://creativecommons.org/licenses/by-nc/4.0/deed).**
 
-To read recent posts in this blog, please go [here](../sorted/recent/).
+Click [here](../sorted/recent/) to view list of recent posts,
+and [here](../sorted/most_viewed/) to view list of most viewed posts in this blog.
