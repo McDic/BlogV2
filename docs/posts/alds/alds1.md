@@ -19,7 +19,7 @@ title: ALDS 1. Sparse Table
 <!-- more -->
 ---
 
-# Sparse Table
+## What is sparse table?
 
 Sparse Table은 Range Query를 답변할 수 있게 해주는 자료구조입니다. (하지만 Segment Tree와는 구조가 좀 다른데, 뒷 문단에서 설명드리겠습니다.)
 
@@ -61,7 +61,7 @@ Sparse Table이 진가를 발휘하는 부분이 바로 이 부분입니다. Min
 
 ## Code
 
-위 설명은 모든 range가 inclusive하지만 코드 내 range는 start-inclusive, end-exclusive함에 유의해주시기 바랍니다.
+윗 문단에서의 설명은 모든 range가 inclusive하지만 코드 내 range는 start-inclusive, end-exclusive함에 유의해주시기 바랍니다.
 
 ```cpp
 class SparseTable{
@@ -86,12 +86,19 @@ class SparseTable{
 
     // Initialize base feature.
     private: void initialize(){
-        // feature[level][offset] = operation(base[offset : offset + 2 ** level])
+        // feature[level][offset] =
+        //    operation(base[offset : offset + 2 ** level])
         for(int log=1; log < (int)feature_min.size(); log++){
             int halflen = 1 << (log-1);
             for(int offset=0; offset + halflen < n; offset++){
-                feature_min[log][offset] = std::min(feature_min[log-1][offset], feature_min[log-1][offset + halflen]);
-                feature_max[log][offset] = std::max(feature_max[log-1][offset], feature_max[log-1][offset + halflen]);
+                feature_min[log][offset] = std::min(
+                    feature_min[log-1][offset],
+                    feature_min[log-1][offset + halflen]
+                );
+                feature_max[log][offset] = std::max(
+                    feature_max[log-1][offset],
+                    feature_max[log-1][offset + halflen]
+                );
             }
         }
     }
@@ -102,8 +109,14 @@ class SparseTable{
         int log = 0;
         while((1 << log) < right - left) log++;
         if(log) log--;
-        lld min = std::min(feature_min[log][left], feature_min[log][right - (1<<log)]);
-        lld max = std::max(feature_max[log][left], feature_max[log][right - (1<<log)]);
+        lld min = std::min(
+            feature_min[log][left],
+            feature_min[log][right - (1<<log)]
+        );
+        lld max = std::max(
+            feature_max[log][left],
+            feature_max[log][right - (1<<log)]
+        );
         return {min, max};
     }
 };
