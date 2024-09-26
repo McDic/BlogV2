@@ -8,7 +8,7 @@ class McDicBlogPluginPostViewsConfig(Config):
     Note that `forced_update` is changed to `True` on `gh-deploy`.
     """
 
-    local_path = ConfigOptions.Optional(ConfigOptions.File(exists=True))
+    local_path = ConfigOptions.Optional(ConfigOptions.File())
     forced_update = ConfigOptions.Type(bool, default=False)
 
 

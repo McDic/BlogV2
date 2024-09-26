@@ -10,6 +10,7 @@ VERSION: typing.Final[str] = "0.0.4"
 
 INDEX_TITLE: typing.Final[str] = "Main Page"
 TITLE_SUFFIX: typing.Final[str] = " - McDic's Blog"
+TITLE_PREFIX: re.Pattern = re.compile(r"^[A-Z]+ [0-9]+\.")
 
 SERIES_INDEX_PREFIX: typing.Final[
     str

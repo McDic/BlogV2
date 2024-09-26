@@ -2,8 +2,10 @@ import os
 import re
 import tempfile
 import typing
-from datetime import date, datetime, timedelta
+from copy import deepcopy
+from datetime import date, datetime
 from pathlib import Path
+from pprint import pprint
 
 import pytz
 from jinja2 import Environment
@@ -62,6 +64,9 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
 
         self._temp_dir: tempfile.TemporaryDirectory
         self._cached_sorted_pages_by_date: list[Page] = []
+
+        # (series, index) -> (series, index)
+        self._blog_post_proxies: dict[tuple[str, int], Page] = {}
 
     def _make_new_tempdir(self) -> None:
         """
@@ -150,10 +155,10 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         """
         Aggregate view statistics.
         """
-        result = obj0.copy()
+        result = deepcopy(obj0)
         for obj in objs:
             for key in obj:
-                result[key] = sum(result[key], obj[key])  # type: ignore[literal-required] # noqa: E501
+                result[key] += obj[key]  # type: ignore[literal-required] # noqa: E501
         return result
 
     @staticmethod
@@ -347,29 +352,33 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
             ):
                 logger.debug(f'Invalid page title "{title}" is removed from views data')
             else:
-                replaced_title = (
+                if constants.TITLE_PREFIX.match(title):  # Remove prefix
+                    title = ".".join(title.split(".", 1)[1:])
+                title = (  # Remove suffix; If no suffix is found, use default
                     title.strip().replace(constants.TITLE_SUFFIX, "")
                     or constants.INDEX_TITLE
-                )
-                if replaced_title in self._views:
-                    self._views[replaced_title] = self.aggregate_views(
-                        self._views[replaced_title], views
-                    )
+                ).lower()
+                if title in self._views:
+                    self._views[title] = self.aggregate_views(self._views[title], views)
                 else:
-                    self._views[replaced_title] = views
+                    self._views[title] = views
+
+        logger.debug("Cleaned views = %s", self._views)
 
     def _get_views_by_titles(self, page: Page) -> int:
         """
         Get all views from given `page`.
         """
-        result = dict_get(self._views, page.title, "total_users", default=0)
-        for alternative_title in dict_get(page.meta, "alternative_titles", default=[]):
-            result += dict_get(self._views, alternative_title, "total_users", default=0)
-            logger.debug(
-                "Result += %d from alternative title '%s'",
-                dict_get(self._views, alternative_title, "total_users", default=0),
-                alternative_title,
-            )
+        result = 0
+        for alternative_title in set(
+            dict_get(page.meta, "alternative_titles", default=[]) + [page.title]
+        ):
+            if constants.TITLE_PREFIX.match(alternative_title):
+                alternative_title = ".".join(alternative_title.split(".", 1)[1:])
+            alternative_title = alternative_title.lower().strip()
+            added = dict_get(self._views, alternative_title, "total_users", default=0)
+            logger.debug("Result += %d from title '%s'", added, alternative_title)
+            result += added
         return result
 
     @event_priority(constants.EARLY_EVENT_PRIORITY)
@@ -570,11 +579,38 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
             ),
             key=(lambda post: self.pop_category_id(post.title)),
         )
-        joinlist = [markdown, constants.SERIES_INDEX_PREFIX % (series, series), "---"]
-        for post in posts:
-            joinlist.extend(self._get_page_excerpt(post, config))
-            joinlist.append("---")
-        return "\n\n".join(joinlist)
+
+        contents: list[str] = []
+        post_pointer: int = 0
+        for index in range(1, self.pop_category_id(posts[-1].title) + 1):
+            if (series, index) in self._blog_post_proxies:
+                proxy_page = self._blog_post_proxies[(series, index)]
+                proxy_category = self.get_category(proxy_page.file, abbreviated=True)
+                proxy_index = self.pop_category_id(proxy_page.title)
+                contents.append(
+                    "### **[%s %d. (Moved)](%s)**"
+                    % (series, index, proxy_page.canonical_url)
+                )
+                contents.append(
+                    "This post is moved to **[%s %d](%s)**."
+                    % (proxy_category, proxy_index, proxy_page.canonical_url)
+                )
+            elif index == self.pop_category_id(posts[post_pointer].title):
+                contents.extend(self._get_page_excerpt(posts[post_pointer], config))
+                post_pointer += 1
+            else:
+                continue
+
+            contents.append("---")
+
+        return "\n\n".join(
+            [
+                markdown,
+                constants.SERIES_INDEX_PREFIX % (series, series),
+                "---",
+            ]
+            + contents
+        )
 
     def _get_sorted_pages_by_date(self, files: Files) -> list[Page]:
         """
@@ -747,11 +783,17 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
             )
 
         # Raise error on no excerpt
-        if self._is_blog_post_page(page) and constants.EXCERPT_DIVIDER not in markdown:
-            raise PluginError(
-                "Page '%s' does not have EXCERPT DIVIDER '%s'"
-                % (page.title, constants.EXCERPT_DIVIDER)
-            )
+        if self._is_blog_post_page(page):
+            if constants.EXCERPT_DIVIDER not in markdown:
+                raise PluginError(
+                    "Page '%s' does not have EXCERPT DIVIDER '%s'"
+                    % (page.title, constants.EXCERPT_DIVIDER)
+                )
+
+            for title_numbering in page.meta.get("moved_from", []):
+                proxy_category = title_numbering.split("-")[0]
+                proxy_index = int(title_numbering.split("-")[1])
+                self._blog_post_proxies[(proxy_category, proxy_index)] = page
 
         # -------------------------------------------
         # Below cases are for generated pages
@@ -759,6 +801,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         # If series index?
         elif self._is_series_index_page(page):
             page.meta["no_comments"] = True
+            del page.meta["views"]
             series: str = page.file.src_uri.split("/")[-1].replace(".md", "").upper()
             return self._modify_markdown_on_series_index_page(
                 markdown, series, files, config
@@ -767,12 +810,14 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         # If recent posts?
         elif self._is_recent_posts_page(page):
             page.meta["no_comments"] = True
+            del page.meta["views"]
             page.meta["title"] = "Recent"
             return self._modify_markdown_on_recent_posts_page(markdown, files, config)
 
         # If most viewed?
         elif self._is_most_viewed_posts_page(page):
             page.meta["no_comments"] = True
+            del page.meta["views"]
             page.meta["title"] = "Most Viewed"
             return self._modify_markdown_on_most_viewed_posts_page(
                 markdown, files, config
@@ -781,6 +826,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         # If archives?
         elif self._is_archives_page(page):
             page.meta["no_comments"] = True
+            del page.meta["views"]
             year = int(page.file.src_uri.split("/")[-1].replace(".md", ""))
             return self._modify_markdown_on_archives_page(year, markdown, files, config)
 

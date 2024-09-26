@@ -2,6 +2,7 @@
 title: Blog Architecture
 alternative_titles:
   - Architecture
+  - Blog Architecture
 ---
 
 # Blog Architecture

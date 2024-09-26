@@ -7,7 +7,9 @@ tags:
   - career
 date:
   original: 2023-12-24
-title: THO 3. Relationship between Algorithm and Dev Career
+moved_from:
+  - THO-3
+title: ALDS 5. Relationship between Algorithm and Dev Career
 ---
 
 안녕하세요. 이번에 쓸 글의 주제는, "알고리즘과 취업의 상관관계" 입니다.

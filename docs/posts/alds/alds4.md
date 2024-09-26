@@ -7,7 +7,9 @@ tags:
   - computer-science
 date:
   original: 2023-12-29
-title: THO 1. My Codeforces Problemsetting Experiences
+moved_from:
+  - THO-1
+title: ALDS 4. My Codeforces Problemsetting Experiences
 ---
 
 안녕하세요. 이 시리즈에서는 저의 생각과 관련된 글을 적어보고자 합니다.
