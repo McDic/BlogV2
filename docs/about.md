@@ -60,6 +60,7 @@ I got ITM on following poker tournaments.
 
 - [APL 2023 October Seoul, Main Event: 252nd Place (16 APL tickets)](https://www.acepokerleague.com/post/2-main-event-result)
 - [Nippon Series 2024 Fukuoka, Deepstack: 2nd Place (30k JPY + Silver medal)](https://twitter.com/_NIPPON_SERIES/status/1821935796196462954)
+- CTP 9th Anniversary, Challenge: Top 9% (8k NTD)
 
 ---
 
