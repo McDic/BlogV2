@@ -14,7 +14,7 @@ on:
   workflow_call:
   workflow_dispatch:
   schedule:
-    - cron: '27 * * * *'
+    - cron: '0 */4 * * *'
 
 jobs:
   build:
