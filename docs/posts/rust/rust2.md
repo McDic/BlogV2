@@ -76,8 +76,9 @@ Rust에서 저런 공통적인 인터페이스를 가지는 무언가를 개발�
 struct OrderRequest {}
 struct OrderResponse {}
 
-trait Adapter:
+trait Adapter {
     async fn send_new_order(&self, request: OrderRequest) -> OrderResponse;
+}
 ```
 
 !!! info
