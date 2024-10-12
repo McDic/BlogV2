@@ -41,13 +41,24 @@ API 제한을 만드는 데 들어가는 요소들은 크게 다음과 같은 �
 ## Implementation methods
 
 어떤 API의 시간 당 요청 횟수를 측정하는 기준도 정의하기 나름입니다.
-저는 다음 방법들을 제시합니다.
+저는 다음 방법들을 제시합니다. 어느 쪽이 무조건 옳다라는 정답은 없습니다.
+서비스의 특성이나 API의 민감도에 따라 다른 기준을 정의할 수 있을 것입니다.
 
 ### Simple resetting
 
 기준이 되는 시간마다 API 요청 횟수를 초기화시키는 방식입니다.
 아마 가장 간단한 구현방식이자 동시에 제일 적은 리소스를 사용하는 방식일 겁니다.
 이 구현이 간단한 이유는 가장 마지막에 요청이 들어온 시각과 카운팅 횟수에 대한 정보만 알면 알고리즘이 작동하기 때문입니다.
+하지만 이 방식의 잠재적인 단점은 API 요청 횟수가 초기화될 무렵 즈음에 컴퓨팅 및 I/O 부하가 잠깐 일어날 수 있다는 것입니다.
+(트래픽이 엄청 크지 않은 이상 이게 유의미한 문제점이 될 지는 모르겠지만요..)
+
+![simple_limit](/assets/posts/py/api_limiter/simple_limit.png)
+
+!!! caption
+
+    알고리즘을 시각화한 이미지입니다.
+    일정한 시간 간격 안에서만 API request 횟수가 유효하며,
+    어떤 사이클을 지나고 새로운 사이클에 진입할 경우 API request 횟수는 초기화됩니다.
 
 ```python
 from datetime import datetime, timedelta
@@ -94,13 +105,21 @@ class RateLimiterCycled:
         return True
 ```
 
-### Continuously guaranteed
+### Sliding window
 
 일정한 단위시간 기준이 아닌, 그 어떤 연속적인 `interval`을 고르더라도 그 안에 `capacity` 개수 이상의 request가 없음을 보장하고 싶다면,
 [Sliding window](https://stackoverflow.com/questions/8269916/what-is-sliding-window-algorithm-examples) 알고리즘을 사용하여 이를 해결할 수 있습니다.
 구현 방식은 조금 복잡합니다.
-왜냐하면 연속적으로 들어온 요청들의 timestamp 정보들을 전부 저장하고 있어야 하기 때문입니다.
+왜냐하면 연속적으로 들어온 요청들의 timestamp 정보들을 전부 저장하고 오래된 timestamp들을 순차적으로 삭제할 수 있어야 하기 때문입니다.
 이는 [deque](https://en.wikipedia.org/wiki/Double-ended_queue) 등을 사용하여 효율적으로 구현할 수 있습니다.
+
+![window_limit](/assets/posts/py/api_limiter/window_limit.png)
+
+!!! caption
+
+    알고리즘을 시각화한 이미지입니다.
+    개별 request마다 정보가 기억되는 일종의 "유통기한"이 다릅니다.
+    이 알고리즘을 구현할 경우 timeline 상에서 그 어떤 연속적인 `interval`을 고르더라도 `capacity` 개수 이상의 request가 없음이 보장될 수 있습니다.
 
 ```python
 from collections import deque
