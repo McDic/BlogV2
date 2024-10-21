@@ -1,0 +1,18 @@
+header.md-header .auto-scroller {
+    display: flex;
+    width: 2.4rem;
+    height: 2.4rem;
+    float: inline-start;
+
+    svg {
+        width: 1.2rem;
+        height: 1.2rem;
+        margin: 0.6rem;
+        fill: currentColor;
+    }
+}
+
+header.md-header .auto-scroller:hover {
+    cursor: pointer;
+    opacity: 75%;
+}
