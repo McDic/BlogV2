@@ -10,7 +10,7 @@ Hello, I am Minsung Kim, an owner of this blog.
 
 ## Career
 
-Please refer to my Linkedin profile or [resume](https://drive.google.com/file/d/1_imCHUsBWYW6xQpqlbUQ39wevvmydguJ/view?usp=sharing) (if you are interested to hire me).
+Please refer to my Linkedin profile or [resume](http://resume.mcdic.net) (if you are interested to hire me).
 It does not contain any mobile phone number, because I don't wanted my mobile phone number be publicly available.
 
 ---
