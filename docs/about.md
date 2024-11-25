@@ -62,6 +62,8 @@ I got ITM on following poker tournaments.
 - [Nippon Series 2024 Fukuoka, Deepstack: 2nd Place (30k JPY + Silver medal)](https://twitter.com/_NIPPON_SERIES/status/1821935796196462954)
 - CTP 9th Anniversary, Challenge: Top 9% (8k NTD)
 
+See [here](/assets/raw_html/damavaco_performance.html) if you are interested in my online poker performance, plotted by [`plotly`](https://plotly.com/python/).
+
 ---
 
 ## Social Links

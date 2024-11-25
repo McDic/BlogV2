@@ -36,16 +36,13 @@ nav:
   - index.md
   - Architecture: architecture.md
   - Post Format: format.md
-  - RSS:
-    - Created: /feed_rss_created.xml
-    - Updated: /feed_rss_updated.xml
   - About: about.md
   - AMA: ama.md
 
 plugins:
   - tags
   - rss:
-      enabled: true
+      enabled: false
       match_path: posts/.*
       date_from_meta:
         as_creation: date
