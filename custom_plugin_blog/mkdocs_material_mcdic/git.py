@@ -23,7 +23,7 @@ def get_date_from_git(
     if not path.exists() or not path.is_file():
         raise FileNotFoundError(errno.ENOENT, os.strerror(errno.ENOENT), path)
     args: list[str | Path] = ["git", "log", "--format=%H %ad", "--date=iso-strict"]
-    args.extend(["-L", f"{line_start or ''},{line_end or ''}:{path}"])
+    args.extend(["-L", f"{line_start or ''},{line_end or ''}:{path}"])  # noqa: E231
     if date_type == "created":
         args.append("--reverse")
 
