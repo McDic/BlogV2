@@ -13,3 +13,6 @@ custom_plugin*/dist/
 # Cache
 .mypy_cache/
 **/__pycache__/
+
+# Playground
+playground/
