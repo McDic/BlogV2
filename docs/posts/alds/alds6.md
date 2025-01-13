@@ -49,10 +49,9 @@ s = ["abc", "abcd", "abcabc"]
 
 ![base_case](/assets/posts/alds/concat_problem/base_case.png)
 
-!!! caption
-
-    $x_0 = y_0, x_1 = y_1, \cdots$ 여야 하므로,
-    $x$와 $y$의 길이가 같을 때 $x+y = y+x$일 조건은 $x = y$일 조건과 동치입니다.
+이 그림에서 $x_i$와 $y_i$는 각각 $x$와 $y$의 $i$번째 인덱스에 있는 글자입니다. (0-based)
+$x_0 = y_0$ , $x_1 = y_1$ , $\cdots$ 여야 하므로,
+$x$와 $y$의 길이가 같을 때 $x+y = y+x$일 조건은 $x = y$일 조건과 동치입니다.
 
 ---
 
@@ -62,10 +61,12 @@ s = ["abc", "abcd", "abcabc"]
 
 ![length_multiple_case](/assets/posts/alds/concat_problem/length_multiple_case.png)
 
-이 그림에서 $x_0, x_1, \ldots x_{n-1}$은 단일 글자가 아니고, $x$의 길이를 $y$의 길이의 $n$배라고 했을 때, $x$를 $y$의 길이 단위로 총 $n$개의 조각을 만든 것을 의미합니다.
-$x+y = y+x$이기 때문에 $x_{0} = x_{n-1} = y$가 되고, 이를 통해 $x_1 = x_0$, $x_2 = x_1$ 등을 유도할 수 있습니다.
+이 그림에서 $x_0, x_1, \ldots x_{n-1}$은 단일 글자가 아니고, $x$의 길이를 $y$의 길이의 $n$배라고 했을 때, $x$를 $y$의 길이 단위로 총 $n$개의 substring 조각을 만든 것을 의미합니다.
+$x+y = y+x$이기 때문에 $x_{0} = x_{n-1} = y$가 되고,
+이를 통해 $x_1 = x_0$ , $x_2 = x_1$ 등을 유도할 수 있습니다.
 
-직관적으로 말해, $x$의 길이가 $y$의 길이의 정수배일때, $x+y = y+x$가 되기 위해서는 $x = y + y + \cdots + y$ ($n$개의 $y$의 합)이 되어야 합니다.
+직관적으로 말해, $x$의 길이가 $y$의 길이의 정수배일때,
+$x+y = y+x$가 되기 위해서는 $x = y + y + \cdots + y$ ($n$개의 $y$의 합)이 되어야 합니다.
 
 ---
 
@@ -76,17 +77,29 @@ $x+y = y+x$이기 때문에 $x_{0} = x_{n-1} = y$가 되고, 이를 통해 $x_1 
 
 ![general_case_expr](/assets/posts/alds/concat_problem/general_case_expr.png)
 
-여기서 알 수 있는 사실은, $x_{0\ldots |y|} = x_{|x| - |y| \ldots |x|}$ 이면서 동시에 $x_{c \ldots |x|} = x_{0 \ldots |x| - |y|}$라는 것입니다. (End exclusive입니다.)
+여기서 알 수 있는 사실은, $x_{0\ldots |y|} = x_{|x| - |y| \ldots |x|}$ 이면서 동시에 $x_{|y| \ldots |x|} = x_{0 \ldots |x| - |y|}$라는 것입니다. (End exclusive입니다.)
 이제 다음 그림을 봅시다.
 
 ![general_case_digged](/assets/posts/alds/concat_problem/general_case_digged.png)
 
 이게 뭘 의미하냐면, $x + y = y + x$ 일 경우, $x_{front} + x_{back} = x_{back} + x_{front}$가 성립한다는 것입니다.
-($y = x_{front}$, $x = x_{front} + x_{back}$)
+($y = x_{front}$ , $x = x_{front} + x_{back}$)
+이 명제의 역도 성립할까요?
 
-역도 성립할까요? $x + y = x_{front} + x_{back} + x_{front}$이고,
-$y + x = x_{front} + (x_{front} + x_{back}) = x_{front} + (x_{back} + x_{front})$ 이므로 성립합니다.
-따라서 둘은 동치입니다.
+$$
+x + y = x_{front} + x_{back} + x_{front}
+$$
+
+이고, 동시에
+
+$$
+\begin{align*}
+y + x &= x_{front} + (x_{front} + x_{back}) \\
+&= x_{front} + (x_{back} + x_{front})
+\end{align*}
+$$
+
+이므로 역도 성립합니다. 따라서 둘은 동치입니다.
 
 그래서 우리는 $x_{front} + x_{back} = x_{back} + x_{front}$ 인지만 보면 됩니다.
 그리고 우리는 여기서 유클리드 호제법의 아이디어를 접근할 것입니다.
@@ -105,9 +118,8 @@ $$
 \begin{align*}
 gcd(12, 7) &= gcd(12-7, 7) &= gcd(5, 7) \\
 &= gcd(5, 7-5) &= gcd(5, 2) \\
-&= gcd(5, 5-2) &= gcd(5, 3) \\
-&= gcd(5-3, 3) &= gcd(2, 3) \\
-&= gcd(2, 3-2) &= gcd(2, 1)
+&= gcd(5-2, 2) &= gcd(3, 2) \\
+&= gcd(3-2, 2) &= gcd(1, 2) \\
 &= 1
 \end{align*}
 $$
@@ -115,7 +127,9 @@ $$
 이런 식으로 $12$와 $7$의 최대공약수가 $1$임을 알 수 있습니다.
 이제 이 알고리즘을 염두에 두고 위 그림을 다시 쳐다보면.. 뭔가 느껴지실 겁니다.
 
-*"아! 이거 재귀적으로 들어갈 수 있구나."*
+!!! quote
+
+    *"아! 이거 재귀적으로 들어갈 수 있구나."*
 
 그렇습니다.
 이제 우리는 일반적인 모든 경우를 풀 수 있습니다.
@@ -124,22 +138,36 @@ $$
 
 ## The final phase
 
-위에서 $x + y = y + x \iff x_{front} + x_{back} = x_{back} + x_{front}$ 라는 것을 구했습니다.
-그리고 이제 이것을 다음과 같은 느낌으로 표현할 수 있습니다.
+저희는 위에서 다음과 같은 수식을 유도했습니다.
+
+$$
+\begin{align*}
+x + y &= y + x \\
+{\Updownarrow} \\
+x_{front} + x_{back} &= x_{back} + x_{front}
+\end{align*}
+$$
+
+그리고 이제 이 수식을 다음과 같은 느낌으로 표현할 수 있습니다.
 
 어떤 문자열 $x + y = s$에 대해, $f(s, |x|, |y|)$를 주어진 문제의 정답이라고 표현해봅시다.
 이 값은 true 또는 false이며, $s_{0 \ldots |x|}$와 $s_{|x| \ldots |x|+|y|}$가 서로 교환되는지 유무를 뜻합니다.
 
 $$
-f(s, |x|, |y|) = f(s, |x| - |y|, |y|) = \cdots = f(s, n \times gcd(x, y), gcd(x, y))
+\begin{align*}
+g &= gcd(|x|, |y|) \\ \\
+f(s, |x|, |y|) &= f(s, |x| - |y|, |y|) \\
+&= \cdots \\
+&= f(s, ng, g)
+\end{align*}
 $$
 
 이것이 의미하는 바는 $x+y = y+x$ 이기 위해서는, $x$와 $y$가 각각 어떤 공통 문자열의 정수배 반복이어야 한다는 것입니다.
 
 이걸 $2$개 문자열이 아니라 $n$개 문자열에 대해 확장하는 것도 동일한 원리에 의해 가능합니다.
 
-그래서 원래 문제를 풀기 위해서는, 먼저 $g = gcd(s_1, s_2, \ldots, s_n)$을 구한 뒤, 각 문자열이 첫 $g$개 글자에 해당하는 문자열의 반복인지를 확인하면 됩니다.
-그래서 이 문제는 시간복잡도 $O(|s_1| + |s_2| + \cdots + |s_n|)$에 풀 수 있습니다.
+그래서 원래 문제를 풀기 위해서는, 먼저 $g = gcd(|s_1|, |s_2|, \ldots, |s_n|)$을 구한 뒤, 각 문자열이 첫 $g$개 글자에 해당하는 문자열의 반복인지를 확인하면 됩니다.
+그래서 이 문제는 시간복잡도 $O(|s_1| + |s_2| + \ldots + |s_n|)$에 풀 수 있습니다.
 
 ---
 
