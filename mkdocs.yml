@@ -126,6 +126,7 @@ extra_css:
   - stylesheets/404.css
   - stylesheets/meta.css
   - stylesheets/header.css
+  - stylesheets/article.css
 
 extra:
   analytics:

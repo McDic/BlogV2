@@ -47,25 +47,30 @@ s = ["abc", "abcd", "abcabc"]
 먼저 두 문자열 $x$와 $y$의 길이가 같을 때 $x+y = y+x$가 되려면 어떤 조건을 만족해야 하는지부터 알아봅시다.
 상당히 직관적인데, 결론부터 말하면 $x$와 $y$가 동일한 문자열이면 됩니다.
 
-![base_case](/assets/posts/alds/concat_problem/base_case.png)
+| Index | $0$ | $1$ | $\cdots$ | $n-2$ | $n-1$ | $n$ | $n+1$ | $\cdots$ | $2n-2$ | $2n-1$ |
+| - | - | - | - | - | - | - | - | - | - | - |
+| $x+y$ | $x_0$ | $x_1$ | $\cdots$ | $x_{n-2}$ | $x_{n-1}$ | $y_0$ | $y_1$ | $\cdots$ | $y_{n-2}$ | $y_{n-1}$ |
+| $y+x$ | $y_0$ | $y_1$ | $\cdots$ | $y_{n-2}$ | $y_{n-1}$ | $x_0$ | $x_1$ | $\cdots$ | $x_{n-2}$ | $x_{n-1}$ |
 
 이 그림에서 $x_i$와 $y_i$는 각각 $x$와 $y$의 $i$번째 인덱스에 있는 글자입니다. (0-based)
-$x_0 = y_0$ , $x_1 = y_1$ , $\cdots$ 여야 하므로,
-$x$와 $y$의 길이가 같을 때 $x+y = y+x$일 조건은 $x = y$일 조건과 동치입니다.
+$x+y = y+x$이기 위해서는 $x_0 = y_0$ , $x_1 = y_1$ , $\cdots$ 여야 하는데, 이 조건은 $x=y$와 일치합니다.
+역도 성립하므로, $x$와 $y$의 길이가 같으면 $x+y = y+x$와 $x=y$는 동치입니다.
 
 ---
 
 ## Length-multiple case
 
-이번에는 $x$의 길이가 $y$의 길이의 정수배일때 어떤 조건을 만족해야 하는지 알아봅시다.
+이번에는 $x$의 길이가 $y$의 길이의 정수배일때 어떤 조건을 만족해야 하는지 알아봅시다. (아래 표에서 $c = |y|$ 입니다.)
 
-![length_multiple_case](/assets/posts/alds/concat_problem/length_multiple_case.png)
+| Index range | $[0, c)$ | $[c, 2c)$ | $[2c, 3c)$ | $\cdots$ | $[(n-1)c, nc)$ | $[nc, (n+1)c)$ |
+| - | - | - | - | - | - | - |
+| $x+y$ | $x_{0 \cdots c}$ | $x_{c \cdots 2c}$ | $x_{2c \cdots 3c}$ | $\cdots$ | $x_{(n-1)c \cdots nc}$ | $y$ |
+| $y+x$ | $y$ | $x_{0 \cdots c}$ | $x_{c \cdots 2c}$ | $\cdots$ | $x_{(n-2)c \cdots (n-1)c}$ | $x_{(n-1)c \cdots nc}$ |
 
-이 그림에서 $x_0, x_1, \ldots x_{n-1}$은 단일 글자가 아니고, $x$의 길이를 $y$의 길이의 $n$배라고 했을 때, $x$를 $y$의 길이 단위로 총 $n$개의 substring 조각을 만든 것을 의미합니다.
-$x+y = y+x$이기 때문에 $x_{0} = x_{n-1} = y$가 되고,
-이를 통해 $x_1 = x_0$ , $x_2 = x_1$ 등을 유도할 수 있습니다.
+$x+y = y+x$이기 때문에 $x_{0 \cdots c} = x_{(n-1)c \cdots nc} = y$가 되고,
+동시에 $x_{0 \cdots c} = x_{c \cdots 2c} = x_{2c \cdots 3c} = \cdots$ 이므로, $x$는 $y$를 $n$번 반복한 문자열이 됩니다.
 
-직관적으로 말해, $x$의 길이가 $y$의 길이의 정수배일때,
+Formal하게 다시 말하면, $x$의 길이가 $y$의 길이의 정수배일때,
 $x+y = y+x$가 되기 위해서는 $x = y + y + \cdots + y$ ($n$개의 $y$의 합)이 되어야 합니다.
 
 ---
