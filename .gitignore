@@ -16,3 +16,6 @@ custom_plugin*/dist/
 
 # Playground
 playground/
+
+# Drafts
+draft_posts/**/*.md
