@@ -1,6 +1,6 @@
 ---
 categories:
-  - Thoughts
+  - Algorithm and Data Structures
 tags:
   - algorithm
   - data-structures

@@ -1,6 +1,6 @@
 ---
 categories:
-  - Thoughts
+  - Algorithm and Data Structures
 tags:
   - algorithm
   - data-structures
@@ -78,14 +78,14 @@ title: ALDS 4. My Codeforces Problemsetting Experiences
 이런저런 고생 끝에 Div.2 전용 대회가 열렸고, 9000~10000명 정도의 참가자들의 무협지가 열리게 되었습니다. 대회 랭킹을 실시간으로 감상하는 것은 정말 재밌었습니다.
 다음은 제 라운드의 주요 통계(clist.by를 참조했습니다)입니다. 9319명이 참가 신청을 했고, 실제로 5543명이 대회 중 코드를 제출하였습니다.
 
-| 문제 번호 | 문제 이름 | 해결(명) | 해결 비율 | 시도(명) | 난이도
-| --- | --- | --- | --- | --- | --- |
-| Div2A | Filling Shapes | 4787 | 86% | 5449 | 1000
-| Div2B | Plus from Picture | 2367 | 42% | 4603 | 1400
-| Div2C | Beautiful Lyrics | 1342 | 24% | 1871 | 1700
-| Div2D | Complete Mirror | 32 | 0.6% | 448 | 2400
-| Div2E | Product Oriented Recurrence | 171 | 3% | 359 | 2300
-| Div2F | Maximum Sine | 0 | 0% | 41 | 2700
+| 문제 번호 | 문제 이름                   | 해결(명) | 해결 비율 | 시도(명) | 난이도 |
+| --------- | --------------------------- | -------- | --------- | -------- | ------ |
+| Div2A     | Filling Shapes              | 4787     | 86%       | 5449     | 1000   |
+| Div2B     | Plus from Picture           | 2367     | 42%       | 4603     | 1400   |
+| Div2C     | Beautiful Lyrics            | 1342     | 24%       | 1871     | 1700   |
+| Div2D     | Complete Mirror             | 32       | 0.6%      | 448      | 2400   |
+| Div2E     | Product Oriented Recurrence | 171      | 3%        | 359      | 2300   |
+| Div2F     | Maximum Sine                | 0        | 0%        | 41       | 2700   |
 
 대회 진행 중에 별의별 이상한 질문도 많이 받았습니다.
 정말로 대형 코딩테스트나 프로그래밍 대회에서 엄격한 지문을 작성해야 하는 이유가..
@@ -173,14 +173,14 @@ arsijo도 평소랑 다르게 지문에 신경을 많이 쓰는 모습을 보였
 13442명이 참가 신청을 했고, 8193명이 실제로 코드를 제출했습니다.
 구체적인 수치는 다음과 같습니다.
 
-| 문제 번호 | 문제 이름 | 해결(명) | 해결 비율 | 시도(명) | 난이도
-| --- | --- | --- | --- | --- | --- |
-| Div2A | Distinct Digits | 7640 | 93% | 8101 | 800
-| Div2B | Filling the Grid | 4110 | 50% | 5795 | 1400
-| Div2C | Primes and Multiplication | 2371 | 29% | 3075 | 1700
-| Div2D | Complete Tripartite | 1157 | 14% | 1870 | 1900
-| Div2E | Another Filling the Grid | 273 | 3.3% | 361 | 2300
-| Div2F | One Node is Gone | 49 | 0.6% | 128 | 2500
+| 문제 번호 | 문제 이름                 | 해결(명) | 해결 비율 | 시도(명) | 난이도 |
+| --------- | ------------------------- | -------- | --------- | -------- | ------ |
+| Div2A     | Distinct Digits           | 7640     | 93%       | 8101     | 800    |
+| Div2B     | Filling the Grid          | 4110     | 50%       | 5795     | 1400   |
+| Div2C     | Primes and Multiplication | 2371     | 29%       | 3075     | 1700   |
+| Div2D     | Complete Tripartite       | 1157     | 14%       | 1870     | 1900   |
+| Div2E     | Another Filling the Grid  | 273      | 3.3%      | 361      | 2300   |
+| Div2F     | One Node is Gone          | 49       | 0.6%      | 128      | 2500   |
 
 대부분의 문제들에서 이슈가 거의 없었습니다.
 문제의 아이디어가 아름답다거나 그런 건 없었지만, Div.2 대회에서는 그런 부분이 아주 요구될 필요도 없었고, systest라던가 지문 이슈라던가 그런 것들이 별로 없었기 때문에 호평을 꽤 많이 받았던 대회였던 것 같아요.
@@ -203,9 +203,9 @@ F번은 아이디어 난이도에 비해서 구현을 덕지덕지해야 하는 
 
 Div.2에는 10683명이 참가 신청 및 6201명이 코드를 제출했고, Div.1에는 1138명이 참가 신청 및 756명이 코드를 제출했습니다. 다음은 주요 통계입니다.
 
-| 문제 번호 | 문제 이름 | 해결(명) | 해결 비율 | 시도(명) | 난이도
-| --- | --- | --- | --- | --- | --- |
-| Div1D | Number Discovery | 6 | 0.8% | 13 | 3400
+| 문제 번호 | 문제 이름        | 해결(명) | 해결 비율 | 시도(명) | 난이도 |
+| --------- | ---------------- | -------- | --------- | -------- | ------ |
+| Div1D     | Number Discovery | 6        | 0.8%      | 13       | 3400   |
 
 ![img4](/assets/posts/tho/cf/cf_howdoesfeel.png)
 
@@ -248,14 +248,14 @@ arsijo는 그래도 좀 자비로운 편이었는데, anton은 진짜 자기 마
 (코드 제출자는 clist.by 통계가 조금 이상하네요)
 다음은 주요 통계입니다.
 
-| 문제 번호 | 문제 이름 | Div.2 해결(명) | Div.2 해결 비율 | Div.2 시도(명) | Div.1 해결(명) | Div.1 해결 비율 | Div.1 시도(명) | 난이도
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Div2A | Filling Diamonds | 10492 | 87% | 11507 | | | | 900
-| Div2B | Sorted Adjacent Differences | 8132 | 67.5% | 9420 | | | | 1200
-| Div2C, Div1A | Powered Addition | 5176 | 43% | 8066 | 1346 | 97% | 1385 | 1500
-| Div2D, Div1B | Edge Weight Assignment | 1157 | 14% | 1870 | 1226 | 88.5% | 1308 | 1800
-| Div2E, Div1C | Perfect Triples | 97 | 0.8% | 299 | 708 | 51% | 854 | 2200
-| Div1D | Nested Rubber Bands | | | | 92 | 6.6% | 396 | 2700
+| 문제 번호    | 문제 이름                   | Div.2 해결(명) | Div.2 해결 비율 | Div.2 시도(명) | Div.1 해결(명) | Div.1 해결 비율 | Div.1 시도(명) | 난이도 |
+| ------------ | --------------------------- | -------------- | --------------- | -------------- | -------------- | --------------- | -------------- | ------ |
+| Div2A        | Filling Diamonds            | 10492          | 87%             | 11507          |                |                 |                | 900    |
+| Div2B        | Sorted Adjacent Differences | 8132           | 67.5%           | 9420           |                |                 |                | 1200   |
+| Div2C, Div1A | Powered Addition            | 5176           | 43%             | 8066           | 1346           | 97%             | 1385           | 1500   |
+| Div2D, Div1B | Edge Weight Assignment      | 1157           | 14%             | 1870           | 1226           | 88.5%           | 1308           | 1800   |
+| Div2E, Div1C | Perfect Triples             | 97             | 0.8%            | 299            | 708            | 51%             | 854            | 2200   |
+| Div1D        | Nested Rubber Bands         |                |                 |                | 92             | 6.6%            | 396            | 2700   |
 
 Div.1 E번 문제는 제가 만든 문제가 아니라 제외했습니다.
 이 문제는 gamegame이 만들었고, 3500 난이도를 할당받게 됩니다.
