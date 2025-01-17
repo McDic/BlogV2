@@ -343,9 +343,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
                 "views",
                 "total_users",
             }:
-                raise ValueError(
-                    f"Validation failed, views = {views} is not an integer"
-                )
+                raise ValueError("Validation failed, keys are different")
 
             del self._views[title]
             if (
@@ -378,7 +376,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
             if constants.TITLE_PREFIX.match(alternative_title):
                 alternative_title = ".".join(alternative_title.split(".", 1)[1:])
             alternative_title = alternative_title.lower().strip()
-            added = dict_get(self._views, alternative_title, "total_users", default=0)
+            added = dict_get(self._views, alternative_title, "views", default=0)
             logger.debug("Result += %d from title '%s'", added, alternative_title)
             result += added
         return result
@@ -509,7 +507,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         updated_date = dict_get(post.meta, "date", "updated")
         created_date = dict_get(post.meta, "date", "created")
         original_date = dict_get(post.meta, "date", "original")
-        unique_users = dict_get(post.meta, "views")
+        views = dict_get(post.meta, "views")
         edit_history_url = dict_get(post.meta, "edit_history")
 
         metadata_updated_date = datestr(
@@ -519,11 +517,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
             original_date or created_date,
             dict_get(post.meta, "commit", "created") if original_date is None else None,
         )
-        metadata_unique_users = (
-            f"{unique_users} users"
-            if unique_users
-            else constants.METADATA_NOT_AVAILABLE
-        )
+        metadata_views = views if views > 0 else constants.METADATA_NOT_AVAILABLE
         metadata_history = (
             "[../%s](%s)" % (edit_history_url.split("/")[-1], edit_history_url)
             if edit_history_url
@@ -537,18 +531,18 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
                 post.url,
                 "material-calendar-edit",
                 "material-calendar-plus",
-                "material-eye-plus" if unique_users else "material-eye-remove",
+                "material-eye-plus" if views else "material-eye-remove",
                 "octicons-git-commit-16",
                 metadata_updated_date,
                 metadata_created_date,
-                metadata_unique_users,
+                metadata_views,
                 metadata_history,
                 "material-calendar-edit",
                 metadata_updated_date,
                 "material-calendar-plus",
                 metadata_created_date,
-                "material-eye-plus" if unique_users else "material-eye-remove",
-                metadata_unique_users,
+                "material-eye-plus" if views else "material-eye-remove",
+                metadata_views,
                 "octicons-git-commit-16",
                 metadata_history,
             ),

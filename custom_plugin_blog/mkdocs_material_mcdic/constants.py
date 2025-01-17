@@ -26,7 +26,7 @@ METADATA_TABLE_MARKDOWN: typing.Final[
 ### **[%s](/%s)**
 
 <div class="md-mcdic--metadata-table horizontal" markdown="1">
-| :%s: Updated | :%s: Created | :%s: Unique Visited | :%s: Edit History |
+| :%s: Updated | :%s: Created | :%s: Views | :%s: Edit History |
 | :---: | :---: | :---: | :---: |
 | %s | %s | %s | %s |
 </div>
@@ -36,7 +36,7 @@ METADATA_TABLE_MARKDOWN: typing.Final[
 | :---: | :---: |
 | :%s: Updated | %s |
 | :%s: Created | %s |
-| :%s: Unique Visited | %s |
+| :%s: Views | %s |
 | :%s: Edit History | %s |
 </div>
 """.strip()
