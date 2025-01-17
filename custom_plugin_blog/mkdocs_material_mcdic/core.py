@@ -107,7 +107,9 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         """
         Check if this page is created on the temporary directory.
         """
-        return Path(page.file.abs_src_path).is_relative_to(self._temp_dir.name)
+        return page.file.abs_src_path is not None and Path(
+            page.file.abs_src_path
+        ).is_relative_to(self._temp_dir.name)
 
     def _check_page_by(
         self, page: Page, finder: re.Pattern, check_relative_path: bool
@@ -419,7 +421,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
 
         # Delete tmp files first
         for file in files:
-            if file.abs_src_path.startswith("/tmp/"):
+            if file.abs_src_path is not None and file.abs_src_path.startswith("/tmp/"):
                 files.remove(file)
 
         # Manipulate individual series post
@@ -480,6 +482,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
             raise PluginError(
                 f"Given file {file.abs_src_path} is not a documentation page"
             )
+        assert file.abs_src_path is not None
         with open(file.abs_src_path) as raw_file:
             content = raw_file.read().strip()
         if constants.EXCERPT_DIVIDER in content:
@@ -709,6 +712,15 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
             joinlist.append("---")
         return "\n\n".join(joinlist)
 
+    @staticmethod
+    def common_meta_procedure_on_special_pages(page: Page) -> None:
+        """
+        Common procedure on special pages; Modifying some metadata.
+        """
+        page.meta["no_comments"] = True
+        if "views" in page.meta:
+            del page.meta["views"]
+
     @event_priority(constants.LATE_EVENT_PRIORITY)
     @skip_if_disabled
     def on_page_markdown(
@@ -735,6 +747,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
 
         # Get git date metadata
         try:
+            assert page.file.abs_src_path is not None
             meta_lines: int = dict_get(page.meta, "meta_lines")
             logger.debug('Meta lines = %s on page "%s"', meta_lines, page.title)
             created_hash, created_date = get_date_from_git(
@@ -747,7 +760,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
                 "updated",
                 line_start=meta_lines + 1,
             )
-        except FileNotFoundError:
+        except (FileNotFoundError, AssertionError):
             pass
         else:
             dict_merge_inplace(
@@ -782,8 +795,10 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
                 override=True,
             )
 
-        # Raise error on no excerpt
+        # -------------------------------------------
+        # Blog posts
         if self._is_blog_post_page(page):
+            # Raise error on no excerpt
             if constants.EXCERPT_DIVIDER not in markdown:
                 raise PluginError(
                     "Page '%s' does not have EXCERPT DIVIDER '%s'"
@@ -796,12 +811,11 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
                 self._blog_post_proxies[(proxy_category, proxy_index)] = page
 
         # -------------------------------------------
-        # Below cases are for generated pages
+        # Non-blog posts
 
-        # If series index?
+        # Is series index?
         elif self._is_series_index_page(page):
-            page.meta["no_comments"] = True
-            del page.meta["views"]
+            self.common_meta_procedure_on_special_pages(page)
             series: str = page.file.src_uri.split("/")[-1].replace(".md", "").upper()
             return self._modify_markdown_on_series_index_page(
                 markdown, series, files, config
@@ -809,15 +823,13 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
 
         # If recent posts?
         elif self._is_recent_posts_page(page):
-            page.meta["no_comments"] = True
-            del page.meta["views"]
+            self.common_meta_procedure_on_special_pages(page)
             page.meta["title"] = "Recent"
             return self._modify_markdown_on_recent_posts_page(markdown, files, config)
 
         # If most viewed?
         elif self._is_most_viewed_posts_page(page):
-            page.meta["no_comments"] = True
-            del page.meta["views"]
+            self.common_meta_procedure_on_special_pages(page)
             page.meta["title"] = "Most Viewed"
             return self._modify_markdown_on_most_viewed_posts_page(
                 markdown, files, config
@@ -825,13 +837,13 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
 
         # If archives?
         elif self._is_archives_page(page):
-            page.meta["no_comments"] = True
-            del page.meta["views"]
+            self.common_meta_procedure_on_special_pages(page)
             year = int(page.file.src_uri.split("/")[-1].replace(".md", ""))
             return self._modify_markdown_on_archives_page(year, markdown, files, config)
 
         # -------------------------------------------
-        # Below cases are for normal documents
+        # If not returned yet(normal blog post, unknown type page, etc),
+        # then following this logic.
 
         joinlist: list[str] = [markdown]
 
