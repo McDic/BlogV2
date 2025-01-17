@@ -714,6 +714,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         page.meta["no_comments"] = True
         if "views" in page.meta:
             del page.meta["views"]
+        dict_merge_inplace(page.meta, {"search": {"exclude": True}})
 
     @event_priority(constants.LATE_EVENT_PRIORITY)
     @skip_if_disabled
