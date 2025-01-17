@@ -16,3 +16,22 @@ header.md-header .auto-scroller:hover {
     cursor: pointer;
     opacity: 75%;
 }
+
+header.md-header .music-player {
+    display: flex;
+    width: 2.2rem;
+    height: 2.2rem;
+    float: inline-end;
+
+    svg {
+        width: 1.1rem;
+        height: 1.1rem;
+        margin: 0.55rem;
+        fill: currentColor;
+    }
+}
+
+header.md-header .music-player:hover {
+    cursor: pointer;
+    opacity: 75%;
+}
