@@ -2,7 +2,7 @@ name: Deploying Blog
 
 on:
   push:
-    branch:
+    branches:
       - master
     paths-ignore:
       - .github/**
