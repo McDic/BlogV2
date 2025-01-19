@@ -106,5 +106,13 @@ So I failed to make my billing completely zero, but I think this is still feasib
 
 ---
 
+## Soundcloud music player
+
+I embedded [Soundcloud Widget API](https://developers.soundcloud.com/docs/api/html5-widget) on the header with some modifications.
+I wrote some simple Javascript code to implement random music player.
+For music sources, please [refer here](https://soundcloud.com/minsung-kim-mcdic/sets/blog-background-musics).
+
+---
+
 I plan to add more stuffs whenever I need.
 If there is anything you wonder, please ask in comments.
