@@ -1,7 +1,3 @@
 .md-source__repository .md-source__facts {
     display: none;
 }
-
-.md-container iframe.soundcloud {
-    visibility: hidden;
-}
