@@ -107,4 +107,12 @@ However I think this is still feasible, considering I am providing user statisti
 
 ---
 
+## Soundcloud music player
+
+I embedded [Soundcloud Widget API](https://developers.soundcloud.com/docs/api/html5-widget) on the header with some modifications.
+I wrote some simple Javascript code to implement random music player.
+For music sources, please [refer here](https://soundcloud.com/minsung-kim-mcdic/sets/blog-background-musics).
+
+---
+
 If there is anything you wonder, please ask in comments.

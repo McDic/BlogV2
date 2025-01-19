@@ -118,6 +118,8 @@ extra_javascript:
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
   - javascripts/autoscroll.js
+  - https://w.soundcloud.com/player/api.js
+  - javascripts/musicplayer.js
 
 extra_css:
   - stylesheets/admonitions.css
