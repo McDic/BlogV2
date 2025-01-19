@@ -43,7 +43,7 @@ title: THO 14. Intelligence at the Different Complexity
 
 !!! caption
 
-    [Suno AI](https://suno.com/song/f62d7c6c-b7e0-43cf-bd55-025e8fc484eb)
+    [Suno AI](https://suno.com/song/c05ba919-9fd6-4267-9bae-d110f2fe3d38)
     에게 직접 요청해서 만든 노래입니다.
     가사는 ChatGPT를 통해 교정했습니다.
 

@@ -96,7 +96,8 @@ I use [Google Analytics](https://analytics.google.com/) to get views, unique use
 So I decided to run [cronjob via Github Actions](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule) to periodically [fetch GA4 data with Python](https://github.com/googleapis/google-cloud-python/tree/main/packages/google-analytics-data),
 then [customized the blog post HTML section](https://squidfunk.github.io/mkdocs-material/customization/#extending-the-theme) and [my own plugin](#custom-mkdocs-plugin).
 
-So I failed to make my billing completely zero, but I think this is still feasible, considering I am providing unique user views on my blog posts.
+So I failed to make my billing completely zero.
+However I think this is still feasible, considering I am providing user statistics on my blog posts.
 
 !!! warning
 
@@ -114,5 +115,4 @@ For music sources, please [refer here](https://soundcloud.com/minsung-kim-mcdic/
 
 ---
 
-I plan to add more stuffs whenever I need.
 If there is anything you wonder, please ask in comments.
