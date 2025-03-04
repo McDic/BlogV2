@@ -13,7 +13,7 @@ from mkdocs.config.defaults import MkDocsConfig
 from mkdocs.exceptions import PluginError
 from mkdocs.plugins import BasePlugin, event_priority, get_plugin_logger
 from mkdocs.structure.files import File, Files
-from mkdocs.structure.nav import Navigation, Section, StructureItem
+from mkdocs.structure.nav import Link, Navigation, Section, StructureItem
 from mkdocs.structure.pages import Page
 
 from . import constants
@@ -247,6 +247,9 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         # Clear quiz section
         self._quiz_section.children.clear()
 
+        # Random question
+        self._quiz_section.children.append(Link("Random", "/random/quiz.html"))
+
         # Question pages
         self._quiz_proxies[(quiz_keys[0], "question")].previous_page = index_page
         self._quiz_proxies[(quiz_keys[-1], "question")].next_page = index_page
@@ -304,7 +307,9 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         Prepare sorted section of nav.
         """
 
-        self._sorted_section.children = []
+        self._sorted_section.children.clear()
+
+        # Sorted posts
         for file in files.documentation_pages():
             page = file.page
             if page is None:
@@ -314,6 +319,9 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
             ):
                 self._sorted_section.children.append(page)
                 page.parent = self._sorted_section
+
+        # Random blog
+        self._sorted_section.children.append(Link("Random", "/random/blog.html"))
 
     def _load_series_by_categories(self, files: Files):
         """
@@ -545,6 +553,10 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         # Create archives pages
         for year in range(2021, date.today().year + 1):
             files.append(self._create_tempfile(config, "archives", f"{year}.md"))
+
+        # Random redirection
+        files.append(self._create_tempfile(config, "random", "blog.html"))
+        files.append(self._create_tempfile(config, "random", "quiz.html"))
 
         # Move root file to back
         root_file = files.get_file_from_path(constants.INDEX_SRC_URI)
@@ -1001,6 +1013,29 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
             logger.warning("Root page entry not found on navigation")
         return nav
 
+    def _modify_random_redirections(self, files: Files) -> None:
+        """
+        Modify random redirection pages.
+        """
+        for file in files:
+            if constants.RE_RANDOM_REDIRECT_FINDER.match(file.src_uri):
+                filename = file.src_uri.split("/")[-1].replace(".html", "")
+                targets: list[Page] = []
+                if filename == "blog":
+                    targets = list(self._yield_blog_posts(files))
+                elif filename == "quiz":
+                    targets = [
+                        self._quiz_proxies[(qid, qtype)]
+                        for qid, qtype in self._quiz_proxies
+                        if qtype == "question"
+                    ]
+                else:
+                    raise ValueError("Invalid random redirection type %s" % (filename,))
+                file.content_string = constants.RANDOM_REDIRECT_HTML_TEMPLATE % (
+                    str([target.abs_url for target in targets]),
+                )
+                logger.info("Random redirection on %s completed" % (file.src_uri,))
+
     @event_priority(constants.LATE_EVENT_PRIORITY)
     @skip_if_disabled
     def on_env(
@@ -1008,12 +1043,15 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
     ) -> Environment | None:
         """
         After all pages are populated, I do followings;
+
         - Alter global navigation and prev/next page buttons of each page.
+        - Modify random redirection pages.
         """
         self._load_series_by_categories(files)
         self._link_archived_pages(files)
         self._link_quiz_pages(files)
         self._prepare_sorted_section(files)
+        self._modify_random_redirections(files)
         return None
 
     @event_priority(constants.LATE_EVENT_PRIORITY)

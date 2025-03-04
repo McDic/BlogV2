@@ -115,4 +115,13 @@ For music sources, please [refer here](https://soundcloud.com/minsung-kim-mcdic/
 
 ---
 
+## Random redirections
+
+As number of articles in this blog increased, I introduced random redirection pages.
+
+- [Random blog post](/random/blog.html)
+- [Random quiz](/random/quiz.html)
+
+---
+
 If there is anything you wonder, please ask in comments.

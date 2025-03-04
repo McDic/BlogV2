@@ -110,5 +110,27 @@ RE_ARCHIVES_FINDER: typing.Final[re.Pattern] = re.compile(r"^archives\/[0-9]+\.m
 RE_QUIZ_FINDER: typing.Final[re.Pattern] = re.compile(
     r"^quiz\/q[0-9]+\/(answer|question)\.md$"
 )
+RE_RANDOM_REDIRECT_FINDER: typing.Final[re.Pattern] = re.compile(r"^random\/.+\.html$")
 
 GITHUB_REPO_URL: typing.Final[str] = "https://github.com/McDic/BlogV2"
+
+RANDOM_REDIRECT_HTML_TEMPLATE: typing.Final[
+    str
+] = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Random redirection</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const pages = %s;
+            window.location.href = pages[Math.floor(Math.random() * pages.length)];
+        });
+    </script>
+</head>
+<body>
+    <p>Redirecting to a random page...</p>
+</body>
+</html>
+"""
