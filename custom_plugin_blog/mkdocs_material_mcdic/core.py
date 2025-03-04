@@ -251,9 +251,11 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
             self._quiz_proxies[(qid_prev, "question")].next_page = self._quiz_proxies[
                 (qid_next, "question")
             ]
-            self._quiz_proxies[
-                (qid_next, "question")
-            ].previous_page = self._quiz_proxies[(qid_prev, "question")]
+            # fmt: off
+            self._quiz_proxies[(qid_next, "question")].previous_page = (
+                self._quiz_proxies[(qid_prev, "question")]
+            )
+            # fmt: on
 
         # Answer pages
         for qid in quiz_keys:
@@ -346,13 +348,6 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
                 used_pages[category] = []
             used_pages[category].append(file.page)
 
-        # Navigation
-        self._series_section.children = [
-            page for _, page in sorted(series_index_pages.items())
-        ]
-        for child in self._series_section.children:
-            child.parent = self._series_section
-
         # Blog posts
         for category, pages in used_pages.items():
             pages.sort(
@@ -374,6 +369,14 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
                 )
 
             logger.info("Loaded %s series", category)
+
+        # Navigation
+        self._series_section.children.clear()
+        for category, series_index_page in series_index_pages.items():
+            self._series_section.children.append(series_index_page)
+            series_index_page.parent = self._series_section
+            for page in used_pages[category]:
+                page.parent = series_index_page  # type: ignore[assignment]
 
         logger.info("Loaded all series")
 
