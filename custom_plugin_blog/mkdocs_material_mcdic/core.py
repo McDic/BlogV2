@@ -372,7 +372,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
 
         # Navigation
         self._series_section.children.clear()
-        for category, series_index_page in series_index_pages.items():
+        for category, series_index_page in sorted(series_index_pages.items()):
             self._series_section.children.append(series_index_page)
             series_index_page.parent = self._series_section
             for page in used_pages[category]:
