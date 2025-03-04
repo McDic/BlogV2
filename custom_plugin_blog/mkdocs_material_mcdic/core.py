@@ -244,6 +244,9 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
             raise PluginError("No index page found")
         quiz_keys = sorted(set(id_ for id_, _typ in self._quiz_proxies.keys()))
 
+        # Clear quiz section
+        self._quiz_section.children.clear()
+
         # Question pages
         self._quiz_proxies[(quiz_keys[0], "question")].previous_page = index_page
         self._quiz_proxies[(quiz_keys[-1], "question")].next_page = index_page
@@ -278,6 +281,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
                 for i in quiz_keys[i_begin:i_end]:
                     root.children.append(self._quiz_proxies[(i, "question")])
                     self._quiz_proxies[(i, "question")].parent = root
+                    self._quiz_proxies[(i, "answer")].parent = root
             else:
                 step = (i_end - i_begin) // div
                 for i_cut in range(i_begin, i_end, step):
@@ -1008,7 +1012,6 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         """
         self._load_series_by_categories(files)
         self._link_archived_pages(files)
-        self._quiz_section.children.clear()
         self._link_quiz_pages(files)
         self._prepare_sorted_section(files)
         return None
