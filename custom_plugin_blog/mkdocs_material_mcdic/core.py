@@ -1,3 +1,4 @@
+import itertools
 import os
 import re
 import tempfile
@@ -5,7 +6,6 @@ import typing
 from copy import deepcopy
 from datetime import date, datetime
 from pathlib import Path
-from pprint import pprint
 
 import pytz
 from jinja2 import Environment
@@ -61,12 +61,18 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         self._series_section: Section = Section("Series", [])
         self._archives_section: Section = Section("Archives", [])
         self._sorted_section: Section = Section("Posts Sorted By", [])
+        self._quiz_section: Section = Section("Quizzes", [])
 
         self._temp_dir: tempfile.TemporaryDirectory
         self._cached_sorted_pages_by_date: list[Page] = []
 
         # (series, index) -> (series, index)
         self._blog_post_proxies: dict[tuple[str, int], Page] = {}
+
+        # (quiz_id, "answer" | "question") -> Page
+        self._quiz_proxies: dict[
+            tuple[int, typing.Literal["answer", "question"]], Page
+        ] = {}
 
     def _make_new_tempdir(self) -> None:
         """
@@ -152,6 +158,20 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         """
         return self._check_page_by(page, constants.RE_ARCHIVES_FINDER, True)
 
+    def _is_quiz_page(
+        self, page: Page
+    ) -> None | tuple[int, typing.Literal["answer", "question"]]:
+        """
+        Return if given `page` is a quiz page.
+        """
+        if self._check_page_by(page, constants.RE_QUIZ_FINDER, False):
+            splitted = page.file.src_uri.split("/")
+            return int(splitted[-2][1:]), (
+                "answer" if "answer" in splitted[-1].replace(".md", "") else "question"
+            )
+        else:
+            return None
+
     @staticmethod
     def aggregate_views(obj0: ViewDataValue, *objs: ViewDataValue) -> ViewDataValue:
         """
@@ -210,6 +230,68 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
             self._archives_section.children.append(page)
             page.meta["title"] = str(year)
             page.parent = self._archives_section
+
+    def _link_quiz_pages(self, files: Files):
+        """
+        Link prev/next pages between quiz pages.
+        """
+        index_page: Page
+        for file in files:
+            if file.page is not None and file.page.is_index:
+                index_page = file.page
+                break
+        else:
+            raise PluginError("No index page found")
+        quiz_keys = sorted(set(id_ for id_, _typ in self._quiz_proxies.keys()))
+
+        # Question pages
+        self._quiz_proxies[(quiz_keys[0], "question")].previous_page = index_page
+        self._quiz_proxies[(quiz_keys[-1], "question")].next_page = index_page
+        for qid_prev, qid_next in itertools.pairwise(quiz_keys):
+            self._quiz_proxies[(qid_prev, "question")].next_page = self._quiz_proxies[
+                (qid_next, "question")
+            ]
+            self._quiz_proxies[
+                (qid_next, "question")
+            ].previous_page = self._quiz_proxies[(qid_prev, "question")]
+
+        # Answer pages
+        for qid in quiz_keys:
+            self._quiz_proxies[(qid, "answer")].previous_page = self._quiz_proxies[
+                (qid, "question")
+            ]
+            self._quiz_proxies[(qid, "answer")].next_page = None
+            if (
+                self._quiz_proxies[(qid, "question")].title
+                != self._quiz_proxies[(qid, "answer")].title
+            ):
+                raise PluginError(
+                    "Question and answer titles for #%d are different" % (qid,)
+                )
+
+        def recursive_sectioning(
+            root: Section, i_begin: int, i_end: int, div: int, max_leaf: int = 20
+        ):
+            if i_end - i_begin < max_leaf:
+                for i in quiz_keys[i_begin:i_end]:
+                    root.children.append(self._quiz_proxies[(i, "question")])
+                    self._quiz_proxies[(i, "question")].parent = root
+            else:
+                step = (i_end - i_begin) // div
+                for i_cut in range(i_begin, i_end, step):
+                    naive_begin = i_cut
+                    naive_end = min(i_cut + step, i_end)
+                    child = Section(
+                        f"Quiz {quiz_keys[naive_begin]}-{quiz_keys[naive_end - 1]}",
+                        [],
+                    )
+                    child.parent = root
+                    root.children.append(child)
+                    recursive_sectioning(
+                        child, i_cut, i_cut + div, div, max_leaf=max_leaf
+                    )
+
+        recursive_sectioning(self._quiz_section, 0, len(quiz_keys), 5)
 
     def _prepare_sorted_section(self, files: Files):
         """
@@ -707,14 +789,21 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         return "\n\n".join(joinlist)
 
     @staticmethod
-    def common_meta_procedure_on_special_pages(page: Page) -> None:
+    def common_meta_procedure_on_special_pages(
+        page: Page,
+        delete_comments: bool = True,
+        delete_views: bool = True,
+        delete_search: bool = True,
+    ) -> None:
         """
         Common procedure on special pages; Modifying some metadata.
         """
-        page.meta["no_comments"] = True
-        if "views" in page.meta:
+        if delete_comments:
+            page.meta["no_comments"] = True
+        if delete_views and "views" in page.meta:
             del page.meta["views"]
-        dict_merge_inplace(page.meta, {"search": {"exclude": True}})
+        if delete_search:
+            dict_merge_inplace(page.meta, {"search": {"exclude": True}})
 
     @event_priority(constants.LATE_EVENT_PRIORITY)
     @skip_if_disabled
@@ -818,13 +907,13 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
 
         # If recent posts?
         elif self._is_recent_posts_page(page):
-            self.common_meta_procedure_on_special_pages(page)
+            self.common_meta_procedure_on_special_pages(page, delete_views=False)
             page.meta["title"] = "Recent"
             return self._modify_markdown_on_recent_posts_page(markdown, files, config)
 
         # If most viewed?
         elif self._is_most_viewed_posts_page(page):
-            self.common_meta_procedure_on_special_pages(page)
+            self.common_meta_procedure_on_special_pages(page, delete_views=False)
             page.meta["title"] = "Most Viewed"
             return self._modify_markdown_on_most_viewed_posts_page(
                 markdown, files, config
@@ -835,6 +924,19 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
             self.common_meta_procedure_on_special_pages(page)
             year = int(page.file.src_uri.split("/")[-1].replace(".md", ""))
             return self._modify_markdown_on_archives_page(year, markdown, files, config)
+
+        # If quiz?
+        elif info := self._is_quiz_page(page):
+            self.common_meta_procedure_on_special_pages(
+                page,
+                delete_comments=(info[1] == "question"),
+                delete_views=False,
+            )
+            self._quiz_proxies[info] = page
+            if info[1] == "question":
+                markdown += constants.QUIZ_QUESTION_SUFFIX
+            elif info[1] == "answer":
+                markdown += constants.QUIZ_ANSWER_SUFFIX
 
         # -------------------------------------------
         # If not returned yet(normal blog post, unknown type page, etc),
@@ -856,6 +958,12 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         iterable: list[StructureItem] = (
             section.children if isinstance(section, Section) else section.items
         )
+
+        def insert(target_index: int, target_section: Section) -> int:
+            iterable.insert(target_index, target_section)
+            target_section.parent = section if isinstance(section, Section) else None
+            return target_index + 1
+
         for i, item in enumerate(iterable):
             if isinstance(item, Page) and item.url in ("", "/"):
                 if self._root_found_on_nav:
@@ -864,24 +972,10 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
                 self._root_found_on_nav = True
 
                 target_index = i + 1
-
-                iterable.insert(target_index, self._series_section)
-                self._series_section.parent = (
-                    section if isinstance(section, Section) else None
-                )
-                target_index += 1
-
-                iterable.insert(target_index, self._archives_section)
-                self._archives_section.parent = (
-                    section if isinstance(section, Section) else None
-                )
-                target_index += 1
-
-                iterable.insert(target_index, self._sorted_section)
-                self._sorted_section.parent = (
-                    section if isinstance(section, Section) else None
-                )
-                target_index += 1
+                target_index = insert(target_index, self._series_section)
+                target_index = insert(target_index, self._archives_section)
+                target_index = insert(target_index, self._sorted_section)
+                target_index = insert(target_index, self._quiz_section)
 
             elif isinstance(item, Section):
                 self._modify_nav_on_root_page(item)
@@ -911,6 +1005,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         """
         self._load_series_by_categories(files)
         self._link_archived_pages(files)
+        self._link_quiz_pages(files)
         self._prepare_sorted_section(files)
         return None
 

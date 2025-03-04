@@ -75,6 +75,20 @@ ARCHIVES_PREFIX: typing.Final[
 *Following is a list of all blog posts created in year %d, sorted by created date.*
 """
 
+QUIZ_QUESTION_SUFFIX: typing.Final[
+    str
+] = """
+---
+[Click here to read the answer.](./answer.md)
+"""
+
+QUIZ_ANSWER_SUFFIX: typing.Final[
+    str
+] = """
+---
+[Click here to go back to the question.](./question.md)
+"""
+
 META_KEY_ADDITIONAL_CONTENTS: typing.Final[str] = "additional_contents"
 EXCERPT_DIVIDER: typing.Final[str] = "<!-- more -->"
 INDEX_SRC_URI: typing.Final[str] = "index.md"
@@ -93,5 +107,8 @@ RE_MOST_VIEWED_FINDER: typing.Final[re.Pattern] = re.compile(
     r"^sorted\/most_viewed\.md$"
 )
 RE_ARCHIVES_FINDER: typing.Final[re.Pattern] = re.compile(r"^archives\/[0-9]+\.md$")
+RE_QUIZ_FINDER: typing.Final[re.Pattern] = re.compile(
+    r"^quiz\/q[0-9]+\/(answer|question)\.md$"
+)
 
 GITHUB_REPO_URL: typing.Final[str] = "https://github.com/McDic/BlogV2"
