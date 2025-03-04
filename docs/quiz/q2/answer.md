@@ -1,5 +1,5 @@
 ---
-title: QUIZ 2. 4 PLANE DIVIDERS
+title: QUIZ 2. 4 Plane Dividers
 ---
 
 First, the maximum number of areas you can separate with $3$ planes are $8$, by placing all planes orthogonally.

@@ -1,5 +1,5 @@
 ---
-title: QUIZ 2. 4 PLANE DIVIDERS
+title: QUIZ 2. 4 Plane Dividers
 ---
 
 Suppose you have an infinitely large plane.
