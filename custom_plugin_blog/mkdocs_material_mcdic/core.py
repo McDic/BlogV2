@@ -1005,6 +1005,7 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
         """
         self._load_series_by_categories(files)
         self._link_archived_pages(files)
+        self._quiz_section.children.clear()
         self._link_quiz_pages(files)
         self._prepare_sorted_section(files)
         return None
