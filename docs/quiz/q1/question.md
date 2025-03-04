@@ -2,4 +2,5 @@
 title: QUIZ 1. 222222 = 500
 ---
 
-$2$를 $6$개 사용하여 $500$을 표현해보세요.
+You can make $12$ by using four $2$s, $12 = (2 \times 2 + 2) \times 2$.
+Make $500$ by using six $2$s.
