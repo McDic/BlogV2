@@ -78,6 +78,7 @@ ARCHIVES_PREFIX: typing.Final[
 QUIZ_QUESTION_SUFFIX: typing.Final[
     str
 ] = """
+
 ---
 [Click here to read the answer.](./answer.md)
 """
@@ -85,6 +86,7 @@ QUIZ_QUESTION_SUFFIX: typing.Final[
 QUIZ_ANSWER_SUFFIX: typing.Final[
     str
 ] = """
+
 ---
 [Click here to go back to the question.](./question.md)
 """
