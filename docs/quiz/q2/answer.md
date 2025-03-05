@@ -30,7 +30,7 @@ Because any plane would divide any convex area into $2$ areas, and all of $8$ al
 Why the second observation is correct?
 If the new plane is able to divide all of $8$ areas, then this means you can pick up $8$ points from the plane, where each point has positive/negative x/y/z coordinate.
 
-Any convex space that contains These $8$ points essentially create $3$ dimensional space.
+Any convex space that contains these $8$ points essentially create $3$ dimensional space.
 Because if you put any $3$ different points to create a plane, there should be a completely opposite sign triples that can't be included on that created plane.
 I believe there is a mathematically strict proof using dot product(which defines a plane in multi-dimensional space) or matrix dimension, but I am not covering that here.
 
