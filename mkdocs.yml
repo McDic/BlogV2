@@ -67,20 +67,6 @@ plugins:
       timezone: Asia/Seoul
   - glightbox
 
-# https://squidfunk.github.io/mkdocs-material/reference/admonitions/
-# Intentionally added features:
-# - Admonitions
-# - Annotations
-# - Buttons
-# - Code Blocks
-# - Data Tables
-# - Diagrams
-# - Footnotes
-# - Grid
-# - Icons and Emojis
-# - Images
-# - Lists
-# - Math
 markdown_extensions:
   - footnotes
   - attr_list
