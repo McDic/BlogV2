@@ -5,13 +5,14 @@
     --md-admonition-icon--caption: url("/assets/icons/svgrepo/picture.svg");
     --md-admonition-icon--copyright: url("/assets/icons/svgrepo/copyright_simpler.svg");
     --md-admonition-icon--formula: url("/assets/icons/svgrepo/formula.svg");
+    --md-admonition-icon--spoiler: url("/assets/icons/svgrepo/eye.svg");
     --md-admonition-animation-heartbeat-x: 0;
     --md-admonition-animation-heartbeat-y: 0;
     --md-admonition-animation-heartbeat-z: 1;
 }
 
 @keyframes heartbeating {
-    0% {
+    0%, 10% {
         opacity: 100%;
         transform: scale(100%) rotate3d(
             var(--md-admonition-animation-heartbeat-x),
@@ -21,7 +22,7 @@
         );
     }
     25% {
-        opacity: 25%;
+        opacity: 33%;
         transform: scale(75%) rotate3d(
             var(--md-admonition-animation-heartbeat-x),
             var(--md-admonition-animation-heartbeat-y),
@@ -29,7 +30,7 @@
             45deg
         );
     }
-    50% {
+    40%, 60% {
         opacity: 100%;
         transform: scale(100%) rotate3d(
             var(--md-admonition-animation-heartbeat-x),
@@ -39,7 +40,7 @@
         );
     }
     75% {
-        opacity: 25%;
+        opacity: 33%;
         transform: scale(75%) rotate3d(
             var(--md-admonition-animation-heartbeat-x),
             var(--md-admonition-animation-heartbeat-y),
@@ -47,7 +48,7 @@
             -45deg
         );
     }
-    100% {
+    90%, 100% {
         opacity: 100%;
         transform: scale(100%) rotate3d(
             var(--md-admonition-animation-heartbeat-x),
@@ -60,7 +61,7 @@
 
 .md-typeset .admonition-title::before,
 .md-typeset summary::before {
-    animation: heartbeating 4000ms infinite;
+    animation: heartbeating 6000ms infinite;
 }
 
 .md-typeset .admonition.disclaimer,
@@ -76,7 +77,7 @@
     background-color: rgb(224, 27, 27);
     -webkit-mask-image: var(--md-admonition-icon--disclaimer);
             mask-image: var(--md-admonition-icon--disclaimer);
-    animation: heartbeating 1500ms infinite;
+    animation: heartbeating 2000ms infinite;
 }
 
 .md-typeset .admonition.references,
@@ -152,4 +153,19 @@
     background-color: rgb(114, 35, 240);
     -webkit-mask-image: var(--md-admonition-icon--formula);
             mask-image: var(--md-admonition-icon--formula);
+}
+
+.md-typeset .admonition.spoiler,
+.md-typeset details.spoiler {
+    border-color: rgb(128, 64, 64);
+}
+.md-typeset .spoiler > .admonition-title,
+.md-typeset .spoiler > summary {
+    background-color: rgba(128, 64, 64, 0.1);
+}
+.md-typeset .spoiler > .admonition-title::before,
+.md-typeset .spoiler > summary::before {
+    background-color: rgb(128, 64, 64);
+    -webkit-mask-image: var(--md-admonition-icon--spoiler);
+            mask-image: var(--md-admonition-icon--spoiler);
 }

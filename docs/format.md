@@ -60,9 +60,16 @@ Every blog post will provide following metadata;
 ## Admonitions
 
 I use [built-in admonitions](https://squidfunk.github.io/mkdocs-material/reference/admonitions/?h=admon#supported-types) featured by `mkdocs-material`.
-For typical admonitions, I use `note`, `info`, and `quote` types in most cases
-and occasionally use `warning` and `danger` types.
-However, I customized some following stuffs, thanks for [CSS animations](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animations/Using_CSS_animations).
+I customized my admonitions with [CSS animations](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animations/Using_CSS_animations)
+and custom icons.
+
+!!! note
+
+!!! info
+
+!!! quote
+
+!!! warning
 
 !!! disclaimer
 
@@ -75,6 +82,10 @@ However, I customized some following stuffs, thanks for [CSS animations](https:/
 !!! copyright
 
 !!! formula
+
+??? spoiler
+
+    This is a spoiler.
 
 Note that almost all custom icons(especially for admonitions) here are provided by [SVG Repo](https://www.svgrepo.com/).
 
