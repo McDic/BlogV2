@@ -60,10 +60,13 @@ I got ITM on following poker tournaments.
 
 - [APL 2023 October Seoul, Main Event: 252nd Place (16 APL tickets)](https://www.acepokerleague.com/post/2-main-event-result)
 - [Nippon Series 2024 Fukuoka, Deepstack: 2nd Place (30k JPY + Silver medal)](https://twitter.com/_NIPPON_SERIES/status/1821935796196462954)
-- CTP 9th Anniversary, Challenge: Top 9% (8k NTD)
+- CTP 9th Anniversary, Challenge: 87th Place (8k NTD)
+- [Okada Manila Millions 2025, Okada Micro: 49th Place (95k PHP)](https://somuchpoker.com/events-calendar/pslive/2025/okada-manila-millions-2025/16-okada-micro/payouts-and-results)
 
-See [English version](/assets/raw_html/damavaco_performance_en.html) or [Korean version](/assets/raw_html/damavaco_performance_kr.html)
-if you are interested in my online poker performance, plotted by [`plotly`](https://plotly.com/python/).
+Click here to read my [*Hendon Mob Profile*](https://pokerdb.thehendonmob.com/player.php?a=r&n=1018513).
+See [English version](/assets/raw_html/damavaco_performance_en.html)
+or [Korean version](/assets/raw_html/damavaco_performance_kr.html)
+of my report if you are interested in my online poker performance.
 
 ---
 
