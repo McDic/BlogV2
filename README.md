@@ -1,6 +1,8 @@
-# McDic's Blog
+# cyber93's TechNote 
 
-This repository is used for [McDic's Blog](https://blog.mcdic.net).
+<p><a href="https://cyber93-technote.netlify.app"><img src="https://img.shields.io/badge/Site-https%3A%2F%2Fcyber93--technote.netlify.app-blue" alt="TechNote" /></a>
+
+이 저장소는 Mkdocs 를 통해 웹사이트로 만들어졌으며, netlify 를 이용하여 배포되었습니다.
 
 ## How to run locally
 
