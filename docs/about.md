@@ -12,12 +12,22 @@ I am a Principal Engineer at Samsung Memory Business Division. I am interested i
 
 ## Skills
 
+<<<<<<< HEAD
 | Language          | C, C++, Go, Rust, Python, JavaScript                         |
 | ----------------- | ------------------------------------------------------------ |
 | **Environment**   | **Kubernetes(k8s, k3s), Containerd<br>Windows, MacOS, RedHat(CentOS, Rocky, Almalinux), Ubuntu** |
 | **Data Platform** | **Grafana, Grafana Loki, Prometheus, Influx DB**             |
 | **Web**           | **FastAPI, Flask, Express, Vue.js, Node.js<br>HTTP, CSS, JavaScript** |
 | **Collaboration** | **Github, Gitlab, Notion**                                   |
+=======
+|:---|:---|
+|Language|C, C++, Go, Rust, Python, Javascript|
+|Environment|Kubernetes(k8s, k3s), Containerd<br>Windows, MacOS, RedHat(CentOS, Rocky, Almalinux), Ubuntu|
+|Data Platform|Grafana, Grafana Loki, Prometheus, Influx DB|
+|Web|FastAPI, Flask, Express, Vue.js, Node.js<br>HTTP, CSS, JavaScript|
+|DB|MySQL(MariaDB), MongoDB, Prometheus, Influx DB|
+|Collaboration|Github, Gitlab, Notion|
+>>>>>>> 4c95fa5c573a746a4cfee376629b83b3e9bdba96
 
 ----
 
