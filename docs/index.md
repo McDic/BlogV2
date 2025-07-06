@@ -16,5 +16,5 @@ To explore my articles, please use the navigation bar.
 
 !!! copyright
 
-    **Every article in this blog is owned by Minsung Kim and**
+    **Every article in this blog is owned by Han Deok Lee and**
     **licensed by [CC BY-NC 4.0 DEED](https://creativecommons.org/licenses/by-nc/4.0/deed).**
