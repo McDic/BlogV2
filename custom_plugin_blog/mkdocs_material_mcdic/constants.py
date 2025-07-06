@@ -9,7 +9,7 @@ LATE_EVENT_PRIORITY: typing.Final[float] = -1e9
 VERSION: typing.Final[str] = "0.0.4"
 
 INDEX_TITLE: typing.Final[str] = "Main Page"
-TITLE_SUFFIX: typing.Final[str] = " - McDic's Blog"
+TITLE_SUFFIX: typing.Final[str] = " - cyber93's TechNote"
 TITLE_PREFIX: re.Pattern = re.compile(r"^[A-Z]+ [0-9]+\.")
 
 SERIES_INDEX_PREFIX: typing.Final[
@@ -114,7 +114,7 @@ RE_QUIZ_FINDER: typing.Final[re.Pattern] = re.compile(
 )
 RE_RANDOM_REDIRECT_FINDER: typing.Final[re.Pattern] = re.compile(r"^random\/.+\.html$")
 
-GITHUB_REPO_URL: typing.Final[str] = "https://github.com/McDic/BlogV2"
+GITHUB_REPO_URL: typing.Final[str] = "https://github.com/cyber93/TechNote"
 
 RANDOM_REDIRECT_HTML_TEMPLATE: typing.Final[
     str
