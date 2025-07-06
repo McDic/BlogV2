@@ -5,9 +5,9 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "mkdocs-material-mcdic"
 authors = [
-  { name="Minsung Kim", email="spongbob9876@naver.com" },
+  { name="Han Deok Lee", email="cyber93@gmail.com" },
 ]
-description = "McDic's custom plugin for the McDic's blog"
+description = "cyber93's custom plugin for the cyber93's blog"
 readme = "README.md"
 requires-python = ">=3.11"
 classifiers = [
@@ -18,8 +18,8 @@ keywords = ["mkdocs", "blog"]
 dynamic = ["dependencies", "version"]
 
 [project.urls]
-"Blog" = "https://blog.mcdic.net"
-"Repository" = "https://github.com/McDic/BlogV2/"
+"Blog" = "https://cyber93-technote.netlify.app"
+"Repository" = "https://github.com/cyber93/TechNote/"
 
 # https://github.com/squidfunk/mkdocs-material/blob/246266fafad2c2fdc78022c14f7f4b2df91167f3/pyproject.toml
 [project.entry-points."mkdocs.plugins"]

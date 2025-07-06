@@ -3,7 +3,7 @@ title: Main Page
 no_comments: true
 alternative_titles:
     - ""
-    - McDic's Blog
+    - cyber93's TechNote
 ---
 
 # Main Page
