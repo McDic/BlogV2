@@ -8,7 +8,7 @@ I am a Principal Engineer at Samsung Memory Business Division. I am interested i
 
 > Don't try to be a successful person, try to be a valuable person.
 
----
+
 
 ## Skills
 
@@ -18,7 +18,7 @@ I am a Principal Engineer at Samsung Memory Business Division. I am interested i
 | **Data Platform** | **Grafana, Grafana Loki, Prometheus, Influx DB**             |
 | **Web**           | **FastAPI, Flask, Express, Vue.js, Node.js<br>HTTP, CSS, JavaScript** |
 | **Collaboration** | **Github, Gitlab, Notion**                                   |
-----
+
 
 ## Education
 
@@ -26,7 +26,7 @@ I am a Principal Engineer at Samsung Memory Business Division. I am interested i
   Advisor: [Dr. Chanik Park](https://sslab.postech.ac.kr/chanik-park.html)
 - **B.Sc.** in Computer Science, **[Kumoh National Institute of Technology (KNIT)](https://ce.kumoh.ac.kr/ce/)**. 1993 - 2000
 
-----
+
 
 ## Publication
 
