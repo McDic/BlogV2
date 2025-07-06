@@ -1,10 +1,10 @@
-site_name: McDic's Blog
-site_url: "https://blog.mcdic.net"
-site_author: "Minsung Kim (McDic)"
-site_description: "McDic's Personal Blog"
+site_name: cyber93's TechNote
+site_url: "https://cyber93-technote.netlify.app/"
+site_author: "Han Deok Lee"
+site_description: "cyber93's Technical Notes"
 
-repo_url: "https://github.com/McDic/BlogV2"
-repo_name: "McDic/BlogV2"
+repo_url: "https://github.com/cyber93/TechNote"
+repo_name: "cyber93's TechNote"
 remote_branch: deploy
 strict: true
 
