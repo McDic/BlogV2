@@ -32,7 +32,7 @@ Ret = typing.TypeVar("Ret")
 
 
 def skip_if_disabled(
-    method: typing.Callable[typing.Concatenate["McDicBlogPlugin", P], Ret | None]
+    method: typing.Callable[typing.Concatenate["McDicBlogPlugin", P], Ret | None],
 ) -> typing.Callable[typing.Concatenate["McDicBlogPlugin", P], Ret | None]:
     """
     Make method be skipped if plugin is disabled.
@@ -686,12 +686,14 @@ class McDicBlogPlugin(BasePlugin[McDicBlogPluginConfig]):
                 proxy_category = self.get_category(proxy_page.file, abbreviated=True)
                 proxy_index = self.pop_category_id(proxy_page.title)
                 contents.append(
-                    "### **[%s %d. (Moved)](%s)**"
-                    % (series, index, proxy_page.canonical_url)
-                )
-                contents.append(
-                    "This post is moved to **[%s %d](%s)**."
-                    % (proxy_category, proxy_index, proxy_page.canonical_url)
+                    "**%s %d** is moved to **[%s %d](%s)**."
+                    % (
+                        series,
+                        index,
+                        proxy_category,
+                        proxy_index,
+                        proxy_page.canonical_url,
+                    )
                 )
             elif index == self.pop_category_id(posts[post_pointer].title):
                 contents.extend(self._get_page_excerpt(posts[post_pointer], config))
