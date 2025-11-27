@@ -2,7 +2,7 @@
 title: QUIZ 4. Four Single Digit Numbers
 ---
 
-I've found two answers so far.
+I've found following answers so far.
 
 - $1, 3, 8, 9$
     - $10 = 1 + 9$
@@ -24,5 +24,15 @@ I've found two answers so far.
     - $70 = 5 \times (8 \times 2 - 2)$
     - $80 = 5 \times 8 \times 2$
     - $90 = 5 \times (8 \times 2 + 2)$
+- $2, 2, 5, 7$ (This is also intuitive too)
+    - $10 = 2 \times 5$
+    - $20 = 2 \times 5 \times 2$
+    - $30 = 5 \times (7 - 2 \div 2)$
+    - $40 = 5 \times (7 + 2 \div 2)$
+    - $50 = 5 \times (7 - 2) \times 2$
+    - $60 = 5 \times (7 \times 2 - 2)$
+    - $70 = 5 \times 7 \times 2$
+    - $80 = 5 \times (7 \times 2 + 2)$
+    - $90 = 5 \times (7 + 2) \times 2$
 
 I haven't bruteforced this yet so there may be other answers.
