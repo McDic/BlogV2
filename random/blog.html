@@ -1,0 +1,17 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Random redirection</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const pages = ['/series/alds/1', '/series/alds/2', '/series/alds/3', '/series/alds/4', '/series/alds/5', '/series/alds/6', '/series/alds/7', '/series/cpp/1', '/series/cpp/2', '/series/cpp/3', '/series/cpp/4', '/series/poker/1', '/series/poker/2', '/series/poker/3', '/series/poker/4', '/series/poker/5', '/series/poker/6', '/series/poker/7', '/series/poker/8', '/series/poker/9', '/series/py/1', '/series/py/2', '/series/py/3', '/series/py/4', '/series/py/5', '/series/rust/1', '/series/rust/2', '/series/rust/3', '/series/rust/4', '/series/tho/10', '/series/tho/11', '/series/tho/12', '/series/tho/13', '/series/tho/14', '/series/tho/15', '/series/tho/2', '/series/tho/4', '/series/tho/5', '/series/tho/6', '/series/tho/7', '/series/tho/8'];
+            window.location.href = pages[Math.floor(Math.random() * pages.length)];
+        });
+    </script>
+</head>
+<body>
+    <p>Redirecting to a random page...</p>
+</body>
+</html>

@@ -1,0 +1,1848 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="McDic's Personal Blog">
+      
+      
+        <meta name="author" content="Minsung Kim (McDic)">
+      
+      
+        <link rel="canonical" href="https://blog.mcdic.net/series/tho/14">
+      
+      
+        <link rel="prev" href="../13">
+      
+      
+        <link rel="next" href="../15">
+      
+      
+        
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="RSS feed" href="../../../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="RSS feed of updated content" href="../../../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../../../assets/images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    <meta name="naver-site-verification" content="350e113007a0eb7457df0e7257d064821aadb302">
+    <meta name="google-site-verification" content="a03bDk70M68JfTAtAahtI2Rgnez2v29KYXrRPM0X_to">
+
+    
+      
+        <title>THO 14. Intelligence at the Different Complexity - McDic's Blog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/admonitions.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/footer.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/404.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/meta.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/header.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/article.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+    
+        
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-LNQJ79T5LM"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-LNQJ79T5LM",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-LNQJ79T5LM",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+
+    
+  <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="light-green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#the-giga-impact-is-already-started" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      <!-- https://github.com/squidfunk/mkdocs-material/blob/7cc43931c89739d28961f413b4dd93fea41ea8c9/src/templates/partials/header.html -->
+
+<!-- Determine classes -->
+
+
+  
+
+
+<!-- Header -->
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+
+    <!-- Link to home -->
+    <a href="../../.." title="McDic's Blog" class="md-header__button md-logo" aria-label="McDic's Blog" data-md-component="logo">
+      
+  <img src="../../../assets/images/mcdic.jpg" alt="logo">
+
+    </a>
+
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+
+    <!-- Header title -->
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            McDic's Blog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              THO 14. Intelligence at the Different Complexity
+            
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- (MODIFIED BY MCDIC) MUSIC PLAYER -->
+    <div class="music-player mcdic play-button">
+</div>
+<iframe class="soundcloud" title="soundcloud" width="0px" height="0px" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1952629623&amp;color=%2328b928&amp;auto_play=false&amp;hide_related=true&amp;show_comments=false&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true">
+</iframe>
+
+    <!-- (MODIFIED BY MCDIC) SCROLLER -->
+    <div class="auto-scroller mcdic" onclick="autoscrollOnClick();" title="(THIS HOVER TEXT SHOULD CHANGE)">
+    <!--?xml version="1.0" encoding="utf-8"?--><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+<svg fill="rgba(255,255,255,1)" width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7.293,8.707a1,1,0,0,1,0-1.414l4-4a1,1,0,0,1,1.414,0l4,4a1,1,0,1,1-1.414,1.414L12,5.414,8.707,8.707A1,1,0,0,1,7.293,8.707Zm0,8,4,4a1,1,0,0,0,1.414,0l4-4a1,1,0,0,0-1.414-1.414L12,18.586,8.707,15.293a1,1,0,1,0-1.414,1.414Z"></path></svg>
+</div>
+
+    <!-- Color palette toggle -->
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="light-green" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="light-green" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+
+    <!-- User preference: color palette -->
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+
+    <!-- Site language selector -->
+    
+
+    <!-- Button to open search modal -->
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+      </label>
+
+      <!-- Search interface -->
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    <!-- Repository information -->
+    
+      <div class="md-header__source">
+        <a href="https://github.com/McDic/BlogV2" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    McDic/BlogV2
+  </div>
+</a>
+      </div>
+    
+  </nav>
+
+  <!-- Navigation tabs (sticky) -->
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="McDic's Blog" class="md-nav__button md-logo" aria-label="McDic's Blog" data-md-component="logo">
+      
+  <img src="../../../assets/images/mcdic.jpg" alt="logo">
+
+    </a>
+    McDic's Blog
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/McDic/BlogV2" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    McDic/BlogV2
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Main Page
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Series
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Series
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../alds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ALDS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CPP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../poker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    POKER
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../py/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PY
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rust/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RUST
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    THO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3">
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Archives
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Archives
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archives/2021/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2021
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archives/2022/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2022
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archives/2023/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2023
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archives/2024/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2024
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archives/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2025
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4">
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Posts Sorted By
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Posts Sorted By
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sorted/recent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sorted/most_viewed/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Most Viewed
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/random/blog.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Random
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5">
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quizzes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Quizzes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/random/quiz.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Random
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quiz/q1/question/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QUIZ 1. 222222 = 500
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quiz/q2/question/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QUIZ 2. 4 Plane Dividers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quiz/q3/question/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QUIZ 3. Cool Quadratics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quiz/q4/question/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QUIZ 4. Four Single Digit Numbers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../format/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Post Format
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ai_songs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Songs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ama/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AMA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-giga-impact-is-already-started" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The giga impact is already started
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#even-the-current-model-is-powerful-enough" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Even the current model is powerful enough
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Even the current model is powerful enough">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ai-is-already-doing-many-things" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AI is already doing many things
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai-is-copyable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AI is copyable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lots-of-layoffs-are-currently-ongoing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lots of layoffs are currently ongoing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-if-the-current-model-goes-further" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What if the current model goes further?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-different-complexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The different complexity
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The different complexity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simple-problem-becomes-hard-to-scale-without-basic-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simple problem becomes hard to scale without basic logic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-strictly-defined-procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The strictly defined procedure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-if-there-is-an-another-complexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What if there is an another complexity?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  <!-- https://github.com/squidfunk/mkdocs-material/blob/7624e7874447a01c78522189af42c2481a8eaa47/src/templates/partials/content.html -->
+
+<!-- Tags -->
+
+  
+
+  <nav class="md-tags">
+    
+      
+      
+      
+      
+        <span class="md-tag">ai</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">computer-science</span>
+      
+    
+  </nav>
+
+
+
+<!-- Actions -->
+
+  
+  
+
+
+<!--
+  Hack: check whether the content contains a h1 headline. If it doesn't, the
+  page title (or respectively site name) is used as the main headline.
+-->
+
+  <h1>THO 14. Intelligence at the Different Complexity</h1>
+
+
+<!-- Page content -->
+<p>요즘 인공지능의 발전속도가 정말 어마무시합니다.
+신경망 모델이 개발된 이래,
+바둑 인공지능 <a href="https://deepmind.google/research/breakthroughs/alphago/">AlphaGo</a>,
+단백질 구조 예측모델 <a href="https://deepmind.google/technologies/alphafold/">AlphaFold</a>,
+자연스러운 챗봇 <a href="https://openai.com/index/chatgpt/">ChatGPT</a>,
+이미지/동영상 생성모델 <a href="https://stability.ai/">Stable Diffusion</a>,
+작곡 인공지능 <a href="https://suno.com/">Suno</a>
+등의 다양한 모델들이 최근 10년 동안 어마무시하게 쏟아져나오고 발전했습니다.</p>
+<p>저는 이러한 인공지능 기술들이 무시무시하게 빠르게 발전하는 것을 보면서 여러 생각을 개인적으로 해왔는데,
+이번 기회에 그것들을 블로그에 글로 정리해보고자 합니다.</p>
+<div class="admonition disclaimer">
+<p class="admonition-title">Disclaimer</p>
+<p>저는 인공지능 전문가가 아닙니다.
+그래서 제 글의 여러 디테일들에 틀린 부분이 있을 수 있습니다.</p>
+</div>
+<!-- more -->
+<hr>
+<h2 id="the-giga-impact-is-already-started">The giga impact is already started<a class="headerlink" href="#the-giga-impact-is-already-started" title="Permanent link">¶</a></h2>
+<p>인공지능은 이미 일반인들조차 널리 사용하기 시작했습니다.
+현재 가장 자주 보이는 것들은 아마도 창작 분야일 것입니다.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="/assets/posts/tho/high_intelligence/japanese_shrine.webp" data-desc-position="bottom"><img alt="japanese_shrine" src="/assets/posts/tho/high_intelligence/japanese_shrine.webp"></a></p>
+<div class="admonition caption">
+<p class="admonition-title">Caption</p>
+<p><a href="https://openai.com/index/gpt-4o-mini-advancing-cost-efficient-intelligence/">GPT 4o mini</a>
+에게 직접 요청해서 그린 일본식 신사 그림입니다.</p>
+</div>
+<iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1973905099&amp;color=%2328b928&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true"></iframe>
+
+<div class="admonition caption">
+<p class="admonition-title">Caption</p>
+<p><a href="https://suno.com/song/c05ba919-9fd6-4267-9bae-d110f2fe3d38">Suno AI</a>
+에게 직접 요청해서 만든 노래입니다.
+가사는 ChatGPT를 통해 교정했습니다.</p>
+</div>
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/J9DpusAZV_0?si=aO-PGcerJ_-gfP0Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<div class="admonition caption">
+<p class="admonition-title">Caption</p>
+<p>일본의 Wit Studio가 2023년 1월 Netflix Japan을 통해 공개한 <em>"개와 소년"</em>이라는 애니메이션입니다.
+이 애니메이션의 배경 작화는 전부 인공지능이 담당하였습니다.</p>
+</div>
+<p>이미 Suno 등의 생성형 인공지능으로 창작을 할 수 있는 서비스를 제공하는 회사들은 소니(Sony Music Entertainment), 유니버설(Universal Music Group) 등의 굵직한 기업들로부터
+<a href="https://www.musicbusinessworldwide.com/suno-after-being-sued-by-the-majors-and-hiring-timbaland-as-strategic-advisor-preps-launch-of-v4-claimed-to-be-a-new-era-of-ai-music-generation12/">줄소송</a>
+을 당하고 있습니다.</p>
+<p>그렇다면 인공지능이 창작 분야에서만 강력한 것일까요?
+프로그래밍 분야에서도 이미 엄청난 영향을 끼치고 있습니다.
+저는 개인적으로 ChatGPT, Suno 뿐만 아니라 <a href="https://github.com/features/copilot">Github Copilot</a>
+등의 코딩을 도와주는 인공지능 툴도 유료 구독하고 있습니다.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="/assets/posts/tho/high_intelligence/copilot_chat.png" data-desc-position="bottom"><img alt="copilot_chat" src="/assets/posts/tho/high_intelligence/copilot_chat.png"></a></p>
+<div class="admonition caption">
+<p class="admonition-title">Caption</p>
+<p>이 문서의 프롤로그의 초기 버젼을 작성한 직후 Copilot에게 문서의 내용을 요약해달라고 한 대화입니다.</p>
+</div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="/assets/posts/tho/high_intelligence/chatgpt_partial_derivative.png" data-desc-position="bottom"><img alt="chatgpt_partial_derivative" src="/assets/posts/tho/high_intelligence/chatgpt_partial_derivative.png"></a></p>
+<div class="admonition caption">
+<p class="admonition-title">Caption</p>
+<p><a href="https://openai.com/o1/">ChatGPT o1</a>에게
+<a href="https://en.wikipedia.org/wiki/Normal_distribution">정규분포</a> 확률밀도함수를 평균값에 대해 편미분해달라고 요청했고,
+o1은 계산과정을 하나하나 보여주면서 이 모든 과정을 잘 해냈습니다.</p>
+</div>
+<p>과학/연구 분야도 예외가 아닙니다.
+2024년 노벨물리학상과 노벨화학상은 AI 연구를 통해 과학 연구에 크게 기여한 사람들이 수상하였습니다.</p>
+<div class="admonition references">
+<p class="admonition-title">References</p>
+<p>출처: <a href="https://m.dongascience.com/news.php?idx=68071">동아사이언스 2024년 10월 23일 기사</a></p>
+</div>
+<p>인공지능 기술은 그것이 끝까지 발전하지 않고 아직 개선될 여지가 많이 남아있음에도 불구하고,
+기존에 인간이 하던 지적인 일들의 상당량을 해치움으로써 생산성을 극대화하고 있습니다.
+이것은 여태까지 기술이 인간 사회에 가져온 발전들과는 다른 차원의 것입니다.
+기계는 인간의 육체적 노동을 대체하고, 단순한 지적 노동을 대체했습니다.
+그리고 이제 저는 기계가 인간의 <strong>모든 지적인 노동을 완벽하게 대체</strong>할 날이 얼마 남지 않았다고 확신하고 있습니다.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>여기서 제가 언급한 <em>"단순한 지적 노동"</em>이란,
+인간이 비록 속도가 몇 백만배 느리더라도, <strong>모든 프로시져(procedure)를 엄밀하게 표현할 수 있고, 그 프로시져를 정확하게 따라갈 수 있는 형태의 계산</strong>을 말합니다.
+예를 들어, <span class="arithmatex">\(\pi\)</span>의 소수점 아래 10억번째 자리를 계산하는 것은, 충분히 무한한 시간과 종이가 주어진다면 인간은 연필과 지우개를 가지고 해당 연산을 완벽하게 재현할 수 있습니다. 속도가 지나치게 느릴 뿐.</p>
+<p><em>"단순하지 않은 지적인 노동"</em>은, 인간이 아직 프로시져를 명시적으로 엄밀하게 표현할 수 없는(혹은 모르는) 노동을 말합니다.
+대표적인 예시로 창의적인 그림을 그리는 것, 훨씬 복잡한 문제로는 지구 온난화를 늦추는 것 등이 있습니다.</p>
+</div>
+<hr>
+<h2 id="even-the-current-model-is-powerful-enough">Even the current model is powerful enough<a class="headerlink" href="#even-the-current-model-is-powerful-enough" title="Permanent link">¶</a></h2>
+<p>이런 말을 하면, 그 말을 들은 어떤 사람들은 다음과 같은 생각을 할 수도 있습니다. 실제로도 이런 반응은 인터넷에서 아주 많이 찾아볼 수 있습니다.</p>
+<div class="admonition quote">
+<p class="admonition-title">Quote</p>
+<p><em>"에이, 내가 GPT한테 이런이런거 물어보니까 막 틀리고 엉뚱하게 말하던데? 얘네들은 한참 멀었어."</em></p>
+</div>
+<p>최악의 시나리오로, 만에 하나라도 현재의 LLM 모델 구조를 가진 AI가 사람들이 흔히 말하는 "AGI"의 벽을 넘지 못하고 지금 수준에서 멈춘다 하더라도, 여전히 AI의 위력은 위협적이라고 생각합니다.
+제가 이렇게 생각하는 이유는 다음과 같습니다.</p>
+<h3 id="ai-is-already-doing-many-things">AI is already doing many things<a class="headerlink" href="#ai-is-already-doing-many-things" title="Permanent link">¶</a></h3>
+<p>요즘은 AI 스타트업 춘추전국시대라고 해도 과언이 아닙니다.
+생긴 지 얼마 되지도 않았으면서 어지간한 대기업들을 후려치는 <a href="https://www.nytimes.com/2024/10/02/technology/openai-valuation-150-billion.html">1500억 달러가 넘는 밸류에이션</a>을 인정받은 OpenAI를 제외하더라도,
+정말 많은 분야에서 인공지능 스타트업이 활발하게 생겨나고 있습니다.</p>
+<div class="admonition references">
+<p class="admonition-title">References</p>
+<p>2024년 미국에서는 1억 달러 이상을 투자받은 인공지능 스타트업이 총 49개입니다. (출처: <a href="https://techcrunch.com/2024/12/20/heres-the-full-list-of-49-us-ai-startups-that-have-raised-100m-or-more-in-2024/">TechCrunch</a>)</p>
+</div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="/assets/posts/tho/high_intelligence/bizwatch_tax_services.jpg" data-desc-position="bottom"><img alt="bizwatch_tax_services" src="/assets/posts/tho/high_intelligence/bizwatch_tax_services.jpg"></a></p>
+<div class="admonition caption">
+<p class="admonition-title">Caption</p>
+<p>2023년 4월 기준 대한민국의 세무회계서비스 스타트업 현황입니다.
+(출처: <a href="https://news.bizwatch.co.kr/article/mobile/2023/04/06/0008">Bizwatch 기사</a>)</p>
+</div>
+<h3 id="ai-is-copyable">AI is copyable<a class="headerlink" href="#ai-is-copyable" title="Permanent link">¶</a></h3>
+<p>어떤 일을 해결하는데(작곡, etc) 탁월한 AI를 개발했다면,
+일정 성능 이상의 컴퓨터에서는 전부 동일한 모델을 복사하여 돌릴 수 있습니다.
+실제로 이미 <a href="https://huggingface.co/">huggingface</a> 등에서 인공지능 모델을 다운받아서 집에서 돌릴 수 있는 <a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui">Web UI</a>까지 오픈소스로 다 개발되었습니다.
+개발을 어느 정도 할 줄 안다면, 집에 있는 컴퓨터에서 공짜 인공지능으로 엄청나게 많은 양의 고퀄리티 그림을 무제한으로 뽑아낼 수 있습니다.</p>
+<p>코딩 같은 두뇌노동이든, 용접 같은 육체노동이든 뭐든 간에,
+전문적인 스킬을 가진 인간을 길러내는 것은 많은 시간과 비용이 드는 일입니다.
+두 인간을 컨디션과 생각하는 방식까지 전부 똑같게 만드는 것은 사실상 불가능한 일입니다.
+그런데 인공지능은 단순히 파일과 메모리를 복사하는 것으로 그렇게 양성하는 것이 가능합니다.</p>
+<p>이게 의미하는 바는, 어떤 문제를 해결하는 인공지능이 공공에 공개되었을 때,
+이 세상의 모든 사람들의 해당 문제를 해결하는 스킬이 <em>"즉시"</em> 상향평준화된다는 것입니다.</p>
+<h3 id="lots-of-layoffs-are-currently-ongoing">Lots of layoffs are currently ongoing<a class="headerlink" href="#lots-of-layoffs-are-currently-ongoing" title="Permanent link">¶</a></h3>
+<p>이미 인공지능으로 인한 생산성 향상으로(이게 원인의 전부는 아니겠지만),
+상당량의 해고 및 고용감축이 진행되고 있습니다.</p>
+<p>개발자 입장에서 보면 초보적인 개발도 제대로 못하는(그리고 포텐셜도 없는) 주니어 프로그래머들은,
+이제 시니어 프로그래머 입장에서 한 달에 20달러 정도면 결제할 수 있는 Copilot Pro보다도 못합니다.
+실제로 개발자 채용 시장은 현재 매우 얼어붙은 상태입니다.</p>
+<p>특히 뚜렷한 도메인이 없이 엑셀 정도만 다루는 사무직들의 대체는 엄청나게 가팔라질 것으로 예상합니다.
+법적/제도적 보호막이 있는 회계사 같은 직업의 경우 상황이 좀 더 낫겠지만, 그저 수명이 좀 더 길어질 뿐이라는 생각입니다.</p>
+<h3 id="what-if-the-current-model-goes-further">What if the current model goes further?<a class="headerlink" href="#what-if-the-current-model-goes-further" title="Permanent link">¶</a></h3>
+<p>만약 이러한 모델들이 더 발전하면 어떻게 될까요?
+여기서 어떤 사람들은 인공지능이 더 발전하는데 시간이 오래 걸리거나, 혹은 심지어 발전하지 못할거라고 생각하지만, 저는 다르게 생각합니다.</p>
+<hr>
+<h2 id="the-different-complexity">The different complexity<a class="headerlink" href="#the-different-complexity" title="Permanent link">¶</a></h2>
+<p>이제 본론으로 들어와서, "다른 복잡도"의 지능에 대해 제 생각을 서술해보겠습니다.</p>
+<h3 id="simple-problem-becomes-hard-to-scale-without-basic-logic">Simple problem becomes hard to scale without basic logic<a class="headerlink" href="#simple-problem-becomes-hard-to-scale-without-basic-logic" title="Permanent link">¶</a></h3>
+<p>간단한 문제를 잠시 하나 들고 가보겠습니다.
+길이가 10 이상인 정수 배열이 주어질 때, 해당 정수 배열의 첫 10개의 값을 1씩 빼는 프로그램을 작성하기 위해서는 어떤 코드를 작성해야 할까요?
+Python의 경우, 다음과 같은 간단한 프로그램을 만들 수 있을 것입니다.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">solution</span><span class="p">(</span><span class="n">array</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">10</span>  <span class="c1"># just for safety</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>        <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="k">return</span> <span class="n">array</span>
+</span></code></pre></div>
+<p>만약 이 문제를 푸는 사람이 반복문/재귀함수와 같은 <a href="https://docs.python.org/3.13/reference/compound_stmts.html">compound statement</a>에 대한 개념이 없고 그런 걸 활용할 줄 모른다면,
+아마도 다음과 같은 노가다 방식으로 문제를 해결할 것입니다.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">solution_stupid</span><span class="p">(</span><span class="n">array</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">10</span>  <span class="c1"># just for safety</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="n">array</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="n">array</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="c1"># ...</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="n">array</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="n">array</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="k">return</span> <span class="n">array</span>
+</span></code></pre></div>
+<p>그리고 이런 저차원적인 존재의 입장에서는 현대 컴퓨터 공학에서 만들어지는 각종 알고리즘과 프로그램들이 어마어마하게 복잡하게 느껴질 것입니다.
+왜냐하면 고차원적인 로직에 대한 개념이 머릿속에 존재하지 않기 때문입니다.
+당장 위의 간단한 문제만 해도 10개의 값이 아니라 1000개의 값에 대해 똑같은 행동을 하려면 1000줄이 넘는 코드를 작성해야 합니다.</p>
+<h3 id="the-strictly-defined-procedure">The strictly defined procedure<a class="headerlink" href="#the-strictly-defined-procedure" title="Permanent link">¶</a></h3>
+<p>저는 인공지능을 보면서 비슷한 생각을 했습니다.
+인공지능(특히 신경망 모델)을 흔히들 black box라고 말하지만,
+그것은 실제로 내부 값들에 대한 정보가 감추어지기 때문인 것이 아니라,
+인간의 뇌와 사고방식에서 그 노드들의 값의 변경 과정을 인간이 이해할 수 있는 형태로 해석하지 못하는 것일 뿐입니다.</p>
+<p>인공지능 모델들은 그 자체로, 그동안 인간이 컴퓨터 프로그램에게 시키기 어렵다고 믿었던 문제를 해결하는 일련의 거대한 컴퓨팅 프로세스입니다.
+근본적으로 그 내부에서는 수없이 많은 덧셈과 곱셈 같은 primitive 연산들이 이루어지고 있습니다.
+각각의 단일 덧셈과 곱셈들이 내부적으로 문제를 해결하는데 어떤 영향을 주는지 우리는 알지 못하지만, 어쨌든 그런 모델이 복잡한 계산을 진행한 직후 내놓는 결과는 우리를 놀랍게 만들고 있습니다.
+내부적인 과정을 해석하지 못할 뿐이지만, 엄밀하게 정량화된 함수를 만들어냈다는 것입니다.</p>
+<p>심지어 최근 만들어진 GPT o1 등의 모델은 그동안 LLM이 정복하기 어렵다고 널리 믿어졌던 추론에도 능한 모습을 보여주고 있습니다.
+아직 공개되지 않은 GPT o3 모델은 <a href="https://codeforces.com/blog/entry/137532">Codeforces에서 레이팅 2700</a>에 도달했다고 합니다.</p>
+<p>이 부분은 개인적 추측이지만, 저는 현실에서 인간이 하는 모든 형태의 두뇌활동(연산, 추론, 감정, 기억)들을 정량화하는 것이 가능하다고 믿고 있습니다.
+그리고 이게 만약 가능하다면 이것은 정말 말도 안 되는, 역사상 단 한번도 없었던 혁신입니다.</p>
+<p>한번 만들어진 인공지능은 수평적-스케일링하는 것이 가능합니다.
+전 세계의 모든 지식에 실시간으로 접근할 수 있는 어떤 굉장히 똑똑한 인간이 이 세상에 수십억명 생긴다고 생각하면, 그 효과는 감히 상상할 수도 없습니다.
+그리고 저는 인공지능의 발전으로 인해 심지어 이것보다 더 먼 지점에 도달하게 될 것이라고 생각합니다.</p>
+<h3 id="what-if-there-is-an-another-complexity">What if there is an another complexity?<a class="headerlink" href="#what-if-there-is-an-another-complexity" title="Permanent link">¶</a></h3>
+<p>수평적 스케일링도 마찬가지지만, 만약 수직적 스케일링도 가능하다면 어떨까요?</p>
+<ul>
+<li>만약 우리가 풀기 어렵다고 생각했던 문제들조차 앞서 만들어진 AI처럼 문제 해결 함수를 엄밀하게 정량적으로 정의하는 게 가능하다면?</li>
+<li>그런 문제를 해결할 수 있는 더 높은 지능의 입장에서 인간을 바라봤을 때 인간이 반복문 같은 것조차 제대로 이해하지 못하는 존재라면?</li>
+<li>인간의 입장에서는 더 어려운 문제를 풀 때마다 몇 배씩 더 필요한 노력의 양이, 더 높은 지능의 입장에서는 <span class="arithmatex">\(\log\)</span> 그래프로 환산한 것 마냥 내려가게 된다면?</li>
+</ul>
+<p>저는 다른 것이 아니라 이런 것이 어떻게 보면 진짜 <a href="https://en.wikipedia.org/wiki/Lovecraftian_horror">코스믹 호러</a>가 될 수도 있다고 생각합니다.
+우리가 아무리 따라가려고 해도 절대로 따라갈 수 없는,
+우리가 <code>a[i] -= 1</code>을 한줄한줄 따라쓰고 있을 때 <code>for</code>문 한방으로 문제를 싹 다 해결해버리는,
+그런 존재를 눈앞에서 마주하는 것은 어떤 기분이 들 지 도저히 상상이 가지 않습니다.</p>
+<p>만약에 이 모든 것들이 진짜로 가능한 것이라면, 특이점이 발생한 이후에는 인간이 하는 모든 개척/탐구활동이 의미가 없어질 수 있습니다.
+우리가 행복한 완몰가(완전 몰입 가상현실) 속에서 쾌락을 즐기며 놀고 먹을 수 있을지, 실험쥐가 될 건지, 아니면 그냥 아예 사라져 버릴지는 예측 불가능한 영역에 있다고 생각합니다.</p>
+<hr>
+<p>인공지능과 특이점에 대해 요즘 드는 생각을 정리해서 써보았습니다.
+글을 읽어주셔서 감사합니다.</p>
+
+
+
+<article class="md-post md-post__excerpt md-mcdic--meta">
+    <header class="md-post__header">
+        <div class="md-post__meta md-meta">
+            <ul class="md-meta__list">
+                
+                    <li class="md-meta__item">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h5v-2H5V8h14v1h2V5a2 2 0 0 0-2-2m2.7 10.35-1 1-2.05-2 1-1c.2-.21.54-.22.77 0l1.28 1.28c.19.2.19.52 0 .72M12 18.94l6.07-6.06 2.05 2L14.06 21H12z"></path></svg>
+                        <div class="text">
+                            Updated at Jan 17, 2025
+                            
+                            (
+                                <a href="https://github.com/McDic/BlogV2/commit/91142dd7a4e761525053e7310ecf54932876e31f">
+                                    91142dd..
+                                </a>
+                            )
+                            
+                        </div>
+                    </li>
+                    <li class="md-meta__item">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19V8H5v11zM16 1h2v2h1a2 2 0 0 1 2 2v14c0 1.11-.89 2-2 2H5a2 2 0 0 1-2-2V5c0-1.11.89-2 2-2h1V1h2v2h8zm-5 8.5h2v3h3v2h-3v3h-2v-3H8v-2h3z"></path></svg>
+                        <div class="text">
+                            Created at Jan 17, 2025
+                            
+                                (
+                                    <a href="https://github.com/McDic/BlogV2/commit/8d2d27d7bbf78f7044bb4187be213ebb103f8c25">
+                                        8d2d27d..
+                                    </a>
+                                )
+                            
+                        </div>
+                    </li>
+                
+                
+                    <li class="md-meta__item">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5.36 0 .72 0 1.08-.05a6 6 0 0 1-.08-.95c0-.56.08-1.12.24-1.66-.41.1-.82.16-1.24.16a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5c0 .29-.03.59-.08.88.66-.25 1.37-.38 2.08-.38 1.17 0 2.31.34 3.29 1 .27-.5.51-1 .71-1.5-1.73-4.39-6-7.5-11-7.5M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m6 5.5v3h-3v2h3v3h2v-3h3v-2h-3v-3z"></path></svg>
+                        <div class="text">
+                            177 Views
+                        </div>
+                    </li>
+                
+                
+                    <li class="md-meta__item">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M11.93 8.5a4.002 4.002 0 0 1-7.86 0H.75a.75.75 0 0 1 0-1.5h3.32a4.002 4.002 0 0 1 7.86 0h3.32a.75.75 0 0 1 0 1.5Zm-1.43-.75a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0"></path></svg>
+                        <div class="text">
+                            Edit history:
+                            <a href="https://github.com/McDic/BlogV2/commits/master/docs/posts/tho/tho14.md">
+                                ../tho14.md
+                            </a>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </header>
+</article>
+
+<!-- (MODIFIED BY MCDIC) Source file information, feedback are removed -->
+
+<!-- Comment system -->
+
+    <script src="https://utteranc.es/client.js" repo="McDic/BlogV2" issue-term="title" theme="github-light" crossorigin="anonymous" async>
+    </script>
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer">
+        
+          
+          <a href="../13" class="md-footer__link md-footer__link--prev" aria-label="Previous: THO 13. The Social Network Charges on Your Every Activity">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                THO 13. The Social Network Charges on Your Every Activity
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../15" class="md-footer__link md-footer__link--next" aria-label="Next: THO 15. Another Time Attack by AI">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                THO 15. Another Time Attack by AI
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Every article in this blog is owned by Minsung Kim and licensed by CC BY-NC 4.0 DEED.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/McDic" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"></path></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/in/mcdic/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"></path></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://codeforces.com/profile/McDic" target="_blank" rel="noopener" title="codeforces.com" class="md-social__link">
+      <!--?xml version="1.0" ?--><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title></title><path d="M4.5 7.5C5.328 7.5 6 8.172 6 9v10.5c0 .828-.672 1.5-1.5 1.5h-3C.673 21 0 20.328 0 19.5V9c0-.828.673-1.5 1.5-1.5h3zm9-4.5c.828 0 1.5.672 1.5 1.5v15c0 .828-.672 1.5-1.5 1.5h-3c-.827 0-1.5-.672-1.5-1.5v-15c0-.828.673-1.5 1.5-1.5h3zm9 7.5c.828 0 1.5.672 1.5 1.5v7.5c0 .828-.672 1.5-1.5 1.5h-3c-.828 0-1.5-.672-1.5-1.5V12c0-.828.672-1.5 1.5-1.5h3z"></path></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://discordapp.com/users/mcdic" target="_blank" rel="noopener" title="discordapp.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M492.5 69.8c-.2-.3-.4-.6-.8-.7-38.1-17.5-78.4-30-119.7-37.1-.4-.1-.8 0-1.1.1s-.6.4-.8.8c-5.5 9.9-10.5 20.2-14.9 30.6-44.6-6.8-89.9-6.8-134.4 0-4.5-10.5-9.5-20.7-15.1-30.6-.2-.3-.5-.6-.8-.8s-.7-.2-1.1-.2C162.5 39 122.2 51.5 84.1 69c-.3.1-.6.4-.8.7C7.1 183.5-13.8 294.6-3.6 404.2c0 .3.1.5.2.8s.3.4.5.6c44.4 32.9 94 58 146.8 74.2.4.1.8.1 1.1 0s.7-.4.9-.7c11.3-15.4 21.4-31.8 30-48.8.1-.2.2-.5.2-.8s0-.5-.1-.8-.2-.5-.4-.6-.4-.3-.7-.4c-15.8-6.1-31.2-13.4-45.9-21.9-.3-.2-.5-.4-.7-.6s-.3-.6-.3-.9 0-.6.2-.9.3-.5.6-.7c3.1-2.3 6.2-4.7 9.1-7.1.3-.2.6-.4.9-.4s.7 0 1 .1c96.2 43.9 200.4 43.9 295.5 0 .3-.1.7-.2 1-.2s.7.2.9.4c2.9 2.4 6 4.9 9.1 7.2.2.2.4.4.6.7s.2.6.2.9-.1.6-.3.9-.4.5-.6.6c-14.7 8.6-30 15.9-45.9 21.8-.2.1-.5.2-.7.4s-.3.4-.4.7-.1.5-.1.8.1.5.2.8c8.8 17 18.8 33.3 30 48.8.2.3.6.6.9.7s.8.1 1.1 0c52.9-16.2 102.6-41.3 147.1-74.2.2-.2.4-.4.5-.6s.2-.5.2-.8c12.3-126.8-20.5-236.9-86.9-334.5zm-302 267.7c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.4 59.2-52.8 59.2m195.4 0c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.2 59.2-52.8 59.2"></path></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["search.suggest", "search.highlight", "navigation.footer", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../../javascripts/autoscroll.js"></script>
+      
+        <script src="https://w.soundcloud.com/player/api.js"></script>
+      
+        <script src="../../../javascripts/musicplayer.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html><!-- (ADDED BY MCDIC) Metadata --><!-- Added by McDic for metadata -->

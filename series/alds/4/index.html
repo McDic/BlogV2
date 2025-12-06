@@ -1,0 +1,2007 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="McDic's Personal Blog">
+      
+      
+        <meta name="author" content="Minsung Kim (McDic)">
+      
+      
+        <link rel="canonical" href="https://blog.mcdic.net/series/alds/4">
+      
+      
+        <link rel="prev" href="../3">
+      
+      
+        <link rel="next" href="../5">
+      
+      
+        
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="RSS feed" href="../../../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="RSS feed of updated content" href="../../../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../../../assets/images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    <meta name="naver-site-verification" content="350e113007a0eb7457df0e7257d064821aadb302">
+    <meta name="google-site-verification" content="a03bDk70M68JfTAtAahtI2Rgnez2v29KYXrRPM0X_to">
+
+    
+      
+        <title>ALDS 4. My Codeforces Problemsetting Experiences - McDic's Blog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/admonitions.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/footer.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/404.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/meta.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/header.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/article.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+    
+        
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-LNQJ79T5LM"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-LNQJ79T5LM",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-LNQJ79T5LM",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+
+    
+  <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="light-green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#codeforces" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      <!-- https://github.com/squidfunk/mkdocs-material/blob/7cc43931c89739d28961f413b4dd93fea41ea8c9/src/templates/partials/header.html -->
+
+<!-- Determine classes -->
+
+
+  
+
+
+<!-- Header -->
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+
+    <!-- Link to home -->
+    <a href="../../.." title="McDic's Blog" class="md-header__button md-logo" aria-label="McDic's Blog" data-md-component="logo">
+      
+  <img src="../../../assets/images/mcdic.jpg" alt="logo">
+
+    </a>
+
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+
+    <!-- Header title -->
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            McDic's Blog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ALDS 4. My Codeforces Problemsetting Experiences
+            
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- (MODIFIED BY MCDIC) MUSIC PLAYER -->
+    <div class="music-player mcdic play-button">
+</div>
+<iframe class="soundcloud" title="soundcloud" width="0px" height="0px" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1952629623&amp;color=%2328b928&amp;auto_play=false&amp;hide_related=true&amp;show_comments=false&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true">
+</iframe>
+
+    <!-- (MODIFIED BY MCDIC) SCROLLER -->
+    <div class="auto-scroller mcdic" onclick="autoscrollOnClick();" title="(THIS HOVER TEXT SHOULD CHANGE)">
+    <!--?xml version="1.0" encoding="utf-8"?--><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+<svg fill="rgba(255,255,255,1)" width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7.293,8.707a1,1,0,0,1,0-1.414l4-4a1,1,0,0,1,1.414,0l4,4a1,1,0,1,1-1.414,1.414L12,5.414,8.707,8.707A1,1,0,0,1,7.293,8.707Zm0,8,4,4a1,1,0,0,0,1.414,0l4-4a1,1,0,0,0-1.414-1.414L12,18.586,8.707,15.293a1,1,0,1,0-1.414,1.414Z"></path></svg>
+</div>
+
+    <!-- Color palette toggle -->
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="light-green" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="light-green" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+
+    <!-- User preference: color palette -->
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+
+    <!-- Site language selector -->
+    
+
+    <!-- Button to open search modal -->
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+      </label>
+
+      <!-- Search interface -->
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    <!-- Repository information -->
+    
+      <div class="md-header__source">
+        <a href="https://github.com/McDic/BlogV2" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    McDic/BlogV2
+  </div>
+</a>
+      </div>
+    
+  </nav>
+
+  <!-- Navigation tabs (sticky) -->
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="McDic's Blog" class="md-nav__button md-logo" aria-label="McDic's Blog" data-md-component="logo">
+      
+  <img src="../../../assets/images/mcdic.jpg" alt="logo">
+
+    </a>
+    McDic's Blog
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/McDic/BlogV2" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    McDic/BlogV2
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Main Page
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Series
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Series
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ALDS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CPP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../poker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    POKER
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../py/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PY
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rust/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RUST
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tho/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    THO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3">
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Archives
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Archives
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archives/2021/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2021
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archives/2022/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2022
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archives/2023/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2023
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archives/2024/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2024
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archives/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2025
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4">
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Posts Sorted By
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Posts Sorted By
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sorted/recent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sorted/most_viewed/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Most Viewed
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/random/blog.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Random
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5">
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quizzes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Quizzes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/random/quiz.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Random
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quiz/q1/question/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QUIZ 1. 222222 = 500
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quiz/q2/question/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QUIZ 2. 4 Plane Dividers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quiz/q3/question/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QUIZ 3. Cool Quadratics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quiz/q4/question/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QUIZ 4. Four Single Digit Numbers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../format/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Post Format
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ai_songs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Songs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ama/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AMA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#codeforces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Codeforces = ?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#codeforces-round-566" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Codeforces Round 566
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#codeforces-round-589" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Codeforces Round 589
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#codeforces-round-599" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Codeforces Round 599
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#codeforces-round-633" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Codeforces Round 633
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  <!-- https://github.com/squidfunk/mkdocs-material/blob/7624e7874447a01c78522189af42c2481a8eaa47/src/templates/partials/content.html -->
+
+<!-- Tags -->
+
+  
+
+  <nav class="md-tags">
+    
+      
+      
+      
+      
+        <span class="md-tag">algorithm</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">computer-science</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">data-structures</span>
+      
+    
+  </nav>
+
+
+
+<!-- Actions -->
+
+  
+  
+
+
+<!--
+  Hack: check whether the content contains a h1 headline. If it doesn't, the
+  page title (or respectively site name) is used as the main headline.
+-->
+
+  <h1>ALDS 4. My Codeforces Problemsetting Experiences</h1>
+
+
+<!-- Page content -->
+<div class="admonition migrated">
+<p class="admonition-title">Migrated</p>
+<p><em>This article is migrated from which I wrote on another website.</em></p>
+</div>
+<p>안녕하세요. 이 시리즈에서는 저의 생각과 관련된 글을 적어보고자 합니다.
+이번 글은 Codeforces라는 프로그래밍 대회 플랫폼에서 대회 출제를 몇 번 해본 경험을 소개하고자 합니다.</p>
+<!-- more -->
+
+<hr>
+<h2 id="codeforces">Codeforces = ?<a class="headerlink" href="#codeforces" title="Permanent link">¶</a></h2>
+<p><a href="https://codeforces.com/">Codeforces</a>(이하 CF)는 전 세계에서 가장 활발한 알고리즘 프로그래밍 대회 플랫폼들 중 하나입니다.
+러시아의 Mike Mirzayanov라는 사람이 만들었으며, 거기서 대회를 치다보면 전 세계에서 괴물 같은 사람들이 수백 수천명씩 몰려들어서 매 대회마다 2~3시간 동안 무협 싸움을 하는 광경을 보실 수 있습니다.
+주어진 시간 안에 문제들을 얼마나 많이 그리고 빨리 풀었느냐에 따라서 레이팅이 결정되고, 랭킹도 매겨집니다.
+비슷한 위치에 있는 플랫폼으로는 일본의 <a href="https://atcoder.jp/">Atcoder</a>, 미국의 <a href="https://www.topcoder.com/">Topcoder</a>가 있습니다.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="/assets/posts/tho/cf/cf_ratings.png" data-desc-position="bottom"><img alt="img1" src="/assets/posts/tho/cf/cf_ratings.png"></a></p>
+<div class="admonition caption">
+<p class="admonition-title">Caption</p>
+<p>코드포스 유저들의 <a href="https://codeforces.com/blog/entry/116571">레이팅 분포</a>입니다.</p>
+</div>
+<p>비록 지금은 우크라이나 전쟁 같은 이슈가 있긴 하지만, 어쨌든 이 분야에서는 탑급의 위치를 자랑하고 있다보니 별의별 스폰서 라운드가 이루어지기도 합니다.
+이 웹사이트에서 프로그래밍 대회를 스폰서링한 대표적인 기업들의 목록은 다음과 같습니다.</p>
+<ul>
+<li><a href="https://codeforces.com/blog/entry/112838">화웨이</a></li>
+<li><a href="https://codeforces.com/blog/entry/65059">XTX Markets</a></li>
+<li><a href="https://codeforces.com/pinely">Pinely</a></li>
+</ul>
+<p><a href="https://codeforces.com/problemset">Problemset</a>에서 대충 CF에서 어떤 류의 문제가 출제되는지 맛보기를 하실 수 있습니다.
+레이팅 숫자가 낮을수록 쉽고, 높을수록 어렵습니다.
+제일 쉬운 문제 난이도가 800 정도이고, Div.2에서 제일 어려운 문제는 보통 2500-2900, Div.1에서 제일 어려운 문제는 3200-3500 정도입니다.
+코딩테스트 문제의 상한선은 출제 방향이 CF랑은 많이 달라서 1:1 비교는 어렵지만, 굳이 비유하면 1500 정도가 쉬운 코테에서 제일 어려운 문제, 1900 정도가 어려운 코테에서 제일 어려운 문제랑 비슷하지 않을까 쉽네요.</p>
+<hr>
+<h2 id="codeforces-round-566"><a href="https://codeforces.com/blog/entry/67566">Codeforces Round 566</a><a class="headerlink" href="#codeforces-round-566" title="Permanent link">¶</a></h2>
+<p>저는 관종끼가 좀 많은 편이었고, 마인크래프트에서 렐름 공식 게임을 만들었던 것처럼 코드포스에서도 뭔가 제 이름으로 대회를 열어보고 싶었습니다.
+만명 단위의 참가자들이 제가 만든 문제들을 몇 시간 동안 머리를 써가면서 푸는 상상을 하니까 꼭 대회를 열어보고 싶다는 생각이 들더군요.</p>
+<p>그래서 무작정 Codeforces에 대회 개최 신청을 했습니다.
+당시 제 레이팅은 블루(1600+)였고, 저는 제가 생각한 난이도별 문제 아이디어들을 가지고 문제를 만들어서 대회를 열 생각에 기쁨을 감추지 못하고 CF의 운영자들이 답변하는 날을 기다렸습니다.
+몇달 뒤 arsijo라는 우크라이나 출신의 CF IGM (레이팅 2600+, IOI 금상) 유저가 저한테 담당 배치되었고, 그 유저가 제 문제 아이디어를 평가했습니다.</p>
+<p>충격적인 결과는.. 제가 만든 초기 6개의 아이디어들 중 제일 쉬운 문제를 제외한 5개가 모두 거절당했다는 것입니다.
+이 문제는 너무 전형적이고, 저 문제는 너무 이상하고, 그런 등등 다양한 이유로 거절당한 것이죠.
+지금 다시 회고해보면 정말 형편없는 문제들이긴 했습니다.
+어쨌든 당시 저는 문제 아이디어가 당연히 통과될거라고 생각하고 Codeforces Polygon에서 문제 데이터셋까지 만들어둘 정도였으니, 허탈감이 좀 컸죠.</p>
+<p>그 이후로 저는 여러 문제 아이디어를 제시하였고, 긴 시간 동안 토론한 끝에 arsijo가 마침내 최종 허락한 버젼의 문제들이 완성되었습니다.
+그 문제들은 제가 만든 최초의 CF 라운드인 Codeforces Round 566에 들어가게 됩니다.</p>
+<p>나중에서야 알게 되었지만, arsijo도 제가 계속해서 문제들을 푸쉬하고 의견을 어필하다보니 본인이 피로감을 느껴서 퀄리티 바를 좀 낮춰서 평가해준 것 같습니다.
+어쨌든 당시에 저는 문제를 만들고 대회를 열기 위해 고군분투했고, 그 과정에서 대학 동문들 몇 명도 테스터로 초대해서 테스팅도 받고 그랬습니다.</p>
+<p>그 후 arsijo의 인맥을 통해서 외국인 테스터들한테도 피드백을 받고, 문제가 될 만한 부분은 수정하고 그러면서 대회를 열었죠.
+그 과정에서 제 문제 C는 지금은 기억이 안 나는 어떤 모종의 이유로 교체가 되어서 단독 출제자로 라운드를 여는 것에는 실패했는데, 왜 교체가 되었는지는 기억이 나지 않네요.
+그 과정에서 Maximum Sine이 D 위치에 있던게 F로 옮겨지기도 하고 (CF의 문제들은 보통 A-B-C-D-.. 순으로 갈 수록 난이도가 상승합니다),
+어떤 테스터분에게는 오지게 디스받기도 하고 뭐 그런 해프닝들이 있었네요.</p>
+<p>그러나 프로그래밍 대회 출제의 고비는 문제 아이디어에서 끝나지 않았습니다.
+틀린 풀이를 걸러내기 위해서는 정말 다양한 방식으로 입력 데이터를 생성할 필요가 있었습니다.
+당시 저는 노하우가 그렇게 많지 않았어서 제 딴에는 이것저것 해본다고 다양한 데이터를 생성했지만, 결국 나중에 설명드리게 될 "Weak Systest" 사태가 터지고야 맙니다.</p>
+<p>이런저런 고생 끝에 Div.2 전용 대회가 열렸고, 9000~10000명 정도의 참가자들의 무협지가 열리게 되었습니다. 대회 랭킹을 실시간으로 감상하는 것은 정말 재밌었습니다.
+다음은 제 라운드의 주요 통계(clist.by를 참조했습니다)입니다. 9319명이 참가 신청을 했고, 실제로 5543명이 대회 중 코드를 제출하였습니다.</p>
+<table>
+<thead>
+<tr>
+<th>문제 번호</th>
+<th>문제 이름</th>
+<th>해결(명)</th>
+<th>해결 비율</th>
+<th>시도(명)</th>
+<th>난이도</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Div2A</td>
+<td>Filling Shapes</td>
+<td>4787</td>
+<td>86%</td>
+<td>5449</td>
+<td>1000</td>
+</tr>
+<tr>
+<td>Div2B</td>
+<td>Plus from Picture</td>
+<td>2367</td>
+<td>42%</td>
+<td>4603</td>
+<td>1400</td>
+</tr>
+<tr>
+<td>Div2C</td>
+<td>Beautiful Lyrics</td>
+<td>1342</td>
+<td>24%</td>
+<td>1871</td>
+<td>1700</td>
+</tr>
+<tr>
+<td>Div2D</td>
+<td>Complete Mirror</td>
+<td>32</td>
+<td>0.6%</td>
+<td>448</td>
+<td>2400</td>
+</tr>
+<tr>
+<td>Div2E</td>
+<td>Product Oriented Recurrence</td>
+<td>171</td>
+<td>3%</td>
+<td>359</td>
+<td>2300</td>
+</tr>
+<tr>
+<td>Div2F</td>
+<td>Maximum Sine</td>
+<td>0</td>
+<td>0%</td>
+<td>41</td>
+<td>2700</td>
+</tr>
+</tbody>
+</table>
+<p>대회 진행 중에 별의별 이상한 질문도 많이 받았습니다.
+정말로 대형 코딩테스트나 프로그래밍 대회에서 엄격한 지문을 작성해야 하는 이유가..
+문장 하나하나를 잘못 이해할 여지가 조금이라도 있는 부분이 있으면 그거를 잘못 이해하는 사람이 꼭 1명씩은 나타나더군요.
+그리고 "이게 왜 답이 4인가요?" 같이 본인이 머릿속에서 로직을 안 돌려보고 질문을 하는 사람들도 되게 많았습니다.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="/assets/posts/tho/cf/cf_strange_question.png" data-desc-position="bottom"><img alt="img2" src="/assets/posts/tho/cf/cf_strange_question.png"></a></p>
+<div class="admonition caption">
+<p class="admonition-title">Caption</p>
+<p>이 경험은 향후 제가 알고리즘 문제 지문에 더욱 신경쓰게 만드는 계기가 됩니다.</p>
+</div>
+<p>그리고 B번 문제에서 대형사고가 터집니다.
+바로 systest fail이 줄줄이 터진 것이죠.
+Systest fail이란? 일반적인 코딩테스트 플랫폼과 달리 Codeforces에서는 서버의 과부하를 줄이기 위해,
+그리고 정답 코드를 부실하게 작성하는 사람들을 추가적으로 걸러내기 위해,
+데이터를 2종류의 세트로 분리하고 대회 중에 채점하는 "Pretest" 세트와 대회가 끝나고 난 뒤 추가적으로 채점하는 "Systest" 세트가 존재합니다.
+Pretest 데이터는 통과해서 문제를 풀었다고 생각했는데 systest 채점에서 본인의 풀이가 틀리는 경우를 "Systest fail" 혹은 줄여서 "sysfail"이라고 부릅니다.
+문제는 B번 문제에서 sysfail을 당한 유저가 너무 많았다는 거죠.
+그래서 Pretest 데이터가 왜 이렇게 약하냐고 비판을 하는 유저들이 많이 나왔고, 대회 공지를 비추천하는 유저들도 꽤 생겼을 정도였습니다.
+저도 당시 약간의 자괴감이 있었던 기억이 나네요.</p>
+<p>국내외 여러 코딩테스트 플랫폼에서도 데이터가 약한 일은 비일비재한데,
+거기서는 systest가 따로 분리되어 있는 것도 아니고 문제를 맞추면 유저 입장에서는 오히려 점수가 올라가서 이득을 보기 때문에,
+그리고 경우에 따라 어떤 데이터가 채점에 사용되었는지를 저작권으로 보호하는 플랫폼들도 있기 때문에 이런 비판은 잘 나오지 않는 것 같아요.
+하지만 CF는 워낙 대부분의 데이터가 오픈되어 있고 학술적인 분위기가 강하고, 심지어 sysfail은 "레이팅을 떨구는" 일이기 때문에 비판이 더욱 많은 것 같아요.
+F번도 B번보다도 심각한 이슈(Weak Systest)가 있었으나, F번은 워낙 고인물들만 건드리는 문제였고 심지어 Div.2 참가자 대상 중에서는 해당 문제를 맞춘 사람이 아무도 없었기 때문에 임팩트가 그나마 덜했습니다.</p>
+<p>C번은 구현 heavy한 문제였는데, 제가 낸 문제가 뭔가 문제가 생겨서 arsijo가 급하게 출제해준 문제였던 것으로 기억합니다.
+이 문제 또한 굉장히 많은 비판을 받았습니다. 우리가 코테 보는 것도 아니고 능지싸움 하는 건데 왜 이렇게 구현이 무거운 문제를 주냐는 그런 느낌이죠.
+저는 다른 유저들보다는 구현 heavy한 문제들에 대해 좀 관대한 입장이긴 합니다.
+때로는 스마트한 구현으로 정말 깔끔하게 문제를 구현할 수 있는 경우도 있는데, 그런 테크닉들이 알고리즘판에서는 인정을 못 받는 경우가 많아서 좀 아쉽긴 합니다.</p>
+<p>D번은 제 생각에 D번으로 들어가면 안 되었던 문제였던 것 같아요.
+문제 아이디어 자체는 저는 좋아하는데, 문제 위치에 비해 너무 높은 난이도가 제공되어서 수많은 Div.2 참가자들에게 좌절감을 줬던 것 같습니다.
+제 주변에 있던 한국인 테스터 한 분도 "이 문제가 블루 레이팅에 의해서 대회 시간 내에 풀릴 수 있다" 같은 가스라이팅을 많이 하셨습니다.
+여기서 뼈저리게 느낀 점은, 게임 난이도와 마찬가지로 수학문제, 코딩문제의 난이도는 출제자가 본인의 머리에서 나왔다는 이유로 매우 저평가하기 쉽다는 점입니다.
+그래서 저는 어떤 문제를 만들었을 때 제가 그 문제가 어떤 난이도라고 "그냥" 생각이 든다면 무조건 거기서 최소 2단계 정도 업그레이드해서 실제 난이도로 책정합니다.</p>
+<p>E번은 지금 와서 보면 너무 전형적인 문제였습니다.
+저는 소인수분해 + 행렬으로 풀었는데, discrete log라던가 각종 "Well-Known" 테크닉들을 데려와서 아 이거 바로 풀리네~ 하는 사람들이 많았었고, 아직 갈 길이 멀다는 생각이 들었죠.
+실제로 CF나 백준 같은 사이트에서 문제 출제 권한을 아무한테나 안 주고 제한을 주는 이유가 이런 거라고 생각합니다.
+문제를 풀어본 경험이나 스킬이 많지 않으면 본인 입장에서는 신선한 문제가 고인물들 입장에서는 "흔한 이론 적용 연습문제"가 되어버리는 거죠.</p>
+<p>F번은 처음에 D 위치에 있었는데, 이게 D 위치에 있었더라면 정말 끔찍했을 것 같군요..
+하지만 이 문제조차 제가 의도한 정답보다 훨씬 빠르게 푸는 방법이 있었고 그 방법이 고인물들 사이에서는 Well-Known이라더군요..
+코딩테스트나 수능수학 문제 같은 거는 이미 봤던 유형의 문제가 그대로 와도 별 이슈가 안 되고 또 실제로 그런 방향을 지향하지만, 이런 CF 같은 분위기에서는 그런 익숙한 유형의 문제를 대회(특히 Div.1 같은 고난이도 지향 대회)에 출제하는 것을 저평가하는 경향이 있습니다.
+그래서 최대한 유니크한 문제를 새로 만드는 게 좀 고통스럽긴 한데, 또 결과적으로 멋진 문제를 만들게 되면 그 때의 열매는 정말 달콤하기도 해서 재밌는 것 같습니다.</p>
+<p>아무튼, 이렇게 저의 첫 코드포스 대회는 마무리됩니다. 그리고 생각했습니다. <em>"아 또 열고 싶다."</em></p>
+<hr>
+<h2 id="codeforces-round-589"><a href="https://codeforces.com/blog/entry/70085">Codeforces Round 589</a><a class="headerlink" href="#codeforces-round-589" title="Permanent link">¶</a></h2>
+<p>CF 566을 마치고, 저는 새로운 라운드를 열기 위해 다시 고군분투하게 됩니다.
+이때쯤 제 코드포스 레이팅이 퍼플이 되었던 것 같아요.
+그렇게 저는 다시 arsijo를 배정받고 제 두 번째 코드포스 라운드를 열게 됩니다.
+이번에는 라운드 공지를 쓸 때 재밌는 일이 발생했는데, 일반인 주최 라운드 중에서 역대급으로 공지에 추천한 사람들이 많았다는 것이었습니다.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="/assets/posts/tho/cf/cf_upvotes.png" data-desc-position="bottom"><img alt="img3" src="/assets/posts/tho/cf/cf_upvotes.png"></a></p>
+<div class="admonition caption">
+<p class="admonition-title">Caption</p>
+<p>당시 기준으로 일반적인 라운드는 보통 추천수가 300-500 정도에 머물렀습니다.</p>
+</div>
+<p>저는 당시에 제가 작성한 방식의 공지가 뭔가 특이해서 그랬나 싶었는데, 알고보니 더 중요한 효과가 하나 있었습니다. 바로 "군중심리"입니다.</p>
+<p>당시 저는 외국인들과 알고리즘 관련 디스코드 친목 서버에서 놀고 있었고, 그 중에서는 고레이팅 계정을 여러 개 보유한 친구들이 있었습니다.
+그 친구들이 제가 공지를 올리자마자 제 공지에 upvote를 하자고 단체로 prank를 한 거죠.
+CF에서는 레이팅이 높은 유저일수록 추천/비추천을 했을 때 그 숫자가 더 많이 움직이는 기능(하지만 대놓고 밝히지는 않은)이 있었습니다.
+그래서 고레이팅 친구들이 추천 폭격을 하자 초반부터 추천수가 많이 올랐고, 거기에서 군중심리가 영향을 받았던 거죠.</p>
+<div class="admonition quote">
+<p class="admonition-title">Quote</p>
+<p><em>"저렇게 많은 사람들이 추천을 했네? 음, 게시글을 읽어보니 그런 것 같아. 나도 추천해야지!"</em></p>
+</div>
+<p>이런 식으로 수많은 사람들이 추천을 했고 그게 결국 저렇게 거대한 추천수를 만들어버린거죠.
+처음 알았을 때 많이 놀랐지만, 저는 이게 유투브나 인스타그램에서 마케팅이 작동하는 원리랑 매우 유사하다는 느낌이 들었습니다.
+유투브에서도 돈 받고 좋아요랑 조회수 조작해주는 업체들이 있다고 알고 있는데, 다 저런 군중심리 원리를 이용한 것이 아닐까요?
+이후로도 투자판에서도 다수는 손해를 보고 소수만 막대한 이득을 보는 것을 느끼고 그러다보니, 저는 집단지성과 군중심리의 함정에 빠지는 것을 경계하는 편입니다.</p>
+<p>어쨌든, 대회는 그만큼 기대감이 커졌고 그래서 그런건지는 모르겠으나 Mike Mirazyanov(사이트 창시자)가 직접 개입해서 대회가 시작되기 전에 문제 하나의 이름을 바꿔버리는 일도 있었을 정도였습니다.
+arsijo도 평소랑 다르게 지문에 신경을 많이 쓰는 모습을 보였습니다. 실제로도 제 대회는 당시 코드포스 규모 치고는 상당히 많은 사람들이 참가하게 되었습니다.
+13442명이 참가 신청을 했고, 8193명이 실제로 코드를 제출했습니다.
+구체적인 수치는 다음과 같습니다.</p>
+<table>
+<thead>
+<tr>
+<th>문제 번호</th>
+<th>문제 이름</th>
+<th>해결(명)</th>
+<th>해결 비율</th>
+<th>시도(명)</th>
+<th>난이도</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Div2A</td>
+<td>Distinct Digits</td>
+<td>7640</td>
+<td>93%</td>
+<td>8101</td>
+<td>800</td>
+</tr>
+<tr>
+<td>Div2B</td>
+<td>Filling the Grid</td>
+<td>4110</td>
+<td>50%</td>
+<td>5795</td>
+<td>1400</td>
+</tr>
+<tr>
+<td>Div2C</td>
+<td>Primes and Multiplication</td>
+<td>2371</td>
+<td>29%</td>
+<td>3075</td>
+<td>1700</td>
+</tr>
+<tr>
+<td>Div2D</td>
+<td>Complete Tripartite</td>
+<td>1157</td>
+<td>14%</td>
+<td>1870</td>
+<td>1900</td>
+</tr>
+<tr>
+<td>Div2E</td>
+<td>Another Filling the Grid</td>
+<td>273</td>
+<td>3.3%</td>
+<td>361</td>
+<td>2300</td>
+</tr>
+<tr>
+<td>Div2F</td>
+<td>One Node is Gone</td>
+<td>49</td>
+<td>0.6%</td>
+<td>128</td>
+<td>2500</td>
+</tr>
+</tbody>
+</table>
+<p>대부분의 문제들에서 이슈가 거의 없었습니다.
+문제의 아이디어가 아름답다거나 그런 건 없었지만, Div.2 대회에서는 그런 부분이 아주 요구될 필요도 없었고, systest라던가 지문 이슈라던가 그런 것들이 별로 없었기 때문에 호평을 꽤 많이 받았던 대회였던 것 같아요.
+F번은 아이디어 난이도에 비해서 구현을 덕지덕지해야 하는 문제라 혹평을 받았긴 한데, 어차피 Div.1에 낸 문제도 아니라서 비판은 별로 없었던 것 같습니다.</p>
+<p>그래서, 저의 두 번째 대회는 성공적으로 마무리가 됩니다. 그리고 생각했습니다. <em>"아 또 열고 싶다."</em></p>
+<hr>
+<h2 id="codeforces-round-599"><a href="https://codeforces.com/blog/entry/71170">Codeforces Round 599</a><a class="headerlink" href="#codeforces-round-599" title="Permanent link">¶</a></h2>
+<p>이 라운드는 제가 출제를 주도한 라운드는 아닙니다. 저는 사실 CF Round 589에 7문제를 내려고 했었습니다.
+하지만 제가 만든 마지막 문제는 GM (레이팅 2400+) 레이팅을 가진 테스터들을 포함해 그 누구도 일주일 이상 동안 제대로 풀지 못했고, 결국 해당 문제는 Div.2 라운드에 내기에는 너무 어렵다고 arsijo가 저를 설득하였고, 저는 해당 문제를 제외했습니다.
+이 문제는 다른 Div.1 라운드에서 어려운 문제에 뭔가 이슈가 생겼을 때 대신 내는 스페어 문제가 되었습니다.
+그리고 얼마 안 가 Round 599의 Div.1 D번 문제에서 문제가 생겼고, 해당 문제는 제 문제로 대체가 됩니다.</p>
+<p>해당 문제는 제가 살면서 만든 알고리즘 프로그래밍 문제들 중 가장 아름답고, 난이도가 높은 문제였습니다.
+대회가 끝난 뒤에도 몇 달 동안 해당 문제의 제출 기록을 보면서 대회가 끝나고 나서도 해당 문제를 푸는 사람이 있나, 어떻게 풀었나 등을 열람했을 정도로(지금 생각해보면 좀 음침한 스토커 같네요..)
+저는 해당 문제에 대해서 자부심이 많았습니다.</p>
+<p>Div.2에는 10683명이 참가 신청 및 6201명이 코드를 제출했고, Div.1에는 1138명이 참가 신청 및 756명이 코드를 제출했습니다. 다음은 주요 통계입니다.</p>
+<table>
+<thead>
+<tr>
+<th>문제 번호</th>
+<th>문제 이름</th>
+<th>해결(명)</th>
+<th>해결 비율</th>
+<th>시도(명)</th>
+<th>난이도</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Div1D</td>
+<td>Number Discovery</td>
+<td>6</td>
+<td>0.8%</td>
+<td>13</td>
+<td>3400</td>
+</tr>
+</tbody>
+</table>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="/assets/posts/tho/cf/cf_howdoesfeel.png" data-desc-position="bottom"><img alt="img4" src="/assets/posts/tho/cf/cf_howdoesfeel.png"></a></p>
+<div class="admonition quote">
+<p class="admonition-title">Quote</p>
+<p><em>"LGM(CF 최고 레이팅 유저)들이 너가 만든 문제를 40분 넘게 고전하는데, 기분이 어때?"</em> (어떤 IGM 유저가 한 말)</p>
+</div>
+<p>해당 문제는 같은 대회의 Div.1 E보다도 더 높은 난이도를 할당받았지만, 어차피 Div.1 후반 문제들은 난이도 밸런스보다 더 중요한 게 문제의 아름다움이나 유니크함이었기 때문에 오히려 더 좋았습니다.
+한동안은 정말 뽕에 취해 살았던 것 같아요.
+기분 좋았던 순간이었습니다.
+위키백과에서 우연히 Ulam 수열을 보고 영감이 떠올라서 만든 문제였는데, 이런 식으로 exclusion이 inclusion에 직접적으로 영향을 주는 문제 유형이 생각보다 재밌는 걸 할만한게 많더군요.
+그런데 또 고인물들은 문제 지문이 유사했던 <a href="https://artofproblemsolving.com/downloads/printable_post_collections/208905">수학 올림피아드(Putnam) 문제</a>(문제가 요구하는 바가 많이 다르긴 하지만)를 가져오더군요..
+역시 세상은 넓구나 싶었습니다.</p>
+<hr>
+<h2 id="codeforces-round-633"><a href="https://codeforces.com/blog/entry/75806">Codeforces Round 633</a><a class="headerlink" href="#codeforces-round-633" title="Permanent link">¶</a></h2>
+<p>CF 589를 마치고 나서는 코딩테스트도 건드리고, ICPC도 수상하기도 했고, 여러가지 측면에서 2020년은 제가 정말 알고리즘 문제에 모든 걸 바쳤던 시기였던 것 같습니다.
+이때는 arsijo가 아닌 antontrygubO_o (우크라이나 출신 IMO 금상, IGM 유저, MIT 학생, 이하 anton)를 배정받았습니다.
+그리고 이 때도 Div.2 라운드를 열기로 했지만 어쩌다보니 Div.1+2로 격상되었고, 그 과정에서 저는 정말 머리를 쥐어짜내야만 했습니다.</p>
+<p>Anton은 제가 만난 CF 대회 담당자들 중에서 가장 문제의 "아름다움"을 까다롭게 평가하는 사람이었습니다.
+arsijo는 그래도 좀 자비로운 편이었는데, anton은 진짜 자기 마음에 들지 않는 문제들은 가차없이 쓰레기통으로 다 집어던졌습니다.
+이 문제가 단순히 특정 이론을 묻는 문제인지, 이미 있는 문제랑 비슷한 건지 등을 정말 까다롭게 심사했고, 저는 "괜찮은 아이디어"를 생각하기 위해 노력을 많이 했고, 진짜 머리 터지는 줄 알았습니다.
+특히 당시에는 제가 코딩테스트 문제들을 대량생산하던 시기였기 때문에 머리가 약간 그쪽으로 align이 되어 있어서 더욱 양질의 문제를 생산하기가 힘들었던 것 같아요.</p>
+<p>그 과정에서 anton이랑 gamegame (홍콩 LGM 유저, 옥스포드대 학생) 이랑 대화를 엄청 많이 하게 되었는데, 진짜 세계급 천재들을 정면대결로 승부하는 거는 어렵다는 생각을 많이 했습니다.
+제가 문제를 머리 쥐어짜내서 생각해오면, 1분 정도 생각하더니 <em>"응? 이거 이렇게 풀면 되는거 아님? 너무 전형적인데?"</em> 하는 경우가 꽤 많았습니다.
+저도 평소에 스스로가 똑똑하다는 자부심을 가지고 있고, 어디 가서 이런 쪽 지능으로 안 꿀린다고 생각했는데, 벽을 넘으면 더 큰 벽이 있고 그걸 또 넘으면 뒤에는 더 큰 벽이 있던 거죠.
+물론 지능은 스칼라가 아니고 방향이 다양하기 때문에, 그리고 세상은 정점에게만 기회를 부여하는 것은 아니기에 다른 사람들도 먹고 살 방법이 다양하게 있다고 생각합니다.</p>
+<p>또 하나 재밌는 썰을 풀어보면 제가 대회를 열 당시에는 오렌지(2100+)에서 추락해서 퍼플(1900+) 레이팅이었는데, 어떤 사람들은 <em>"Div.1 자격을 간신히 가지고 있는 주제에 왜 Div.1 대회를 염?"</em> 이라는 비난 덧글을 달기도 했습니다.
+확실히 문제 푸는 실력이 좋을 수록 아는 게 많고 보이는 것도 많기 때문에 좋은 문제를 낼 확률이 높다고 생각하긴 합니다만, <a href="https://codeforces.com/profile/darooha">Danny Sleator</a> 같이 레이팅은 별로지만 연구실적에서 대단한 경우도 있어서(이 분은 카네기멜론 컴공 교수십니다),
+그리고 레이팅이 높다고 무조건 문제를 잘 내는 것은 아니어서 guarantee는 아니고 어디까지나 상관관계가 있는 random variable 정도로 보시면 될 것 같습니다.
+그래서 출제를 하기 위해 레이팅을 꼭 어느 정도로 높여야겠다는 압박감을 가지실 필요는 없을 거 같아요.
+좋은 문제를 만드는 데 더 집중하시는 게 여러가지 면에서 유익합니다.</p>
+<p>이번 라운드에서는 Div.2는 19768명이 참가 신청을 했고 12032명이 실제로 코드를 제출했고, Div.1은 1983명이 참가 신청했습니다.
+(코드 제출자는 clist.by 통계가 조금 이상하네요)
+다음은 주요 통계입니다.</p>
+<table>
+<thead>
+<tr>
+<th>문제 번호</th>
+<th>문제 이름</th>
+<th>Div.2 해결(명)</th>
+<th>Div.2 해결 비율</th>
+<th>Div.2 시도(명)</th>
+<th>Div.1 해결(명)</th>
+<th>Div.1 해결 비율</th>
+<th>Div.1 시도(명)</th>
+<th>난이도</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Div2A</td>
+<td>Filling Diamonds</td>
+<td>10492</td>
+<td>87%</td>
+<td>11507</td>
+<td></td>
+<td></td>
+<td></td>
+<td>900</td>
+</tr>
+<tr>
+<td>Div2B</td>
+<td>Sorted Adjacent Differences</td>
+<td>8132</td>
+<td>67.5%</td>
+<td>9420</td>
+<td></td>
+<td></td>
+<td></td>
+<td>1200</td>
+</tr>
+<tr>
+<td>Div2C, Div1A</td>
+<td>Powered Addition</td>
+<td>5176</td>
+<td>43%</td>
+<td>8066</td>
+<td>1346</td>
+<td>97%</td>
+<td>1385</td>
+<td>1500</td>
+</tr>
+<tr>
+<td>Div2D, Div1B</td>
+<td>Edge Weight Assignment</td>
+<td>1157</td>
+<td>14%</td>
+<td>1870</td>
+<td>1226</td>
+<td>88.5%</td>
+<td>1308</td>
+<td>1800</td>
+</tr>
+<tr>
+<td>Div2E, Div1C</td>
+<td>Perfect Triples</td>
+<td>97</td>
+<td>0.8%</td>
+<td>299</td>
+<td>708</td>
+<td>51%</td>
+<td>854</td>
+<td>2200</td>
+</tr>
+<tr>
+<td>Div1D</td>
+<td>Nested Rubber Bands</td>
+<td></td>
+<td></td>
+<td></td>
+<td>92</td>
+<td>6.6%</td>
+<td>396</td>
+<td>2700</td>
+</tr>
+</tbody>
+</table>
+<p>Div.1 E번 문제는 제가 만든 문제가 아니라 제외했습니다.
+이 문제는 gamegame이 만들었고, 3500 난이도를 할당받게 됩니다.</p>
+<p>저는 이때 어떤 문제들을 anton이 허가했다 거절했다 이런 말들을 되게 공개적으로 많이 했었는데, 이때 Um_nik 같은 유저들이 <em>"너가 만든 문제인데 anton 뒤에 숨지 말고 책임감 좀 가져라"</em> 라는 DM을 하기도 했습니다.
+그때 생각해보면 제가 문제를 통해 저의 ego를 표현하는 것보다도 anton의 기준에 통과시키기 위해 급급했던 때도 있었던 것 같아서 좀 찔렸네요.</p>
+<hr>
+<p>어쨌든 CF 대회 출제는 너무 좋은 경험이었고, 저는 지금도 CF에 대회 출제했다는 경력을 자랑스럽게 이력서에 박아두고 있습니다.
+면접에서 아무도 관심 안 가지긴 하지만, 뭐 어때요.</p>
+<p>읽어주셔서 감사합니다. 새해 복 많이 받으세요.</p>
+
+
+
+<article class="md-post md-post__excerpt md-mcdic--meta">
+    <header class="md-post__header">
+        <div class="md-post__meta md-meta">
+            <ul class="md-meta__list">
+                
+                    <li class="md-meta__item">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h5v-2H5V8h14v1h2V5a2 2 0 0 0-2-2m2.7 10.35-1 1-2.05-2 1-1c.2-.21.54-.22.77 0l1.28 1.28c.19.2.19.52 0 .72M12 18.94l6.07-6.06 2.05 2L14.06 21H12z"></path></svg>
+                        <div class="text">
+                            Updated at Jan 17, 2025
+                            
+                            (
+                                <a href="https://github.com/McDic/BlogV2/commit/05b8bad0ca9d2173920e02248a9e0e6917b46b15">
+                                    05b8bad..
+                                </a>
+                            )
+                            
+                        </div>
+                    </li>
+                    <li class="md-meta__item">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19V8H5v11zM16 1h2v2h1a2 2 0 0 1 2 2v14c0 1.11-.89 2-2 2H5a2 2 0 0 1-2-2V5c0-1.11.89-2 2-2h1V1h2v2h8zm-5 8.5h2v3h3v2h-3v3h-2v-3H8v-2h3z"></path></svg>
+                        <div class="text">
+                            Created at Dec 29, 2023
+                            
+                                ( from outside )
+                            
+                        </div>
+                    </li>
+                
+                
+                    <li class="md-meta__item">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5.36 0 .72 0 1.08-.05a6 6 0 0 1-.08-.95c0-.56.08-1.12.24-1.66-.41.1-.82.16-1.24.16a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5c0 .29-.03.59-.08.88.66-.25 1.37-.38 2.08-.38 1.17 0 2.31.34 3.29 1 .27-.5.51-1 .71-1.5-1.73-4.39-6-7.5-11-7.5M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m6 5.5v3h-3v2h3v3h2v-3h3v-2h-3v-3z"></path></svg>
+                        <div class="text">
+                            286 Views
+                        </div>
+                    </li>
+                
+                
+                    <li class="md-meta__item">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M11.93 8.5a4.002 4.002 0 0 1-7.86 0H.75a.75.75 0 0 1 0-1.5h3.32a4.002 4.002 0 0 1 7.86 0h3.32a.75.75 0 0 1 0 1.5Zm-1.43-.75a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0"></path></svg>
+                        <div class="text">
+                            Edit history:
+                            <a href="https://github.com/McDic/BlogV2/commits/master/docs/posts/alds/alds4.md">
+                                ../alds4.md
+                            </a>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </header>
+</article>
+
+<!-- (MODIFIED BY MCDIC) Source file information, feedback are removed -->
+
+<!-- Comment system -->
+
+    <script src="https://utteranc.es/client.js" repo="McDic/BlogV2" issue-term="title" theme="github-light" crossorigin="anonymous" async>
+    </script>
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer">
+        
+          
+          <a href="../3" class="md-footer__link md-footer__link--prev" aria-label="Previous: ALDS 3. About Ad-hoc Problems">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                ALDS 3. About Ad-hoc Problems
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../5" class="md-footer__link md-footer__link--next" aria-label="Next: ALDS 5. Relationship between Algorithm and Dev Career">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                ALDS 5. Relationship between Algorithm and Dev Career
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Every article in this blog is owned by Minsung Kim and licensed by CC BY-NC 4.0 DEED.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/McDic" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"></path></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/in/mcdic/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"></path></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://codeforces.com/profile/McDic" target="_blank" rel="noopener" title="codeforces.com" class="md-social__link">
+      <!--?xml version="1.0" ?--><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title></title><path d="M4.5 7.5C5.328 7.5 6 8.172 6 9v10.5c0 .828-.672 1.5-1.5 1.5h-3C.673 21 0 20.328 0 19.5V9c0-.828.673-1.5 1.5-1.5h3zm9-4.5c.828 0 1.5.672 1.5 1.5v15c0 .828-.672 1.5-1.5 1.5h-3c-.827 0-1.5-.672-1.5-1.5v-15c0-.828.673-1.5 1.5-1.5h3zm9 7.5c.828 0 1.5.672 1.5 1.5v7.5c0 .828-.672 1.5-1.5 1.5h-3c-.828 0-1.5-.672-1.5-1.5V12c0-.828.672-1.5 1.5-1.5h3z"></path></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://discordapp.com/users/mcdic" target="_blank" rel="noopener" title="discordapp.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M492.5 69.8c-.2-.3-.4-.6-.8-.7-38.1-17.5-78.4-30-119.7-37.1-.4-.1-.8 0-1.1.1s-.6.4-.8.8c-5.5 9.9-10.5 20.2-14.9 30.6-44.6-6.8-89.9-6.8-134.4 0-4.5-10.5-9.5-20.7-15.1-30.6-.2-.3-.5-.6-.8-.8s-.7-.2-1.1-.2C162.5 39 122.2 51.5 84.1 69c-.3.1-.6.4-.8.7C7.1 183.5-13.8 294.6-3.6 404.2c0 .3.1.5.2.8s.3.4.5.6c44.4 32.9 94 58 146.8 74.2.4.1.8.1 1.1 0s.7-.4.9-.7c11.3-15.4 21.4-31.8 30-48.8.1-.2.2-.5.2-.8s0-.5-.1-.8-.2-.5-.4-.6-.4-.3-.7-.4c-15.8-6.1-31.2-13.4-45.9-21.9-.3-.2-.5-.4-.7-.6s-.3-.6-.3-.9 0-.6.2-.9.3-.5.6-.7c3.1-2.3 6.2-4.7 9.1-7.1.3-.2.6-.4.9-.4s.7 0 1 .1c96.2 43.9 200.4 43.9 295.5 0 .3-.1.7-.2 1-.2s.7.2.9.4c2.9 2.4 6 4.9 9.1 7.2.2.2.4.4.6.7s.2.6.2.9-.1.6-.3.9-.4.5-.6.6c-14.7 8.6-30 15.9-45.9 21.8-.2.1-.5.2-.7.4s-.3.4-.4.7-.1.5-.1.8.1.5.2.8c8.8 17 18.8 33.3 30 48.8.2.3.6.6.9.7s.8.1 1.1 0c52.9-16.2 102.6-41.3 147.1-74.2.2-.2.4-.4.5-.6s.2-.5.2-.8c12.3-126.8-20.5-236.9-86.9-334.5zm-302 267.7c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.4 59.2-52.8 59.2m195.4 0c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.2 59.2-52.8 59.2"></path></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["search.suggest", "search.highlight", "navigation.footer", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../../javascripts/autoscroll.js"></script>
+      
+        <script src="https://w.soundcloud.com/player/api.js"></script>
+      
+        <script src="../../../javascripts/musicplayer.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html><!-- (ADDED BY MCDIC) Metadata --><!-- Added by McDic for metadata -->
