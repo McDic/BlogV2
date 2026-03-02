@@ -38,6 +38,9 @@ nav:
   - Post Format: format.md
   - AI Songs: ai_songs.md
   - About: about.md
+  - My Other Websites:
+    - Pokercraft Local: https://pokercraft.mcdic.net
+    - PokerClock: https://pokerclock.mcdic.net
   - AMA: ama.md
 
 plugins:
