@@ -2,6 +2,32 @@
 
 {% block site_meta %}
     {{ super() }}
+    {#
+        Content-Security-Policy: restricts which origins may load executable
+        resources, so a third-party CDN going rogue (cf. the polyfill.io
+        supply-chain attack) cannot inject scripts that aren't on this allow
+        list. GitHub Pages can't send HTTP headers, so this is delivered as a
+        <meta> tag. The origin allow lists below were derived empirically from
+        the built site; add an origin here when introducing a new embed/CDN.
+
+        'unsafe-inline' is required because Material for MkDocs ships inline
+        <script>/<style> bootstrap blocks and static hosting cannot mint a
+        per-request nonce. This does NOT weaken the origin allow list: an
+        external <script src> still must match an allowed host, so a new/rogue
+        CDN remains blocked.
+    #}
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self';
+        script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdn.plot.ly https://utteranc.es https://w.soundcloud.com https://www.googletagmanager.com;
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+        font-src 'self' data: https://fonts.gstatic.com;
+        img-src 'self' data: https:;
+        frame-src https://w.soundcloud.com https://www.youtube.com https://utteranc.es;
+        connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://utteranc.es;
+        worker-src 'self' blob:;
+        object-src 'none';
+        base-uri 'self';
+    ">
     <meta name="naver-site-verification" content="350e113007a0eb7457df0e7257d064821aadb302" />
     <meta name="google-site-verification" content="a03bDk70M68JfTAtAahtI2Rgnez2v29KYXrRPM0X_to" />
 {% endblock %}
@@ -12,4 +38,19 @@
     {% else %}
         <!-- ANALYTICS IS NOT LOADED. -->
     {% endif %}
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    {#
+        MathJax library, pinned to an exact version with a Subresource
+        Integrity hash so a tampered CDN response is rejected by the browser.
+        Loaded after super() so the window.MathJax config (javascripts/mathjax.js,
+        rendered via extra_javascript) is already in place. crossorigin is
+        mandatory for SRI to be enforced on a cross-origin script.
+    #}
+    <script
+        src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"
+        integrity="sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6/1Nxveei"
+        crossorigin="anonymous"></script>
 {% endblock %}

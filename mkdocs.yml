@@ -106,7 +106,9 @@ markdown_extensions:
 
 extra_javascript:
   - javascripts/mathjax.js
-  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  # MathJax library is injected in overrides/main.html with an exact version
+  # pin + Subresource Integrity hash. mkdocs `extra_javascript` cannot set the
+  # `integrity`/`crossorigin` attributes, so it must be a raw <script> tag.
   - javascripts/autoscroll.js
   - https://w.soundcloud.com/player/api.js
   - javascripts/musicplayer.js
