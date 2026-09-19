@@ -1,0 +1,17 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Random redirection</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const pages = ['/quiz/q1/question/', '/quiz/q2/question/', '/quiz/q3/question/', '/quiz/q4/question/'];
+            window.location.href = pages[Math.floor(Math.random() * pages.length)];
+        });
+    </script>
+</head>
+<body>
+    <p>Redirecting to a random page...</p>
+</body>
+</html>
