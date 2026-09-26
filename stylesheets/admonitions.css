@@ -1,0 +1,171 @@
+:root {
+    --md-admonition-icon--disclaimer: url("/assets/icons/svgrepo/disclaimer.svg");
+    --md-admonition-icon--references: url("/assets/icons/svgrepo/references.svg");
+    --md-admonition-icon--migrated: url("/assets/icons/svgrepo/migration.svg");
+    --md-admonition-icon--caption: url("/assets/icons/svgrepo/picture.svg");
+    --md-admonition-icon--copyright: url("/assets/icons/svgrepo/copyright_simpler.svg");
+    --md-admonition-icon--formula: url("/assets/icons/svgrepo/formula.svg");
+    --md-admonition-icon--spoiler: url("/assets/icons/svgrepo/eye.svg");
+    --md-admonition-animation-heartbeat-x: 0;
+    --md-admonition-animation-heartbeat-y: 0;
+    --md-admonition-animation-heartbeat-z: 1;
+}
+
+@keyframes heartbeating {
+    0%, 10% {
+        opacity: 100%;
+        transform: scale(100%) rotate3d(
+            var(--md-admonition-animation-heartbeat-x),
+            var(--md-admonition-animation-heartbeat-y),
+            var(--md-admonition-animation-heartbeat-z),
+            0deg
+        );
+    }
+    25% {
+        opacity: 33%;
+        transform: scale(75%) rotate3d(
+            var(--md-admonition-animation-heartbeat-x),
+            var(--md-admonition-animation-heartbeat-y),
+            var(--md-admonition-animation-heartbeat-z),
+            45deg
+        );
+    }
+    40%, 60% {
+        opacity: 100%;
+        transform: scale(100%) rotate3d(
+            var(--md-admonition-animation-heartbeat-x),
+            var(--md-admonition-animation-heartbeat-y),
+            var(--md-admonition-animation-heartbeat-z),
+            0deg
+        );
+    }
+    75% {
+        opacity: 33%;
+        transform: scale(75%) rotate3d(
+            var(--md-admonition-animation-heartbeat-x),
+            var(--md-admonition-animation-heartbeat-y),
+            var(--md-admonition-animation-heartbeat-z),
+            -45deg
+        );
+    }
+    90%, 100% {
+        opacity: 100%;
+        transform: scale(100%) rotate3d(
+            var(--md-admonition-animation-heartbeat-x),
+            var(--md-admonition-animation-heartbeat-y),
+            var(--md-admonition-animation-heartbeat-z),
+            0deg
+        );
+    }
+}
+
+.md-typeset .admonition-title::before,
+.md-typeset summary::before {
+    animation: heartbeating 6000ms infinite;
+}
+
+.md-typeset .admonition.disclaimer,
+.md-typeset details.disclaimer {
+    border-color: rgb(224, 27, 27);
+}
+.md-typeset .disclaimer > .admonition-title,
+.md-typeset .disclaimer > summary {
+    background-color: rgba(224, 27, 27, 0.1);
+}
+.md-typeset .disclaimer > .admonition-title::before,
+.md-typeset .disclaimer > summary::before {
+    background-color: rgb(224, 27, 27);
+    -webkit-mask-image: var(--md-admonition-icon--disclaimer);
+            mask-image: var(--md-admonition-icon--disclaimer);
+    animation: heartbeating 2000ms infinite;
+}
+
+.md-typeset .admonition.references,
+.md-typeset details.references {
+    border-color: rgb(145, 109, 10);
+}
+.md-typeset .references > .admonition-title,
+.md-typeset .references > summary {
+    background-color: rgba(145, 109, 10, 0.1);
+}
+.md-typeset .references > .admonition-title::before,
+.md-typeset .references > summary::before {
+    background-color: rgb(145, 109, 10);
+    -webkit-mask-image: var(--md-admonition-icon--references);
+            mask-image: var(--md-admonition-icon--references);
+}
+
+.md-typeset .admonition.migrated,
+.md-typeset details.migrated {
+    border-color: rgb(107, 200, 236);
+}
+.md-typeset .migrated > .admonition-title,
+.md-typeset .migrated > summary {
+    background-color: rgba(107, 200, 236, 0.1);
+}
+.md-typeset .migrated > .admonition-title::before,
+.md-typeset .migrated > summary::before {
+    background-color: rgb(107, 200, 236);
+    -webkit-mask-image: var(--md-admonition-icon--migrated);
+            mask-image: var(--md-admonition-icon--migrated);
+}
+
+.md-typeset .admonition.caption,
+.md-typeset details.caption {
+    border-color: rgb(220, 228, 116);
+}
+.md-typeset .caption > .admonition-title,
+.md-typeset .caption > summary {
+    background-color: rgba(220, 228, 116, 0.1);
+}
+.md-typeset .caption > .admonition-title::before,
+.md-typeset .caption > summary::before {
+    background-color: rgb(220, 228, 116);
+    -webkit-mask-image: var(--md-admonition-icon--caption);
+            mask-image: var(--md-admonition-icon--caption);
+}
+
+.md-typeset .admonition.copyright,
+.md-typeset details.copyright {
+    border-color: rgb(221, 59, 194);
+}
+.md-typeset .copyright > .admonition-title,
+.md-typeset .copyright > summary {
+    background-color: rgba(221, 59, 194, 0.1);
+}
+.md-typeset .copyright > .admonition-title::before,
+.md-typeset .copyright > summary::before {
+    background-color: rgb(221, 59, 194);
+    -webkit-mask-image: var(--md-admonition-icon--copyright);
+            mask-image: var(--md-admonition-icon--copyright);
+}
+
+.md-typeset .admonition.formula,
+.md-typeset details.formula {
+    border-color: rgb(114, 35, 240);
+}
+.md-typeset .formula > .admonition-title,
+.md-typeset .formula > summary {
+    background-color: rgba(114, 35, 240, 0.1);
+}
+.md-typeset .formula > .admonition-title::before,
+.md-typeset .formula > summary::before {
+    background-color: rgb(114, 35, 240);
+    -webkit-mask-image: var(--md-admonition-icon--formula);
+            mask-image: var(--md-admonition-icon--formula);
+}
+
+.md-typeset .admonition.spoiler,
+.md-typeset details.spoiler {
+    border-color: rgb(128, 64, 64);
+}
+.md-typeset .spoiler > .admonition-title,
+.md-typeset .spoiler > summary {
+    background-color: rgba(128, 64, 64, 0.1);
+}
+.md-typeset .spoiler > .admonition-title::before,
+.md-typeset .spoiler > summary::before {
+    background-color: rgb(128, 64, 64);
+    -webkit-mask-image: var(--md-admonition-icon--spoiler);
+            mask-image: var(--md-admonition-icon--spoiler);
+}
