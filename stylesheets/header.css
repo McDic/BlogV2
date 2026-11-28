@@ -1,0 +1,52 @@
+header.md-header .auto-scroller {
+    display: flex;
+    width: 2.4rem;
+    height: 2.4rem;
+    float: inline-start;
+
+    svg {
+        width: 1.2rem;
+        height: 1.2rem;
+        margin: 0.6rem;
+        fill: currentColor;
+    }
+}
+
+header.md-header .auto-scroller:hover {
+    cursor: pointer;
+    opacity: 75%;
+}
+
+header.md-header .music-player {
+    display: flex;
+    width: 2.2rem;
+    height: 2.2rem;
+    float: inline-start;
+    fill: currentColor;
+
+    svg {
+        width: 1.1rem;
+        height: 1.1rem;
+        margin: 0.55rem;
+        fill: currentColor;
+    }
+}
+
+header.md-header .music-player.play-button {
+    background: url("/assets/icons/svgrepo/music_play.svg") no-repeat center/60%;
+}
+
+header.md-header .music-player.pause-button {
+    background: url("/assets/icons/svgrepo/music_pause.svg") no-repeat center/60%;
+}
+
+header.md-header .music-player:hover {
+    cursor: pointer;
+    opacity: 75%;
+}
+
+header.md-header iframe.soundcloud {
+    visibility: hidden;
+    animation-duration: 0ms;
+    -webkit-animation-duration: 0ms;
+}

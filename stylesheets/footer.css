@@ -1,0 +1,22 @@
+:root {
+    --mcdic-calculated-footer-height: 158.938px;
+}
+
+@media (min-height: 800px) {
+    .md-footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: auto;
+    }
+
+    .md-main {
+        display: block;
+        margin-bottom: var(--mcdic-calculated-footer-height);
+    }
+}
+
+.md-footer .md-copyright {
+    font-weight: bolder;
+}
